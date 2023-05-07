@@ -1,12 +1,13 @@
 "use client"
 import Image from 'next/image'
 import { useEffect } from 'react'
+import { supabase } from './supabaseClient'
 
-
-export default function Home() {
-  useEffect(() => {
-    console.log("hello world")
-  }, [])
+export default async function Home() {
+ 
+  const handleLogout = async() => {
+    const { error } = await supabase.auth.signOut();
+  }
   
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -15,6 +16,7 @@ export default function Home() {
         <span className="text-9xl m-auto">HOME</span>
         <a href="/register">register</a>
       </div>
+      <button onClick={handleLogout}>logout</button>
     </main>
   )
 }
