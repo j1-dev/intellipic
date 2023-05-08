@@ -1,17 +1,31 @@
-import { NextResponse } from 'next/server'
-import { supabase } from './app/supabaseClient'
-
-import type { NextRequest } from 'next/server'
+import { NextRequest, NextResponse } from "next/server";
+import { createMiddlewareSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 export async function middleware(req: NextRequest) {
-  const path = req.nextUrl.pathname;
-  const res = NextResponse.next()
-  // const supabase = createMiddlewareSupabaseClient({ req, res })
-  const data = await supabase.auth.getSession()
-  const token = req.cookies.get("supabase-auth-token")
-  console.log(data)
-  if(!!token && path !== `/dashboard/${data.data.session?.user.id}`){
-    return NextResponse.redirect(new URL(`/dashboard/${data.data.session?.user.id}`, req.url))
-  } 
-  return res
+  const adminPath = "/admin";
+  const apiAdminPath = "/api/admin";
+
+  const res = NextResponse.next();
+  const supabase = createMiddlewareSupabaseClient({ req, res });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  console.log(session)
+  if (!session || session?.user.user_metadata?.role !== "admin") {
+    if (req.nextUrl.pathname.startsWith(apiAdminPath)) {
+      return new NextResponse(
+        JSON.stringify({ message: "authorization failed" }),
+        { status: 403, headers: { "Content-Type": "application/json" } }
+      );
+    } else if (req.nextUrl.pathname.startsWith(adminPath)) {
+      const redirectUrl = req.nextUrl.clone();
+      redirectUrl.pathname = "/";
+      return NextResponse.redirect(redirectUrl);
+    }
+  }
+}
+
+export const config ={
+  matcher: ["/login", "/dashboard/:id*"]
 }

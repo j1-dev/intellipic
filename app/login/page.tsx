@@ -10,19 +10,11 @@ export default function LoginPage(){
   const [user, setUser] = useState<User|undefined>(undefined);
   const router = useRouter();
 
-  useEffect(() => {
-    const sub = async() => {
-      const {data: s} = await supabase.auth.getSession()
-      setUser(s.session?.user)
-    }
-    sub();
-  })
-
-  useEffect(()=>{
-    console.log(user);
-    if(!(user === undefined))
-      router.push(`/dashboard/${user?.id}`)
-  },[user])
+  // useEffect(()=>{
+  //   console.log(user);
+  //   if(!(user === undefined))
+  //     router.push(`/dashboard/${user?.id}`)
+  // },[user])
 
   return (
     <Auth
@@ -30,7 +22,6 @@ export default function LoginPage(){
       appearance={{theme: ThemeSupa}}
       theme='dark'
       providers={[]}
-      redirectTo='localhost:3000/login'
     />
   );
 }
