@@ -16,7 +16,7 @@ export default async function Home() {
         <span className="text-9xl m-auto">HOME</span>
         <a href="/register">register</a>
       </div>
-      <button onClick={handleLogout}>logout</button>
+      <button onClick={handleLogout()}>logout</button>
     </main>
   )
 }
