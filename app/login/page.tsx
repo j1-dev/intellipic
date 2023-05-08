@@ -30,6 +30,7 @@ export default function LoginPage(){
       appearance={{theme: ThemeSupa}}
       theme='dark'
       providers={[]}
+      redirectTo='localhost:3000/login'
     />
   );
 }
