@@ -29,10 +29,8 @@ function SignUp({t}:{t: boolean}) {
       if (error) {
         setError(error);
       } else {
-        console.log(data.session);
-        const s = data.session as Session;
-        console.log(s)
-        supabase.auth.setSession(s);
+        // const s = data.session as Session;
+        // supabase.auth.setSession(s);
         // Your code to handle a successful sign-in would go here
       }
     } else {
