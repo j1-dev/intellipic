@@ -17,8 +17,13 @@ export default function App() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
+      if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        const maxAge = 100 * 365 * 24 * 60 * 60 // 100 years, never expires
+        document.cookie = `sb-access-token=${session?.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
+        document.cookie = `sb-refresh-token=${session?.refresh_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
+      }
     })
       
     return () => {

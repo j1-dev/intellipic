@@ -31,7 +31,6 @@ function SignUp({t}:{t: boolean}) {
       } else {
         // const s = data.session as Session;
         // supabase.auth.setSession(s);
-        // Your code to handle a successful sign-in would go here
       }
     } else {
       // code for signing up

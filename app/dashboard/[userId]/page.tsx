@@ -9,7 +9,14 @@ export default function DashboardPage(){
   const router = useRouter();
 
   async function logout(){
-    await supabase.auth.signOut().then(e => router.push("/"))
+    supabase.auth.signOut().then(() => {
+      const expires = new Date(0).toUTCString()
+      document.cookie = `sb-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+      document.cookie = `sb-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+    })
+    .then(()=>{
+      router.push("/")
+    });
   }
   
   return(
