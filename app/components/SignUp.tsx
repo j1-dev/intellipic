@@ -35,6 +35,11 @@ function SignUp({t}:{t: boolean}) {
       }
     } else {
       // code for signing up
+      const { data, error } = await supabase.auth.admin.createUser({
+        email: email,
+        password: password,
+        user_metadata: { name: 'Yoda' }
+      })
     }
   };
 
