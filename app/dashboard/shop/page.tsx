@@ -4,14 +4,14 @@ import { useRouter } from 'next/navigation';
 import { supabase } from "@/app/supabaseClient";
 
 
-export default function TrainPage(){
+export default function ShopPage(){
   const params = useParams();
   const router = useRouter();
   
   return(
     <div>
-      <span>its training time</span>
-      <button onClick={()=>alert("maricon")}>train</button>
+      <span>la tienda en casa</span>
+      <img height={"64px"} width={"64px"} src="https://i1.sndcdn.com/avatars-000590684379-a7bivd-t240x240.jpg" alt="bababooey"/>
     </div>
 
   )

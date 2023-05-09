@@ -3,12 +3,14 @@ import { supabase } from '../supabaseClient';
 
 import type { AuthError } from '@supabase/supabase-js';
 import type { Session } from '@supabase/supabase-js';
+import { useRouter } from 'next/navigation';
 
 function SignUp({t}:{t: boolean}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<AuthError|null>(null);
-  const [toggle, setToggle] = useState(t);
+  const [toggle, setToggle] = useState<boolean>(t);
+  const router = useRouter();
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target?.value);
@@ -34,12 +36,15 @@ function SignUp({t}:{t: boolean}) {
       }
     } else {
       // code for signing up
-      const { data, error } = await supabase.auth.admin.createUser({
+      await supabase.auth.admin.createUser({
         email: email,
         password: password,
-      })
-    }
+        email_confirm: true,
+      }).then(()=> router.push('/login'));
+      
+    };
   };
+  
 
   return (
     <form onSubmit={handleSubmit} className="max-w-sm mx-auto p-4 bg-gray-100 rounded-lg shadow-md">

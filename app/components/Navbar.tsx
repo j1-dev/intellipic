@@ -1,19 +1,32 @@
+"use client"
 import 'tailwindcss/tailwind.css';
 import React from "react";
 import { supabase } from '../supabaseClient';
 import { cookies } from 'next/dist/client/components/headers';
+import { useEffect, useState } from 'react';
+import { User } from '@supabase/supabase-js';
 
-export default async function Navbar() {
-  const c = cookies();
-  const at=c.get("sb-access-token")?.value as string
-  const { data: user, error } = await supabase.auth.getUser(at);
-  console.log(user.user?.id);
+export default function Navbar() {
+  // const c = cookies();
+  // const at=c.get("sb-access-token")?.value as string
+  // const { data: user, error } = await supabase.auth.getUser(at);
+  // console.log(user.user?.id);
+
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(()=>{
+    const sub = async() =>{
+      await supabase.auth.getUser().then((u) => setUser(u.data.user))
+    }
+    sub()
+  },[])
+
   return (
     <div className="Navbar font-sans text-center bg-white shadow-md">
       <ul className="flex justify-center items-center h-16">
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
           <a
-            href={`/${user.user?.id}`}
+            href={`/dashboard/${user?.id}`}
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
             Modelos
@@ -27,7 +40,7 @@ export default async function Navbar() {
         </li>
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
           <a
-            href="/dashboard/train"
+            href={`/dashboard/${user?.id}/train`}
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
             Entrenar
@@ -41,7 +54,7 @@ export default async function Navbar() {
         </li>
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
           <a
-            href="#"
+            href="/dashboard/examples"
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
             Ejemplos
@@ -55,7 +68,7 @@ export default async function Navbar() {
         </li>
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
           <a
-            href="#"
+            href="/dashboard/shop"
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
             Tienda

@@ -6,7 +6,7 @@ import { supabase } from '../supabaseClient'
 import { useRouter } from 'next/navigation'
 import SignUp from '../components/SignUp'
 
-export default function App() {
+export default function LoginPage() {
   const [session, setSession] = useState<any>(null);
   const router = useRouter();
 
