@@ -37,7 +37,6 @@ function SignUp({t}:{t: boolean}) {
       const { data, error } = await supabase.auth.admin.createUser({
         email: email,
         password: password,
-        user_metadata: { name: 'Yoda' }
       })
     }
   };
