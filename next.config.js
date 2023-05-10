@@ -2,5 +2,4 @@
 module.exports = {
   trailingSlash: true,
   reactStrictMode: true,
-  output: 'export',
 };
