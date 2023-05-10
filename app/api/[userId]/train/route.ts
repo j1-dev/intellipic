@@ -51,10 +51,10 @@ export async function POST(request: Request, { params }: { params: { userId: str
         learning_rate: 2e-6,
         with_prior_preservation: true,
         train_text_encoder: true,
-        ckpt_base: "https://huggingface.co/prompthero/openjourney-v4/resolve/main/openjourney-v4.ckpt"
+        // ckpt_base: "https://huggingface.co/prompthero/openjourney-v4/resolve/main/openjourney-v4.ckpt"
       },
       model: `${process.env.REPLICATE_USERNAME}/${id}`,
-      trainer_version: "a8ba568da0313951a6b311b43b1ea3bf9f2ef7b9fd97ed94cebd7ffd2da66654", // sd-2.1
+      trainer_version: "d5e058608f43886b9620a8fbb1501853b8cbae4f45c857a014011c86ee614ffb", // sd-2.1
     },
     {
       headers: {
