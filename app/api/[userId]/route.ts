@@ -2,7 +2,7 @@ import { supabase } from "../../supabaseClient";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request, { params }: { params: { userId: string } }) {
-  const SUPABASE_TABLE_NAME = "finetuningruns";
+  const SUPABASE_TABLE_NAME = "trainingruns";
   const userId = params.userId;
 
   const { data, error } = await supabase

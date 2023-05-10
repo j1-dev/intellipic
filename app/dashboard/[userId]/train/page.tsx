@@ -44,7 +44,6 @@ function useInterval(callback: () => void, delay: number | null) {
 
 export default function TrainPage(){
   const FINETUNING_BUCKET = "fine-tuning-bucket"; 
-  const SUPABASE_TABLE_NAME = "finetuningruns"
   const params = useParams(); 
   const id = params.userId;
   const [ready, setReady] = useState(false);
@@ -138,7 +137,7 @@ export default function TrainPage(){
         .upload(`public/${id}/data.zip`, content);
       if (data) {
         await supabase
-          .from("finetuningruns")
+          .from("trainingruns")
           .update({ dataset: `public/${id}/data.zip` })
           .eq("user_id", id)
           .select();

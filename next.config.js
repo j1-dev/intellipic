@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  trailingSlash: true,
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
-  },
+  output: 'export',
 };
