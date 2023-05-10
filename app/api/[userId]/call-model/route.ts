@@ -18,13 +18,17 @@
 import replicateClient from "../../../core/clients/replicate";
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../../supabaseClient";
+import { NextResponse } from "next/server";
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export async function POST(request: Request, { params }: { params: { userId: string } }) {
   // get request data
-  const prompt = req.body.instance_prompt as string;
-  const id = req.body.run_id as string
-  const user = req.query.userId as string;
+  const req = await request.json();
+  console.log(req);
+
+  const prompt = req.instance_prompt as string;
+  const id = req.run_id as string
+  const user = req.user_id as string;
 
   await fetch(`https://dreambooth-api-experimental.replicate.com/v1/trainings/${id}`,{
           headers: {
@@ -62,10 +66,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 prompt: predictionData.input.prompt,
               })
               
-            return res.status(200).json({prediction_id: predictionData.id})
+            return NextResponse.json({prediction_id: predictionData.id})
           });
         })
         
 };
 
-export default handler;
