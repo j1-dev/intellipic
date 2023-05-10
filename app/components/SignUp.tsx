@@ -41,7 +41,6 @@ function SignUp({t}:{t: boolean}) {
         password: password,
         email_confirm: true,
       }).then(()=> router.push('/login'));
-      
     };
   };
   

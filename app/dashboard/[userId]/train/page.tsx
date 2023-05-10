@@ -3,6 +3,9 @@ import { useParams } from "next/navigation";
 import { useUser } from "@supabase/auth-helpers-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/app/supabaseClient";
+import classNames from "classnames";
+
+import styles from "../../../Home.module.css";
 
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import JSZip from "jszip";
@@ -161,5 +164,163 @@ export default function TrainPage(){
     getOrInsertUserData(id);
     setQueueingFinetuning(false);
   }
+
+  const hasUploadedData = !!fineTuningData?.dataset;
+  const hasFinetunedModel = !!fineTuningData?.run_id;
+  const runStatus = fineTuningData?.run_data?.status;
+  const itemButton = useRef<HTMLInputElement>(null);
+  const fineTuningInProgress =
+    runStatus === "RUNNING" || runStatus === "PENDING";
+  const fineTuningFailed = runStatus === "FAILED";
   
+  return (
+    <>
+      {ready && (
+        <>
+          <main className={styles.main}>
+            <div
+              className={classNames(styles.step, {
+                [styles.complete]: hasUploadedData,
+              })}
+            >
+              <div>
+                <div className={styles.stepheading}>Subir Imágenes</div>
+                <div>
+                    Selecciona algunas imágenes para entrenar a la IA con un modelo
+                </div>
+
+                {!hasUploadedData && (
+                  <>
+                    <input
+                      type="file"
+                      id="files"
+                      className={styles.hidden}
+                      multiple
+                      onChange={handleFileUpload}
+                      ref={itemButton}
+                    />
+                    <label htmlFor="files">
+                      <button
+                        className={classNames([
+                          styles.button,
+                          styles.primary,
+                          {
+                            [styles.inactive]: uploading,
+                          },
+                        ])}
+                        onClick={() =>
+                          !uploading && itemButton.current?.click()
+                        }
+                        disabled={uploading}
+                      >
+                        Subir Imágenes
+                      </button>
+                    </label>
+                  </>
+                )}
+              </div>
+            </div>
+
+            <div
+              className={classNames(styles.step, {
+                [styles.ineligible]: !hasUploadedData,
+                [styles.complete]: hasFinetunedModel,
+                [styles.blinker]: fineTuningInProgress,
+                [styles.failed]: fineTuningFailed,
+              })}
+              style={{ marginBottom: 0 }}
+            >
+              <div>
+                <div className={styles.stepheading}>Ajustar el modelo</div>
+                <div>Para comenzar a entrenar la IA.<br />Dale un nombre único a tu modelo (Por ejemplo Davidrmk)</div>
+                <div
+                  className={classNames(styles.finetuningsection, {
+                    [styles.hidden]: hasFinetunedModel || !hasUploadedData,
+                  })}
+                >
+                  <input
+                    className={styles.instance}
+                    value={instanceName}
+                    onChange={(ev) => setInstanceName(ev.target.value)}
+                    placeholder={"Unique instance name"}
+                  />
+                  {/* New select for the instance type */}
+                  <select name="instance_type" id="ip" className={styles.instance} onChange={(ev) => setInstanceType(ev.target.value)}>
+                    <option value="man">Hombre</option>
+                    <option value="woman">Mujer</option>
+                    <option value="dog">Perro</option>
+                    <option value="cat">Gato</option>
+                    <option value="thing">Cosa</option>
+                  </select>
+                  <button
+                    disabled={
+                      instanceName.length === 0 ||
+                      hasFinetunedModel ||
+                      queueingFinetuning
+                    }
+                    onClick={handleValidationAndFinetuningStart}
+                    className={classNames(styles.button, styles.primary)}
+                    style={{
+                      marginLeft: "8px",
+                      pointerEvents:
+                        instanceName.length === 0 ||
+                        hasFinetunedModel ||
+                        queueingFinetuning
+                          ? "none"
+                          : "inherit",
+                    }}
+                  >
+                    🪄 Tune
+                  </button>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          {modelStatus.healthy && (
+            <main className={styles.main}>
+              <div className={classNames(styles.step, styles.columnstep)}>
+                <div className={styles.prompt}>
+                  <input
+                    className={classNames(styles.input, styles.promptinput)}
+                    value={instancePrompt}
+                    onChange={(e) => setInstancePrompt(e.target.value)}
+                    placeholder="' Retrato de primer plano de Davidrmk como un vikingo'"
+                  />
+                  <button
+                    // onClick={handleCallModel}
+                    className={classNames(styles.button, styles.primary)}
+                    style={{ marginTop: 0 }}
+                  >
+                    Generar
+                  </button>
+                </div>
+                {imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    className={classNames(styles.image, styles.modeloutput)}
+                    alt="Generated image"
+                    width={400}
+                    height={400}
+                    src={imageUrl}
+                  />
+                )}
+              </div>
+            </main>
+          )}
+
+          <main className={styles.main}>
+            <div className={styles.clear}>
+              <button
+                // onClick={() => clearUserData()}
+                className={classNames(styles.button, styles.reset)}
+              >
+                Empezar de nuevo
+              </button>
+            </div>
+          </main>
+        </>
+      )}
+    </>
+  );
 }
