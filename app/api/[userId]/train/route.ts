@@ -16,20 +16,25 @@
 import replicateClient from "../../../core/clients/replicate";
 import { NextApiRequest, NextApiResponse } from "next";
 import { supabase } from "../../../supabaseClient";
+import { NextResponse } from "next/server";
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export async function POST(request: Request, { params }: { params: { userId: string } }) {
   
   const SUPABASE_PREFIX_URL = "https://jwbyizeytvnlasmwdkro.supabase.co/"
   const SUPABASE_TABLE_NAME = "finetuningruns"
   const SUPABASE_BUCKET_NAME = "fine-tuning-bucket"
   const SUPABASE_OBJECT_URL = `${SUPABASE_PREFIX_URL}storage/v1/object/public/${SUPABASE_BUCKET_NAME}/`
   
+  const req = await request.json();
+  console.log(req);
+  
+
   // get request data and instatiate useful data
-  const instanceClass = req.body.instance_type as string;
-  const url = req.body.url as string;
-  const id = req.query.userId as string;
-  const instanceToken = req.body.prompt as string;
+  const instanceClass = req.instance_type as string;
+  const url = req.url as string;
+  const id = req.user_id as string;
+  const instanceToken = req.prompt as string;
   const instanceData = SUPABASE_OBJECT_URL + url;
 
   // initiate training
@@ -68,7 +73,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     .eq("user_id", id)
 
   // return response
-  return res.json({run_id: replicateModelId});
+  return NextResponse.json({run_id: replicateModelId});
 };
 
-export default handler;

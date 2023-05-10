@@ -59,8 +59,7 @@ export default function TrainPage(){
     healthy: null,
     modelId: null,
   });
-  const [instancePrompt, setInstancePrompt] = useState("");
-  const [imageUrl, setImageUrl] = useState(null);
+  
   const [uploading, setUploading] = useState(false);
   const [queueingFinetuning, setQueueingFinetuning] = useState(false);
   const [instanceName, setInstanceName] = useState("");
@@ -158,6 +157,7 @@ export default function TrainPage(){
         url: fineTuningData.dataset,
         prompt: instanceName,
         instance_type: instanceType,
+        user_id: id
       },
       (data: any) => console.log(data)
     );
@@ -277,42 +277,12 @@ export default function TrainPage(){
             </div>
           </main>
 
-          {modelStatus.healthy && (
-            <main className={styles.main}>
-              <div className={classNames(styles.step, styles.columnstep)}>
-                <div className={styles.prompt}>
-                  <input
-                    className={classNames(styles.input, styles.promptinput)}
-                    value={instancePrompt}
-                    onChange={(e) => setInstancePrompt(e.target.value)}
-                    placeholder="' Retrato de primer plano de Davidrmk como un vikingo'"
-                  />
-                  <button
-                    // onClick={handleCallModel}
-                    className={classNames(styles.button, styles.primary)}
-                    style={{ marginTop: 0 }}
-                  >
-                    Generar
-                  </button>
-                </div>
-                {imageUrl && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    className={classNames(styles.image, styles.modeloutput)}
-                    alt="Generated image"
-                    width={400}
-                    height={400}
-                    src={imageUrl}
-                  />
-                )}
-              </div>
-            </main>
-          )}
+          
 
           <main className={styles.main}>
             <div className={styles.clear}>
               <button
-                // onClick={() => clearUserData()}
+                onClick={() => clearUserData(id)}
                 className={classNames(styles.button, styles.reset)}
               >
                 Empezar de nuevo

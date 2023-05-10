@@ -1,21 +1,20 @@
-// This api route resets model/training and clears the users data
-// should work the same as clear_user_data from previous main.py
-// TODO: Define request and response shape
-// TODO: Create the function itself
-
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { supabase } from "../../../supabaseClient";
 
-// TODO: Fix function pls
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const SUPABASE_TABLE_NAME = "finetuningruns"
-  const userId = req.query.userId as string;
+export async function POST(request: Request, { params }: { params: { userId: string } }) {
+  const SUPABASE_TABLE_NAME = "finetuningruns";
+  const userId = params.userId;
 
-  await supabase
+  const { data, error } = await supabase
     .from(SUPABASE_TABLE_NAME)
-    .update({run_id: null, dataset: null})
-    .eq('user_id', userId)
-    .then((value) => {return res.status(200).json({value: value})})
-}
+    .update({ run_id: null, dataset: null })
+    .eq('user_id', userId);
 
-export default handler;
+  if (error) {
+    console.error("Supabase error:", error);
+    return NextResponse.error();
+  }
+
+  // Send a JSON response
+  return NextResponse.json({ success: true });
+}
