@@ -9,8 +9,8 @@ export async function middleware(req: NextRequest) {
   const rt = req.cookies.get('sb-refresh-token')?.value as string;
   const at = req.cookies.get('sb-access-token')?.value as string;
 
-  console.log(rt);
-  console.log(at);
+  // console.log(rt);
+  // console.log(at);
 
   if (!(rt && at)) {
     // make sure you handle this case!

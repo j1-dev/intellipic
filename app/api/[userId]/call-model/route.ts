@@ -15,9 +15,9 @@
 //   url: url
 // }
 
-import replicateClient from "../../core/clients/replicate";
+import replicateClient from "../../../core/clients/replicate";
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

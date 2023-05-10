@@ -4,7 +4,7 @@
 // TODO: Create the function itself
 
 import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../supabaseClient";
+import { supabase } from "../../../supabaseClient";
 
 // TODO: Fix function pls
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
