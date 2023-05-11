@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['SF Pro', 'sans-serif'],
+      sans: ['SF-PRO', 'sans-serif'],
     },
     extend: {
       backgroundImage: {
@@ -18,4 +18,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
