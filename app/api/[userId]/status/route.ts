@@ -27,6 +27,12 @@ export async function GET(request: Request, { params }: { params: { userId: stri
       });
 
       const modelData = await modelResponse.json();
+      console.log(modelData.status)
+
+      const {data, error} = await supabase
+        .from("trainings")
+        .update({status: modelData.status})
+        .eq("run_id", runId)
 
       return NextResponse.json({
         healthy: modelData.status === 'succeeded',

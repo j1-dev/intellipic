@@ -1,28 +1,62 @@
 "use client"
 import { useParams } from "next/navigation";
-import { useRouter } from 'next/navigation';
 import { supabase } from "@/app/supabaseClient";
+import { useEffect, useState } from "react";
+import ModelCard from "@/app/components/ModelCard";
 
 
 export default function DashboardPage(){
   const params = useParams();
-  const router = useRouter();
+  const user = params.userId;
+  const [models, setModels] = useState<any>();
 
-  async function logout(){
-    supabase.auth.signOut().then(() => {
-      const expires = new Date(0).toUTCString()
-      document.cookie = `sb-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
-      document.cookie = `sb-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`
-    })
-    .then(()=>{
-      router.push("/")
-    });
-  }
+  useEffect(() => {
+    const sub = async() => {
+      await supabase
+        .from("trainings")
+        .select("*")
+        .eq("user_id", user)
+        .then((data)=>{
+          setModels(data?.data)
+        })
+    }
+
+    sub()
+  }, [])
+  
+
+
+  // async function logout(){
+  //   supabase.auth.signOut().then(() => {
+  //     const expires = new Date(0).toUTCString()
+  //     document.cookie = `sb-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+  //     document.cookie = `sb-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`
+  //   })
+  //   .then(()=>{
+  //     router.push("/")
+  //   });
+  // }
   
   return(
     <div>
-      <span>hello {params.userId}</span>
-      <button onClick={logout}>logout</button>
+      {!!models ? (
+        <>
+          {models.map((data: any)=>{
+            const props={
+              userId: data.user_id as string,
+              modelId: data.run_id as string,
+              token: data.prompt_token as string,
+              status: data.status as string
+            };
+            // console.log(data)
+            return(
+              <ModelCard props={props} key={data.run_id}></ModelCard>
+            )
+          })}
+        </>
+      ):(
+        <>Loading...</>
+      )}
     </div>
 
   )

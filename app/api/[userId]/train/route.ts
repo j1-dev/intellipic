@@ -67,7 +67,7 @@ export async function POST(request: Request, { params }: { params: { userId: str
   // update user's data in supabase
   const { error } = await supabase
     .from(SUPABASE_TABLE_NAME)
-    .insert({run_id: replicateModelId, user_id: id, status: "starting", dataset: instanceData})  
+    .insert({run_id: replicateModelId, user_id: id, status: "starting", dataset: instanceData, prompt_token: instanceToken})  
   
   if (error) {
     console.error("Insert user error:", error);
