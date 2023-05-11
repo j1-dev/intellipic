@@ -5,6 +5,7 @@ import { supabase } from '../supabaseClient';
 import { cookies } from 'next/dist/client/components/headers';
 import { useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
+import Link from 'next/link';
 
 export default function Navbar() {
   // const c = cookies();
@@ -25,7 +26,7 @@ export default function Navbar() {
     <div className="Navbar font-sans text-center bg-white shadow-md">
       <ul className="flex justify-center items-center h-16">
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
-          <a
+          <Link
             href={`/dashboard/${user?.id}`}
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
@@ -36,10 +37,10 @@ export default function Navbar() {
             <span
               className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"
             ></span>
-          </a>
+          </Link>
         </li>
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
-          <a
+          <Link
             href={`/dashboard/${user?.id}/train`}
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
@@ -50,10 +51,10 @@ export default function Navbar() {
             <span
               className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"
             ></span>
-          </a>
+          </Link>
         </li>
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
-          <a
+          <Link
             href="/dashboard/examples"
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
@@ -64,10 +65,10 @@ export default function Navbar() {
             <span
               className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"
             ></span>
-          </a>
+          </Link>
         </li>
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
-          <a
+          <Link
             href="/dashboard/shop"
             className="py-2 px-6 text-black no-underline text-xl relative group-hover:text-gray-500 transition-all duration-350 ease-in-out"
           >
@@ -78,7 +79,7 @@ export default function Navbar() {
             <span
               className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"
             ></span>
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
