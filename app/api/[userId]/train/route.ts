@@ -21,14 +21,12 @@ import { NextResponse } from "next/server";
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
 export async function POST(request: Request, { params }: { params: { userId: string } }) {
   
-  const SUPABASE_PREFIX_URL = "https://jwbyizeytvnlasmwdkro.supabase.co/"
-  const SUPABASE_TABLE_NAME = "finetuningruns"
-  const SUPABASE_BUCKET_NAME = "fine-tuning-bucket"
+  const SUPABASE_PREFIX_URL = "https://fuyhpknpcwdkcyntvzvk.supabase.co/"
+  const SUPABASE_TABLE_NAME = "trainings"
+  const SUPABASE_BUCKET_NAME = "training-bucket"
   const SUPABASE_OBJECT_URL = `${SUPABASE_PREFIX_URL}storage/v1/object/public/${SUPABASE_BUCKET_NAME}/`
   
   const req = await request.json();
-  console.log(req);
-  
 
   // get request data and instatiate useful data
   const instanceClass = req.instance_type as string;
@@ -69,8 +67,23 @@ export async function POST(request: Request, { params }: { params: { userId: str
   // update user's data in supabase
   const { error } = await supabase
     .from(SUPABASE_TABLE_NAME)
+    .insert({run_id: replicateModelId, user_id: id, status: "starting", dataset: instanceData})  
+  
+  if (error) {
+    console.error("Insert user error:", error);
+    return NextResponse.error();
+  }
+
+  try {
+    await supabase
+    .from("user-data")
     .update({run_id: replicateModelId})
-    .eq("user_id", id)
+    .eq("id", id)
+  } catch (error) {
+    console.error("Insert user error:", error);
+    return NextResponse.error();
+  }
+  
 
   // return response
   return NextResponse.json({run_id: replicateModelId});

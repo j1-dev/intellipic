@@ -2,13 +2,13 @@ import { supabase } from "../../../supabaseClient";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request, { params }: { params: { userId: string } }) {
-  const SUPABASE_TABLE_NAME = "finetuningruns";
-  const userId = params.userId;
+  const SUPABASE_TABLE_NAME = "user-data";
+  const id = params.userId;
 
   const { data, error } = await supabase
     .from(SUPABASE_TABLE_NAME)
     .select("*")
-    .eq("user_id", userId);
+    .eq("id", id);
 
   if (error) {
     console.error("Supabase error:", error);

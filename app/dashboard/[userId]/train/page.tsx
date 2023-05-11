@@ -1,6 +1,5 @@
 "use client"
 import { useParams } from "next/navigation";
-import { useUser } from "@supabase/auth-helpers-react";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/app/supabaseClient";
 import classNames from "classnames";
@@ -43,8 +42,7 @@ function useInterval(callback: () => void, delay: number | null) {
 }
 
 export default function TrainPage(){
-  const FINETUNING_BUCKET = "fine-tuning-bucket"; 
-  const SUPABASE_TABLE_NAME = "finetuningruns"
+  const FINETUNING_BUCKET = "training-bucket"; 
   const params = useParams(); 
   const id = params.userId;
   const [ready, setReady] = useState(false);
@@ -137,11 +135,14 @@ export default function TrainPage(){
         .from(FINETUNING_BUCKET)
         .upload(`public/${id}/data.zip`, content);
       if (data) {
-        await supabase
-          .from("finetuningruns")
-          .update({ dataset: `public/${id}/data.zip` })
-          .eq("user_id", id)
+        const {data,error} = await supabase
+          .from("user-data")
+          .update({ dataset: `public/${id}/data.zip`})
+          .eq("id", id)
           .select();
+
+        console.log(id);
+        console.log(data)
         getOrInsertUserData(id);
       }
       setUploading(false);
