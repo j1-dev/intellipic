@@ -53,12 +53,12 @@ export default function ModelPage(){
     const handleBeforeUnload = () => {
       localStorage.setItem("modelPageState" + model, JSON.stringify({
         instancePrompt,
-        imageUrl,
+        imageUrl: imageUrl || "",
         predictionId,
         queueingPrediction,
       }));
     };
-
+    console.log(localStorage.getItem("modelPageState" + model), imageUrl)
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
@@ -79,7 +79,7 @@ export default function ModelPage(){
       } = JSON.parse(savedState);
 
       setInstancePrompt(savedInstancePrompt);
-      setImageUrl(savedImageUrl);
+      setImageUrl(savedImageUrl||null);
       setPredictionId(savedPredictionId);
       setQueueingPrediction(savedQueueingPrediction);
     }
