@@ -40,7 +40,7 @@ export default function DashboardPage(){
   return(
     <div>
       {!!models ? (
-        <>
+        <div className="grid grid-cols-4 grid-flow-col">
           {models.map((data: any)=>{
             const props={
               userId: data.user_id as string,
@@ -53,7 +53,7 @@ export default function DashboardPage(){
               <ModelCard props={props} key={data.run_id}></ModelCard>
             )
           })}
-        </>
+        </div>
       ):(
         <>Loading...</>
       )}
