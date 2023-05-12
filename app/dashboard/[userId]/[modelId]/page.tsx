@@ -1,7 +1,5 @@
 "use client"
 import { useParams } from "next/navigation";
-import { useRouter } from 'next/navigation';
-import { supabase } from "@/app/supabaseClient";
 import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 
@@ -47,23 +45,45 @@ export default function ModelPage(){
   const [instancePrompt, setInstancePrompt] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
 
-  const [fineTuningData, setFinetuningData] = useState({
-    dataset: null,
-    run_id: null,
-    run_data: {
-      status: null,
-    },
-  });
-
-  const [modelStatus, setModelStatus] = useState({
-    healthy: null,
-    modelId: null,
-  });
-
   const [predictionId, setPredictionId] = useState("");
   const [queueingPrediction, setQueueingPrediction] = useState(false);
 
+  // Save the component state to localStorage
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.setItem("modelPageState" + model, JSON.stringify({
+        instancePrompt,
+        imageUrl,
+        predictionId,
+        queueingPrediction,
+      }));
+    };
 
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };  
+  }, [instancePrompt, imageUrl, predictionId, queueingPrediction, model]);
+
+  // Load the component state from localStorage on component mount
+  useEffect(() => {
+    const savedState = localStorage.getItem("modelPageState"+model);
+    console.log(savedState);
+    if (savedState) {
+      const {
+        instancePrompt: savedInstancePrompt,
+        imageUrl: savedImageUrl,
+        predictionId: savedPredictionId,
+        queueingPrediction: savedQueueingPrediction,
+      } = JSON.parse(savedState);
+
+      setInstancePrompt(savedInstancePrompt);
+      setImageUrl(savedImageUrl);
+      setPredictionId(savedPredictionId);
+      setQueueingPrediction(savedQueueingPrediction);
+    }
+  }, [id,model]);
 
   async function handleCallModel() {
     post(
