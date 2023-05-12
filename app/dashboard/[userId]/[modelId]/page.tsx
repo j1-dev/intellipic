@@ -42,48 +42,24 @@ export default function ModelPage(){
   const params = useParams();
   const id = params.userId;
   const model = params.modelId;
-  const [instancePrompt, setInstancePrompt] = useState("");
-  const [imageUrl, setImageUrl] = useState(null);
+  const [instancePrompt, setInstancePrompt] = useState(
+    localStorage.getItem(`ip${model}`) || ""
+  );
+  const [imageUrl, setImageUrl] = useState(localStorage.getItem(`iu${model}`) || "");
+  const [predictionId, setPredictionId] = useState(
+    localStorage.getItem(`pi${model}`) || ""
+  );
+  const [queueingPrediction, setQueueingPrediction] = useState(
+    localStorage.getItem(`qp${model}`) === "true"
+  );
 
-  const [predictionId, setPredictionId] = useState("");
-  const [queueingPrediction, setQueueingPrediction] = useState(false);
-
-  // Save the component state to localStorage
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      localStorage.setItem("modelPageState" + model, JSON.stringify({
-        instancePrompt,
-        imageUrl: imageUrl || "",
-        predictionId,
-        queueingPrediction,
-      }));
-    };
-    console.log(localStorage.getItem("modelPageState" + model), imageUrl)
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };  
+    // Save state variables to localStorage
+    localStorage.setItem(`ip${model}`, instancePrompt);
+    localStorage.setItem(`iu${model}`, imageUrl);
+    localStorage.setItem(`pi${model}`, predictionId);
+    localStorage.setItem(`qp${model}`, queueingPrediction.toString());
   }, [instancePrompt, imageUrl, predictionId, queueingPrediction, model]);
-
-  // Load the component state from localStorage on component mount
-  useEffect(() => {
-    const savedState = localStorage.getItem("modelPageState"+model);
-    console.log(savedState);
-    if (savedState) {
-      const {
-        instancePrompt: savedInstancePrompt,
-        imageUrl: savedImageUrl,
-        predictionId: savedPredictionId,
-        queueingPrediction: savedQueueingPrediction,
-      } = JSON.parse(savedState);
-
-      setInstancePrompt(savedInstancePrompt);
-      setImageUrl(savedImageUrl||null);
-      setPredictionId(savedPredictionId);
-      setQueueingPrediction(savedQueueingPrediction);
-    }
-  }, [id,model]);
 
   async function handleCallModel() {
     post(
