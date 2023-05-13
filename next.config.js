@@ -2,4 +2,7 @@
 module.exports = {
   trailingSlash: true,
   reactStrictMode: true,
+  images: {
+    domains: ['photoshot.app'],
+  },
 };
