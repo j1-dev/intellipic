@@ -44,7 +44,7 @@ export async function POST(request: Request, { params }: { params: { userId: str
         instance_prompt: `a photo of ${instanceToken} ${instanceClass}`,
         class_prompt: `a photo of a ${instanceClass}`,
         instance_data: instanceData,
-        max_train_steps: 1200,
+        max_train_steps: 1600, 
         num_class_images: 100,
         learning_rate: 2e-6,
         with_prior_preservation: true,

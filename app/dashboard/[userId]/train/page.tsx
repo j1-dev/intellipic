@@ -8,6 +8,8 @@ import styles from "../../../Home.module.css";
 
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import JSZip from "jszip";
+import { FadeLoader } from "react-spinners";
+import { AiOutlineCheckCircle } from "react-icons/ai"
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -105,7 +107,7 @@ export default function TrainPage(){
           healthy: data.healthy,
         })
       });
-
+      console.log(runStatus)
     setReady(true);
   }
 
@@ -171,8 +173,9 @@ export default function TrainPage(){
   const runStatus = fineTuningData?.run_data?.status;
   const itemButton = useRef<HTMLInputElement>(null);
   const fineTuningInProgress =
-    runStatus === "RUNNING" || runStatus === "PENDING";
-  const fineTuningFailed = runStatus === "FAILED";
+    runStatus === "starting" || runStatus === "processing" || runStatus === "queued";
+  const fineTuningFailed = runStatus === "failed";
+  const fineTuningSucceeded = runStatus === "succeeded"
   
   return (
     <>
@@ -277,6 +280,22 @@ export default function TrainPage(){
               </div>
             </div>
           </main>
+
+          {fineTuningInProgress && (                       
+            <FadeLoader
+              className="w-1/5 m-auto"
+              color="#d3d3d3"
+              height={26}
+              margin={19}
+              radius={36}
+              speedMultiplier={0.6}
+              width={13}
+            />
+          )}
+
+          {fineTuningSucceeded && (
+            <AiOutlineCheckCircle/>
+          )}
 
           
 

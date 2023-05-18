@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { supabase } from "@/app/supabaseClient";
 import { useEffect, useState } from "react";
 import ModelCard from "@/app/components/ModelCard";
+import { PulseLoader } from "react-spinners";
 
 
 export default function DashboardPage(){
@@ -41,7 +42,7 @@ export default function DashboardPage(){
     <div>
       {!!models ? (
         <div className="grid grid-cols-4 grid-flow-col">
-          {models.map((data: any)=>{
+          {models.map((data: any) => {
             const props={
               userId: data.user_id as string,
               modelId: data.run_id as string,
@@ -55,7 +56,9 @@ export default function DashboardPage(){
           })}
         </div>
       ):(
-        <>Loading...</>
+        <div className="w-40 m-auto mt-24">
+          <PulseLoader color="#B6B6B6" />
+        </div>
       )}
     </div>
 
