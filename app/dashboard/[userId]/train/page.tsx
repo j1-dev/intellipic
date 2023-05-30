@@ -1,21 +1,21 @@
-"use client"
-import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { supabase } from "@/app/supabaseClient";
-import classNames from "classnames";
+'use client';
+import { supabase } from '@/app/supabaseClient';
+import classNames from 'classnames';
+import { useParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
-import styles from "../../../Home.module.css";
+import styles from '../../../Home.module.css';
 
-import { useIsomorphicLayoutEffect } from "usehooks-ts";
-import JSZip from "jszip";
-import { FadeLoader } from "react-spinners";
-import { AiOutlineCheckCircle } from "react-icons/ai"
+import JSZip from 'jszip';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { FadeLoader, PulseLoader } from 'react-spinners';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
   })
     .then((response) => response.json())
     .then(callback);
@@ -43,28 +43,28 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
-export default function TrainPage(){
-  const FINETUNING_BUCKET = "training-bucket"; 
-  const params = useParams(); 
+export default function TrainPage() {
+  const FINETUNING_BUCKET = 'training-bucket';
+  const params = useParams();
   const id = params.userId;
   const [ready, setReady] = useState(false);
   const [fineTuningData, setFinetuningData] = useState({
     dataset: null,
     run_id: null,
     run_data: {
-      status: null,
-    },
+      status: null
+    }
   });
   const [modelStatus, setModelStatus] = useState({
     healthy: null,
-    modelId: null,
+    modelId: null
   });
-  
+
   const [uploading, setUploading] = useState(false);
   const [queueingFinetuning, setQueueingFinetuning] = useState(false);
-  const [instanceName, setInstanceName] = useState("");
+  const [instanceName, setInstanceName] = useState('');
   // Instance Type that defaults to "Man"
-  const [instanceType, setInstanceType] = useState("Man");
+  const [instanceType, setInstanceType] = useState('Man');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,35 +79,31 @@ export default function TrainPage(){
 
   useInterval(() => getOrInsertUserData(id), 10000);
   useInterval(() => getModelStatus(id), 10000);
-  
+
   async function clearUserData(id: any) {
-    post(
-      `/api/${id}/clear`,
-      { },
-      (data: any) => setFinetuningData(data.output)
-    );
+    post(`/api/${id}/clear`, {}, (data: any) => setFinetuningData(data.output));
   }
 
   async function getOrInsertUserData(id: any) {
     await fetch(`/api/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setFinetuningData(data)
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        setFinetuningData(data);
+      });
 
     setReady(true);
   }
 
-  async function getModelStatus(id:any) {
+  async function getModelStatus(id: any) {
     await fetch(`/api/${id}/status`)
       .then((response) => response.json())
       .then((data) => {
         setModelStatus({
           modelId: data.model_id,
-          healthy: data.healthy,
-        })
+          healthy: data.healthy
+        });
       });
-      console.log(runStatus)
+    console.log(runStatus);
     setReady(true);
   }
 
@@ -115,7 +111,7 @@ export default function TrainPage(){
     setUploading(true);
     const files = ev.target.files || [];
     const zip = new JSZip();
-    const dataFolder = zip.folder("data");
+    const dataFolder = zip.folder('data');
 
     if (dataFolder) {
       if (dataFolder) {
@@ -125,7 +121,7 @@ export default function TrainPage(){
       }
     }
 
-    zip.generateAsync({ type: "blob" }).then(async (content) => {
+    zip.generateAsync({ type: 'blob' }).then(async (content) => {
       try {
         await supabase.storage
           .from(FINETUNING_BUCKET)
@@ -137,14 +133,14 @@ export default function TrainPage(){
         .from(FINETUNING_BUCKET)
         .upload(`public/${id}/data.zip`, content);
       if (data) {
-        const {data,error} = await supabase
-          .from("user-data")
-          .update({ dataset: `public/${id}/data.zip`})
-          .eq("id", id)
+        const { data, error } = await supabase
+          .from('user-data')
+          .update({ dataset: `public/${id}/data.zip` })
+          .eq('id', id)
           .select();
 
         console.log(id);
-        console.log(data)
+        console.log(data);
         getOrInsertUserData(id);
       }
       setUploading(false);
@@ -173,24 +169,27 @@ export default function TrainPage(){
   const runStatus = fineTuningData?.run_data?.status;
   const itemButton = useRef<HTMLInputElement>(null);
   const fineTuningInProgress =
-    runStatus === "starting" || runStatus === "processing" || runStatus === "queued";
-  const fineTuningFailed = runStatus === "failed";
-  const fineTuningSucceeded = runStatus === "succeeded"
-  
+    runStatus === 'starting' ||
+    runStatus === 'processing' ||
+    runStatus === 'queued';
+  const fineTuningFailed = runStatus === 'failed';
+  const fineTuningSucceeded = runStatus === 'succeeded';
+
   return (
     <>
-      {ready && (
+      {ready ? (
         <>
           <main className={styles.main}>
             <div
               className={classNames(styles.step, {
-                [styles.complete]: hasUploadedData,
+                [styles.complete]: hasUploadedData
               })}
             >
               <div>
                 <div className={styles.stepheading}>Subir Imágenes</div>
                 <div>
-                    Selecciona algunas imágenes para entrenar a la IA con un modelo
+                  Selecciona algunas imágenes para entrenar a la IA con un
+                  modelo
                 </div>
 
                 {!hasUploadedData && (
@@ -209,8 +208,8 @@ export default function TrainPage(){
                           styles.button,
                           styles.primary,
                           {
-                            [styles.inactive]: uploading,
-                          },
+                            [styles.inactive]: uploading
+                          }
                         ])}
                         onClick={() =>
                           !uploading && itemButton.current?.click()
@@ -230,26 +229,35 @@ export default function TrainPage(){
                 [styles.ineligible]: !hasUploadedData,
                 [styles.complete]: hasFinetunedModel,
                 [styles.blinker]: fineTuningInProgress,
-                [styles.failed]: fineTuningFailed,
+                [styles.failed]: fineTuningFailed
               })}
               style={{ marginBottom: 0 }}
             >
               <div>
                 <div className={styles.stepheading}>Ajustar el modelo</div>
-                <div>Para comenzar a entrenar la IA.<br />Dale un nombre único a tu modelo (Por ejemplo Davidrmk)</div>
+                <div>
+                  Para comenzar a entrenar la IA.
+                  <br />
+                  Dale un nombre único a tu modelo (Por ejemplo Davidrmk)
+                </div>
                 <div
                   className={classNames(styles.finetuningsection, {
-                    [styles.hidden]: hasFinetunedModel || !hasUploadedData,
+                    [styles.hidden]: hasFinetunedModel || !hasUploadedData
                   })}
                 >
                   <input
                     className={styles.instance}
                     value={instanceName}
                     onChange={(ev) => setInstanceName(ev.target.value)}
-                    placeholder={"Unique instance name"}
+                    placeholder={'Unique instance name'}
                   />
                   {/* New select for the instance type */}
-                  <select name="instance_type" id="ip" className={styles.instance} onChange={(ev) => setInstanceType(ev.target.value)}>
+                  <select
+                    name="instance_type"
+                    id="ip"
+                    className={styles.instance}
+                    onChange={(ev) => setInstanceType(ev.target.value)}
+                  >
                     <option value="man">Hombre</option>
                     <option value="woman">Mujer</option>
                     <option value="dog">Perro</option>
@@ -265,13 +273,13 @@ export default function TrainPage(){
                     onClick={handleValidationAndFinetuningStart}
                     className={classNames(styles.button, styles.primary)}
                     style={{
-                      marginLeft: "8px",
+                      marginLeft: '8px',
                       pointerEvents:
                         instanceName.length === 0 ||
                         hasFinetunedModel ||
                         queueingFinetuning
-                          ? "none"
-                          : "inherit",
+                          ? 'none'
+                          : 'inherit'
                     }}
                   >
                     🪄 Tune
@@ -281,7 +289,7 @@ export default function TrainPage(){
             </div>
           </main>
 
-          {fineTuningInProgress && (                       
+          {fineTuningInProgress && (
             <FadeLoader
               className="w-1/5 m-auto"
               color="#d3d3d3"
@@ -293,11 +301,7 @@ export default function TrainPage(){
             />
           )}
 
-          {fineTuningSucceeded && (
-            <AiOutlineCheckCircle/>
-          )}
-
-          
+          {fineTuningSucceeded && <AiOutlineCheckCircle />}
 
           <main className={styles.main}>
             <div className={styles.clear}>
@@ -310,6 +314,10 @@ export default function TrainPage(){
             </div>
           </main>
         </>
+      ) : (
+        <div className="w-40 m-auto mt-24">
+          <PulseLoader color="#B6B6B6" />
+        </div>
       )}
     </>
   );

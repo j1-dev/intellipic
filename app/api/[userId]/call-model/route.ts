@@ -15,14 +15,17 @@
 //   url: url
 // }
 
-import replicateClient from "../../../core/clients/replicate";
-import { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../../supabaseClient";
-import { NextResponse } from "next/server";
+import replicateClient from '../../../core/clients/replicate';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { supabase } from '../../../supabaseClient';
+import { NextResponse } from 'next/server';
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
-export async function POST(request: Request, { params }: { params: { userId: string } }) {
- try {
+export async function POST(
+  request: Request,
+  { params }: { params: { userId: string } }
+) {
+  try {
     // Get request data
     const req = await request.json();
     console.log(req);
@@ -37,13 +40,15 @@ export async function POST(request: Request, { params }: { params: { userId: str
       {
         headers: {
           Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-          "Content-Type": "application/json",
-        },
+          'Content-Type': 'application/json'
+        }
       }
     );
 
     if (!modelResponse.ok) {
-      throw new Error(`Failed to fetch model data. Status: ${modelResponse.status}`);
+      throw new Error(
+        `Failed to fetch model data. Status: ${modelResponse.status}`
+      );
     }
 
     const modelData = await modelResponse.json();
@@ -58,26 +63,25 @@ export async function POST(request: Request, { params }: { params: { userId: str
           negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
           disable_safety_check: true,
           prompt_strength: 0.8,
-          guidance_scale: 7.5,
+          guidance_scale: 7.5
         },
-        version: modelData.version,
+        version: modelData.version
       }
     );
 
     // Insert prediction into supabase
-    await supabase.from("predictions").insert({
+    await supabase.from('predictions').insert({
       user_id: user,
       created_at: predictionData.data.created_at,
       status: predictionData.data.status,
       url: predictionData.data.output,
       id: predictionData.data.id,
-      prompt: predictionData.data.input.prompt,
+      prompt: predictionData.data.input.prompt
     });
 
     return NextResponse.json({ prediction_id: predictionData.data.id });
   } catch (error) {
-    console.error("Call-model error: ", error);
-    return NextResponse.json({ error: "Internal Server Error" });
+    console.error('Call-model error: ', error);
+    return NextResponse.json({ error: 'Internal Server Error' });
   }
-};
-
+}
