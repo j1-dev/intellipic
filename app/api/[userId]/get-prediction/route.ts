@@ -1,28 +1,35 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
-export async function POST(request: Request, { params }: { params: { userId: string } }) {
+export async function POST(
+  request: Request,
+  { params }: { params: { userId: string } }
+) {
   try {
     const req = await request.json();
     const prediction_id = req.prediction_id as string;
     console.log(prediction_id);
 
-    const predictionResponse = await fetch(`https://api.replicate.com/v1/predictions/${prediction_id}`, {
-      headers: {
-        Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const predictionResponse = await fetch(
+      `https://api.replicate.com/v1/predictions/${prediction_id}`,
+      {
+        headers: {
+          Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
 
     if (!predictionResponse.ok) {
-      throw new Error(`Failed to fetch prediction data. Status: ${predictionResponse.status}`);
+      throw new Error(
+        `Failed to fetch prediction data. Status: ${predictionResponse.status}`
+      );
     }
 
     const predictionData = await predictionResponse.json();
     return NextResponse.json(predictionData);
   } catch (error) {
-    console.error("Fetch prediction error: ", error);
-    return NextResponse.json({ error: "Internal Server Error" });
+    console.error('Fetch prediction error: ', error);
+    return NextResponse.json({ error: 'Internal Server Error' });
   }
-};
-
+}

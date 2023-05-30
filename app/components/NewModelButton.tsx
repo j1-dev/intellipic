@@ -1,10 +1,5 @@
-"use client"
+'use client';
 
-export default function NewModelButton(){
-  
-  return(
-    <>
-  
-    </>
-  )
+export default function NewModelButton() {
+  return <></>;
 }

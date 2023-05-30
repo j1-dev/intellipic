@@ -1,16 +1,16 @@
-"use client"
-import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import classNames from "classnames";
+'use client';
+import { useParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 
-import styles from "../../../Home.module.css";
-import { useIsomorphicLayoutEffect } from "usehooks-ts";
+import styles from '../../../Home.module.css';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
   })
     .then((response) => response.json())
     .then(callback);
@@ -38,19 +38,21 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
-export default function ModelPage(){
+export default function ModelPage() {
   const params = useParams();
   const id = params.userId;
   const model = params.modelId;
   const [instancePrompt, setInstancePrompt] = useState(
-    localStorage.getItem(`ip${model}`) || ""
+    localStorage.getItem(`ip${model}`) || ''
   );
-  const [imageUrl, setImageUrl] = useState(localStorage.getItem(`iu${model}`) || "");
+  const [imageUrl, setImageUrl] = useState(
+    localStorage.getItem(`iu${model}`) || ''
+  );
   const [predictionId, setPredictionId] = useState(
-    localStorage.getItem(`pi${model}`) || ""
+    localStorage.getItem(`pi${model}`) || ''
   );
   const [queueingPrediction, setQueueingPrediction] = useState(
-    localStorage.getItem(`qp${model}`) === "true"
+    localStorage.getItem(`qp${model}`) === 'true'
   );
 
   useEffect(() => {
@@ -67,7 +69,7 @@ export default function ModelPage(){
       {
         run_id: model,
         instance_prompt: instancePrompt,
-        user_id: id,
+        user_id: id
       },
       (data: any) => {
         setPredictionId(data.prediction_id);
@@ -76,27 +78,27 @@ export default function ModelPage(){
     );
   }
 
-  async function handleGetPrediction(){
-    if(queueingPrediction){
+  async function handleGetPrediction() {
+    if (queueingPrediction) {
       post(
         `/api/${id}/get-prediction`,
         {
-          prediction_id: predictionId,
+          prediction_id: predictionId
         },
         (data: any) => {
-          console.log(data)
-          if(data.status==="succeeded"){
-            setImageUrl(data.output)
-            setQueueingPrediction(false)
+          console.log(data);
+          if (data.status === 'succeeded') {
+            setImageUrl(data.output);
+            setQueueingPrediction(false);
           }
         }
-      )
+      );
     }
   }
 
-  useInterval(() => handleGetPrediction(), 3000)
-  
-  return(
+  useInterval(() => handleGetPrediction(), 3000);
+
+  return (
     <div>
       <main className={styles.main}>
         <div className={classNames(styles.step, styles.columnstep)}>
@@ -128,6 +130,5 @@ export default function ModelPage(){
         </div>
       </main>
     </div>
-
-  )
+  );
 }

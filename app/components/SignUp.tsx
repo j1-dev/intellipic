@@ -26,7 +26,7 @@ function SignUp({ t }: { t: boolean }) {
       // code for logging in
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
-        password,
+        password
       });
       if (error) {
         setError(error);
@@ -36,20 +36,29 @@ function SignUp({ t }: { t: boolean }) {
       }
     } else {
       // code for signing up
-      await supabase.auth.admin.createUser({
-        email: email,
-        password: password,
-        email_confirm: true,
-      }).then(() => router.push('/login'));
-    };
+      await supabase.auth.admin
+        .createUser({
+          email: email,
+          password: password,
+          email_confirm: true
+        })
+        .then(() => router.push('/login'));
+    }
   };
-
 
   return (
     <div className="flex items-center justify-center h-screen">
-      <form onSubmit={handleSubmit} className="max-w-sm p-4 bg-gray-100 rounded-lg shadow-md">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-sm p-4 bg-gray-100 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="email" className="block font-medium text-gray-700 mb-2">Email:</label>
+          <label
+            htmlFor="email"
+            className="block font-medium text-gray-700 mb-2"
+          >
+            Email:
+          </label>
           <input
             type="email"
             id="email"
@@ -60,7 +69,12 @@ function SignUp({ t }: { t: boolean }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="block font-medium text-gray-700 mb-2">Password:</label>
+          <label
+            htmlFor="password"
+            className="block font-medium text-gray-700 mb-2"
+          >
+            Password:
+          </label>
           <input
             type="password"
             id="password"
@@ -71,9 +85,18 @@ function SignUp({ t }: { t: boolean }) {
           />
         </div>
         <div>
-          <button type="submit" className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600">{toggle ? "Sign In" : "Sign up"}</button>
-          <Link href={toggle ? '/register' : '/login'}>{toggle ? "Don't have an account? click here!" : "Already have an account? click here!"}</Link>
-          {toggle && (<button className='block' >Reset password</button>)}
+          <button
+            type="submit"
+            className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+          >
+            {toggle ? 'Sign In' : 'Sign up'}
+          </button>
+          <Link href={toggle ? '/register' : '/login'}>
+            {toggle
+              ? "Don't have an account? click here!"
+              : 'Already have an account? click here!'}
+          </Link>
+          {toggle && <button className="block">Reset password</button>}
         </div>
         {/* {error && <div className="text-red-500 mt-4">{error}</div>} */}
       </form>
