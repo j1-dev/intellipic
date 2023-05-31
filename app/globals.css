@@ -29,7 +29,6 @@ body {
 
 #container {
   /* Center the text in the viewport. */
-  position: absolute;
   margin: auto;
   width: 100vw;
   height: 80pt;
@@ -47,8 +46,8 @@ body {
   width: 100%;
   display: inline-block;
 
-  font-family: 'Raleway', sans-serif;
-  font-size: 80pt;
+  font-family: 'SF-PRO', sans-serif;
+  font-size: 150pt;
   font-weight: 800;
 
   text-align: center;

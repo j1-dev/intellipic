@@ -6,8 +6,8 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   const text1Ref = useRef<HTMLSpanElement>(null);
   const text2Ref = useRef<HTMLSpanElement>(null);
 
-  const morphTime = 2.5;
-  const cooldownTime = 0.5;
+  const morphTime = 4;
+  const cooldownTime = 1;
 
   let textIndex = texts.length - 1;
   let time = new Date();
