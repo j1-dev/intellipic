@@ -1,6 +1,5 @@
-'use client';
-
 import React, { useEffect, useRef } from 'react';
+import debounce from 'lodash/debounce';
 
 export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   const text1Ref = useRef<HTMLSpanElement>(null);
@@ -10,9 +9,10 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   const cooldownTime = 0.8;
 
   let textIndex = texts.length - 1;
-  let time = new Date();
   let morph = 0;
   let cooldown = cooldownTime;
+  let accumulatedTime = 0;
+  const timeStep = 8; // Desired time step in milliseconds
 
   useEffect(() => {
     const elts = {
@@ -30,9 +30,15 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
         cooldown = cooldownTime;
         fraction = 1;
       }
+      console.log('a');
 
       setMorph(fraction);
     };
+
+    const debouncedDoMorph = debounce(doMorph, timeStep, {
+      leading: true,
+      trailing: false
+    });
 
     const setMorph = (fraction: number) => {
       if (elts.text2) {
@@ -67,32 +73,46 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
       }
     };
 
-    let animationFrame: number;
+    const animate = (deltaTime: number) => {
+      accumulatedTime += deltaTime;
 
-    const animate = () => {
-      animationFrame = requestAnimationFrame(animate);
+      while (accumulatedTime >= timeStep) {
+        accumulatedTime -= timeStep;
 
-      const newTime = new Date();
-      const shouldIncrementIndex = cooldown > 0;
-      const dt = (newTime.getTime() - time.getTime()) / 1000; // Using getTime() to get numeric values
-      time = newTime;
+        const shouldIncrementIndex = cooldown > 0;
 
-      cooldown -= dt;
+        cooldown -= timeStep / 1000;
 
-      if (cooldown <= 0) {
-        if (shouldIncrementIndex) {
-          textIndex++;
+        if (cooldown <= 0) {
+          if (shouldIncrementIndex) {
+            textIndex++;
+          }
+
+          debouncedDoMorph();
+        } else {
+          doCooldown();
         }
-
-        doMorph();
-      } else {
-        doCooldown();
       }
     };
 
-    animate();
+    let animationFrame: number;
+    let previousTime = performance.now();
 
-    return () => cancelAnimationFrame(animationFrame);
+    const startAnimation = () => {
+      const currentTime = performance.now();
+      const deltaTime = currentTime - previousTime;
+      previousTime = currentTime;
+
+      animate(deltaTime);
+      animationFrame = requestAnimationFrame(startAnimation);
+    };
+
+    startAnimation();
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      debouncedDoMorph.cancel();
+    };
   }, []);
 
   return (
@@ -108,9 +128,9 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
               in="SourceGraphic"
               type="matrix"
               values="1 0 0 0 0
-									0 1 0 0 0
-									0 0 1 0 0
-									0 0 0 255 -140"
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140"
             />
           </filter>
         </defs>
