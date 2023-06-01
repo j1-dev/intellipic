@@ -2,6 +2,7 @@
 import Morph from './components/Morph';
 import { supabase } from './supabaseClient';
 import Link from 'next/link';
+import ThemeSwitcher from './components/ThemeSwitcher';
 
 export default async function Home() {
   const handleLogout = async () => {
@@ -14,6 +15,7 @@ export default async function Home() {
         <Link href="/login">login</Link>
         <Morph texts={['Intellipic', 'Expand', 'Yourself']} />
         <Link href="/register">register</Link>
+        <ThemeSwitcher></ThemeSwitcher>
       </div>
       <button onClick={handleLogout}>logout</button>
     </main>
