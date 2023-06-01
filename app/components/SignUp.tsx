@@ -47,15 +47,15 @@ function SignUp({ t }: { t: boolean }) {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen ">
       <form
         onSubmit={handleSubmit}
-        className="max-w-sm p-4 bg-gray-100 rounded-lg shadow-md"
+        className="max-w-sm p-4 bg-gray-100 dark:bg-gray-950 rounded-lg border border-black dark:border-white"
       >
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block font-medium text-gray-700 mb-2"
+            className="block font-medium text-gray-700 dark:text-white mb-2"
           >
             Email:
           </label>
@@ -71,7 +71,7 @@ function SignUp({ t }: { t: boolean }) {
         <div className="mb-4">
           <label
             htmlFor="password"
-            className="block font-medium text-gray-700 mb-2"
+            className="block font-medium text-gray-700 dark:text-white mb-2"
           >
             Password:
           </label>
