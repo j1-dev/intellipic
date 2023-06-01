@@ -49,5 +49,5 @@ body {
   text-align: center;
 
   user-select: none; */
-  @apply absolute w-full text-center font-sans font-bold text-9xl;
+  @apply absolute w-full text-center font-sans font-extrabold text-9xl;
 }

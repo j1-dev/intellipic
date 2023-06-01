@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useRef } from 'react';
 import debounce from 'lodash/debounce';
 
@@ -10,10 +9,9 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   const cooldownTime = 0.8;
 
   let textIndex = texts.length - 1;
+  let time = new Date();
   let morph = 0;
   let cooldown = cooldownTime;
-  let accumulatedTime = 0;
-  const timeStep = 8; // Desired time step in milliseconds
 
   useEffect(() => {
     const elts = {
@@ -31,15 +29,14 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
         cooldown = cooldownTime;
         fraction = 1;
       }
-      console.log('a');
 
       setMorph(fraction);
     };
 
-    const debouncedDoMorph = debounce(doMorph, timeStep, {
+    const debouncedDoMorph = debounce(doMorph, 5, {
       leading: true,
       trailing: false
-    });
+    }); // Debounced version of doMorph, executed at most every 16ms, with leading edge execution
 
     const setMorph = (fraction: number) => {
       if (elts.text2) {
@@ -74,38 +71,30 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
       }
     };
 
-    const animate = (deltaTime: number) => {
-      accumulatedTime += deltaTime;
+    const animate = () => {
+      const newTime = new Date();
+      const shouldIncrementIndex = cooldown > 0;
+      const dt = (newTime.getTime() - time.getTime()) / 1000; // Using getTime() to get numeric values
+      time = newTime;
 
-      while (accumulatedTime >= timeStep) {
-        accumulatedTime -= timeStep;
+      cooldown -= dt;
 
-        const shouldIncrementIndex = cooldown > 0;
-
-        cooldown -= timeStep / 1000;
-
-        if (cooldown <= 0) {
-          if (shouldIncrementIndex) {
-            textIndex++;
-          }
-
-          debouncedDoMorph();
-        } else {
-          doCooldown();
+      if (cooldown <= 0) {
+        if (shouldIncrementIndex) {
+          textIndex++;
         }
+
+        debouncedDoMorph();
+      } else {
+        doCooldown();
       }
     };
 
     let animationFrame: number;
-    let previousTime = performance.now();
 
     const startAnimation = () => {
-      const currentTime = performance.now();
-      const deltaTime = currentTime - previousTime;
-      previousTime = currentTime;
-
-      animate(deltaTime);
       animationFrame = requestAnimationFrame(startAnimation);
+      animate();
     };
 
     startAnimation();
@@ -113,6 +102,7 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
     return () => {
       cancelAnimationFrame(animationFrame);
       debouncedDoMorph.cancel();
+      cancelAnimationFrame(startAnimation); // Add this line to cancel the pending animation frames
     };
   }, []);
 
@@ -129,9 +119,9 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
               in="SourceGraphic"
               type="matrix"
               values="1 0 0 0 0
-                      0 1 0 0 0
-                      0 0 1 0 0
-                      0 0 0 255 -140"
+									0 1 0 0 0
+									0 0 1 0 0
+									0 0 0 255 -140"
             />
           </filter>
         </defs>
