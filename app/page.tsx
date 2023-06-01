@@ -13,9 +13,9 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <Link href="/login">login</Link>
-        <Morph texts={['Intellipic', 'Expand', 'Yourself']} />
+        <Morph texts={['Intellipic', 'Remake', 'Yourself']} />
         <Link href="/register">register</Link>
-        <ThemeSwitcher></ThemeSwitcher>
+        <ThemeSwitcher />
       </div>
       <button onClick={handleLogout}>logout</button>
     </main>
