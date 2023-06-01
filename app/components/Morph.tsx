@@ -103,7 +103,6 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
     return () => {
       cancelAnimationFrame(animationFrame);
       debouncedDoMorph.cancel();
-      cancelAnimationFrame(startAnimation); // Add this line to cancel the pending animation frames
     };
   }, []);
 
