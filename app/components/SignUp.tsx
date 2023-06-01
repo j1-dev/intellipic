@@ -50,7 +50,7 @@ function SignUp({ t }: { t: boolean }) {
     <div className="flex items-center justify-center h-screen ">
       <form
         onSubmit={handleSubmit}
-        className="max-w-sm p-4 bg-gray-100 dark:bg-gray-950 rounded-lg border border-black dark:border-white"
+        className="max-w-sm p-4 bg-white dark:bg-gray-950 rounded-lg border border-black dark:border-white"
       >
         <div className="mb-4">
           <label
@@ -65,7 +65,7 @@ function SignUp({ t }: { t: boolean }) {
             value={email}
             onChange={handleEmailChange}
             required
-            className="w-full px-4 py-2 rounded-lg shadow-md border border-gray-300 focus:outline-none focus:border-indigo-500"
+            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
           />
         </div>
         <div className="mb-4">
@@ -81,13 +81,13 @@ function SignUp({ t }: { t: boolean }) {
             value={password}
             onChange={handlePasswordChange}
             required
-            className="w-full px-4 py-2 rounded-lg shadow-md border border-gray-300 focus:outline-none focus:border-indigo-500"
+            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
           />
         </div>
         <div>
           <button
             type="submit"
-            className="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+            className="w-full bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
           >
             {toggle ? 'Sign In' : 'Sign up'}
           </button>

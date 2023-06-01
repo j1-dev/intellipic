@@ -15,7 +15,6 @@ export default async function Home() {
         <Link href="/login">login</Link>
         <Morph texts={['Intellipic', 'Remake', 'Yourself']} />
         <Link href="/register">register</Link>
-        <ThemeSwitcher />
       </div>
       <button onClick={handleLogout}>logout</button>
     </main>

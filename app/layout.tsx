@@ -16,8 +16,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SupabaseProvider>
-          {children}
           <ThemeSwitcher />
+          {children}
         </SupabaseProvider>
       </body>
     </html>

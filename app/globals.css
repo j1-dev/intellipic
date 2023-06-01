@@ -30,7 +30,7 @@ body {
   height: 80pt;
   top: 0;
   bottom: 0;
-
+  padding-left: 40px;
   /* This filter is a lot of the magic, try commenting it out to see how the morphing works! */
   filter: url(#threshold) blur(0.6px);
 }
@@ -38,7 +38,7 @@ body {
 /* Your average text styling */
 #text1,
 #text2 {
-  position: absolute;
+  /* position: absolute;
   width: 100%;
   display: inline-block;
 
@@ -48,5 +48,6 @@ body {
 
   text-align: center;
 
-  user-select: none;
+  user-select: none; */
+  @apply absolute w-full text-center font-sans font-bold text-9xl;
 }
