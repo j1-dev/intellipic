@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { supabase } from '../supabaseClient';
 import type { AuthError } from '@supabase/supabase-js';
@@ -50,7 +51,7 @@ function SignUp({ t }: { t: boolean }) {
     <div className="flex items-center justify-center h-screen ">
       <form
         onSubmit={handleSubmit}
-        className="max-w-sm p-4 bg-white dark:bg-gray-950 rounded-lg border border-black dark:border-white"
+        className="max-w-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white"
       >
         <div className="mb-4">
           <label
