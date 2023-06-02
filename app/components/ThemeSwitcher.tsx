@@ -14,6 +14,7 @@ const ColorSchemeToggleButton = () => {
       document.documentElement.classList.add(localColorScheme);
       document.documentElement.dataset.theme = localColorScheme;
       setColorScheme(localColorScheme);
+      setEnabled(localColorScheme === 'dark');
     }
   }, []);
 
@@ -28,12 +29,13 @@ const ColorSchemeToggleButton = () => {
   };
 
   return (
-    <div className="inline-flex fixed right-4 top-4">
-      <MoonIcon className="m-3 scale-150" />
+    <div className="inline-flex fixed right-4 top-4 ">
+      <SunIcon className="m-3 scale-150" />
+
       <Switch
         onChange={toggleColorScheme}
-        className={`${enabled ? 'bg-black' : 'bg-white'}
-          mtrelative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+        className={`${colorScheme === 'light' ? 'bg-black' : 'bg-white'}
+          transition-all hover:shadow-lg mtrelative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
       >
         <span className="sr-only">Use setting</span>
         <span
@@ -42,7 +44,8 @@ const ColorSchemeToggleButton = () => {
             pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white dark:bg-black shadow-lg ring-0 transition duration-200 ease-in-out`}
         />
       </Switch>
-      <SunIcon className="m-3 scale-150" />
+
+      <MoonIcon className="m-3 scale-150" />
     </div>
   );
 };
