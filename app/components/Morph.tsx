@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import debounce from 'lodash/debounce';
 
 export default function Morph({ texts }: { texts: string[] }): JSX.Element {
@@ -10,36 +10,17 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   const cooldownTime = 0.8;
 
   let textIndex = texts.length - 1;
-  let time = new Date();
-  let morph = 0;
-  let cooldown = cooldownTime;
+  let time = useRef(new Date());
+  let morph = useRef(0);
+  let cooldown = useRef(cooldownTime);
 
-  useEffect(() => {
-    const elts = {
-      text1: text1Ref.current,
-      text2: text2Ref.current
-    };
+  const setMorph = useCallback(
+    (fraction: number) => {
+      const elts = {
+        text1: text1Ref.current,
+        text2: text2Ref.current
+      };
 
-    const doMorph = () => {
-      morph -= cooldown;
-      cooldown = 0;
-
-      let fraction = morph / morphTime;
-
-      if (fraction > 1) {
-        cooldown = cooldownTime;
-        fraction = 1;
-      }
-
-      setMorph(fraction);
-    };
-
-    const debouncedDoMorph = debounce(doMorph, 5, {
-      leading: true,
-      trailing: false
-    }); // Debounced version of doMorph, executed at most every 16ms, with leading edge execution
-
-    const setMorph = (fraction: number) => {
       if (elts.text2) {
         elts.text2.style.filter = `blur(${Math.min(8 / fraction - 10, 100)}px)`;
         elts.text2.style.opacity = `${Math.pow(fraction, 0.7) * 100}%`;
@@ -56,41 +37,73 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
       if (elts.text2) {
         elts.text2.textContent = texts[(textIndex + 1) % texts.length];
       }
-    };
+    },
+    [texts, textIndex]
+  );
 
-    const doCooldown = () => {
-      morph = 0;
+  const animate = useCallback(() => {
+    const newTime = new Date();
+    const shouldIncrementIndex = cooldown.current > 0;
+    const dt = (newTime.getTime() - time.current.getTime()) / 1000;
+    time.current = newTime;
 
-      if (elts.text2) {
-        elts.text2.style.filter = '';
-        elts.text2.style.opacity = '100%';
+    cooldown.current -= dt;
+
+    if (cooldown.current <= 0) {
+      if (shouldIncrementIndex) {
+        textIndex++;
       }
 
-      if (elts.text1) {
-        elts.text1.style.filter = '';
-        elts.text1.style.opacity = '0%';
-      }
-    };
+      debouncedDoMorph();
+    } else {
+      doCooldown();
+    }
+  }, [textIndex]);
 
-    const animate = () => {
-      const newTime = new Date();
-      const shouldIncrementIndex = cooldown > 0;
-      const dt = (newTime.getTime() - time.getTime()) / 1000; // Using getTime() to get numeric values
-      time = newTime;
+  const debouncedDoMorph = useCallback(
+    debounce(
+      () => {
+        morph.current -= cooldown.current;
+        cooldown.current = 0;
 
-      cooldown -= dt;
+        let fraction = morph.current / morphTime;
 
-      if (cooldown <= 0) {
-        if (shouldIncrementIndex) {
-          textIndex++;
+        if (fraction > 1) {
+          cooldown.current = cooldownTime;
+          fraction = 1;
         }
 
-        debouncedDoMorph();
-      } else {
-        doCooldown();
+        setMorph(fraction);
+      },
+      5,
+      {
+        leading: true,
+        trailing: false
       }
+    ),
+    [setMorph]
+  );
+
+  const doCooldown = useCallback(() => {
+    morph.current = 0;
+
+    const elts = {
+      text1: text1Ref.current,
+      text2: text2Ref.current
     };
 
+    if (elts.text2) {
+      elts.text2.style.filter = '';
+      elts.text2.style.opacity = '100%';
+    }
+
+    if (elts.text1) {
+      elts.text1.style.filter = '';
+      elts.text1.style.opacity = '0%';
+    }
+  }, []);
+
+  useEffect(() => {
     let animationFrame: number;
 
     const startAnimation = () => {
@@ -104,7 +117,7 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
       cancelAnimationFrame(animationFrame);
       debouncedDoMorph.cancel();
     };
-  }, []);
+  }, [animate, debouncedDoMorph]);
 
   return (
     <>
@@ -119,9 +132,9 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
               in="SourceGraphic"
               type="matrix"
               values="1 0 0 0 0
-									0 1 0 0 0
-									0 0 1 0 0
-									0 0 0 255 -140"
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140"
             />
           </filter>
         </defs>
