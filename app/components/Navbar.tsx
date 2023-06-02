@@ -23,7 +23,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="Navbar font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm">
+    <div className="Navbar font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all">
       <ul className="flex justify-center items-center h-16">
         <li className="list-none mx-2 my-1 relative group" key={Math.random()}>
           <Link
