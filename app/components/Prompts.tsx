@@ -55,12 +55,11 @@ export default function Prompts() {
             Conviértete en un astronauta con nuestra guía de IA gratuita
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @mi como astronauta,
-          futurista, altamente detallado, ultra realista,
-          arte conceptual, texturas intrincadas,
-          fondo interestelar, viaje espacial, 
-          arte por Alphonse Mucha, Ryan Kittleson,
-          Greg Rutkowski, Leesha Hannigan, Stephan Martiniere, Stanley "Artgerm" Lau.
+            Retrato detallado de cerca de @mi como astronauta, futurista,
+            altamente detallado, ultra realista, arte conceptual, texturas
+            intrincadas, fondo interestelar, viaje espacial, arte por Alphonse
+            Mucha, Ryan Kittleson, Greg Rutkowski, Leesha Hannigan, Stephan
+            Martiniere, Stanley Artgerm Lau.
           </p>
         </a>
       </div>
@@ -85,10 +84,11 @@ export default function Prompts() {
             Conviértete en Mago con nuestra sugerencia gratuita de IA.
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @mi como un mago, con un concepto de arte fantástico, 
-          con detalles e texturas intrincadas, mágico, colorido, arte por wlop, greg rutkowski,
-          charlie bowater, magali villeneuve, alphonse mucha, surrealista, @me mirando hacia el horizonte,
-          sosteniendo un bastón, con fuego y estrellas en el fondo.
+            Retrato detallado de cerca de @mi como un mago, con un concepto de
+            arte fantástico, con detalles e texturas intrincadas, mágico,
+            colorido, arte por wlop, greg rutkowski, charlie bowater, magali
+            villeneuve, alphonse mucha, surrealista, @me mirando hacia el
+            horizonte, sosteniendo un bastón, con fuego y estrellas en el fondo.
           </p>
         </a>
       </div>
@@ -113,10 +113,12 @@ export default function Prompts() {
             Conviértete en Hobbit con nuestra sugerencia gratuita de IA.
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @mi como un Hobbit, pequeño, con grandes ojos marrones,
-           ropa verde y marrón, rasgos faciales detallados, pies pequeños, cabello ondulado,
-            concepto de arte fantástico, tendencia en ArtStation, altamente detallado, arte de John Howe,
-             Alan Lee y Weta Workshop, colores terrosos, mirando a la cámara.
+            Retrato detallado de cerca de @mi como un Hobbit, pequeño, con
+            grandes ojos marrones, ropa verde y marrón, rasgos faciales
+            detallados, pies pequeños, cabello ondulado, concepto de arte
+            fantástico, tendencia en ArtStation, altamente detallado, arte de
+            John Howe, Alan Lee y Weta Workshop, colores terrosos, mirando a la
+            cámara.
           </p>
         </a>
       </div>
@@ -141,10 +143,11 @@ export default function Prompts() {
             Conviértete en Payaso con nuestra sugerencia gratuita de IA.
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @mi como un payaso, altamente detallado, 
-          surrealista, rostro inexpresivo, colores brillantes, iluminación contrastante, 
-          fondo abstracto, arte de wlop, Greg Rutkowski, Charlie Bowater, Magali Villeneuve,
-           Alphonse Mucha, estilo caricaturesco, inspirado en cómics.
+            Retrato detallado de cerca de @mi como un payaso, altamente
+            detallado, surrealista, rostro inexpresivo, colores brillantes,
+            iluminación contrastante, fondo abstracto, arte de wlop, Greg
+            Rutkowski, Charlie Bowater, Magali Villeneuve, Alphonse Mucha,
+            estilo caricaturesco, inspirado en cómics.
           </p>
         </a>
       </div>
@@ -169,7 +172,12 @@ export default function Prompts() {
             Conviértete en Hobbit con nuestra sugerencia gratuita de IA.
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @Yo como un Hobbit, pequeño, con grandes ojos marrones, ropa verde y marrón, rasgos faciales detallados, pies pequeños, cabello ondulado, concepto de arte fantástico, tendencia en ArtStation, altamente detallado, arte de John Howe, Alan Lee y Weta Workshop, colores terrosos, mirando a la cámara.
+            Retrato detallado de cerca de @Yo como un Hobbit, pequeño, con
+            grandes ojos marrones, ropa verde y marrón, rasgos faciales
+            detallados, pies pequeños, cabello ondulado, concepto de arte
+            fantástico, tendencia en ArtStation, altamente detallado, arte de
+            John Howe, Alan Lee y Weta Workshop, colores terrosos, mirando a la
+            cámara.
           </p>
         </a>
       </div>
@@ -194,10 +202,11 @@ export default function Prompts() {
             Conviértete en Mago con nuestra sugerencia gratuita de IA.
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @mi como un mago, con un concepto de arte fantástico, 
-          con detalles e texturas intrincadas, mágico, colorido, arte por wlop, greg rutkowski,
-          charlie bowater, magali villeneuve, alphonse mucha, surrealista, @me mirando hacia el horizonte,
-          sosteniendo un bastón, con fuego y estrellas en el fondo.
+            Retrato detallado de cerca de @mi como un mago, con un concepto de
+            arte fantástico, con detalles e texturas intrincadas, mágico,
+            colorido, arte por wlop, greg rutkowski, charlie bowater, magali
+            villeneuve, alphonse mucha, surrealista, @me mirando hacia el
+            horizonte, sosteniendo un bastón, con fuego y estrellas en el fondo.
           </p>
         </a>
       </div>
@@ -222,7 +231,12 @@ export default function Prompts() {
             Conviértete en Hobbit con nuestra sugerencia gratuita de IA.
           </h6>
           <p className="font-normal text-gray-700 dark:text-gray-400">
-          Retrato detallado de cerca de @mi como un Hobbit, pequeño, con grandes ojos marrones, ropa verde y marrón, rasgos faciales detallados, pies pequeños, cabello ondulado, concepto de arte fantástico, tendencia en ArtStation, altamente detallado, arte de John Howe, Alan Lee y Weta Workshop, colores terrosos, mirando a la cámara.
+            Retrato detallado de cerca de @mi como un Hobbit, pequeño, con
+            grandes ojos marrones, ropa verde y marrón, rasgos faciales
+            detallados, pies pequeños, cabello ondulado, concepto de arte
+            fantástico, tendencia en ArtStation, altamente detallado, arte de
+            John Howe, Alan Lee y Weta Workshop, colores terrosos, mirando a la
+            cámara.
           </p>
         </a>
       </div>
