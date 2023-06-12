@@ -8,7 +8,7 @@ module.exports = {
   darkMode: 'class',
   theme: {
     fontFamily: {
-      sans: ['SF-PRO', 'sans-serif']
+      sans: ['var(--font-sans)']
     },
     extend: {
       backgroundImage: {
