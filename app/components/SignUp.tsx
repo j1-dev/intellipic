@@ -5,6 +5,7 @@ import type { AuthError } from '@supabase/supabase-js';
 import type { Session } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { toast } from 'react-hot-toast';
 
 function SignUp({ t }: { t: boolean }) {
   const [email, setEmail] = useState<string>('');
@@ -31,9 +32,9 @@ function SignUp({ t }: { t: boolean }) {
       });
       if (error) {
         setError(error);
+        toast.error(error.message);
       } else {
-        // const s = data.session as Session;
-        // supabase.auth.setSession(s);
+        toast.success('Logged in successfully!');
       }
     } else {
       // code for signing up
@@ -43,7 +44,13 @@ function SignUp({ t }: { t: boolean }) {
           password: password,
           email_confirm: true
         })
-        .then(() => router.push('/login'));
+        .then(() => {
+          toast.success('Signed up successfully!');
+          router.push('/login');
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     }
   };
 
