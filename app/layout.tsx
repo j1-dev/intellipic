@@ -1,6 +1,7 @@
 import './globals.css';
 import SupabaseProvider from './supabase-provider';
 import ThemeSwitcher from './components/ThemeSwitcher';
+import { Toaster } from 'react-hot-toast';
 
 export const metadata = {
   title: 'IntelliPic',
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SupabaseProvider>
+          <Toaster position="bottom-right" reverseOrder={false} />
           <ThemeSwitcher />
           {children}
         </SupabaseProvider>
