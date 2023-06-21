@@ -1,21 +1,14 @@
 'use client';
 import Morph from './components/Morph';
-import { supabase } from './supabaseClient';
-import Link from 'next/link';
+import { FaInstagram, FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa';
+import { FiInfo } from 'react-icons/fi';
 
 /**
- * @TODO: Add these things
- * - Add a carousel component or image gallery
- * - Relocate the dark mode toggle
- * - Add better footer
- * - Add prices section
+ * @TODO: Document everything
+ *
+ * @returns home page
  */
-
 export default async function Home() {
-  // const handleLogout = async () => {
-  //   const { error } = await supabase.auth.signOut();
-  // };
-
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
@@ -99,10 +92,130 @@ export default async function Home() {
         </div>
       </section>
 
-      <footer className="py-4 text-center">
-        <p className="text-sm">
-          This project is licensed under the MIT License.
-        </p>
+      {/* Prices Section */}
+      <section className="py-16">
+        <div className="max-w-screen-lg mx-auto px-8">
+          <h2 className="text-2xl font-bold mb-4">Prices 💰</h2>
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Training a Model (2x2) */}
+            <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg col-span-2 row-span-2 transition-all duration-300 transform hover:scale-105 ">
+              <h3 className="text-xl font-bold mb-2">Training a Model</h3>
+              <p className="leading-7">€3 per model</p>
+              <p className="leading-7">This includes:</p>
+              <ul className="list-disc list-inside ">
+                <li className="leading-7">Creating a model</li>
+                <li className="leading-7">Generating 15 images</li>
+              </ul>
+            </div>
+
+            {/* Generating 10 Images (1x1) */}
+            <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <h3 className="text-xl font-bold mb-2">Generating 10 Images</h3>
+              <p>€1</p>
+            </div>
+
+            {/* Generating 25 Images (1x1) */}
+            <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <h3 className="text-xl font-bold mb-2">Generating 25 Images</h3>
+              <p>€2</p>
+            </div>
+
+            {/* Generating 50 Images (1x1) */}
+            <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <h3 className="text-xl font-bold mb-2">Generating 50 Images</h3>
+              <p>€3</p>
+            </div>
+
+            {/* Generating 100 Images (1x1) */}
+            <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+              <h3 className="text-xl font-bold mb-2">Generating 100 Images</h3>
+              <p>€7.5</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Privacy Section */}
+      <section className="py-16">
+        <div className="max-w-screen-lg mx-auto px-8">
+          <h2 className="text-2xl font-bold mb-4">Privacy and Security 🔒</h2>
+          <p className="text-lg font-semibold mb-8">
+            At Intellipic, we prioritize your privacy and security. To ensure
+            that your images are protected, we delete all uploaded images and
+            generated artwork after 24 hours. This prevents any malicious use or
+            unauthorized access to your data. You can use Intellipic with
+            confidence, knowing that your privacy is our top priority.
+          </p>
+        </div>
+      </section>
+
+      <footer className="py-8 text-center bg-white dark:bg-black transition-all">
+        <div className="max-w-screen-lg mx-auto px-8">
+          <ul className="flex justify-start space-x-4 my-3">
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                <FiInfo className="inline-block mr-1" />
+                FAQs
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                Terms
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+          <ul className="flex justify-start lg:justify-end my-3">
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                <FaInstagram size={24} />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                <FaGithub size={24} />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                <FaDiscord size={24} />
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
+              >
+                <FaLinkedin size={24} />
+              </a>
+            </li>
+          </ul>
+          <p className="text-sm text-gray-500 dark:text-gray-400 float-left ">
+            This project is licensed under the MIT License.
+          </p>
+        </div>
       </footer>
     </div>
   );
