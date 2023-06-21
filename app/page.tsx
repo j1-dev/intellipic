@@ -2,7 +2,6 @@
 import Morph from './components/Morph';
 import { supabase } from './supabaseClient';
 import Link from 'next/link';
-import ThemeSwitcher from './components/ThemeSwitcher';
 
 export default async function Home() {
   const handleLogout = async () => {
