@@ -29,7 +29,7 @@ const ColorSchemeToggleButton = () => {
   };
 
   return (
-    <div className="inline-flex fixed right-4 top-4 ">
+    <div className="inline-flex fixed right-6 bottom-6 z-50">
       <SunIcon className="m-3 scale-150" />
 
       <Switch
