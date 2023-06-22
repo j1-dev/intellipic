@@ -11,34 +11,26 @@ export default function DashboardPage() {
   const [models, setModels] = useState<any>();
 
   useEffect(() => {
-    const sub = async () => {
-      await supabase
+    const fetchModels = async () => {
+      const { data, error } = await supabase
         .from('trainings')
         .select('*')
-        .eq('user_id', user)
-        .then((data) => {
-          setModels(data?.data);
-        });
+        .eq('user_id', user);
+
+      if (error) {
+        console.error(error);
+      } else {
+        setModels(data);
+      }
     };
 
-    sub();
+    fetchModels();
   }, []);
-
-  // async function logout(){
-  //   supabase.auth.signOut().then(() => {
-  //     const expires = new Date(0).toUTCString()
-  //     document.cookie = `sb-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
-  //     document.cookie = `sb-refresh-token=; path=/; expires=${expires}; SameSite=Lax; secure`
-  //   })
-  //   .then(()=>{
-  //     router.push("/")
-  //   });
-  // }
 
   return (
     <div>
-      {!!models ? (
-        <div className="grid grid-cols-4 grid-flow-col">
+      {models ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {models.map((data: any) => {
             const props = {
               userId: data.user_id as string,
@@ -46,8 +38,7 @@ export default function DashboardPage() {
               token: data.prompt_token as string,
               status: data.status as string
             };
-            // console.log(data)
-            return <ModelCard props={props} key={data.run_id}></ModelCard>;
+            return <ModelCard props={props} key={data.run_id} />;
           })}
         </div>
       ) : (
