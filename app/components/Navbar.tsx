@@ -2,17 +2,10 @@
 import 'tailwindcss/tailwind.css';
 import React from 'react';
 import { supabase } from '../supabaseClient';
-import { cookies } from 'next/dist/client/components/headers';
 import { useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
 import Link from 'next/link';
 
 export default function Navbar() {
-  // const c = cookies();
-  // const at=c.get("sb-access-token")?.value as string
-  // const { data: user, error } = await supabase.auth.getUser(at);
-  // console.log(user.user?.id);
-
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
