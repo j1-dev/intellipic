@@ -1,27 +1,34 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {toast} from 'react-hot-toast';
 
 export default function Prompts() {
-  function handlecopy() {
-    navigator.clipboard.writeText("Retrato en primer plano de @mi como un vikingo, ultra realista,arte conceptual, detalles intrincados, poderoso y feroz, altamente detallado, hiperrealista, renderizado con Octane, 8K, motor Unreal. Arte de Artgerm, Greg Rutkowski, Charlie Bowater, Magali Villeneuve y Alphonse Mucha, con la hora dorada, cuernos y trenzas en el pelo, capa y casco forrados de piel, hacha en mano, mirando hacia la cámara.")
-
-    toast.success(
-      "Copiado con éxito"
-    )
+  function handleCopy(text: string) {
+    navigator.clipboard.writeText(text).then(() => {
+      toast.success('Copiado con éxito');
+    });
   }
-  
+
   const promptCard1 = {
-    img: "https://photoshot.app/prompts/sacha/viking.png",
-    text1: "Instrucciones para crear un Avatar Vikingo",
-    text2: "Conviértete en un vikingo con nuestra guía de IA gratuita",
-    text3: 'Retrato en primer plano de @Yo como un vikingo, ultra realista, arte conceptual, detalles intrincados, poderoso y feroz, altamente detallado, hiperrealista, renderizado con Octane, 8K, motor Unreal. Arte de Artgerm, Greg Rutkowski, Charlie Bowater, Magali Villeneuve y Alphonse Mucha, con la hora dorada, cuernos y trenzas en el pelo, capa y casco forrados de piel, hacha en mano, mirando hacia la cámara'
+    img: 'https://photoshot.app/prompts/sacha/viking.png',
+    text1: 'Instrucciones para crear un Avatar Vikingo',
+    text2: 'Conviértete en un vikingo con nuestra guía de IA gratuita',
+    text3:
+      'Retrato en primer plano de @Yo como un vikingo, ultra realista, arte conceptual, detalles intrincados, poderoso y feroz, altamente detallado, hiperrealista, renderizado con Octane, 8K, motor Unreal. Arte de Artgerm, Greg Rutkowski, Charlie Bowater, Magali Villeneuve y Alphonse Mucha, con la hora dorada, cuernos y trenzas en el pelo, capa y casco forrados de piel, hacha en mano, mirando hacia la cámara',
+  };
+
+  const promptCard2 = {
+    img: 'https://photoshot.app/prompts/sacha/superhero.png',
+    text1: 'Instrucciones para crear un Superhéroe',
+    text2: 'Desata tus poderes con nuestra guía de IA gratuita',
+    text3:
+      'Retrato en primer plano de @Yo como un superhéroe, increíblemente poderoso, con un traje de alta tecnología y colores vibrantes. Pose heroica, expresión determinada, rodeado de energía y efectos especiales. Arte inspirado en los cómics de Marvel y DC, con estilo de Jim Lee, Alex Ross y Todd McFarlane.',
   };
 
   return (
     <div>
       <div className="w-full items-center">
-        <div className="Vikingo my-1" onClick={handlecopy}>
+        <div className="Vikingo my-1" onClick={() => handleCopy(promptCard1.text3)}>
           <div className="float-right">
             <Image
               src={promptCard1.img}
@@ -44,6 +51,32 @@ export default function Prompts() {
             </h6>
             <p className="font-normal text-gray-700 dark:text-gray-400">
               {promptCard1.text3}
+            </p>
+          </a>
+        </div>
+        <div className="Superhero my-1" onClick={() => handleCopy(promptCard2.text3)}>
+          <div className="float-right">
+            <Image
+              src={promptCard2.img}
+              alt=""
+              width={200}
+              height={200}
+              className="object-cover rounded-full"
+            />
+          </div>
+          <a
+            href="#"
+            className="block p-9 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+          >
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              {promptCard2.text1}
+            </h5>
+
+            <h6 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
+              {promptCard2.text2}
+            </h6>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              {promptCard2.text3}
             </p>
           </a>
         </div>
