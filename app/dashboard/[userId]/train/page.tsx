@@ -176,9 +176,10 @@ export default function TrainPage() {
   const fineTuningSucceeded = runStatus === 'succeeded';
 
   return (
-    <>
+    <div className="py-8 max-w-screen-lg mx-auto px-8">
+      <h2 className="text-4xl font-bold mb-4">Entrenar 🦾</h2>
       {ready ? (
-        <>
+        <div>
           <main className={styles.main}>
             <div
               className={classNames(styles.step, {
@@ -303,22 +304,24 @@ export default function TrainPage() {
 
           {fineTuningSucceeded && <AiOutlineCheckCircle />}
 
-          <main className={styles.main}>
-            <div className={styles.clear}>
-              <button
-                onClick={() => clearUserData(id)}
-                className={classNames(styles.button, styles.reset)}
-              >
-                Empezar de nuevo
-              </button>
-            </div>
-          </main>
-        </>
+          {fineTuningData?.dataset && (
+            <main className={styles.main}>
+              <div className={styles.clear}>
+                <button
+                  onClick={() => clearUserData(id)}
+                  className={classNames(styles.button, styles.reset)}
+                >
+                  Empezar de nuevo
+                </button>
+              </div>
+            </main>
+          )}
+        </div>
       ) : (
         <div className="w-40 m-auto mt-24">
           <PulseLoader color="#B6B6B6" />
         </div>
       )}
-    </>
+    </div>
   );
 }

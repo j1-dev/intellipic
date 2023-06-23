@@ -56,12 +56,12 @@ export default function ShopPage() {
   return (
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
-        <h2 className="text-2xl font-bold mb-4">Tienda 💰</h2>
+        <h2 className="text-4xl font-bold mb-4">Tienda 💰</h2>
         <div className="grid grid-cols-2 gap-4">
           {/* Entrenamiento de un modelo (2x2) */}
           <div
             key={products[0].id}
-            className="rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+            className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
             onClick={() => handleProductClick(products[0])}
           >
             <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
@@ -72,7 +72,7 @@ export default function ShopPage() {
           {products.slice(1).map((product) => (
             <div
               key={product.id}
-              className="rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+              className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
               onClick={() => handleProductClick(product)}
             >
               <h3 className="text-xl font-bold mb-2">{product.name}</h3>
@@ -90,7 +90,7 @@ export default function ShopPage() {
         >
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
           <div className="flex items-center justify-center min-h-screen">
-            <div className="bg-white dark:bg-black border border-black dark:border-white z-50 w-full max-w-lg p-6 rounded-lg tranisition-all">
+            <div className="bg-white dark:bg-black border border-black dark:border-white z-50 w-full max-w-lg p-6 rounded-lg transition-all">
               <Dialog.Title className="text-2xl font-bold mb-4">
                 {selectedProduct.name}
               </Dialog.Title>
