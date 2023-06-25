@@ -7,7 +7,7 @@ import { BsChevronDown } from 'react-icons/bs';
 
 import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
-import * as prompts from '../../../core/resources/prompts.json';
+import { prompts } from '../../../core/resources/prompts';
 import { replacePromptToken } from '@/app/core/utils/predictions';
 import { supabase } from '@/app/supabaseClient';
 
@@ -66,8 +66,9 @@ export default function ModelPage() {
     localStorage.getItem(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState('Prompt propio');
+  const [promptName, setPromptName] = useState<any>(null);
 
-  const p = prompts.prompts;
+  const p = prompts;
 
   useEffect(() => {
     // Save state variables to localStorage
@@ -94,7 +95,7 @@ export default function ModelPage() {
         .select('*')
         .eq('run_id', model)
         .then((t) => {
-          console.log(t);
+          // console.log(t);
           if (t && t.data) {
             setToken(t.data[0].prompt_token);
             setInstanceClass(t.data[0].instance_class);
@@ -106,7 +107,7 @@ export default function ModelPage() {
 
   async function handleCallModel() {
     const prompt = replacePromptToken(instancePrompt, token, instanceClass);
-    console.log(prompt);
+    // console.log(prompt);
     post(
       `/api/${id}/call-model`,
       {
@@ -129,7 +130,7 @@ export default function ModelPage() {
           prediction_id: predictionId
         },
         (data: any) => {
-          console.log(data);
+          // console.log(data);
           if (data.status === 'succeeded') {
             setImageUrl(data.output);
             setQueueingPrediction(false);
@@ -146,7 +147,7 @@ export default function ModelPage() {
       <main className={styles.main}>
         <div className={classNames(styles.step, styles.columnstep)}>
           <div className={styles.prompt}>
-            <Menu as="div" className="mb-8 relative">
+            <Menu as="div" className="mb-8 relative ">
               <div>
                 <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
                   {promptType}
@@ -172,8 +173,8 @@ export default function ModelPage() {
                         <button
                           className={classNames(
                             active
-                              ? 'bg-violet-500 text-white'
-                              : 'text-gray-900',
+                              ? 'border text-white bg-black'
+                              : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
                           onClick={() => setPromptType('Prompt propio')}
@@ -190,8 +191,8 @@ export default function ModelPage() {
                         <button
                           className={classNames(
                             active
-                              ? 'bg-violet-500 text-white'
-                              : 'text-gray-900',
+                              ? 'border text-white bg-black'
+                              : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
                           onClick={() => setPromptType('Prompt pre-hecho')}
@@ -208,11 +209,11 @@ export default function ModelPage() {
               </Transition>
             </Menu>
             {promptType === 'Prompt pre-hecho' && (
-              <div className="w-full m-auto">
+              <div className="w-full m-auto ">
                 <Menu as="div" className="mb-8 relative">
                   <div>
                     <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
-                      Prompts disponibles
+                      {!promptName ? 'Prompts disponibles' : `${promptName}`}
                       <BsChevronDown
                         className="right-0 absolute h-5 w-5 text-black dark:text-white transition-all"
                         aria-hidden="true"
@@ -237,13 +238,14 @@ export default function ModelPage() {
                                 <button
                                   className={classNames(
                                     active
-                                      ? 'bg-violet-500 text-white'
-                                      : 'text-gray-900',
+                                      ? 'border text-white bg-black'
+                                      : 'text-black hover:font-bold',
                                     'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                                   )}
-                                  onClick={() =>
-                                    setInstancePrompt(prompt.prompt)
-                                  }
+                                  onClick={() => {
+                                    setInstancePrompt(prompt.prompt);
+                                    setPromptName(prompt.name);
+                                  }}
                                 >
                                   <span className="mr-2">{prompt.name}</span>
                                 </button>
@@ -251,41 +253,6 @@ export default function ModelPage() {
                             </Menu.Item>
                           );
                         })}
-                        {/* <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              className={classNames(
-                                active
-                                  ? 'bg-violet-500 text-white'
-                                  : 'text-gray-900',
-                                'group flex rounded-md items-center w-full px-2 py-2 text-sm'
-                              )}
-                              onClick={() => setInstancePrompt('')}
-                            >
-                              <span className="mr-2">Vikingo</span>
-                            </button>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <button
-                              className={classNames(
-                                active
-                                  ? 'bg-violet-500 text-white'
-                                  : 'text-gray-900',
-                                'group flex rounded-md items-center w-full px-2 py-2 text-sm'
-                              )}
-                              onClick={() => setPromptType('Prompt pre-hecho')}
-                            >
-                              <span className="mr-2">
-                                Prompt predeterminado
-                              </span>
-                              <span className="ml-auto text-gray-500">
-                                Escoje uno de los prompts ya creados
-                              </span>
-                            </button>
-                          )}
-                        </Menu.Item> */}
                       </div>
                     </Menu.Items>
                   </Transition>
