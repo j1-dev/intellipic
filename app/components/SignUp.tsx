@@ -61,7 +61,7 @@ function SignUp({ t }: { t: boolean }) {
     <div className="flex items-center justify-center mt-10">
       <form
         onSubmit={handleSubmit}
-        className="max-w-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white"
+        className="max-w-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
       >
         <div className="mb-4">
           <label
