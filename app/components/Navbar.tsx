@@ -9,10 +9,7 @@ import { HiLogout } from 'react-icons/hi';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
-  const [screenSize, setScreenSize] = useState<any>({
-    width: window.innerWidth,
-    height: window.innerHeight
-  });
+  const [screenSize, setScreenSize] = useState<any>(getCurrentDimension());
   const router = useRouter();
 
   useEffect(() => {
