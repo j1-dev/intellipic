@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import type { AuthError } from '@supabase/supabase-js';
 import type { Session } from '@supabase/supabase-js';
@@ -21,6 +21,10 @@ function SignUp({ t }: { t: boolean }) {
   const handlePasswordChange = (e: any) => {
     setPassword(e.target?.value);
   };
+
+  useEffect(() => {
+    console.log(t);
+  }, [t]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
