@@ -8,6 +8,8 @@ import { BsChevronDown } from 'react-icons/bs';
 import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import * as prompts from '../../../core/resources/prompts.json';
+import { replacePromptToken } from '@/app/core/utils/predictions';
+import { supabase } from '@/app/supabaseClient';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -57,6 +59,9 @@ export default function ModelPage() {
   const [queueingPrediction, setQueueingPrediction] = useState(
     localStorage.getItem(`qp${model}`) === 'true'
   );
+  const [token, setToken] = useState<any | null>(
+    localStorage.getItem(`tk${model}`) || ''
+  );
   const [promptType, setPromptType] = useState('Prompt propio');
 
   const p = prompts.prompts;
@@ -67,14 +72,42 @@ export default function ModelPage() {
     localStorage.setItem(`iu${model}`, imageUrl);
     localStorage.setItem(`pi${model}`, predictionId);
     localStorage.setItem(`qp${model}`, queueingPrediction.toString());
-  }, [instancePrompt, imageUrl, predictionId, queueingPrediction, model]);
+    localStorage.setItem(`tk${model}`, token);
+  }, [
+    instancePrompt,
+    imageUrl,
+    predictionId,
+    queueingPrediction,
+    model,
+    token
+  ]);
+
+  useEffect(() => {
+    const sub = async () => {
+      if (!token) {
+        await supabase
+          .from('trainings')
+          .select('prompt_token')
+          .eq('run_id', model)
+          .then((t) => {
+            if (t && t.data) {
+              // console.log(t.data[0].prompt_token);
+              setToken(t.data[0].prompt_token);
+            }
+          });
+      }
+    };
+    sub();
+  }, []);
 
   async function handleCallModel() {
+    const prompt = replacePromptToken(instancePrompt, token);
+    // console.log(prompt);
     post(
       `/api/${id}/call-model`,
       {
         run_id: model,
-        instance_prompt: instancePrompt,
+        instance_prompt: prompt,
         user_id: id
       },
       (data: any) => {
