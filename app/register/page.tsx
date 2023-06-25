@@ -40,7 +40,7 @@ export default function RegisterPage() {
             </button>
           </nav>
         </header>
-        <div className="flex-col max-w-screen-xs mx-auto mt-28">
+        <div className="flex-col max-w-screen-xs mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
           <h1 className="text-9xl font-bold font-sans  w-fit m-auto ">
             Register
           </h1>
