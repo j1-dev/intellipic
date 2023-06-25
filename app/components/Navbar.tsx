@@ -5,9 +5,14 @@ import { supabase } from '../supabaseClient';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { HiLogout } from 'react-icons/hi';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -17,11 +22,30 @@ export default function Navbar() {
     sub();
   }, []);
 
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener('resize', updateDimension);
+
+    return () => {
+      window.removeEventListener('resize', updateDimension);
+    };
+  }, [screenSize]);
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
     router.push('/');
   };
+
+  function getCurrentDimension() {
+    console.log(screenSize);
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+  }
 
   return (
     <div className="relative font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all ">
@@ -44,7 +68,7 @@ export default function Navbar() {
             href={`/dashboard/${user?.id}`}
             className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
           >
-            Modelos
+            {screenSize.width >= 450 ? 'Modelos' : '🤖'}
             <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
             <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
           </Link>
@@ -57,7 +81,7 @@ export default function Navbar() {
             href={`/dashboard/${user?.id}/train`}
             className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
           >
-            Entrenar
+            {screenSize.width >= 450 ? 'Entrenar' : '🦾'}
             <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
             <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
           </Link>
@@ -70,7 +94,7 @@ export default function Navbar() {
             href="/dashboard/examples"
             className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
           >
-            Ejemplos
+            {screenSize.width >= 450 ? 'Ejemplos' : '🔍'}
             <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
             <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
           </Link>
@@ -83,7 +107,7 @@ export default function Navbar() {
             href="/dashboard/shop"
             className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
           >
-            Tienda
+            {screenSize.width >= 450 ? 'Tienda' : '💰'}
             <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
             <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
           </Link>
@@ -96,7 +120,7 @@ export default function Navbar() {
             onClick={handleLogout}
             className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
           >
-            Log Out
+            {screenSize.width >= 450 ? 'Tienda' : <HiLogout />}
           </button>
         </li>
       </ul>
