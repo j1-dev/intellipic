@@ -62,6 +62,9 @@ export default function ModelPage() {
   const [token, setToken] = useState<any | null>(
     localStorage.getItem(`tk${model}`) || ''
   );
+  const [instanceClass, setInstanceClass] = useState<any | null>(
+    localStorage.getItem(`ic${model}`) || ''
+  );
   const [promptType, setPromptType] = useState('Prompt propio');
 
   const p = prompts.prompts;
@@ -73,36 +76,37 @@ export default function ModelPage() {
     localStorage.setItem(`pi${model}`, predictionId);
     localStorage.setItem(`qp${model}`, queueingPrediction.toString());
     localStorage.setItem(`tk${model}`, token);
+    localStorage.setItem(`ic${model}`, instanceClass);
   }, [
     instancePrompt,
     imageUrl,
     predictionId,
     queueingPrediction,
     model,
-    token
+    token,
+    instanceClass
   ]);
 
   useEffect(() => {
     const sub = async () => {
-      if (!token) {
-        await supabase
-          .from('trainings')
-          .select('prompt_token')
-          .eq('run_id', model)
-          .then((t) => {
-            if (t && t.data) {
-              // console.log(t.data[0].prompt_token);
-              setToken(t.data[0].prompt_token);
-            }
-          });
-      }
+      await supabase
+        .from('trainings')
+        .select('*')
+        .eq('run_id', model)
+        .then((t) => {
+          console.log(t);
+          if (t && t.data) {
+            setToken(t.data[0].prompt_token);
+            setInstanceClass(t.data[0].instance_class);
+          }
+        });
     };
     sub();
   }, []);
 
   async function handleCallModel() {
-    const prompt = replacePromptToken(instancePrompt, token);
-    // console.log(prompt);
+    const prompt = replacePromptToken(instancePrompt, token, instanceClass);
+    console.log(prompt);
     post(
       `/api/${id}/call-model`,
       {

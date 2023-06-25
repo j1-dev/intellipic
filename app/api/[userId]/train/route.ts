@@ -72,7 +72,8 @@ export async function POST(
     user_id: id,
     status: 'starting',
     dataset: instanceData,
-    prompt_token: instanceToken
+    prompt_token: instanceToken,
+    instance_class: instanceClass
   });
 
   if (error) {
