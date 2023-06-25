@@ -45,6 +45,11 @@ export default function Navbar() {
         width: window.innerWidth,
         height: window.innerHeight
       };
+    } else {
+      return {
+        width: 1000,
+        height: 1000
+      };
     }
   }
 
