@@ -9,7 +9,7 @@ import { HiLogout } from 'react-icons/hi';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
-  const [screenSize, setScreenSize] = useState({
+  const [screenSize, setScreenSize] = useState<any>({
     width: window.innerWidth,
     height: window.innerHeight
   });
@@ -40,11 +40,13 @@ export default function Navbar() {
   };
 
   function getCurrentDimension() {
-    console.log(screenSize);
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
+    if (typeof window !== 'undefined') {
+      console.log(screenSize);
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+    }
   }
 
   return (
