@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import type { AuthError } from '@supabase/supabase-js';
-import type { Session } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';

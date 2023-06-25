@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { Switch } from '@headlessui/react';
 import { SunIcon, MoonIcon } from '@radix-ui/react-icons';

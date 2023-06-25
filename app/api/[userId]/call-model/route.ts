@@ -16,7 +16,6 @@
 // }
 
 import replicateClient from '../../../core/clients/replicate';
-import { NextApiRequest, NextApiResponse } from 'next';
 import { supabase } from '../../../supabaseClient';
 import { NextResponse } from 'next/server';
 

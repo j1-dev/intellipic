@@ -14,7 +14,6 @@
 // }
 
 import replicateClient from '../../../core/clients/replicate';
-import { NextApiRequest, NextApiResponse } from 'next';
 import { supabase } from '../../../supabaseClient';
 import { NextResponse } from 'next/server';
 
@@ -68,15 +67,13 @@ export async function POST(
   const replicateModelId = responseReplicate.data.id as string;
 
   // update user's data in supabase
-  const { error } = await supabase
-    .from(SUPABASE_TABLE_NAME)
-    .insert({
-      run_id: replicateModelId,
-      user_id: id,
-      status: 'starting',
-      dataset: instanceData,
-      prompt_token: instanceToken
-    });
+  const { error } = await supabase.from(SUPABASE_TABLE_NAME).insert({
+    run_id: replicateModelId,
+    user_id: id,
+    status: 'starting',
+    dataset: instanceData,
+    prompt_token: instanceToken
+  });
 
   if (error) {
     console.error('Insert user error:', error);
