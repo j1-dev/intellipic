@@ -147,7 +147,7 @@ export default function ModelPage() {
       <main className={styles.main}>
         <div className={classNames(styles.step, styles.columnstep)}>
           <div className={styles.prompt}>
-            <Menu as="div" className="mb-8 relative ">
+            <Menu as="div" className="mb-8 relative w-[400px]">
               <div>
                 <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
                   {promptType}
@@ -166,7 +166,7 @@ export default function ModelPage() {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="absolute m-auto mt-2 w-64 divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                <Menu.Items className="absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                   <div className="px-1 py-1 ">
                     <Menu.Item>
                       {({ active }) => (
@@ -229,7 +229,7 @@ export default function ModelPage() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute m-auto mt-2 w-64 divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                    <Menu.Items className="absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                       <div className="px-1 py-1 ">
                         {p.map((prompt: any) => {
                           return (
@@ -269,7 +269,7 @@ export default function ModelPage() {
             )}
             <button
               onClick={handleCallModel}
-              className={classNames(styles.button, styles.primary)}
+              className="bg-blue-600 text-white border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
               style={{ marginTop: 0 }}
             >
               Generar
