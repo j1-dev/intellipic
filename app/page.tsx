@@ -18,6 +18,9 @@ export default async function Home() {
           <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all ml-auto ">
             <Link href="/login">Log In</Link>
           </button>
+          <button className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1">
+            <Link href="/register">Sign Up</Link>
+          </button>
         </nav>
       </header>
 
