@@ -4,11 +4,11 @@ import React from 'react';
 import { supabase } from '../supabaseClient';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
-  // const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     const sub = async () => {
@@ -20,7 +20,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(null);
-    // router.push('/');
+    router.push('/');
   };
 
   return (
