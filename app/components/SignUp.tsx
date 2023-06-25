@@ -47,12 +47,12 @@ function SignUp({ t }: { t: boolean }) {
           password: password,
           email_confirm: true
         })
+        .catch((error) => {
+          toast.error(error.message);
+        })
         .then(() => {
           toast.success('Signed up successfully!');
           router.push('/login');
-        })
-        .catch((error) => {
-          toast.error(error.message);
         });
     }
   };
