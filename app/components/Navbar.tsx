@@ -23,14 +23,16 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    const updateDimension = () => {
-      setScreenSize(getCurrentDimension());
-    };
-    window.addEventListener('resize', updateDimension);
+    if (typeof window !== 'undefined') {
+      const updateDimension = () => {
+        setScreenSize(getCurrentDimension());
+      };
+      window.addEventListener('resize', updateDimension);
 
-    return () => {
-      window.removeEventListener('resize', updateDimension);
-    };
+      return () => {
+        window.removeEventListener('resize', updateDimension);
+      };
+    }
   }, [screenSize]);
 
   const handleLogout = async () => {
