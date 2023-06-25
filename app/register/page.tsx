@@ -27,7 +27,14 @@ export default function RegisterPage() {
   }, []);
 
   if (!session) {
-    return <SignUp t={false} />;
+    return (
+      <div className="flex-col max-w-screen-xs mx-auto mt-48">
+        <h1 className="text-9xl font-bold font-sans  w-fit m-auto ">
+          Register
+        </h1>
+        <SignUp t={false} />
+      </div>
+    );
   } else {
     router.push(`dashboard/${session.user.id}`);
   }

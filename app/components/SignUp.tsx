@@ -59,7 +59,7 @@ function SignUp({ t }: { t: boolean }) {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen ">
+    <div className="flex items-center justify-center mt-10">
       <form
         onSubmit={handleSubmit}
         className="max-w-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white"

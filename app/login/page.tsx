@@ -32,7 +32,12 @@ export default function LoginPage() {
   }, []);
 
   if (!session) {
-    return <SignUp t={true} />;
+    return (
+      <div className="flex-col max-w-screen-xs mx-auto mt-48">
+        <h1 className="text-9xl font-bold font-sans  w-fit m-auto ">Login</h1>
+        <SignUp t={true} />
+      </div>
+    );
   } else {
     router.push(`dashboard/${session.user.id}`);
   }
