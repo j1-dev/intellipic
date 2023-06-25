@@ -80,6 +80,14 @@ export default async function Home() {
                 results.
               </p>
             </div>
+            <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+            <h3 className="text-xl font-bold mb-2">AI-Powered Images 🖼️</h3>
+            <p>
+              Unleash the power of AI with Intellipics image generation.
+              Let AI be your creative collaborator and explore new horizons
+              in image generation.
+            </p>
+          </div>
           </div>
         </div>
       </section>
