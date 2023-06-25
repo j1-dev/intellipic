@@ -122,7 +122,7 @@ export default function Navbar() {
             onClick={handleLogout}
             className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
           >
-            {screenSize.width >= 450 ? 'Tienda' : <HiLogout />}
+            {screenSize.width >= 450 ? 'Logout' : <HiLogout />}
           </button>
         </li>
       </ul>
