@@ -16,10 +16,10 @@ export default async function Home() {
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
           <h1 className="text-3xl font-bold">Intellipic</h1>
           <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all ml-auto ">
-            <Link href="/login">Log In</Link>
+            <Link href="/login">Iniciar sesión</Link>
           </button>
           <button className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1">
-            <Link href="/register">Sign Up</Link>
+            <Link href="/register">Registrarse</Link>
           </button>
         </nav>
       </header>
@@ -29,12 +29,10 @@ export default async function Home() {
           <Morph texts={['IntelliPic', ' Remake', 'Yourself']} />
           <div className="text-center">
             <p className="text-lg mb-8">
-              Unleash your creativity with Intellipic. Upload any picture, train
-              a neural network, and transform it into an incredible artwork with
-              various styles. ✨🎨
+            Desata tu creatividad con Intellipic. Sube cualquier imagen, entrena una red neuronal y transfórmala en una increíble obra de arte con varios estilos. ✨🎨
             </p>
             <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all">
-              <Link href="/register">Get Started</Link>
+              <Link href="/register">Comenzar</Link>
             </button>
           </div>
         </div>
@@ -42,53 +40,44 @@ export default async function Home() {
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Features ✨</h2>
+          <h2 className="text-2xl font-bold mb-4">Características ✨</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Picture Upload 📷</h3>
+              <h3 className="text-xl font-bold mb-2">Subir imagen 📷</h3>
               <p>
-                Seamlessly upload your favorite pictures of any subject you
-                desire.
+              Sube sin problemas tus imágenes favoritas de cualquier tema que desees.
               </p>
             </div>
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
               <h3 className="text-xl font-bold mb-2">
-                Neural Network Training 🧠
+              Entrenamiento de la red neuronal🧠
               </h3>
               <p>
-                Utilize cutting-edge neural network technology to learn from the
-                uploaded pictures and understand the unique characteristics of
-                the subject.
+              Utiliza tecnología de vanguardia de redes neuronales para aprender de las imágenes subidas y comprender las características únicas del sujeto.
               </p>
             </div>
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Style Selection 🌈</h3>
+              <h3 className="text-xl font-bold mb-2">Selección de estilo 🌈</h3>
               <p>
-                Choose from a vast collection of styles to apply to your images,
-                allowing you to create stunning visual combinations.
+              Elige entre una amplia colección de estilos para aplicar a tus imágenes, lo que te permitirá crear combinaciones visuales impresionantes.
               </p>
             </div>
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Image Generation ⚡️</h3>
+              <h3 className="text-xl font-bold mb-2">Generación de imágenes⚡️</h3>
               <p>
-                Watch in awe as Intellipic generates stunning new images,
-                blending the subject with your chosen style in real-time.
+              Observa con asombro cómo Intellipic genera nuevas imágenes impresionantes, fusionando el sujeto con el estilo elegido en tiempo real.
               </p>
             </div>
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Endless Creativity 🔁</h3>
+              <h3 className="text-xl font-bold mb-2">Creatividad infinita 🔁</h3>
               <p>
-                With Intellipic, there are no limits to your imagination. Keep
-                experimenting, training, and generating to discover captivating
-                results.
+              Con Intellipic, no hay límites para tu imaginación. Sigue experimentando, entrenando y generando para descubrir resultados cautivadores.
               </p>
             </div>
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-            <h3 className="text-xl font-bold mb-2">AI-Powered Images 🖼️</h3>
+            <h3 className="text-xl font-bold mb-2">El trabajo impulsado por IA tiene costos asociados. 💡</h3>
             <p>
-              Unleash the power of AI with Intellipics image generation.
-              Let AI be your creative collaborator and explore new horizons
-              in image generation.
+            Desata el potencial de la generación de imágenes mediante IA. Debido a los recursos sustanciales necesarios para el entrenamiento, no es factible proporcionar este servicio de forma gratuita. Tu inversión impulsa la innovación y garantiza resultados de la más alta calidad.
             </p>
           </div>
           </div>
@@ -97,7 +86,7 @@ export default async function Home() {
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Examples 📸</h2>
+          <h2 className="text-2xl font-bold mb-4">Ejemplos 📸</h2>
           <div className="carousel">
             {/* Add your carousel component or image gallery here */}
           </div>
@@ -107,40 +96,40 @@ export default async function Home() {
       {/* Prices Section */}
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Prices 💰</h2>
+          <h2 className="text-2xl font-bold mb-4">Precios 💰</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Training a Model (2x2) */}
             <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg col-span-2 row-span-2 transition-all duration-300 transform hover:scale-105 ">
-              <h3 className="text-xl font-bold mb-2">Training a Model</h3>
-              <p className="leading-7">€3 per model</p>
-              <p className="leading-7">This includes:</p>
+              <h3 className="text-xl font-bold mb-2">Entrenar un modelo</h3>
+              <p className="leading-7">€3 por modelo</p>
+              <p className="leading-7">Esto Incluye:</p>
               <ul className="list-disc list-inside ">
-                <li className="leading-7">Creating a model</li>
-                <li className="leading-7">Generating 15 images</li>
+                <li className="leading-7">Crear un modelo</li>
+                <li className="leading-7">Generar 15 imágenes</li>
               </ul>
             </div>
 
             {/* Generating 10 Images (1x1) */}
             <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Generating 10 Images</h3>
+              <h3 className="text-xl font-bold mb-2">Generar 10 imágenes</h3>
               <p>€1</p>
             </div>
 
             {/* Generating 25 Images (1x1) */}
             <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Generating 25 Images</h3>
+              <h3 className="text-xl font-bold mb-2">Generar 25 imágenes</h3>
               <p>€2</p>
             </div>
 
             {/* Generating 50 Images (1x1) */}
             <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Generating 50 Images</h3>
+              <h3 className="text-xl font-bold mb-2">Generar 50 imágenes</h3>
               <p>€3</p>
             </div>
 
             {/* Generating 100 Images (1x1) */}
             <div className="border border-black dark:border-white bg-white dark:bg-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-              <h3 className="text-xl font-bold mb-2">Generating 100 Images</h3>
+              <h3 className="text-xl font-bold mb-2">Generar 100 imágenes</h3>
               <p>€7.5</p>
             </div>
           </div>
@@ -150,13 +139,13 @@ export default async function Home() {
       {/* Privacy Section */}
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Privacy and Security 🔒</h2>
+          <h2 className="text-2xl font-bold mb-4">Privacidad y Seguridad 🔒</h2>
           <p className="text-lg font-semibold mb-8">
-            At Intellipic, we prioritize your privacy and security. To ensure
-            that your images are protected, we delete all uploaded images and
-            generated artwork after 24 hours. This prevents any malicious use or
-            unauthorized access to your data. You can use Intellipic with
-            confidence, knowing that your privacy is our top priority.
+          En Intellipic, priorizamos tu privacidad y seguridad.
+           Para asegurarnos de que tus imágenes estén protegidas, 
+          eliminamos todas las imágenes subidas y las obras de arte generadas después de 24 horas.
+           Esto evita cualquier uso malicioso o acceso no autorizado a tus datos. Puedes utilizar Intellipic con confianza,
+          sabiendo que tu privacidad es nuestra máxima prioridad.
           </p>
         </div>
       </section>
