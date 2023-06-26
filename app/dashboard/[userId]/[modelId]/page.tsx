@@ -67,7 +67,7 @@ export default function ModelPage() {
     localStorage.getItem(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState(
-    localStorage.getItem(`pt${model}` || 'Prompt escrito')
+    localStorage.getItem(`pt${model}`) || 'Prompt escrito'
   );
   const [promptName, setPromptName] = useState(
     localStorage.getItem(`pn${model}`) || 'Prompts disponibles'
@@ -153,6 +153,10 @@ export default function ModelPage() {
           }
           if (data.status === 'succeeded') {
             setImageUrl(data.output);
+            setQueueingPrediction(false);
+          }
+          if (data.status === 'canceled' || data.status === 'failed') {
+            setImageUrl('');
             setQueueingPrediction(false);
           }
         }
