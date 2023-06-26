@@ -233,7 +233,7 @@ export default function TrainPage() {
                 <div>
                   Para comenzar a entrenar la IA.
                   <br />
-                  Dale un nombre único a tu modelo (Por ejemplo Davidrmk)
+                  Dale un nombre único a tu modelo (Por ejemplo Davidrmk2)
                 </div>
                 <div
                   className={classNames(styles.finetuningsection, {
@@ -244,7 +244,7 @@ export default function TrainPage() {
                     className={styles.instance}
                     value={instanceName}
                     onChange={(ev) => setInstanceName(ev.target.value)}
-                    placeholder={'Unique instance name'}
+                    placeholder={'Nombre Único'}
                   />
                   {/* New select for the instance type */}
                   <select
@@ -277,7 +277,7 @@ export default function TrainPage() {
                           : 'inherit'
                     }}
                   >
-                    🪄 Tune
+                    🪄 Continuar
                   </button>
                 </div>
               </div>
@@ -304,6 +304,16 @@ export default function TrainPage() {
                 <button
                   onClick={() => clearUserData(id)}
                   className={classNames(styles.button, styles.reset)}
+                  style={{
+                    width: 'max-content',
+                    backgroundColor: '#e0e0e0',
+                    padding: '6px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                    
+                    
+                  }}
                 >
                   Empezar de nuevo
                 </button>
