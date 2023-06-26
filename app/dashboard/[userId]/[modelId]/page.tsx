@@ -59,14 +59,22 @@ export default function ModelPage() {
   const [queueingPrediction, setQueueingPrediction] = useState(
     localStorage.getItem(`qp${model}`) === 'true'
   );
-  const [token, setToken] = useState<any | null>(
-    localStorage.getItem(`tk${model}`) || ''
+  const [predictionStatus, setPredictionStatus] = useState(
+    localStorage.getItem(`ps${model}`) || ''
   );
-  const [instanceClass, setInstanceClass] = useState<any | null>(
+  const [token, setToken] = useState(localStorage.getItem(`tk${model}`) || '');
+  const [instanceClass, setInstanceClass] = useState(
     localStorage.getItem(`ic${model}`) || ''
   );
-  const [promptType, setPromptType] = useState('Prompt propio');
-  const [promptName, setPromptName] = useState<any>(null);
+  const [promptType, setPromptType] = useState(
+    localStorage.getItem(`pt${model}` || 'Prompt escrito')
+  );
+  const [promptName, setPromptName] = useState(
+    localStorage.getItem(`pn${model}`) || 'Prompts disponibles'
+  );
+  const [modelStatus, setModelStatus] = useState(
+    localStorage.getItem(`ms${model}`) || ''
+  );
 
   const p = prompts;
 
@@ -76,29 +84,38 @@ export default function ModelPage() {
     localStorage.setItem(`iu${model}`, imageUrl);
     localStorage.setItem(`pi${model}`, predictionId);
     localStorage.setItem(`qp${model}`, queueingPrediction.toString());
+    localStorage.setItem(`ps${model}`, predictionStatus);
     localStorage.setItem(`tk${model}`, token);
     localStorage.setItem(`ic${model}`, instanceClass);
+    localStorage.setItem(`pn${model}`, promptName);
+    localStorage.setItem(`pt${model}`, promptType as string);
+    localStorage.setItem(`ms${model}`, modelStatus);
   }, [
     instancePrompt,
     imageUrl,
     predictionId,
     queueingPrediction,
+    predictionStatus,
     model,
     token,
-    instanceClass
+    instanceClass,
+    promptType,
+    promptName,
+    modelStatus
   ]);
 
   useEffect(() => {
+    console.log(queueingPrediction);
     const sub = async () => {
       await supabase
         .from('trainings')
         .select('*')
         .eq('run_id', model)
         .then((t) => {
-          // console.log(t);
           if (t && t.data) {
             setToken(t.data[0].prompt_token);
             setInstanceClass(t.data[0].instance_class);
+            setModelStatus(t.data[0].status);
           }
         });
     };
@@ -130,7 +147,10 @@ export default function ModelPage() {
           prediction_id: predictionId
         },
         (data: any) => {
-          // console.log(data);
+          console.log(data.status);
+          if (data.status !== predictionStatus) {
+            setPredictionStatus(data.status);
+          }
           if (data.status === 'succeeded') {
             setImageUrl(data.output);
             setQueueingPrediction(false);
@@ -143,7 +163,13 @@ export default function ModelPage() {
   useInterval(() => handleGetPrediction(), 3000);
 
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto px-8 py-8">
+      <h2 className="text-4xl font-bold mb-2">Modelos 🤖</h2>
+      <h3 className="text-2xl font-bold mb-2">Token del modelo: {token}</h3>
+      <span>
+        Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
+        los prompts predeterminados disponibles
+      </span>
       <main className={styles.main}>
         <div className={classNames(styles.step, styles.columnstep)}>
           <div className={styles.prompt}>
@@ -177,7 +203,7 @@ export default function ModelPage() {
                               : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
-                          onClick={() => setPromptType('Prompt propio')}
+                          onClick={() => setPromptType('Prompt escrito')}
                         >
                           <span className="mr-2">Prompt escrito</span>
                           <span className="ml-auto text-gray-500">
@@ -259,7 +285,7 @@ export default function ModelPage() {
                 </Menu>
               </div>
             )}
-            {promptType === 'Prompt propio' && (
+            {promptType === 'Prompt escrito' && (
               <textarea
                 className="w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
                 value={instancePrompt}
@@ -269,12 +295,17 @@ export default function ModelPage() {
             )}
             <button
               onClick={handleCallModel}
-              className="bg-blue-600 text-white border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
+              className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
               style={{ marginTop: 0 }}
+              disabled={queueingPrediction || modelStatus !== 'succeeded'}
             >
-              Generar
+              {queueingPrediction ? 'Generando...' : 'Generar'}
             </button>
           </div>
+          {modelStatus !== 'succeeded' && (
+            <span>El modelo no esta preparado todavia</span>
+          )}
+          {queueingPrediction && <span>{predictionStatus}</span>}
           {imageUrl && (
             // eslint-disable-next-line @next/next/no-img-element
             <img

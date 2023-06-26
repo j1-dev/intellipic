@@ -205,13 +205,7 @@ export default function TrainPage() {
                     />
                     <label htmlFor="files">
                       <button
-                        className={classNames([
-                          styles.button,
-                          styles.primary,
-                          {
-                            [styles.inactive]: uploading
-                          }
-                        ])}
+                        className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400 mt-6"
                         onClick={() =>
                           !uploading && itemButton.current?.click()
                         }

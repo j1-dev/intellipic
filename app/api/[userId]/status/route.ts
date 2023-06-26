@@ -33,6 +33,7 @@ export async function GET(
       );
 
       const modelData = await modelResponse.json();
+      console.log(modelData);
       console.log(modelData.status);
 
       const { data, error } = await supabase
