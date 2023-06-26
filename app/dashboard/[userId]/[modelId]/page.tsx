@@ -155,6 +155,10 @@ export default function ModelPage() {
             setImageUrl(data.output);
             setQueueingPrediction(false);
           }
+          if (data.status === 'canceled' || data.status === 'failed') {
+            setImageUrl('');
+            setQueueingPrediction(false);
+          }
         }
       );
     }
