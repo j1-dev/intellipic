@@ -28,7 +28,8 @@ export async function GET(
           headers: {
             Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
             'Content-Type': 'application/json'
-          }
+          },
+          next: { revalidate: 0 }
         }
       );
 
