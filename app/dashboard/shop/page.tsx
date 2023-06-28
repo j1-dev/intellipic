@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
+import axios from 'axios';
 
 interface Product {
   id: number;
@@ -44,6 +45,9 @@ const products: Product[] = [
 
 export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [prices, setPrices] = useState<any>(
+    localStorage.getItem('prices') || ''
+  );
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -52,6 +56,15 @@ export default function ShopPage() {
   const closeModal = () => {
     setSelectedProduct(null);
   };
+
+  useEffect(() => {
+    const sub = async () => {
+      const prods = await axios.get('/api/shop/get-products');
+      setPrices(prods);
+      console.log(prods);
+    };
+    sub();
+  }, []);
 
   return (
     <div className="py-8">

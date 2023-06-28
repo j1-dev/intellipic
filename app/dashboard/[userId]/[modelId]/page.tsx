@@ -126,7 +126,7 @@ export default function ModelPage() {
     const prompt = replacePromptToken(instancePrompt, token, instanceClass);
     // console.log(prompt);
     post(
-      `/api/${id}/call-model`,
+      `/api/ai/${id}/call-model`,
       {
         run_id: model,
         instance_prompt: prompt,
@@ -142,7 +142,7 @@ export default function ModelPage() {
   async function handleGetPrediction() {
     if (queueingPrediction) {
       post(
-        `/api/${id}/get-prediction`,
+        `/api/ai/${id}/get-prediction`,
         {
           prediction_id: predictionId
         },

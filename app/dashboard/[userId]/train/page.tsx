@@ -81,7 +81,9 @@ export default function TrainPage() {
   useInterval(() => getModelStatus(id), 10000);
 
   async function clearUserData(id: any) {
-    post(`/api/${id}/clear`, {}, (data: any) => setFinetuningData(data.output));
+    post(`/api/ai/${id}/clear`, {}, (data: any) =>
+      setFinetuningData(data.output)
+    );
   }
 
   async function getOrInsertUserData(id: any) {
@@ -95,7 +97,7 @@ export default function TrainPage() {
   }
 
   async function getModelStatus(id: any) {
-    await fetch(`/api/${id}/status`)
+    await fetch(`/api/ai/${id}/status`)
       .then((response) => response.json())
       .then((data) => {
         setModelStatus({
@@ -151,7 +153,7 @@ export default function TrainPage() {
   async function handleValidationAndFinetuningStart() {
     setQueueingFinetuning(true);
     await post(
-      `/api/${id}/train`,
+      `/api/ai/${id}/train`,
       {
         url: fineTuningData.dataset,
         prompt: instanceName,
@@ -311,8 +313,6 @@ export default function TrainPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center'
-                    
-                    
                   }}
                 >
                   Empezar de nuevo
