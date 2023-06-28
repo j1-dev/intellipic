@@ -1,51 +1,49 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import axios from 'axios';
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
-  price: number;
+  price: string;
   features: string[];
 }
 
-// const products: Product[] = [
-//   {
-//     id: 1,
-//     name: 'Entrenamiento de un modelo',
-//     price: '€3 por modelo',
-//     features: ['Característica 1', 'Característica 2', 'Característica 3']
-//   },
-//   {
-//     id: 2,
-//     name: 'Generación de 10 imágenes',
-//     price: '€1',
-//     features: ['Característica 1', 'Característica 2', 'Característica 3']
-//   },
-//   {
-//     id: 3,
-//     name: 'Generación de 25 imágenes',
-//     price: '€2',
-//     features: ['Característica 1', 'Característica 2', 'Característica 3']
-//   },
-//   {
-//     id: 4,
-//     name: 'Generación de 50 imágenes',
-//     price: '€3',
-//     features: ['Característica 1', 'Característica 2', 'Característica 3']
-//   },
-//   {
-//     id: 5,
-//     name: 'Generación de 100 imágenes',
-//     price: '€7.5',
-//     features: ['Característica 1', 'Característica 2', 'Característica 3']
-//   }
-// ];
+const products: Product[] = [
+  {
+    id: 1,
+    name: 'Entrenamiento de un modelo',
+    price: '€3 por modelo',
+    features: ['Característica 1', 'Característica 2', 'Característica 3']
+  },
+  {
+    id: 2,
+    name: 'Generación de 10 imágenes',
+    price: '€1',
+    features: ['Característica 1', 'Característica 2', 'Característica 3']
+  },
+  {
+    id: 3,
+    name: 'Generación de 25 imágenes',
+    price: '€2',
+    features: ['Característica 1', 'Característica 2', 'Característica 3']
+  },
+  {
+    id: 4,
+    name: 'Generación de 50 imágenes',
+    price: '€3',
+    features: ['Característica 1', 'Característica 2', 'Característica 3']
+  },
+  {
+    id: 5,
+    name: 'Generación de 100 imágenes',
+    price: '€7.5',
+    features: ['Característica 1', 'Característica 2', 'Característica 3']
+  }
+];
 
 export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [products, setProducts] = useState<Product[]>();
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -55,50 +53,33 @@ export default function ShopPage() {
     setSelectedProduct(null);
   };
 
-  useEffect(() => {
-    const sub = async () => {
-      const prods = await axios.get('/api/shop/get-products');
-      setProducts(prods.data);
-      console.log(prods?.data);
-    };
-    sub();
-  }, []);
-
   return (
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">Tienda 💰</h2>
-        {!!products ? (
-          <div>
-            <div className="grid grid-cols-2 gap-4">
-              {/* Entrenamiento de un modelo (2x2) */}
-              <div
-                key={products[0].id}
-                className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-                onClick={() => handleProductClick(products[0])}
-              >
-                <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
-                <p>{products[0].price}</p>
-              </div>
+        <div className="grid grid-cols-2 gap-4">
+          {/* Entrenamiento de un modelo (2x2) */}
+          <div
+            key={products[0].id}
+            className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+            onClick={() => handleProductClick(products[0])}
+          >
+            <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
+            <p>{products[0].price}</p>
+          </div>
 
-              {/* Generación de X imágenes (1x1) */}
-              {products.slice(1).map((product: Product) => (
-                <div
-                  key={product.id}
-                  className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-                  onClick={() => handleProductClick(product)}
-                >
-                  <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                  <p>{product.price}</p>
-                </div>
-              ))}
+          {/* Generación de X imágenes (1x1) */}
+          {products.slice(1).map((product) => (
+            <div
+              key={product.id}
+              className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+              onClick={() => handleProductClick(product)}
+            >
+              <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+              <p>{product.price}</p>
             </div>
-          </div>
-        ) : (
-          <div>
-            <h2 className="text-3xl text-bold">Loading...</h2>
-          </div>
-        )}
+          ))}
+        </div>
       </div>
 
       {selectedProduct && (
