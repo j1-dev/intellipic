@@ -149,13 +149,7 @@ export default function ShopPage() {
               </div>
               <div className="flex justify-end">
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2"
-                  onClick={closeModal}
-                >
-                  Agregar al Carrito
-                </button>
-                <button
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg"
+                  className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
                   onClick={handleBuyNow}
                 >
                   Comprar Ahora
