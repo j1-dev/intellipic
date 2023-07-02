@@ -1,7 +1,9 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import axios from 'axios';
+import { supabase } from '@/app/supabaseClient';
+import toast from 'react-hot-toast';
 
 interface Product {
   id: string;
@@ -16,7 +18,7 @@ const products: Product[] = [
     id: 'prod_OAGAukWxQfrOVG',
     name: 'Entrenamiento de un modelo',
     price: '€3 por modelo',
-    priceId: 'price_1NNvdtIsZGNqsWfQCnIUkJ2z',
+    priceId: 'price_1NOPqWIsZGNqsWfQQdddYGAx',
     features: ['Entrena un modelo', 'Genera 20 imagenes']
   },
   {
@@ -51,6 +53,17 @@ const products: Product[] = [
 
 export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const sub = async () => {
+      supabase.auth.getSession().then((s) => {
+        console.log(s?.data?.session?.user.id);
+        setUser(s?.data?.session?.user);
+      });
+    };
+    sub();
+  }, []);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -62,18 +75,23 @@ export default function ShopPage() {
 
   const handleBuyNow = async (e: any) => {
     e.preventDefault();
-    const { data } = await axios.post(
-      '/api/shop/checkout',
-      {
-        priceId: selectedProduct?.priceId
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
+    if (user) {
+      const { data } = await axios.post(
+        '/api/shop/checkout/',
+        {
+          priceId: selectedProduct?.priceId,
+          userId: user.id
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    );
-    window.location.assign(data);
+      );
+      window.location.assign(data);
+    } else {
+      toast.error('Wait a second');
+    }
   };
 
   return (
