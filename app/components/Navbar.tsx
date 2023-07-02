@@ -42,27 +42,15 @@ export default function Navbar() {
 
   return (
     <div className="relative font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all ">
-      
-
-      {/* <ul className="flex justify-end items-center h-20 px-8">
-        <li className="list-none">
-          <button
-            onClick={handleLogout}
-            className="absolute top-10 right-10 bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all font-bold"
-          >
-            Log Out
-          </button>
-        </li>
-      </ul> */}
-      {typeof window !== 'undefined' && windowWidth && (
-        <ul className="flex justify-center items-center h-20">
-           <header className="py-8">
-          <div className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
+      {typeof window !== 'undefined' && windowWidth && windowWidth > 768 && (
+        <header className="absolute left-4 top-5">
+          <div className="max-w-screen-lg mx-auto flex justify-between items-center">
             <h1 className="text-3xl font-bold">Intellipic</h1>
-            <div className="flex justify-center flex-grow">
-            </div>
           </div>
         </header>
+      )}
+      {typeof window !== 'undefined' && windowWidth && (
+        <ul className="flex justify-center items-center h-20">
           <li
             className="list-none lg:mx-2 mx-0  my-2 relative group"
             key={Math.random()}
