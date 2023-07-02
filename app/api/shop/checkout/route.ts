@@ -8,6 +8,8 @@ export async function POST(request: any) {
   let userId = data.userId;
   let tokenAmountGenerating = 0;
   let tokenAmountTraining = 0;
+  let url = request.url.substring(0, request.url.length - 17); // crap
+  // console.log(url);
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -17,8 +19,8 @@ export async function POST(request: any) {
       }
     ],
     mode: 'payment',
-    success_url: 'http://localhost:3000/dashboard/shop/order-success',
-    cancel_url: 'http://localhost:3000/dashboard/shop/'
+    success_url: url + '/dashboard/shop/order-success',
+    cancel_url: url + '/dashboard/shop/'
   });
 
   switch (session.amount_total) {
