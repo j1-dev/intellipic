@@ -1,16 +1,16 @@
-import { supabase } from '../../supabaseClient';
+import { supabase } from '../../../../supabaseClient';
 import { NextResponse } from 'next/server';
 
 export async function GET(
   request: Request,
   { params }: { params: { userId: string } }
 ) {
-  const SUPABASE_TABLE_NAME = 'trainingruns';
+  const SUPABASE_TABLE_NAME = 'user-data';
   const id = params.userId;
 
   const { data, error } = await supabase
-    .from('user-data')
-    .select()
+    .from(SUPABASE_TABLE_NAME)
+    .select('*')
     .eq('id', id);
 
   if (error) {
@@ -18,20 +18,9 @@ export async function GET(
     return NextResponse.error();
   }
 
-  if (data?.length === 0) {
-    console.log(data?.length);
-    const { error } = await supabase.from('user-data').insert({ id: id });
-    if (error) {
-      console.error('Insert user error:', error);
-      return NextResponse.error();
-    }
-  }
-
-  const userData = data?.[0];
-  const runId = userData?.run_id;
+  const runId = data?.[0]?.run_id;
 
   if (runId !== null) {
-    console.log(runId);
     try {
       const modelResponse = await fetch(
         `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
@@ -39,16 +28,24 @@ export async function GET(
           headers: {
             Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
             'Content-Type': 'application/json'
-          }
+          },
+          next: { revalidate: 0 },
+          cache: 'no-store'
         }
       );
 
       const modelData = await modelResponse.json();
+      console.log(modelData);
+      console.log(modelData.status);
+
+      const { data, error } = await supabase
+        .from('trainings')
+        .update({ status: modelData.status })
+        .eq('run_id', runId);
 
       return NextResponse.json({
-        dataset: userData?.dataset,
-        run_id: userData?.run_id,
-        run_data: { status: modelData.status }
+        healthy: modelData.status === 'succeeded',
+        model_id: runId
       });
     } catch (error) {
       console.error('Model fetch error:', error);
@@ -56,9 +53,8 @@ export async function GET(
     }
   } else {
     return NextResponse.json({
-      dataset: userData?.dataset,
-      run_id: null,
-      run_data: { status: null }
+      healthy: false,
+      model_id: null
     });
   }
 }

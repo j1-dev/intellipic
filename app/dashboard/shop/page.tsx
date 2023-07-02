@@ -1,49 +1,69 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
+import axios from 'axios';
+import { supabase } from '@/app/supabaseClient';
+import toast from 'react-hot-toast';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   price: string;
+  priceId: string;
   features: string[];
 }
 
 const products: Product[] = [
   {
-    id: 1,
+    id: 'prod_OAGAukWxQfrOVG',
     name: 'Entrenamiento de un modelo',
     price: '€3 por modelo',
-    features: ['Característica 1', 'Característica 2', 'Característica 3']
+    priceId: 'price_1NOPqWIsZGNqsWfQQdddYGAx',
+    features: ['Entrena un modelo', 'Genera 20 imagenes']
   },
   {
-    id: 2,
+    id: 'prod_OAGCBKSOdimjwS',
     name: 'Generación de 10 imágenes',
     price: '€1',
-    features: ['Característica 1', 'Característica 2', 'Característica 3']
+    priceId: 'price_1NNvgXIsZGNqsWfQVLzT0EOi',
+    features: ['Genera 10 imágenes', 'Prompts mejorados por IA']
   },
   {
-    id: 3,
-    name: 'Generación de 25 imágenes',
+    id: 'prod_OAGD9THFNk3NAD',
+    name: 'Generación de 30 imágenes',
     price: '€2',
-    features: ['Característica 1', 'Característica 2', 'Característica 3']
+    priceId: 'price_1NNvhUIsZGNqsWfQGsXojAbB',
+    features: ['Genera 30 imágenes', 'Prompts mejorados por IA']
   },
   {
-    id: 4,
+    id: 'prod_OAGEvgK2m6HATL',
     name: 'Generación de 50 imágenes',
     price: '€3',
-    features: ['Característica 1', 'Característica 2', 'Característica 3']
+    priceId: 'price_1NNviMIsZGNqsWfQayaCdTZ7',
+    features: ['Genera 50 imágenes', 'Prompts mejorados por IA']
   },
   {
-    id: 5,
+    id: 'prod_OAGFn5wQimhFvz',
     name: 'Generación de 100 imágenes',
     price: '€7.5',
-    features: ['Característica 1', 'Característica 2', 'Característica 3']
+    priceId: 'price_1NNvjMIsZGNqsWfQvWf6TDl0',
+    features: ['Genera 100 imágenes', 'Prompts mejorados por IA']
   }
 ];
 
 export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [user, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    const sub = async () => {
+      supabase.auth.getSession().then((s) => {
+        console.log(s?.data?.session?.user.id);
+        setUser(s?.data?.session?.user);
+      });
+    };
+    sub();
+  }, []);
 
   const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
@@ -51,6 +71,27 @@ export default function ShopPage() {
 
   const closeModal = () => {
     setSelectedProduct(null);
+  };
+
+  const handleBuyNow = async (e: any) => {
+    e.preventDefault();
+    if (user) {
+      const { data } = await axios.post(
+        '/api/shop/checkout/',
+        {
+          priceId: selectedProduct?.priceId,
+          userId: user.id
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+      window.location.assign(data);
+    } else {
+      toast.error('Wait a second');
+    }
   };
 
   return (
@@ -108,14 +149,8 @@ export default function ShopPage() {
               </div>
               <div className="flex justify-end">
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg mr-2"
-                  onClick={closeModal}
-                >
-                  Agregar al Carrito
-                </button>
-                <button
-                  className="bg-green-500 text-white px-4 py-2 rounded-lg"
-                  onClick={closeModal}
+                  className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
+                  onClick={handleBuyNow}
                 >
                   Comprar Ahora
                 </button>

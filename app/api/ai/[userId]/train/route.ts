@@ -13,8 +13,8 @@
 //   run_id: model.id;
 // }
 
-import replicateClient from '../../../core/clients/replicate';
-import { supabase } from '../../../supabaseClient';
+import replicateClient from '../../../../core/clients/replicate';
+import { supabase } from '../../../../supabaseClient';
 import { NextResponse } from 'next/server';
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
