@@ -8,7 +8,7 @@ export async function POST(request: any) {
   let userId = data.userId;
   let tokenAmountGenerating = 0;
   let tokenAmountTraining = 0;
-  let url = request.url.substring(0, request.url.length - 17); // crap
+  let url = request.url.substring(0, request.url.length - 19); // crap
   // console.log(url);
 
   const session = await stripe.checkout.sessions.create({
