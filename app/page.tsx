@@ -3,6 +3,16 @@ import Link from 'next/link';
 import Morph from './components/Morph';
 import { FaInstagram, FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
+import Carousel from './components/Carousel';
+import Image from 'next/image';
+
+
+const slides = [
+  "https://i.ibb.co/ncrXc2V/1.png",
+  "https://i.ibb.co/B3s7v4h/2.png",
+  "https://i.ibb.co/XXR8kzF/3.png",
+  "https://i.ibb.co/yg7BSdM/4.png",
+]
 
 /**
  * @TODO: Document everything
@@ -86,9 +96,13 @@ export default async function Home() {
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Ejemplos 📸</h2>
+          <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
           <div className="carousel">
-            {/* Add your carousel component or image gallery here */}
+            <Carousel autoSlide={false} autoSlideInterval={100}>
+              {slides.map((s: string)  => (
+                <Image src={s} alt='slide' width="500" height="300" key={s} />
+               ))}
+            </Carousel>
           </div>
         </div>
       </section>

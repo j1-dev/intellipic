@@ -3,6 +3,6 @@ module.exports = {
   trailingSlash: true,
   reactStrictMode: true,
   images: {
-    domains: ['photoshot.app'],
+    domains: ['photoshot.app', 'i.ibb.co'],
   },
 };
