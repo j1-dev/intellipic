@@ -52,6 +52,6 @@ export default function LoginPage() {
       </div>
     );
   } else {
-    router.push(`dashboard/${session.user.id}`);
+    router.push(`/dashboard/${session.user.id}`);
   }
 }

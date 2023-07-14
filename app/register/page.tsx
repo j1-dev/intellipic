@@ -49,6 +49,6 @@ export default function RegisterPage() {
       </div>
     );
   } else {
-    router.push(`dashboard/${session.user.id}`);
+    router.push(`/dashboard/${session.user.id}/`);
   }
 }
