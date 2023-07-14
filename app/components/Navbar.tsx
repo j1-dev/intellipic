@@ -106,15 +106,20 @@ export default function Navbar() {
           <li
             className="list-none lg:mx-2 mx-0 my-2 relative group"
             key={Math.random()}
-          >
+          ></li>
+        </ul>
+      )}
+      {typeof window !== 'undefined' && windowWidth && (
+        <div className="absolute right-4 top-5">
+          <div className="max-w-screen-lg mx-auto flex justify-between items-center">
             <button
               onClick={handleLogout}
               className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
             >
               {windowWidth > 479 ? 'Logout' : <HiLogout />}
             </button>
-          </li>
-        </ul>
+          </div>
+        </div>
       )}
     </div>
   );
