@@ -50,9 +50,9 @@ export default function Navbar() {
         </header>
       )}
       {typeof window !== 'undefined' && windowWidth && (
-        <ul className="flex justify-center items-center h-20">
+        <ul className="flex px-4 xs:px-0 justify-start xs:justify-center items-center  h-20">
           <li
-            className="list-none lg:mx-2 mx-0  my-2 relative group"
+            className="list-none lg:mx-2 mx-0  my-2 relative group grow xs:grow-0"
             key={Math.random()}
           >
             <Link
@@ -65,7 +65,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li
-            className="list-none lg:mx-2 mx-0 my-2 relative group"
+            className="list-none lg:mx-2 mx-0 my-2 relative group grow xs:grow-0"
             key={Math.random()}
           >
             <Link
@@ -78,7 +78,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li
-            className="list-none lg:mx-2 mx-0 my-2 relative group"
+            className="list-none lg:mx-2 mx-0 my-2 relative group grow xs:grow-0"
             key={Math.random()}
           >
             <Link
@@ -91,7 +91,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li
-            className="list-none lg:mx-2 mx-0 my-2 relative group"
+            className="list-none lg:mx-2 mx-0 my-2 relative group grow xs:grow-0"
             key={Math.random()}
           >
             <Link
@@ -103,14 +103,20 @@ export default function Navbar() {
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
           </li>
-          <li
-            className="list-none lg:mx-2 mx-0 my-2 relative group"
-            key={Math.random()}
-          ></li>
+          <li className="xs:absolute xs:right-4 xs:top-5 grow xs:grow-0 group xs:group ">
+            <div className="max-w-screen-lg mx-auto flex justify-between items-center">
+              <button
+                onClick={handleLogout}
+                className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
+              >
+                {windowWidth > 479 ? 'Logout' : <HiLogout />}
+              </button>
+            </div>
+          </li>
         </ul>
       )}
-      {typeof window !== 'undefined' && windowWidth && (
-        <div className="absolute right-4 top-5">
+      {/* {typeof window !== 'undefined' && windowWidth && (
+        <div>
           <div className="max-w-screen-lg mx-auto flex justify-between items-center">
             <button
               onClick={handleLogout}
@@ -120,7 +126,7 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
