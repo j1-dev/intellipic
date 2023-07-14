@@ -98,9 +98,9 @@ export default async function Home() {
         <div className="max-w-screen-lg mx-auto px-8">
           <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
           <div className="carousel">
-            <Carousel autoSlide={false} autoSlideInterval={100}>
+            <Carousel autoSlide={true} autoSlideInterval={10000}>
               {slides.map((s: string)  => (
-                <Image src={s} alt='slide' width="500" height="300" key={s} />
+                <Image src={s} alt='slide' width="500" height="500" key={s} />
                ))}
             </Carousel>
           </div>

@@ -51,7 +51,7 @@ function SignUp({ t }: { t: boolean }) {
           toast.error(error.message);
         })
         .then(() => {
-          toast.success('Signed up successfully!');
+          toast.success('Registrado con éxito!');
           router.push('/login');
         });
     }
@@ -84,7 +84,7 @@ function SignUp({ t }: { t: boolean }) {
             htmlFor="password"
             className="block font-medium text-gray-700 dark:text-white mb-2"
           >
-            Password:
+            Contraseña:
           </label>
           <input
             type="password"
@@ -100,14 +100,14 @@ function SignUp({ t }: { t: boolean }) {
             type="submit"
             className="w-full bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
           >
-            {toggle ? 'Sign In' : 'Sign up'}
+            {toggle ? 'Iniciar Sesión' : 'Regristrarse'}
           </button>
           <Link href={toggle ? '/register' : '/login'}>
             {toggle
-              ? "Don't have an account? click here!"
-              : 'Already have an account? click here!'}
+              ? "No tienes cuenta? entra aqui!"
+              : 'Ya tienes cuenta? entra aqui!'}
           </Link>
-          {toggle && <button className="block">Reset password</button>}
+          {toggle && <button className="block">Olvidaste tu Contraseña?</button>}
         </div>
         {/* {error && <div className="text-red-500 mt-4">{error}</div>} */}
       </form>
