@@ -24,12 +24,12 @@ export default async function Home() {
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
-          <h1 className="text-3xl font-bold">Intellipic</h1>
-          <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all ml-auto ">
-            <Link href="/login">Iniciar sesión</Link>
+          <h1 className="text-3xl font-bold hidden xs:block">Intellipic</h1>
+          <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-3 transition-all ml-0 xs:ml-auto float-left xs:float-none">
+            <Link href="/login">Inicia sesión</Link>
           </button>
           <button className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1">
-            <Link href="/register">Registrarse</Link>
+            <Link href="/register">Regístrate</Link>
           </button>
         </nav>
       </header>
@@ -85,11 +85,11 @@ export default async function Home() {
               </p>
             </div>
             <div className="border feature-card bg-white dark:bg-black dark:border-white border-black p-6 rounded-lg transition-all duration-300 transform hover:scale-105">
-            <h3 className="text-xl font-bold mb-2">El trabajo impulsado por IA tiene costos asociados. 💡</h3>
-            <p>
-            Desata el potencial de la generación de imágenes mediante IA. Debido a los recursos sustanciales necesarios para el entrenamiento, no es factible proporcionar este servicio de forma gratuita. Tu inversión impulsa la innovación y garantiza resultados de la más alta calidad.
-            </p>
-          </div>
+              <h3 className="text-xl font-bold mb-2">El trabajo impulsado por IA tiene costos asociados. 💡</h3>
+              <p>
+              Desata el potencial de la generación de imágenes mediante IA. Debido a los recursos sustanciales necesarios para el entrenamiento, no es factible proporcionar este servicio de forma gratuita. Tu inversión impulsa la innovación y garantiza resultados de la más alta calidad.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -199,7 +199,7 @@ export default async function Home() {
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
-                <FaInstagram size={24} />
+                <FaInstagram size={24} className='mx-3'/>
               </a>
             </li>
             <li>
@@ -207,7 +207,7 @@ export default async function Home() {
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
-                <FaGithub size={24} />
+                <FaGithub size={24} className='mx-3'/>
               </a>
             </li>
             <li>
@@ -215,7 +215,7 @@ export default async function Home() {
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
-                <FaDiscord size={24} />
+                <FaDiscord size={24} className='mx-3'/>
               </a>
             </li>
             <li>
@@ -223,11 +223,11 @@ export default async function Home() {
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
-                <FaLinkedin size={24} />
+                <FaLinkedin size={24} className='mx-3'/>
               </a>
             </li>
           </ul>
-          <p className="text-sm text-gray-500 dark:text-gray-400 float-left ">
+          <p className="text-sm text-gray-500 dark:text-gray-400 my-7 ">
             This project is licensed under the MIT License.
           </p>
         </div>
