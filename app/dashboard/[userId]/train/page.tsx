@@ -87,9 +87,10 @@ export default function TrainPage() {
   }
 
   async function getOrInsertUserData(id: any) {
-    await fetch(`/api/${id}`)
+    await fetch(`/api/ai/${id}`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setFinetuningData(data);
       });
 
