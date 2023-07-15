@@ -104,8 +104,8 @@ function SignUp({ t }: { t: boolean }) {
           </button>
           <Link href={toggle ? '/register' : '/login'}>
             {toggle
-              ? "No tienes cuenta? entra aqui!"
-              : 'Ya tienes cuenta? entra aqui!'}
+              ? "No tienes cuenta? Entra aqui!"
+              : 'Ya tienes cuenta? Entra aqui!'}
           </Link>
           {toggle && <button className="block">Olvidaste tu Contraseña?</button>}
         </div>
