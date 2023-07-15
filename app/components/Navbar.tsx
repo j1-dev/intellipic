@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { HiLogout } from 'react-icons/hi';
 import { useWindowSize } from 'usehooks-ts';
+import Logo from '../core/resources/logo';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
@@ -42,11 +43,12 @@ export default function Navbar() {
 
   return (
     <div className="fixed w-full font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all z-50">
-      {typeof window !== 'undefined' && windowWidth && windowWidth > 768 && (
-        <header className="absolute left-4 top-5">
-          <div className="max-w-screen-lg mx-auto flex justify-between items-center">
-            <h1 className="text-3xl font-bold">Intellipic</h1>
-          </div>
+      {typeof window !== 'undefined' && windowWidth && windowWidth > 479 && (
+        <header className="absolute left-4">
+          {/* <h1 className="text-3xl font-bold">Intellipic</h1> */}
+          <Link href={`/dashboard/${user?.id}`}>
+            <Logo />
+          </Link>
         </header>
       )}
       {typeof window !== 'undefined' && windowWidth && (
@@ -109,7 +111,7 @@ export default function Navbar() {
                 onClick={handleLogout}
                 className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
               >
-                {windowWidth > 479 ? 'Cerrar Sesión' : <HiLogout />}
+                {windowWidth > 768 ? 'Cerrar Sesión' : <HiLogout />}
               </button>
             </div>
           </li>
