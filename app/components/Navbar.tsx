@@ -41,7 +41,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="relative font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all ">
+    <div className="fixed w-full font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all z-50">
       {typeof window !== 'undefined' && windowWidth && windowWidth > 768 && (
         <header className="absolute left-4 top-5">
           <div className="max-w-screen-lg mx-auto flex justify-between items-center">
@@ -115,18 +115,6 @@ export default function Navbar() {
           </li>
         </ul>
       )}
-      {/* {typeof window !== 'undefined' && windowWidth && (
-        <div>
-          <div className="max-w-screen-lg mx-auto flex justify-between items-center">
-            <button
-              onClick={handleLogout}
-              className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
-            >
-              {windowWidth > 479 ? 'Logout' : <HiLogout />}
-            </button>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 }

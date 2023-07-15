@@ -13,7 +13,7 @@ export default async function RootLayout({
   return (
     <div>
       <Navbar />
-      {children}
+      <div className="pt-20">{children}</div>
     </div>
   );
 }
