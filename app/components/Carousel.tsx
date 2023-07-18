@@ -5,6 +5,7 @@ interface CarouselProps {
   children: ReactNode[];
   autoSlide?: boolean;
   autoSlideInterval?: number;
+  slidesPerPage?: number;
 }
 
 export default function Carousel({
@@ -24,6 +25,7 @@ export default function Carousel({
     const slideInterval = setInterval(next, autoSlideInterval);
     return () => clearInterval(slideInterval);
   }, );
+  
 
   return (
     <div className="overflow-hidden relative">

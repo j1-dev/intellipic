@@ -9,8 +9,8 @@ import Logo from './core/resources/logo';
 
 
 const slides = [
-  "/app/core/resources/3l0n.png",
-  "https://i.ibb.co/B3s7v4h/2.png",
+  "/Images/3l0n.png",
+  "/Images/out-0 (7).png",
   "https://i.ibb.co/XXR8kzF/3.png",
   "https://i.ibb.co/yg7BSdM/4.png",
 ]
@@ -100,7 +100,7 @@ export default async function Home() {
         <div className="max-w-screen-lg mx-auto px-8">
           <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
           <div className="carousel">
-            <Carousel autoSlide={true} autoSlideInterval={10000}>
+            <Carousel autoSlide={true} autoSlideInterval={10000} slidesPerPage={1}>
               {slides.map((s: string)  => (
                 <Image src={s} alt='slide' width="800" height="600" key={s} />
                ))}
