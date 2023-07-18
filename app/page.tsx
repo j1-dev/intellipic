@@ -5,6 +5,7 @@ import { FaInstagram, FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
 import Carousel from './components/Carousel';
 import Image from 'next/image';
+import Logo from './core/resources/logo';
 
 
 const slides = [
@@ -24,7 +25,8 @@ export default async function Home() {
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
-          <h1 className="text-3xl font-bold hidden xs:block">Intellipic</h1>
+          <Logo />
+          <h1 className=" absolute left-80 text-3xl font-bold hidden xs:block">IntelliPic</h1>
           <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-3 transition-all ml-0 xs:ml-auto float-left xs:float-none">
             <Link href="/login">Inicia sesión</Link>
           </button>
