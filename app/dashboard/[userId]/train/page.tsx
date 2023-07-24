@@ -288,18 +288,32 @@ export default function TrainPage() {
           </main>
 
           {fineTuningInProgress && (
-            <FadeLoader
-              className="w-1/5 m-auto"
-              color="#d3d3d3"
-              height={26}
-              margin={19}
-              radius={36}
-              speedMultiplier={0.6}
-              width={13}
-            />
+            <div className="text-center">
+              <FadeLoader
+                className="w-1/5 m-auto my-4"
+                color="#d3d3d3"
+                height={26}
+                margin={19}
+                radius={36}
+                speedMultiplier={0.6}
+                width={13}
+              />
+              <span className="pt-10">
+                El modelo se está entrenando, tardará unos 20 minutos
+              </span>
+            </div>
           )}
 
-          {fineTuningSucceeded && <AiOutlineCheckCircle />}
+          {fineTuningSucceeded && (
+            <div className="text-center">
+              <AiOutlineCheckCircle
+                size={140}
+                color="green"
+                className="w-50 m-auto"
+              />
+              <span>El modelo ha sido completado</span>
+            </div>
+          )}
 
           {fineTuningData?.dataset && (
             <main className={styles.main}>
