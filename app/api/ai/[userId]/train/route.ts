@@ -45,8 +45,8 @@ export async function POST(
         instance_prompt: `a photo of ${instanceToken} ${instanceClass.toLowerCase()}`,
         class_prompt: `a photo of a ${instanceClass.toLowerCase()}`,
         instance_data: instanceData,
-        max_train_steps: 2000,
-        num_class_images: 100,
+        max_train_steps: 1500,
+        num_class_images: 75,
         learning_rate: 2e-6,
         with_prior_preservation: true,
         train_text_encoder: true
