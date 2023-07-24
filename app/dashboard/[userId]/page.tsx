@@ -15,7 +15,8 @@ export default function DashboardPage() {
       const { data, error } = await supabase
         .from('trainings')
         .select('*')
-        .eq('user_id', user);
+        .eq('user_id', user)
+        .order('created_at', { ascending: true });
 
       if (error) {
         console.error(error);
