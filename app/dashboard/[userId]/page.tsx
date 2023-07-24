@@ -16,7 +16,7 @@ export default function DashboardPage() {
         .from('trainings')
         .select('*')
         .eq('user_id', user)
-        .order('created_at', { ascending: true });
+        .order('created_at', { ascending: false });
 
       if (error) {
         console.error(error);
