@@ -42,6 +42,14 @@ export async function GET(
         .update({ status: modelData.status })
         .eq('run_id', runId);
 
+      console.log(modelData);
+      if (modelData.status === 'failed') {
+        const { data, error } = await supabase
+          .from('trainings')
+          .delete()
+          .eq('run_id', runId);
+      }
+
       return NextResponse.json({
         healthy: modelData.status === 'succeeded',
         model_id: runId
