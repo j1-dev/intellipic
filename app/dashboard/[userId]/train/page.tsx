@@ -43,6 +43,8 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
+// TODO: Change the styling of the training tab to fit the styling of the page
+// TODO: Add better explanations to guide the user properly
 export default function TrainPage() {
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
