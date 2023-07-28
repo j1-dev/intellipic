@@ -3,16 +3,17 @@ import Link from 'next/link';
 import Morph from './components/Morph';
 import { FaInstagram, FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
-import Carousel from './components/Carousel';
 import Image from 'next/image';
 import Logo from './core/resources/logo';
+import Carousel2 from './components/Carousel2.0';
 
-const slides = [
-  '/Images/3l0n.png',
-  '/Images/out-0 (7).png',
-  'https://i.ibb.co/XXR8kzF/3.png',
-  'https://i.ibb.co/yg7BSdM/4.png'
-];
+
+// const slides = [
+//   '/Images/3l0n.png',
+//   '/Images/out-0 (7).png',
+//   'https://i.ibb.co/XXR8kzF/3.png',
+//   'https://i.ibb.co/yg7BSdM/4.png'
+// ];
 
 /**
  * @TODO: Document everything
@@ -118,20 +119,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
-          <div className="carousel">
-            <Carousel
-              autoSlide={true}
-              autoSlideInterval={10000}
-              slidesPerPage={1}
-            >
-              {slides.map((s: string) => (
-                <Image src={s} alt="slide" width="800" height="600" key={s} />
-              ))}
-            </Carousel>
-          </div>
+      <section className="py-5">
+        <div className="mx-auto w-1/3 h-1/3 py-8  px-8 py">
+        <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
+          <Carousel2 />
         </div>
       </section>
 
