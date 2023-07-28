@@ -120,10 +120,15 @@ export default async function Home() {
       </section>
 
       <section className="py-5">
-        <div className="mx-auto w-1/3 h-1/3 py-8  px-8 py">
+        <div className="flex justify-center items-center gap-4">
+        <div className="w-1/3">
         <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
-          <Carousel2 />
+         <Carousel2 />
         </div>
+          <div className="w-1/3">
+         <Carousel2 /> {/* Second instance of the Carousel2 component */}
+       </div>
+     </div>
       </section>
 
       {/* Prices Section */}
