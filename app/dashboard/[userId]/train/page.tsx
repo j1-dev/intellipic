@@ -47,7 +47,7 @@ export default function TrainPage() {
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(true);
   const [fineTuningData, setFinetuningData] = useState({
     dataset: null,
     run_id: null,
@@ -337,8 +337,8 @@ export default function TrainPage() {
           )}
         </div>
       ) : (
-        <div className="w-40 m-auto mt-24">
-          <PulseLoader color="#B6B6B6" />
+        <div className=" mt-24 text-center">
+          <span className="text-xl text-gray-400">Loading...</span>
         </div>
       )}
     </div>
