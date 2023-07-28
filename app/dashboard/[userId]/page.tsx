@@ -4,7 +4,6 @@ import { supabase } from '@/app/supabaseClient';
 import { useEffect, useState, useRef } from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';
-import { PulseLoader } from 'react-spinners';
 
 function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = useRef(callback);
@@ -31,7 +30,7 @@ function useInterval(callback: () => void, delay: number | null) {
 export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;
-  const [models, setModels] = useState<any>();
+  const [models, setModels] = useState<any[]>();
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -62,7 +61,7 @@ export default function DashboardPage() {
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">Modelos 🤖</h2>
 
-        {models ? (
+        {models && models.length !== 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {models.map((data: any) => {
               const props = {
@@ -75,8 +74,13 @@ export default function DashboardPage() {
             })}
           </div>
         ) : (
-          <div className="w-40 m-auto mt-24">
-            <PulseLoader color="#B6B6B6" />
+          <div className="w-full m-auto mt-24 text-center">
+            <h1 className="text-3xl font-bold">
+              Todavía no has entrenado ningún modelo
+            </h1>
+            <h2 className="text-xl font-bold mt-3">
+              Compra tokens en la tienda para entrenar tu primer modelo
+            </h2>
           </div>
         )}
       </div>
