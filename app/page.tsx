@@ -7,7 +7,6 @@ import Image from 'next/image';
 import Logo from './core/resources/logo';
 import Carousel2 from './components/Carousel2.0';
 
-
 // const slides = [
 //   '/Images/3l0n.png',
 //   '/Images/out-0 (7).png',
@@ -20,7 +19,7 @@ import Carousel2 from './components/Carousel2.0';
  *
  * @returns home page
  */
-export default async function Home() {
+export default function Home() {
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
@@ -121,14 +120,14 @@ export default async function Home() {
 
       <section className="py-5">
         <div className="flex justify-center items-center gap-4">
-        <div className="w-1/3">
-        <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
-         <Carousel2 />
-        </div>
           <div className="w-1/3">
-         <Carousel2 /> {/* Second instance of the Carousel2 component */}
-       </div>
-     </div>
+            <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
+            <Carousel2 />
+          </div>
+          <div className="w-1/3">
+            <Carousel2 /> {/* Second instance of the Carousel2 component */}
+          </div>
+        </div>
       </section>
 
       {/* Prices Section */}

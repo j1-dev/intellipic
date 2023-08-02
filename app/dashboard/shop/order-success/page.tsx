@@ -70,7 +70,14 @@ function SuccessPage() {
 
   useInterval(() => handleGetPaymentStatus(), 500);
 
-  return <div>Payment succeeded</div>;
+  return (
+    <div className="w-full m-auto mt-24 text-center">
+      <h1 className="text-3xl font-bold">El pago ha sido aceptado</h1>
+      <h2 className="text-xl font-bold mt-3">
+        Será redirigido a la pantalla de inicio pronto
+      </h2>
+    </div>
+  );
 }
 
 export default SuccessPage;
