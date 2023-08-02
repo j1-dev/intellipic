@@ -39,12 +39,13 @@ export async function GET(
           headers: {
             Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
             'Content-Type': 'application/json'
-          }
+          },
+          next: { revalidate: 0 }
         }
       );
 
       const modelData = await modelResponse.json();
-
+      console.log(modelData);
       return NextResponse.json({
         dataset: userData?.dataset,
         run_id: userData?.run_id,

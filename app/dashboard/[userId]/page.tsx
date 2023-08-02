@@ -1,21 +1,44 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { supabase } from '@/app/supabaseClient';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';
-import { PulseLoader } from 'react-spinners';
+
+function useInterval(callback: () => void, delay: number | null) {
+  const savedCallback = useRef(callback);
+
+  // Remember the latest callback if it changes.
+  useIsomorphicLayoutEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    // Don't schedule if no delay is specified.
+    // Note: 0 is a valid value for delay.
+    if (!delay && delay !== 0) {
+      return;
+    }
+
+    const id = setInterval(() => savedCallback.current(), delay);
+
+    return () => clearInterval(id);
+  }, [delay]);
+}
 
 export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;
-  const [models, setModels] = useState<any>();
+  const [models, setModels] = useState<any[]>();
 
   useEffect(() => {
     const fetchModels = async () => {
       const { data, error } = await supabase
         .from('trainings')
         .select('*')
-        .eq('user_id', user);
+        .eq('user_id', user)
+        .order('created_at', { ascending: false });
 
       if (error) {
         console.error(error);
@@ -27,12 +50,18 @@ export default function DashboardPage() {
     fetchModels();
   }, []);
 
+  async function getModelStatus(user: any) {
+    await fetch(`/api/ai/${user}/status`);
+  }
+
+  useInterval(() => getModelStatus(user), 10000);
+
   return (
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">Modelos 🤖</h2>
 
-        {models ? (
+        {models && models.length !== 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {models.map((data: any) => {
               const props = {
@@ -45,8 +74,13 @@ export default function DashboardPage() {
             })}
           </div>
         ) : (
-          <div className="w-40 m-auto mt-24">
-            <PulseLoader color="#B6B6B6" />
+          <div className="w-full m-auto mt-24 text-center">
+            <h1 className="text-3xl font-bold">
+              Todavía no has entrenado ningún modelo
+            </h1>
+            <h2 className="text-xl font-bold mt-3">
+              Compra tokens en la tienda para entrenar tu primer modelo
+            </h2>
           </div>
         )}
       </div>
