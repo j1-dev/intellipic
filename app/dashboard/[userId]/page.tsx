@@ -27,6 +27,8 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
+// TODO: Add "Entrenar modelo" button to start the training process from this tab. Show it when the user has tokens
+//       and hide it if they don't
 export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;

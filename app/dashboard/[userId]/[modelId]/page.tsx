@@ -43,8 +43,6 @@ function useInterval(callback: () => void, delay: number | null) {
   }, [delay]);
 }
 
-// TODO: Add "Entrenar modelo" button to start the training process from this tab. Show it when the user has tokens
-//       and hide it if they don't
 export default function ModelPage() {
   const params = useParams();
   const id = params.userId;
@@ -107,7 +105,6 @@ export default function ModelPage() {
   ]);
 
   useEffect(() => {
-    console.log(queueingPrediction);
     const sub = async () => {
       await supabase
         .from('trainings')
@@ -122,7 +119,15 @@ export default function ModelPage() {
         });
     };
     sub();
-  }, []);
+  }, [model]);
+
+  useEffect(() => {
+    checkIfImageExists(imageUrl, (exists: any) => {
+      if (!exists) {
+        setImageUrl('');
+      }
+    });
+  }, [imageUrl]);
 
   async function handleCallModel() {
     const prompt = replacePromptToken(instancePrompt, token, instanceClass);
@@ -149,7 +154,6 @@ export default function ModelPage() {
           prediction_id: predictionId
         },
         (data: any) => {
-          console.log(data.status);
           if (data.status !== predictionStatus) {
             setPredictionStatus(data.status);
           }
@@ -163,6 +167,23 @@ export default function ModelPage() {
           }
         }
       );
+    }
+  }
+
+  function checkIfImageExists(url: any, callback: any) {
+    const img = new Image();
+    img.src = url;
+
+    if (img.complete) {
+      callback(true);
+    } else {
+      img.onload = () => {
+        callback(true);
+      };
+
+      img.onerror = () => {
+        callback(false);
+      };
     }
   }
 
