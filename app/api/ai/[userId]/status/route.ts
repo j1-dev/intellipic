@@ -1,3 +1,4 @@
+import replicate from '@/app/core/clients/replicate';
 import { supabase } from '../../../../supabaseClient';
 import { NextResponse } from 'next/server';
 
@@ -19,31 +20,33 @@ export async function GET(
   }
 
   const runId = data?.[0]?.run_id;
+  console.log(runId);
 
   if (runId !== null) {
     try {
-      const modelResponse = await fetch(
-        `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
-        {
-          headers: {
-            Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          next: { revalidate: 0 }
-        }
-      );
-
-      const modelData = await modelResponse.json();
-      console.log(modelData);
-      console.log(modelData.status);
+      // const modelResponse = await fetch(
+      //   `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+      //       'Content-Type': 'application/json'
+      //     },
+      //     next: { revalidate: 0 }
+      //   }
+      // );
+      const modelResponse = await replicate.trainings.get(runId);
+      console.log(modelResponse.output.version.split(':')[1]);
+      console.log(modelResponse.status);
 
       const { data, error } = await supabase
         .from('trainings')
-        .update({ status: modelData.status })
+        .update({ status: modelResponse.status })
         .eq('run_id', runId);
 
-      console.log(modelData);
-      if (modelData.status === 'failed') {
+      if (
+        modelResponse.status === 'failed' ||
+        modelResponse.status === 'canceled'
+      ) {
         const { data, error } = await supabase
           .from('trainings')
           .delete()
@@ -51,7 +54,7 @@ export async function GET(
       }
 
       return NextResponse.json({
-        healthy: modelData.status === 'succeeded',
+        healthy: modelResponse.status === 'succeeded',
         model_id: runId
       });
     } catch (error) {

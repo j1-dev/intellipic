@@ -1,3 +1,4 @@
+import replicate from '@/app/core/clients/replicate';
 import { supabase } from '../../../supabaseClient';
 import { NextResponse } from 'next/server';
 
@@ -33,23 +34,23 @@ export async function GET(
   if (runId !== null) {
     console.log(runId);
     try {
-      const modelResponse = await fetch(
-        `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
-        {
-          headers: {
-            Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-            'Content-Type': 'application/json'
-          },
-          next: { revalidate: 0 }
-        }
-      );
+      // const modelResponse = await fetch(
+      //   `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+      //       'Content-Type': 'application/json'
+      //     },
+      //     next: { revalidate: 0 }
+      //   }
+      // );
+      const modelResponse = await replicate.trainings.get(runId);
 
-      const modelData = await modelResponse.json();
-      console.log(modelData);
+      console.log(modelResponse);
       return NextResponse.json({
         dataset: userData?.dataset,
         run_id: userData?.run_id,
-        run_data: { status: modelData.status }
+        run_data: { status: modelResponse.status }
       });
     } catch (error) {
       console.error('Model fetch error:', error);

@@ -103,6 +103,7 @@ export default function TrainPage() {
     await fetch(`/api/ai/${id}/status`)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setModelStatus({
           modelId: data.model_id,
           healthy: data.healthy

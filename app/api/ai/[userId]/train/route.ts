@@ -13,7 +13,7 @@
 //   run_id: model.id;
 // }
 
-import replicateClient from '../../../../core/clients/replicate';
+import replicate from '@/app/core/clients/replicate';
 import { supabase } from '../../../../supabaseClient';
 import { NextResponse } from 'next/server';
 
@@ -38,36 +38,62 @@ export async function POST(
 
   // initiate training
   // TODO: add REPLICATE_USERNAME to .env.local file
-  const responseReplicate = await replicateClient.post(
-    '/v1/trainings',
-    {
-      input: {
-        instance_prompt: `a photo of ${instanceToken} ${instanceClass.toLowerCase()}`,
-        class_prompt: `a photo of a ${instanceClass.toLowerCase()}`,
-        instance_data: instanceData,
-        max_train_steps: 1500,
-        num_class_images: 75,
-        learning_rate: 2e-6,
-        with_prior_preservation: true,
-        train_text_encoder: true
-        // ckpt_base:
-        //   'https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.safetensors'
-      },
-      model: `${process.env.REPLICATE_USERNAME}/${id}`,
-      trainer_version:
-        'cd3f925f7ab21afaef7d45224790eedbb837eeac40d22e8fefe015489ab644aa' // sd-1.5
-      // 'd5e058608f43886b9620a8fbb1501853b8cbae4f45c857a014011c86ee614ffb'// sd-2.1
-      // 'a8ba568da0313951a6b311b43b1ea3bf9f2ef7b9fd97ed94cebd7ffd2da66654'// custom model
-    },
-    {
-      headers: {
-        Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-        'Content-Type': 'application/json'
-      }
-    }
+  // const responseReplicate = await replicateClient.post(
+  //   '/v1/trainings',
+  //   {
+  //     input: {
+  //       instance_prompt: `a photo of ${instanceToken} ${instanceClass.toLowerCase()}`,
+  //       class_prompt: `a photo of a ${instanceClass.toLowerCase()}`,
+  //       instance_data: instanceData,
+  //       max_train_steps: 1500,
+  //       num_class_images: 75,
+  //       learning_rate: 2e-6,
+  //       with_prior_preservation: true,
+  //       train_text_encoder: true
+  //       // ckpt_base:
+  //       //   'https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.safetensors'
+  //     },
+  //     model: `${process.env.REPLICATE_USERNAME}/${id}`,
+  //     trainer_version:
+  //       'cd3f925f7ab21afaef7d45224790eedbb837eeac40d22e8fefe015489ab644aa' // sd-1.5
+  //     // 'd5e058608f43886b9620a8fbb1501853b8cbae4f45c857a014011c86ee614ffb'// sd-2.1
+  //     // 'a8ba568da0313951a6b311b43b1ea3bf9f2ef7b9fd97ed94cebd7ffd2da66654'// custom model
+  //   },
+  //   {
+  //     headers: {
+  //       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   }
+  // );
+  const dest =
+    `${process.env.REPLICATE_USERNAME}/${id}` as `${string}/${string}`;
+  const model_owner = 'stability-ai';
+  const model_name = 'sdxl';
+  const version_id =
+    '7ca7f0d3a51cd993449541539270971d38a24d9a0d42f073caf25190d41346d7';
+  const options = {
+    destination: dest,
+    input: {
+      input_images: instanceData,
+      max_train_steps: 1700,
+      unet_learning_rate: 2e-6,
+      token_string: instanceToken,
+      is_lora: false,
+      mask_target_prompts: `photo of a ${instanceClass.toLowerCase()}`,
+      caption_prefix: `a photo of ${instanceToken}`,
+      use_face_detection_instead: true
+    } as object
+  };
+
+  const responseReplicate = await replicate.trainings.create(
+    model_owner,
+    model_name,
+    version_id,
+    options
   );
 
-  const replicateModelId = responseReplicate.data.id as string;
+  const replicateModelId = responseReplicate.id;
 
   // update user's data in supabase
   const { error } = await supabase.from(SUPABASE_TABLE_NAME).insert({
@@ -76,7 +102,7 @@ export async function POST(
     status: 'starting',
     dataset: instanceData,
     prompt_token: instanceToken,
-    instance_class: instanceClass
+    instance_class: instanceClass.toLowerCase()
   });
 
   if (error) {
