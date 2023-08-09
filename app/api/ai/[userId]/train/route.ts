@@ -76,7 +76,7 @@ export async function POST(
     destination: dest,
     input: {
       input_images: instanceData,
-      max_training_steps: 1700,
+      max_train_steps: 1700,
       unet_learning_rate: 2e-6,
       token_string: instanceToken,
       is_lora: false,
