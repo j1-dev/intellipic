@@ -73,9 +73,10 @@ export async function POST(
       input: {
         prompt: prompt,
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
+        num_inference_steps: 45,
         disable_safety_check: true,
-        prompt_strength: 0.8,
-        guidance_scale: 7.5
+        refine: 'expert_ensemble_refiner',
+        apply_watermark: false
       }
     };
 
