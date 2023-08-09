@@ -51,7 +51,7 @@ export async function POST(
     // }
 
     const modelResponse = await replicate.trainings.get(id);
-    console.log(modelResponse.version);
+    console.log(modelResponse.output.version.split(':')[1]);
 
     // Call model
     // const predictionData = await replicateClient.post(
@@ -69,7 +69,7 @@ export async function POST(
     // );
 
     const options = {
-      version: modelResponse.version,
+      version: modelResponse.output.version.split(':')[1],
       input: {
         prompt: prompt,
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,

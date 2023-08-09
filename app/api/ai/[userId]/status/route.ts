@@ -36,7 +36,7 @@ export async function GET(
       // );
       const modelResponse = await replicate.trainings.get(runId);
 
-      console.log(modelResponse);
+      console.log(modelResponse.output.version.split(':')[1]);
       console.log(modelResponse.status);
 
       const { data, error } = await supabase
