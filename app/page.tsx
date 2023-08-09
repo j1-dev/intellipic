@@ -119,15 +119,13 @@ export default function Home() {
       </section>
 
       <section className="py-5">
-        <div className="flex justify-center items-center gap-4">
-          <div className="w-1/3">
-            <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
-            <Carousel2 />
-          </div>
-          <div className="w-1/3">
-            <Carousel2 /> {/* Second instance of the Carousel2 component */}
-          </div>
+        <div className="max-w-screen-lg mx-auto px-8 ">  
+         <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
         </div>
+          <div className="w-2/3 space-x-4  mx-auto flex justify-center items-center">
+          <Carousel2 />
+          <Carousel2 />
+          </div>
       </section>
 
       {/* Prices Section */}

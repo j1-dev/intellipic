@@ -19,7 +19,10 @@ export default class Carousel2 extends Component {
             <p className="legend1"></p>
           </div>
           <div>
-            <Image src="/Images/Jo.png" alt="image2" width={500} height={500} />
+            <Image src="/Images/Jo.png" 
+             alt="image2"
+             width={500}
+             height={500} />
             <p className="legend2"></p>
           </div>
           <div>
