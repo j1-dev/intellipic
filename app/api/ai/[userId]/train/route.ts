@@ -71,15 +71,18 @@ export async function POST(
   const model_owner = 'stability-ai';
   const model_name = 'sdxl';
   const version_id =
-    '2b017d9b67edd2ee1401238df49d75da53c523f36e363881e057f5dc3ed3c5b2';
+    '7ca7f0d3a51cd993449541539270971d38a24d9a0d42f073caf25190d41346d7';
   const options = {
     destination: dest,
     input: {
-      input_data_tar_or_zip: instanceData,
+      input_images: instanceData,
+      max_training_steps: 1700,
       unet_learning_rate: 2e-6,
-      ti_learning_rate_multiplier: 100,
-      num_train_epochs: 200,
-      token_map: instanceToken
+      token_string: instanceToken,
+      is_lora: false,
+      mask_target_prompts: `photo of a ${instanceClass}`,
+      caption_prefix: `a photo of ${instanceToken}`,
+      use_face_detection_instead: true
     } as object
   };
 
