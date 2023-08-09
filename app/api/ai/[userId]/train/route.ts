@@ -80,7 +80,7 @@ export async function POST(
       unet_learning_rate: 2e-6,
       token_string: instanceToken,
       is_lora: false,
-      mask_target_prompts: `photo of a ${instanceClass}`,
+      mask_target_prompts: `photo of a ${instanceClass.toLowerCase()}`,
       caption_prefix: `a photo of ${instanceToken}`,
       use_face_detection_instead: true
     } as object
@@ -102,7 +102,7 @@ export async function POST(
     status: 'starting',
     dataset: instanceData,
     prompt_token: instanceToken,
-    instance_class: instanceClass
+    instance_class: instanceClass.toLowerCase()
   });
 
   if (error) {

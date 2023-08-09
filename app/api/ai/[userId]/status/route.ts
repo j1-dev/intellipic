@@ -45,7 +45,10 @@ export async function GET(
         .eq('run_id', runId);
 
       console.log(modelResponse);
-      if (modelResponse.status === 'failed') {
+      if (
+        modelResponse.status === 'failed' ||
+        modelResponse.status === 'canceled'
+      ) {
         const { data, error } = await supabase
           .from('trainings')
           .delete()
