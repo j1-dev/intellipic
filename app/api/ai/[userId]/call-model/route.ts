@@ -16,7 +16,6 @@ export async function POST(
     const user = req.user_id as string;
 
     const modelResponse = await replicate.trainings.get(id);
-    console.log(modelResponse.output.version.split(':')[1]);
 
     // Call model
     const options = {
