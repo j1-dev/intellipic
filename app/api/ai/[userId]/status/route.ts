@@ -35,7 +35,6 @@ export async function GET(
       //   }
       // );
       const modelResponse = await replicate.trainings.get(runId);
-
       console.log(modelResponse.output.version.split(':')[1]);
       console.log(modelResponse.status);
 
@@ -44,7 +43,6 @@ export async function GET(
         .update({ status: modelResponse.status })
         .eq('run_id', runId);
 
-      console.log(modelResponse);
       if (
         modelResponse.status === 'failed' ||
         modelResponse.status === 'canceled'
