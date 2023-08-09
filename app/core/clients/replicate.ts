@@ -1,13 +1,7 @@
-import axios from 'axios';
+import Replicate from 'replicate';
 
-// TODO: add REPLICATE_API_TOKEN to .env.local file
-const replicateClient = axios.create({
-  baseURL: 'https://dreambooth-api-experimental.replicate.com',
-  headers: {
-    Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-    'Content-Type': 'application/json',
-    'Accept-Encoding': '*'
-  }
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN as string
 });
 
-export default replicateClient;
+export default replicate;

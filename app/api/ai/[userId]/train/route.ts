@@ -13,11 +13,9 @@
 //   run_id: model.id;
 // }
 
-import replicateClient from '../../../../core/clients/replicate';
-import replicate from '@/app/core/clients/replicate_test';
+import replicate from '@/app/core/clients/replicate';
 import { supabase } from '../../../../supabaseClient';
 import { NextResponse } from 'next/server';
-import { uniqueId } from 'lodash';
 
 // TODO: translate fine_tune_model to work with replicate (show follow similar steps)
 export async function POST(
