@@ -20,23 +20,10 @@ export async function GET(
   }
 
   const runId = data?.[0]?.run_id;
-  console.log(runId);
 
   if (runId !== null) {
     try {
-      // const modelResponse = await fetch(
-      //   `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
-      //   {
-      //     headers: {
-      //       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-      //       'Content-Type': 'application/json'
-      //     },
-      //     next: { revalidate: 0 }
-      //   }
-      // );
       const modelResponse = await replicate.trainings.get(runId);
-      console.log(modelResponse.output.version.split(':')[1]);
-      console.log(modelResponse.status);
 
       const { data, error } = await supabase
         .from('trainings')

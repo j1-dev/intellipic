@@ -32,21 +32,8 @@ export async function GET(
   const runId = userData?.run_id;
 
   if (runId !== null) {
-    console.log(runId);
     try {
-      // const modelResponse = await fetch(
-      //   `https://dreambooth-api-experimental.replicate.com/v1/trainings/${runId}`,
-      //   {
-      //     headers: {
-      //       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-      //       'Content-Type': 'application/json'
-      //     },
-      //     next: { revalidate: 0 }
-      //   }
-      // );
       const modelResponse = await replicate.trainings.get(runId);
-
-      console.log(modelResponse);
       return NextResponse.json({
         dataset: userData?.dataset,
         run_id: userData?.run_id,
