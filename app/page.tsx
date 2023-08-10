@@ -7,12 +7,6 @@ import Image from 'next/image';
 import Logo from './core/resources/logo';
 import Carousel2 from './components/Carousel2.0';
 
-// const slides = [
-//   '/Images/3l0n.png',
-//   '/Images/out-0 (7).png',
-//   'https://i.ibb.co/XXR8kzF/3.png',
-//   'https://i.ibb.co/yg7BSdM/4.png'
-// ];
 
 /**
  * @TODO: Document everything
