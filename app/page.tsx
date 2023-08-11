@@ -5,8 +5,8 @@ import { FaInstagram, FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
 import Image from 'next/image';
 import Logo from './core/resources/logo';
-import Carousel2 from './components/Carousel2.0';
-import BlurImage from './components/Gallery';
+
+
 
 
 /**
@@ -15,7 +15,10 @@ import BlurImage from './components/Gallery';
  * @returns home page
  */
 
+
+
 export default function Home() {
+  
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
@@ -118,19 +121,62 @@ export default function Home() {
         <div className="max-w-screen-lg mx-auto px-8 ">  
          <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
         </div>
-          <div className="w-2/3 space-x-4  mx-auto flex justify-center items-center">
-          <Carousel2 />
-          <Carousel2 />
+        <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <a href="#" className="group">
+          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <Image
+              alt=""
+              src="/Images/Elon.png"
+              layout="fill"
+              objectFit="cover"
+              className="group-hover:opacity-75"
+            />
           </div>
-
-          <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            <BlurImage />
-            <BlurImage />
-            <BlurImage />
-            <BlurImage />
-            </div>
+          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
+          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+         </a>  
+         <a href="#" className="group">
+          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <Image
+              alt=""
+              src="/Images/Messi3.png"
+              layout="fill"
+              objectFit="cover"
+              className="group-hover:opacity-75"
+            />
           </div>
+          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
+          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+         </a>  
+         <a href="#" className="group">
+          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <Image
+              alt=""
+              src="/Images/Messi1.png"
+              layout="fill"
+              objectFit="cover"
+              className="group-hover:opacity-75"
+            />
+          </div>
+          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
+          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+         </a>  
+         <a href="#" className="group">
+          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <Image
+              alt=""
+              src="/Images/Messi2.png"
+              layout="fill"
+              objectFit="cover"
+              className="group-hover:opacity-75"
+            />
+          </div>
+          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
+          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+         </a>  
+        </div>
+        </div>
       </section>
 
       {/* Prices Section */}
