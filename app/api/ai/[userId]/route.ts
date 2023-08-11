@@ -9,45 +9,47 @@ export async function GET(
   const SUPABASE_TABLE_NAME = 'trainingruns';
   const id = params.userId;
 
-  const { data, error } = await supabase
-    .from('user-data')
-    .select()
-    .eq('id', id);
+  try {
+    const { data: userData, error: userError } = await supabase
+      .from('user-data')
+      .select()
+      .eq('id', id);
 
-  if (error) {
-    console.error('Supabase error:', error);
-    return NextResponse.error();
-  }
-
-  if (data?.length === 0) {
-    console.log(data?.length);
-    const { error } = await supabase.from('user-data').insert({ id: id });
-    if (error) {
-      console.error('Insert user error:', error);
+    if (userError) {
+      console.error('Supabase error:', userError);
       return NextResponse.error();
     }
-  }
 
-  const userData = data?.[0];
-  const runId = userData?.run_id;
+    if (userData?.length === 0) {
+      console.log(userData?.length);
+      const { error: insertError } = await supabase
+        .from('user-data')
+        .insert({ id: id });
+      if (insertError) {
+        console.error('Insert user error:', insertError);
+        return NextResponse.error();
+      }
+    }
 
-  if (runId !== null) {
-    try {
+    const userDataEntry = userData?.[0];
+    const runId = userDataEntry?.run_id;
+
+    if (runId !== null) {
       const modelResponse = await replicate.trainings.get(runId);
       return NextResponse.json({
-        dataset: userData?.dataset,
-        run_id: userData?.run_id,
+        dataset: userDataEntry?.dataset,
+        run_id: userDataEntry?.run_id,
         run_data: { status: modelResponse.status }
       });
-    } catch (error) {
-      console.error('Model fetch error:', error);
-      return NextResponse.error();
+    } else {
+      return NextResponse.json({
+        dataset: userDataEntry?.dataset,
+        run_id: null,
+        run_data: { status: null }
+      });
     }
-  } else {
-    return NextResponse.json({
-      dataset: userData?.dataset,
-      run_id: null,
-      run_data: { status: null }
-    });
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.error();
   }
 }

@@ -9,23 +9,23 @@ export async function GET(
   const SUPABASE_TABLE_NAME = 'user-data';
   const id = params.userId;
 
-  const { data, error } = await supabase
-    .from(SUPABASE_TABLE_NAME)
-    .select('*')
-    .eq('id', id);
+  try {
+    const { data: userData, error: userError } = await supabase
+      .from(SUPABASE_TABLE_NAME)
+      .select('*')
+      .eq('id', id);
 
-  if (error) {
-    console.error('Supabase error:', error);
-    return NextResponse.error();
-  }
+    if (userError) {
+      console.error('Supabase error:', userError);
+      return NextResponse.error();
+    }
 
-  const runId = data?.[0]?.run_id;
+    const runId = userData?.[0]?.run_id;
 
-  if (runId !== null) {
-    try {
+    if (runId !== null) {
       const modelResponse = await replicate.trainings.get(runId);
 
-      const { data, error } = await supabase
+      const { data: updateData, error: updateError } = await supabase
         .from('trainings')
         .update({ status: modelResponse.status })
         .eq('run_id', runId);
@@ -34,7 +34,7 @@ export async function GET(
         modelResponse.status === 'failed' ||
         modelResponse.status === 'canceled'
       ) {
-        const { data, error } = await supabase
+        const { data: deleteData, error: deleteError } = await supabase
           .from('trainings')
           .delete()
           .eq('run_id', runId);
@@ -44,14 +44,14 @@ export async function GET(
         healthy: modelResponse.status === 'succeeded',
         model_id: runId
       });
-    } catch (error) {
-      console.error('Model fetch error:', error);
-      return NextResponse.error();
+    } else {
+      return NextResponse.json({
+        healthy: false,
+        model_id: null
+      });
     }
-  } else {
-    return NextResponse.json({
-      healthy: false,
-      model_id: null
-    });
+  } catch (error) {
+    console.error('Error:', error);
+    return NextResponse.error();
   }
 }
