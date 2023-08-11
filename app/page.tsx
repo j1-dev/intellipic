@@ -6,6 +6,7 @@ import { FiInfo } from 'react-icons/fi';
 import Image from 'next/image';
 import Logo from './core/resources/logo';
 import Carousel2 from './components/Carousel2.0';
+import BlurImage from './components/Gallery';
 
 
 /**
@@ -13,6 +14,7 @@ import Carousel2 from './components/Carousel2.0';
  *
  * @returns home page
  */
+
 export default function Home() {
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
@@ -119,6 +121,15 @@ export default function Home() {
           <div className="w-2/3 space-x-4  mx-auto flex justify-center items-center">
           <Carousel2 />
           <Carousel2 />
+          </div>
+
+          <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            <BlurImage />
+            <BlurImage />
+            <BlurImage />
+            <BlurImage />
+            </div>
           </div>
       </section>
 
