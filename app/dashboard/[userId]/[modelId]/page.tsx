@@ -9,7 +9,7 @@ import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { prompts } from '../../../core/resources/prompts';
 import { replacePromptToken } from '@/app/core/utils/predictions';
-import { supabase } from '@/app/supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {

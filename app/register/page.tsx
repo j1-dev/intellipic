@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import { useRouter } from 'next/navigation';
 import SignUp from '../components/SignUp';
 import Link from 'next/link';

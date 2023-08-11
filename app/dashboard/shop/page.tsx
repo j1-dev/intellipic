@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import axios from 'axios';
-import { supabase } from '@/app/supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import toast from 'react-hot-toast';
 
 interface Product {

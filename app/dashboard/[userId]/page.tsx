@@ -1,6 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation';
-import { supabase } from '@/app/supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import { useEffect, useState, useRef } from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';

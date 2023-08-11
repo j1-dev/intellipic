@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import stripe from '../../../core/clients/stripe';
-import { supabase } from '@/app/supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 
 export async function POST(request: any) {
   let data = await request.json();

@@ -3,7 +3,7 @@ export const replacePromptToken = (
   token: string,
   instanceClass: string
 ) => {
-  const refinedPrompt = prompt.replaceAll('@me', `${token} ${instanceClass}`);
+  const refinedPrompt = prompt.replaceAll('@me', `TOK`);
 
   return refinedPrompt;
 };

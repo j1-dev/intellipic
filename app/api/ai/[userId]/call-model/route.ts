@@ -1,5 +1,5 @@
 import replicate from '../../../../core/clients/replicate';
-import { supabase } from '../../../../supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 
 export async function POST(
@@ -23,10 +23,11 @@ export async function POST(
       input: {
         prompt: prompt,
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
-        num_inference_steps: 45,
-        disable_safety_check: true,
+        num_inference_steps: 50,
         refine: 'expert_ensemble_refiner',
-        apply_watermark: false
+        apply_watermark: false,
+        high_noise_frac: 0.9
+        //lora_scale: 1
       }
     };
 
