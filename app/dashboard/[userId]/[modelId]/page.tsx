@@ -170,6 +170,20 @@ export default function ModelPage() {
     }
   }
 
+  async function handleDeleteModel() {
+    if (window.confirm('Estas seguro que quieres eliminar el modelo?')) {
+      try {
+        await supabase.from('trainings').delete().eq('run_id', model);
+        setToken('');
+        setInstanceClass('');
+        setModelStatus('');
+       
+      } catch (error) {
+        console.error('Error deleting model:', error);
+      }
+    }
+  }
+
   function checkIfImageExists(url: any, callback: any) {
     const img = new Image();
     img.src = url;
@@ -191,12 +205,17 @@ export default function ModelPage() {
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
-      <h2 className="text-4xl font-bold mb-2">Modelos 🤖</h2>
+      <h2 className="text-4xl font-bold mb-2">Modelos 🤖</h2> 
       <h3 className="text-2xl font-bold mb-2">Token del modelo: {token}</h3>
       <span>
         Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
         los prompts predeterminados disponibles
       </span>
+      <div className="flex justify-end mb-4">
+      <button onClick={handleDeleteModel} className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all" style={{ marginTop: '1rem' }}>
+        Eliminar Modelo
+      </button>
+      </div>
       <main className={styles.main}>
         <div className={classNames(styles.step, styles.columnstep)}>
           <div className={styles.prompt}>
@@ -311,7 +330,9 @@ export default function ModelPage() {
                   </Transition>
                 </Menu>
               </div>
+              
             )}
+           
             {promptType === 'Prompt escrito' && (
               <textarea
                 className="w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
@@ -324,7 +345,7 @@ export default function ModelPage() {
               onClick={handleCallModel}
               className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
               style={{ marginTop: 0 }}
-              disabled={queueingPrediction || modelStatus !== 'succeeded'}
+              disabled={queueingPrediction || modelStatus !== 'Listo'}
             >
               {queueingPrediction ? 'Generando...' : 'Generar'}
             </button>

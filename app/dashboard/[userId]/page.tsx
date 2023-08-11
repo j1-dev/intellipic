@@ -50,7 +50,7 @@ export default function DashboardPage() {
     };
 
     fetchModels();
-  }, []);
+  }, [user]);
 
   async function getModelStatus(user: any) {
     await fetch(`/api/ai/${user}/status`);
