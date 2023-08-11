@@ -4,6 +4,9 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import { Menu, Transition } from '@headlessui/react';
 import { BsChevronDown } from 'react-icons/bs';
+import { useRouter } from 'next/navigation';
+import useSessionStorage from 'usehooks-ts';
+
 
 import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
@@ -44,6 +47,8 @@ function useInterval(callback: () => void, delay: number | null) {
 }
 
 export default function ModelPage() {
+  const router = useRouter();
+  const [user, setUser] = useState<any>(null);
   const params = useParams();
   const id = params.userId;
   const model = params.modelId;
@@ -177,6 +182,8 @@ export default function ModelPage() {
         setToken('');
         setInstanceClass('');
         setModelStatus('');
+
+        router.push(`/dashboard/${user?.id}`);
       } catch (error) {
         console.error('Error deleting model:', error);
       }
