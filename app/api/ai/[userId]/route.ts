@@ -1,5 +1,5 @@
 import replicate from '@/app/core/clients/replicate';
-import { supabase } from '../../../supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 
 export async function GET(

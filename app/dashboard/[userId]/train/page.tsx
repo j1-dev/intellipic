@@ -1,5 +1,5 @@
 'use client';
-import { supabase } from '@/app/supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import classNames from 'classnames';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';

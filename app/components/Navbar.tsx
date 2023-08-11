@@ -1,7 +1,7 @@
 'use client';
 import 'tailwindcss/tailwind.css';
 import React from 'react';
-import { supabase } from '../supabaseClient';
+import supabase from '@/app/core/clients/supabase';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
