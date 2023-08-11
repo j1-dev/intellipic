@@ -7,7 +7,6 @@ import { BsChevronDown } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
 import useSessionStorage from 'usehooks-ts';
 
-
 import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { prompts } from '../../../core/resources/prompts';
@@ -183,7 +182,7 @@ export default function ModelPage() {
         setInstanceClass('');
         setModelStatus('');
 
-        router.push(`/dashboard/${user?.id}`);
+        router.push(`/dashboard/${id}`);
       } catch (error) {
         console.error('Error deleting model:', error);
       }
