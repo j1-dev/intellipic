@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import { Menu, Transition } from '@headlessui/react';
 import { BsChevronDown } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
-import useSessionStorage from 'usehooks-ts';
 
 import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
