@@ -31,10 +31,10 @@ export async function POST(
     destination: dest,
     input: {
       input_images: instanceData,
-      max_train_steps: 2000,
-      unet_learning_rate: 1e-5,
+      max_train_steps: 1650,
+      unet_learning_rate: 7e-6,
       // token_string: instanceToken,
-      is_lora: false,
+      // is_lora: false,
       // mask_target_prompts: `photo of a ${instanceClass.toLowerCase()}`,
       // caption_prefix: `a photo of ${instanceToken}`,
       use_face_detection_instead: true
