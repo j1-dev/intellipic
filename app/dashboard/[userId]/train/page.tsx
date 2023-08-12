@@ -89,28 +89,32 @@ export default function TrainPage() {
   }
 
   async function getOrInsertUserData(id: any) {
-    await fetch(`/api/ai/${id}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setFinetuningData(data);
-      });
+    if (modelStatus.healthy !== true) {
+      await fetch(`/api/ai/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setFinetuningData(data);
+        });
 
-    setReady(true);
+      setReady(true);
+    }
   }
 
   async function getModelStatus(id: any) {
-    await fetch(`/api/ai/${id}/status`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setModelStatus({
-          modelId: data.model_id,
-          healthy: data.healthy
+    if (modelStatus.healthy !== true) {
+      await fetch(`/api/ai/${id}/status`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          setModelStatus({
+            modelId: data.model_id,
+            healthy: data.healthy
+          });
         });
-      });
-    console.log(runStatus);
-    setReady(true);
+      console.log(runStatus);
+      setReady(true);
+    }
   }
 
   async function handleFileUpload(ev: React.ChangeEvent<HTMLInputElement>) {
