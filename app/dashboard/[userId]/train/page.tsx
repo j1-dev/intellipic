@@ -89,7 +89,7 @@ export default function TrainPage() {
   }
 
   async function getOrInsertUserData(id: any) {
-    if (modelStatus.healthy !== true) {
+    if (runStatus !== 'succeeded') {
       await fetch(`/api/ai/${id}`)
         .then((response) => response.json())
         .then((data) => {
@@ -102,7 +102,7 @@ export default function TrainPage() {
   }
 
   async function getModelStatus(id: any) {
-    if (modelStatus.healthy !== true) {
+    if (runStatus !== 'succeeded') {
       await fetch(`/api/ai/${id}/status`)
         .then((response) => response.json())
         .then((data) => {
