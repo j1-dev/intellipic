@@ -1,7 +1,7 @@
-import { createMiddlewareSupabaseClient } from "@supabase/auth-helpers-nextjs";
-import { NextResponse } from "next/server";
+import { createMiddlewareSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { NextResponse } from 'next/server';
 
-import type { NextRequest } from "next/server";
+import type { NextRequest } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
@@ -14,13 +14,13 @@ export async function middleware(req: NextRequest) {
 
   if (!(rt && at)) {
     // make sure you handle this case!
-    throw new Error('User is not authenticated.')
+    throw new Error('User is not authenticated.');
   }
 
-  supabase.auth.setSession({access_token: at,refresh_token: rt})
+  supabase.auth.setSession({ access_token: at, refresh_token: rt });
 
   return res;
 }
 export const config = {
-  matcher: '/dashboard/:id*',
+  matcher: '/dashboard/:id*'
 };
