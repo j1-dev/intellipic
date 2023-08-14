@@ -51,7 +51,7 @@ export default function TrainPage() {
   const id = params.userId;
   const [ready, setReady] = useState(localStorage.getItem('ready') === 'true');
   const [fineTuningData, setFinetuningData] = useState(
-    JSON.parse(localStorage.getItem('fineTuningData') || '') || {
+    JSON.parse(localStorage.getItem('fineTuningData') as string) || {
       dataset: null,
       run_id: null,
       run_data: {
@@ -60,7 +60,7 @@ export default function TrainPage() {
     }
   );
   const [modelStatus, setModelStatus] = useState(
-    JSON.parse(localStorage.getItem('modelStatus') || '') || {
+    JSON.parse(localStorage.getItem('modelStatus') as string) || {
       healthy: null,
       modelId: null
     }
