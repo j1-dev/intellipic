@@ -33,6 +33,7 @@ export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;
   const [models, setModels] = useState<any[]>();
+  const [userData, setUserData] = useState<any>();
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -49,7 +50,23 @@ export default function DashboardPage() {
       }
     };
 
+    const fetchUserInfo = async () => {
+      const { data: d, error: e } = await supabase
+        .from('user-data')
+        .select('*')
+        .eq('id', user);
+
+      if (e) {
+        console.error(e);
+      } else {
+        console.log(d[0].image_tokens);
+        console.log(d[0].model_tokens);
+        setUserData(d[0]);
+      }
+    };
+
     fetchModels();
+    fetchUserInfo();
   }, [user]);
 
   async function getModelStatus(user: any) {
@@ -62,6 +79,12 @@ export default function DashboardPage() {
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">Modelos 🤖</h2>
+        <h3 className="text-xl mb-4">
+          Tokens para entrenar:{' '}
+          {!!userData && userData.model_tokens !== undefined
+            ? userData.model_tokens
+            : '...'}
+        </h3>
 
         {models && models.length !== 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { HiLogout } from 'react-icons/hi';
-import { useWindowSize } from 'usehooks-ts';
 import Logo from '../core/resources/logo';
 
 export default function Navbar() {

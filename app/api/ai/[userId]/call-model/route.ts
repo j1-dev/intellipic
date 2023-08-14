@@ -23,11 +23,12 @@ export async function POST(
       input: {
         prompt: prompt,
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
-        num_inference_steps: 50,
+        num_inference_steps: 55,
         refine: 'expert_ensemble_refiner',
+        scheduler: 'DDIM',
         apply_watermark: false,
-        high_noise_frac: 0.9
-        //lora_scale: 1
+        high_noise_frac: 0.85,
+        lora_scale: 0.8
       }
     };
 
