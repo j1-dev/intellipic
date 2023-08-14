@@ -11,6 +11,7 @@ import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { prompts } from '../../../core/resources/prompts';
 import { replacePromptToken } from '@/app/core/utils/predictions';
 import supabase from '@/app/core/clients/supabase';
+import { toast } from 'react-hot-toast';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -77,6 +78,9 @@ export default function ModelPage() {
   const [modelStatus, setModelStatus] = useState(
     localStorage.getItem(`ms${model}`) || ''
   );
+  const [userData, setUserData] = useState<any>(() =>
+    JSON.parse(localStorage.getItem('userData') as string)
+  );
 
   const p = prompts;
 
@@ -107,6 +111,20 @@ export default function ModelPage() {
   ]);
 
   useEffect(() => {
+    const updateDatabase = async () => {
+      console.log(userData.image_tokens);
+      console.log(userData.id);
+      const { data, error } = await supabase
+        .from('user-data')
+        .update({ image_tokens: userData.image_tokens as number })
+        .eq('id', userData.id);
+
+      console.log(data);
+    };
+    updateDatabase();
+  }, [userData.image_tokens, userData.id]);
+
+  useEffect(() => {
     const sub = async () => {
       await supabase
         .from('trainings')
@@ -132,20 +150,26 @@ export default function ModelPage() {
   }, [imageUrl]);
 
   async function handleCallModel() {
-    const prompt = replacePromptToken(instancePrompt, token, instanceClass);
-    // console.log(prompt);
-    post(
-      `/api/ai/${id}/call-model`,
-      {
-        run_id: model,
-        instance_prompt: prompt,
-        user_id: id
-      },
-      (data: any) => {
-        setPredictionId(data.prediction_id);
-        setQueueingPrediction(true);
-      }
-    );
+    let tokens = userData.image_tokens;
+    if (tokens > 0) {
+      const prompt = replacePromptToken(instancePrompt, token, instanceClass);
+      // console.log(prompt);
+      post(
+        `/api/ai/${id}/call-model`,
+        {
+          run_id: model,
+          instance_prompt: prompt,
+          user_id: id
+        },
+        (data: any) => {
+          setPredictionId(data.prediction_id);
+          setQueueingPrediction(true);
+        }
+      );
+      userData.image_tokens--;
+    } else {
+      toast.error('No te quedan tokens, ve a la tienda a por más');
+    }
   }
 
   async function handleGetPrediction() {
@@ -214,10 +238,13 @@ export default function ModelPage() {
         Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
         los prompts predeterminados disponibles
       </span>
-      <div className="flex justify-end mb-4">
+      <div className="relative mb-10">
+        <span className="absolute lef-0 my-7 font-semibold">
+          Tokens restantes: {userData.image_tokens}
+        </span>
         <button
           onClick={handleDeleteModel}
-          className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
+          className="absolute right-0 bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
           style={{ marginTop: '1rem' }}
         >
           Eliminar Modelo
