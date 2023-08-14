@@ -112,17 +112,14 @@ export default function ModelPage() {
 
   useEffect(() => {
     const updateDatabase = async () => {
-      console.log(userData.image_tokens);
-      console.log(userData.id);
-      const { data, error } = await supabase
+      await supabase
         .from('user-data')
         .update({ image_tokens: userData.image_tokens as number })
         .eq('id', userData.id);
-
-      console.log(data);
+      localStorage.setItem('userData', JSON.stringify(userData));
     };
     updateDatabase();
-  }, [userData.image_tokens, userData.id]);
+  }, [userData.image_tokens]);
 
   useEffect(() => {
     const sub = async () => {

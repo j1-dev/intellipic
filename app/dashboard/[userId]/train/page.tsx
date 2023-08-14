@@ -10,6 +10,7 @@ import JSZip from 'jszip';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FadeLoader, PulseLoader } from 'react-spinners';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
+import { toast } from 'react-hot-toast';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -77,6 +78,9 @@ export default function TrainPage() {
   const [instanceType, setInstanceType] = useState(
     localStorage.getItem('instanceName') || 'man'
   );
+  const [userData, setUserData] = useState<any>(() =>
+    JSON.parse(localStorage.getItem('userData') as string)
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,13 +111,30 @@ export default function TrainPage() {
     instanceType
   ]);
 
+  useEffect(() => {
+    const updateDatabase = async () => {
+      await supabase
+        .from('user-data')
+        .update({ model_tokens: userData.model_tokens as number })
+        .eq('id', userData.id);
+      localStorage.setItem('userData', JSON.stringify(userData));
+    };
+    updateDatabase();
+  }, [userData.model_tokens]);
+
   useInterval(() => getOrInsertUserData(id), 10000);
   useInterval(() => getModelStatus(id), 10000);
 
   async function clearUserData(id: any) {
-    post(`/api/ai/${id}/clear`, {}, (data: any) =>
-      setFinetuningData(data.output)
-    );
+    post(`/api/ai/${id}/clear`, {}, (data: any) => {
+      setFinetuningData({
+        dataset: null,
+        run_id: null,
+        run_data: {
+          status: null
+        }
+      });
+    });
   }
 
   async function getOrInsertUserData(id: any) {
@@ -187,19 +208,25 @@ export default function TrainPage() {
 
   // Include instanceType on the object sent to Blueprint with the name instance_type
   async function handleValidationAndFinetuningStart() {
-    setQueueingFinetuning(true);
-    await post(
-      `/api/ai/${id}/train`,
-      {
-        url: fineTuningData.dataset,
-        prompt: instanceName,
-        instance_type: instanceType,
-        user_id: id
-      },
-      (data: any) => console.log(data)
-    );
-    getOrInsertUserData(id);
-    setQueueingFinetuning(false);
+    let tokens = userData.model_tokens;
+    if (tokens > 0) {
+      setQueueingFinetuning(true);
+      await post(
+        `/api/ai/${id}/train`,
+        {
+          url: fineTuningData.dataset,
+          prompt: instanceName,
+          instance_type: instanceType,
+          user_id: id
+        },
+        (data: any) => console.log(data)
+      );
+      getOrInsertUserData(id);
+      setQueueingFinetuning(false);
+      userData.model_tokens--;
+    } else {
+      toast.error('No te quedan tokens, ve a la tienda a por más');
+    }
   }
 
   const hasUploadedData = !!fineTuningData?.dataset;
