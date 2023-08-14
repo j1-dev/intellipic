@@ -43,8 +43,8 @@ export default function DashboardPage() {
     });
     return arr;
   });
-  const [userData, setUserData] = useState<any>(
-    () => localStorage.getItem('userData') || ''
+  const [userData, setUserData] = useState<any>(() =>
+    JSON.parse(localStorage.getItem('userData') as string)
   );
 
   useEffect(() => {
