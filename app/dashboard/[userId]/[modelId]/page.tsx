@@ -46,7 +46,6 @@ function useInterval(callback: () => void, delay: number | null) {
 
 export default function ModelPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
   const params = useParams();
   const id = params.userId;
   const model = params.modelId;

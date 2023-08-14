@@ -49,24 +49,34 @@ export default function TrainPage() {
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
-  const [ready, setReady] = useState(true);
-  const [fineTuningData, setFinetuningData] = useState({
-    dataset: null,
-    run_id: null,
-    run_data: {
-      status: null
+  const [ready, setReady] = useState(localStorage.getItem('ready') === 'true');
+  const [fineTuningData, setFinetuningData] = useState(
+    JSON.parse(localStorage.getItem('fineTuningData') || '') || {
+      dataset: null,
+      run_id: null,
+      run_data: {
+        status: null
+      }
     }
-  });
-  const [modelStatus, setModelStatus] = useState({
-    healthy: null,
-    modelId: null
-  });
-
-  const [uploading, setUploading] = useState(false);
-  const [queueingFinetuning, setQueueingFinetuning] = useState(false);
-  const [instanceName, setInstanceName] = useState('');
-  // Instance Type that defaults to "Man"
-  const [instanceType, setInstanceType] = useState('Man');
+  );
+  const [modelStatus, setModelStatus] = useState(
+    JSON.parse(localStorage.getItem('modelStatus') || '') || {
+      healthy: null,
+      modelId: null
+    }
+  );
+  const [uploading, setUploading] = useState(
+    localStorage.getItem('uploading') === 'true'
+  );
+  const [queueingFinetuning, setQueueingFinetuning] = useState(
+    localStorage.getItem('queueingFinetuning') === 'true'
+  );
+  const [instanceName, setInstanceName] = useState(
+    localStorage.getItem('instanceName') || ''
+  );
+  const [instanceType, setInstanceType] = useState(
+    localStorage.getItem('instanceName') || 'man'
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,6 +88,24 @@ export default function TrainPage() {
 
     fetchData();
   }, [id]);
+
+  useEffect(() => {
+    localStorage.setItem('ready', ready.toString());
+    localStorage.setItem('fineTuningData', JSON.stringify(fineTuningData));
+    localStorage.setItem('modelStatus', JSON.stringify(modelStatus));
+    localStorage.setItem('uploading', uploading.toString());
+    localStorage.setItem('queueingFinetuning', queueingFinetuning.toString());
+    localStorage.setItem('instanceName', instanceName);
+    localStorage.setItem('instanceType', instanceType);
+  }, [
+    ready,
+    fineTuningData,
+    modelStatus,
+    uploading,
+    queueingFinetuning,
+    instanceName,
+    instanceType
+  ]);
 
   useInterval(() => getOrInsertUserData(id), 10000);
   useInterval(() => getModelStatus(id), 10000);

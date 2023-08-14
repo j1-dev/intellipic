@@ -32,8 +32,20 @@ function useInterval(callback: () => void, delay: number | null) {
 export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;
-  const [models, setModels] = useState<any[]>();
-  const [userData, setUserData] = useState<any>();
+  const [models, setModels] = useState<any>(() => {
+    let data = localStorage.getItem('models') || '';
+    let mod = data.split('(sep)');
+    let arr = [] as Array<Object>;
+    mod.map((m) => {
+      if (m) {
+        arr.push(JSON.parse(m));
+      }
+    });
+    return arr;
+  });
+  const [userData, setUserData] = useState<any>(
+    () => localStorage.getItem('userData') || ''
+  );
 
   useEffect(() => {
     const fetchModels = async () => {
@@ -47,6 +59,11 @@ export default function DashboardPage() {
         console.error(error);
       } else {
         setModels(data);
+        let str = '';
+        data.map((d: any) => {
+          str += JSON.stringify(d) + '(sep)';
+        });
+        localStorage.setItem('models', str);
       }
     };
 
@@ -59,21 +76,22 @@ export default function DashboardPage() {
       if (e) {
         console.error(e);
       } else {
-        console.log(d[0].image_tokens);
-        console.log(d[0].model_tokens);
+        //console.log(d[0].image_tokens);
+        //console.log(d[0].model_tokens);
         setUserData(d[0]);
+        localStorage.setItem('userData', JSON.stringify(d[0]));
       }
     };
 
-    fetchModels();
     fetchUserInfo();
+    fetchModels();
   }, [user]);
 
   async function getModelStatus(user: any) {
     await fetch(`/api/ai/${user}/status`);
   }
 
-  useInterval(() => getModelStatus(user), 10000);
+  useInterval(() => getModelStatus(user), 5000);
 
   return (
     <div className="py-8">
