@@ -230,8 +230,8 @@ export default function TrainPage() {
   }
 
   const hasUploadedData = !!fineTuningData?.dataset;
-  const hasFinetunedModel = !!fineTuningData?.run_id;
-  const runStatus = fineTuningData?.run_data?.status;
+  const hasFinetunedModel = !!fineTuningData?.run_id && hasUploadedData;
+  const runStatus = fineTuningData?.run_data?.status && hasUploadedData;
   const itemButton = useRef<HTMLInputElement>(null);
   const fineTuningInProgress =
     runStatus === 'starting' ||
