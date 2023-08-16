@@ -134,6 +134,13 @@ export default function TrainPage() {
           status: null
         }
       });
+      localStorage.removeItem('ready');
+      localStorage.removeItem('fineTuningData');
+      localStorage.removeItem('modelStatus');
+      localStorage.removeItem('uploading');
+      localStorage.removeItem('queueingFinetuning');
+      localStorage.removeItem('instanceName');
+      localStorage.removeItem('instanceType');
     });
   }
 
@@ -230,8 +237,8 @@ export default function TrainPage() {
   }
 
   const hasUploadedData = !!fineTuningData?.dataset;
-  const hasFinetunedModel = !!fineTuningData?.run_id && hasUploadedData;
-  const runStatus = fineTuningData?.run_data?.status && hasUploadedData;
+  const hasFinetunedModel = !!fineTuningData?.run_id;
+  const runStatus = fineTuningData?.run_data?.status;
   const itemButton = useRef<HTMLInputElement>(null);
   const fineTuningInProgress =
     runStatus === 'starting' ||

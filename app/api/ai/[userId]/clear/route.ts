@@ -10,7 +10,7 @@ export async function POST(
 
   const { data, error } = await supabase
     .from(SUPABASE_TABLE_NAME)
-    .update({ dataset: null })
+    .update({ run_id: null, dataset: null })
     .eq('id', userId);
 
   if (error) {
