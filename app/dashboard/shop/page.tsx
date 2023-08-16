@@ -2,7 +2,8 @@
 import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import axios from 'axios';
-import supabase from '@/app/core/clients/supabase';
+//import supabase from '@/app/core/clients/supabase';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import toast from 'react-hot-toast';
 
 interface Product {
@@ -54,6 +55,7 @@ const products: Product[] = [
 export default function ShopPage() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [user, setUser] = useState<any>(null);
+  const supabase = createClientComponentClient();
 
   useEffect(() => {
     const sub = async () => {

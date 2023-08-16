@@ -1,5 +1,6 @@
 'use client';
-import supabase from '@/app/core/clients/supabase';
+//import supabase from '@/app/core/clients/supabase';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
@@ -32,6 +33,7 @@ function SuccessPage() {
   const [user, setUser] = useState<any>(null);
   const [done, setDone] = useState(false);
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
   useEffect(() => {
     const sub = async () => {
