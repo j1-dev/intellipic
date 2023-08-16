@@ -19,5 +19,9 @@ export async function POST(
   }
 
   // Send a JSON response
-  return NextResponse.json({ success: true });
+  const response = NextResponse.json({ success: true });
+
+  response.headers.set('Cache-Control', 'no-cache');
+
+  return response;
 }

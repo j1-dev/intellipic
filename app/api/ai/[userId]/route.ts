@@ -25,6 +25,7 @@ export async function GET(
       const { error: insertError } = await supabase
         .from('user-data')
         .insert({ id: id });
+
       if (insertError) {
         console.error('Insert user error:', insertError);
         return NextResponse.error();
@@ -36,17 +37,26 @@ export async function GET(
 
     if (runId !== null) {
       const modelResponse = await replicate.trainings.get(runId);
-      return NextResponse.json({
+
+      const response = NextResponse.json({
         dataset: userDataEntry?.dataset,
         run_id: userDataEntry?.run_id,
         run_data: { status: modelResponse.status }
       });
+
+      response.headers.set('Cache-Control', 'no-cache');
+
+      return response;
     } else {
-      return NextResponse.json({
+      const response = NextResponse.json({
         dataset: userDataEntry?.dataset,
         run_id: null,
         run_data: { status: null }
       });
+
+      response.headers.set('Cache-Control', 'no-cache');
+
+      return response;
     }
   } catch (error) {
     console.error('Error:', error);

@@ -40,15 +40,23 @@ export async function GET(
           .eq('run_id', runId);
       }
 
-      return NextResponse.json({
+      const response = NextResponse.json({
         healthy: modelResponse.status === 'succeeded',
         model_id: runId
       });
+
+      response.headers.set('Cache-Control', 'no-cache');
+
+      return response;
     } else {
-      return NextResponse.json({
+      const response = NextResponse.json({
         healthy: false,
         model_id: null
       });
+
+      response.headers.set('Cache-Control', 'no-cache');
+
+      return response;
     }
   } catch (error) {
     console.error('Error:', error);
