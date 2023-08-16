@@ -88,7 +88,7 @@ export default function DashboardPage() {
   }, [user]);
 
   async function getModelStatus(user: any) {
-    await fetch(`/api/ai/${user}/status`);
+    await fetch(`/api/ai/${user}/status`, { cache: 'no-store' });
   }
 
   useInterval(() => getModelStatus(user), 5000);
