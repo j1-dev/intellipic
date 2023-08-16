@@ -146,7 +146,7 @@ export default function TrainPage() {
 
   async function getOrInsertUserData(id: any) {
     if (runStatus !== 'succeeded') {
-      await fetch(`/api/ai/${id}`)
+      await fetch(`/api/ai/${id}`, { cache: 'no-store' })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -159,7 +159,7 @@ export default function TrainPage() {
 
   async function getModelStatus(id: any) {
     if (runStatus !== 'succeeded') {
-      await fetch(`/api/ai/${id}/status`)
+      await fetch(`/api/ai/${id}/status`, { cache: 'no-store' })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
