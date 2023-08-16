@@ -1,7 +1,8 @@
 'use client';
 import 'tailwindcss/tailwind.css';
 import React from 'react';
-import supabase from '@/app/core/clients/supabase';
+//import supabase from '@/app/core/clients/supabase';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -12,6 +13,7 @@ export default function Navbar() {
   const [user, setUser] = useState<any>(null);
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
   useEffect(() => {
     const handleResize = () => {

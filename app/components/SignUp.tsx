@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import supabase from '@/app/core/clients/supabase';
+//import supabase from '@/app/core/clients/supabase';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { AuthError } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -12,6 +13,7 @@ function SignUp({ t }: { t: boolean }) {
   const [error, setError] = useState<AuthError | null>(null);
   const [toggle, setToggle] = useState<boolean>(t);
   const router = useRouter();
+  const supabase = createClientComponentClient();
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target?.value);
@@ -38,6 +40,7 @@ function SignUp({ t }: { t: boolean }) {
         toast.error(error.message);
       } else {
         toast.success('Logged in successfully!');
+        router.push(`/dashboard/${data.user.id}`);
       }
     } else {
       // code for signing up
