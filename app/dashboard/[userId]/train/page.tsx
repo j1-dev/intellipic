@@ -180,10 +180,11 @@ export default function TrainPage() {
     const dataFolder = zip.folder('data');
 
     if (dataFolder) {
-      if (dataFolder) {
-        for (let file = 0; file < files.length; file++) {
-          dataFolder.file(files[file].name, files[file]);
-        }
+      for (let fileIndex = 0; fileIndex < files.length; fileIndex++) {
+        const file = files[fileIndex];
+        const fileExtension = file.name.split('.').pop() || '';
+        const newFileName = `${fileIndex}.src.${fileExtension}`;
+        dataFolder.file(newFileName, file);
       }
     }
 
