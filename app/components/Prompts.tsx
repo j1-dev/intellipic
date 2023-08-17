@@ -5,27 +5,27 @@ export default function Prompts() {
   const promptInfo = [
     {
       img: 'https://photoshot.app/prompts/sacha/viking.png',
-      text1: 'Instrucciones para crear un Avatar Vikingo',
+      text1: 'Vikingo',
     },
     {
       img: 'https://photoshot.app/prompts/sacha/superhero.png',
-      text1: 'Instrucciones para crear un Superhéroe',
+      text1: 'Superhéroe',
     },
     {
       img: 'https://photoshot.app/prompts/sacha/astronaut.png',
-      text1: 'Instrucciones para crear un Astronauta',
+      text1: 'Astronauta',
     },
     {
       img: 'https://photoshot.app/prompts/romy/wizard.png',
-      text1: 'Instrucciones para crear un Mago',
+      text1: 'Mago',
     },
     {
       img: 'https://photoshot.app/prompts/romy/hobbit.png',
-      text1: 'Instrucciones para crear un Hobbit',
+      text1: 'Hobbit',
     },
     {
       img: 'https://photoshot.app/prompts/sacha/clown.png',
-      text1: 'Instrucciones para crear un Payaso',
+      text1: 'Payaso',
     }
   ];
   const chunkSize = 3; // Number of images in each horizontal row
@@ -36,13 +36,12 @@ export default function Prompts() {
     chunkedPrompts.push(promptInfo.slice(i, i + chunkSize));
   }
 
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       {chunkedPrompts.map((chunk, rowIndex) => (
-        <div key={rowIndex} style={{ display: 'flex' }}>
+        <div key={rowIndex} style={{ display: 'flex',marginBottom: rowIndex === 0 ? '20px' : '0', }}>
           {chunk.map((prompt, index) => (
-            <PromptCard img={prompt.img} key={index} />
+            <PromptCard img={prompt.img} text={prompt.text1} key={index} />
           ))}
         </div>
       ))}
