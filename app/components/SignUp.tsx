@@ -53,8 +53,18 @@ function SignUp({ t }: { t: boolean }) {
         .catch((error) => {
           toast.error(error.message);
         })
-        .then(() => {
-          toast.success('Registrado con éxito!');
+        .then(async (data) => {
+          const { error } = await supabase.from('user-data').insert({
+            id: data.data.user.id,
+            dataset: null,
+            run_id: null,
+            model_tokens: null,
+            image_tokens: null,
+            last_payment_id: null,
+            last_payment_status: null
+          });
+          await fetch(`/api/ai/${data.data.user.id}/nu`);
+          console.log(data.data.user.id);
           router.push('/login');
         });
     }

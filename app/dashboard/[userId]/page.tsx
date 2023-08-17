@@ -79,7 +79,7 @@ export default function DashboardPage() {
         //console.log(d[0].image_tokens);
         //console.log(d[0].model_tokens);
         setUserData(d[0]);
-        localStorage.setItem('userData', JSON.stringify(d[0]));
+        localStorage.setItem('userData', JSON.stringify(d[0] || {}));
       }
     };
 
