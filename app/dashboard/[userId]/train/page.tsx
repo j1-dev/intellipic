@@ -76,7 +76,7 @@ export default function TrainPage() {
     localStorage.getItem('instanceName') || ''
   );
   const [instanceType, setInstanceType] = useState(
-    localStorage.getItem('instanceName') || 'man'
+    localStorage.getItem('instanceType') || 'man'
   );
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
