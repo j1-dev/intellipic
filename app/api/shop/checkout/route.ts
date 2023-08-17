@@ -53,7 +53,8 @@ export async function POST(request: any) {
     id: session.id,
     payment_status: session.payment_status,
     token_amount_generating: tokenAmountGenerating,
-    token_amount_training: tokenAmountTraining
+    token_amount_training: tokenAmountTraining,
+    price: session.amount_total
   });
   console.log(userId);
   await supabase

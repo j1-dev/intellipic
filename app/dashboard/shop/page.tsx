@@ -18,7 +18,7 @@ const products: Product[] = [
   {
     id: 'prod_OAGAukWxQfrOVG',
     name: 'Entrenamiento de un modelo',
-    price: '€3 por modelo',
+    price: '€3.5',
     priceId: 'price_1NOPqWIsZGNqsWfQQdddYGAx',
     features: ['Entrena un modelo', 'Genera 20 imagenes']
   },
