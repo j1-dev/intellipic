@@ -2,6 +2,8 @@ import replicate from '@/app/core/clients/replicate';
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 
+export const revalidate = 0;
+
 export async function GET(
   request: Request,
   { params }: { params: { userId: string } }

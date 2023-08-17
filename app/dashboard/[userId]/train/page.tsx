@@ -122,8 +122,10 @@ export default function TrainPage() {
     updateDatabase();
   }, [userData.model_tokens]);
 
-  useInterval(() => getOrInsertUserData(id), 10000);
-  useInterval(() => getModelStatus(id), 10000);
+  useInterval(() => {
+    getOrInsertUserData(id);
+    getModelStatus(id);
+  }, 10000);
 
   async function clearUserData(id: any) {
     post(`/api/ai/${id}/clear`, {}, (data: any) => {
