@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 //import supabase from '@/app/core/clients/supabase';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { AuthError } from '@supabase/supabase-js';
+import type { UserResponse } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -54,8 +55,9 @@ function SignUp({ t }: { t: boolean }) {
           toast.error(error.message);
         })
         .then(async (data) => {
+          const resData = data as UserResponse;
           const { error } = await supabase.from('user-data').insert({
-            id: data.data.user.id,
+            id: resData?.data?.user?.id,
             dataset: null,
             run_id: null,
             model_tokens: null,
@@ -63,8 +65,8 @@ function SignUp({ t }: { t: boolean }) {
             last_payment_id: null,
             last_payment_status: null
           });
-          await fetch(`/api/ai/${data.data.user.id}/nu`);
-          console.log(data.data.user.id);
+          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+          console.log(resData?.data?.user?.id);
           router.push('/login');
         });
     }
