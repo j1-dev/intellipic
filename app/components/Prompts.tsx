@@ -16,16 +16,16 @@ export default function Prompts() {
       text1: 'Astronauta',
     },
     {
-      img: 'https://photoshot.app/prompts/romy/wizard.png',
-      text1: 'Mago',
+      img: '/Images/dvid1.png',
+      text1: 'Payaso',
     },
     {
       img: 'https://photoshot.app/prompts/romy/hobbit.png',
       text1: 'Hobbit',
     },
     {
-      img: 'https://photoshot.app/prompts/sacha/clown.png',
-      text1: 'Payaso',
+      img: '/Images/dua1.png',
+      text1: 'Paladin',
     }
   ];
   // const chunkSize = 3; // Number of images in each horizontal row

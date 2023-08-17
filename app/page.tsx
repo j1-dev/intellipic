@@ -153,27 +153,27 @@ export default function Home() {
           <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
             <Image
               alt=""
-              src="/Images/Messi1.png"
+              src="/Images/dvid1.png"
               layout="fill"
               objectFit="cover"
               className="group-hover:opacity-75"
             />
           </div>
-          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+          <h3 className="mt-4 text-sm text-gray-700"></h3>
+          <p className="mt-1 text-lg font-medium text-gray-900"></p>
          </a>  
          <a href="#" className="group">
           <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
             <Image
               alt=""
-              src="/Images/Messi2.png"
+              src="/Images/dua1.png"
               layout="fill"
               objectFit="cover"
               className="group-hover:opacity-75"
             />
           </div>
-          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+          <h3 className="mt-4 text-sm text-gray-700">Dua Lipa</h3>
+          <p className="mt-1 text-lg font-medium text-gray-900"></p>
          </a>  
         </div>
         </div>
