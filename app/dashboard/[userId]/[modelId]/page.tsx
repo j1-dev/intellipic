@@ -187,6 +187,10 @@ export default function ModelPage() {
           if (data.status === 'canceled' || data.status === 'failed') {
             setImageUrl('');
             setQueueingPrediction(false);
+            userData.image_tokens++;
+            toast.error(
+              'Ha habido un fallo con la generación, prueba otra vez'
+            );
           }
         }
       );
@@ -371,16 +375,16 @@ export default function ModelPage() {
                 placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
               />
             )}
-          {imageUrl && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              className={classNames(styles.image, styles.modeloutput)}
-              alt="Generated image"
-              width={400}
-              height={400}
-              src={imageUrl}
-            />
-          )}
+            {imageUrl && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                className={classNames(styles.image, styles.modeloutput)}
+                alt="Generated image"
+                width={400}
+                height={400}
+                src={imageUrl}
+              />
+            )}
             <button
               onClick={handleCallModel}
               className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
@@ -389,13 +393,11 @@ export default function ModelPage() {
             >
               {queueingPrediction ? 'Generando...' : 'Generar'}
             </button>
-            
           </div>
           {queueingPrediction && <span>{predictionStatus}</span>}
           {modelStatus !== 'succeeded' && (
             <span>El modelo no esta preparado todavia</span>
           )}
-          
         </div>
       </main>
     </div>
