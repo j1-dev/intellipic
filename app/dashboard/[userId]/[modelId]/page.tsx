@@ -371,19 +371,6 @@ export default function ModelPage() {
                 placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
               />
             )}
-            <button
-              onClick={handleCallModel}
-              className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
-              style={{ marginTop: 0 }}
-              disabled={queueingPrediction || modelStatus !== 'succeeded'}
-            >
-              {queueingPrediction ? 'Generando...' : 'Generar'}
-            </button>
-          </div>
-          {modelStatus !== 'succeeded' && (
-            <span>El modelo no esta preparado todavia</span>
-          )}
-          {queueingPrediction && <span>{predictionStatus}</span>}
           {imageUrl && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -394,6 +381,21 @@ export default function ModelPage() {
               src={imageUrl}
             />
           )}
+            <button
+              onClick={handleCallModel}
+              className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
+              style={{ marginTop: 0 }}
+              disabled={queueingPrediction || modelStatus !== 'succeeded'}
+            >
+              {queueingPrediction ? 'Generando...' : 'Generar'}
+            </button>
+            
+          </div>
+          {queueingPrediction && <span>{predictionStatus}</span>}
+          {modelStatus !== 'succeeded' && (
+            <span>El modelo no esta preparado todavia</span>
+          )}
+          
         </div>
       </main>
     </div>

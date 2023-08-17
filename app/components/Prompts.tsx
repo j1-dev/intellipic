@@ -28,23 +28,19 @@ export default function Prompts() {
       text1: 'Payaso',
     }
   ];
-  const chunkSize = 3; // Number of images in each horizontal row
+  // const chunkSize = 3; // Number of images in each horizontal row
 
-  // Chunk the promptInfo array into smaller arrays of size 'chunkSize'
-  const chunkedPrompts = [];
-  for (let i = 0; i < promptInfo.length; i += chunkSize) {
-    chunkedPrompts.push(promptInfo.slice(i, i + chunkSize));
-  }
+  // // Chunk the promptInfo array into smaller arrays of size 'chunkSize'
+  // const chunkedPrompts = [];
+  // for (let i = 0; i < promptInfo.length; i += chunkSize) {
+  //   chunkedPrompts.push(promptInfo.slice(i, i + chunkSize));
+  // }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      {chunkedPrompts.map((chunk, rowIndex) => (
-        <div key={rowIndex} style={{ display: 'flex',marginBottom: rowIndex === 0 ? '20px' : '0', }}>
-          {chunk.map((prompt, index) => (
-            <PromptCard img={prompt.img} text={prompt.text1} key={index} />
-          ))}
-        </div>
-      ))}
-    </div>
-  );
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+    {promptInfo.map((data, index) => (
+      <PromptCard img={data.img} text={data.text1} key={index} />
+    ))}
+  </div>
+);
 }

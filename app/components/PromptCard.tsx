@@ -8,12 +8,9 @@ interface PromptCardProps {
 
 function PromptCard({ img, text }: PromptCardProps) {
   return (
-    <div
-      className="my-1"
-      style={{ display: 'inline-block', margin: '10px', width: '300px', height: '300px',border: '2px solid black', }}
-    >
+    <div className="my-1 inline-block mx-2 w-72 h-72 border-2 border-black ">
       <Image src={img} alt="" width={300} height={300} objectFit="cover" />
-      <p style={{ marginTop: '10px', textAlign: 'center' }}>{text}</p>
+      <p className="text-center my-1">{text}</p>
     </div>
   );
 }
