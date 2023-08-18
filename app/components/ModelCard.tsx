@@ -10,7 +10,7 @@ export default function ModelCard({
   const status = props.status;
 
   return (
-    <div className="rounded-lg  dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
+    <div className="rounded-lg  dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
       <button className=" w-full h-full py-6">
         <Link
           href={`/dashboard/${user}/${model}`}

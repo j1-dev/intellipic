@@ -104,7 +104,7 @@ export default function ShopPage() {
           {/* Entrenamiento de un modelo (2x2) */}
           <div
             key={products[0].id}
-            className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+            className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
             onClick={() => handleProductClick(products[0])}
           >
             <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
@@ -115,7 +115,7 @@ export default function ShopPage() {
           {products.slice(1).map((product) => (
             <div
               key={product.id}
-              className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-xl border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+              className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
               onClick={() => handleProductClick(product)}
             >
               <h3 className="text-xl font-bold mb-2">{product.name}</h3>
