@@ -12,6 +12,7 @@ import { prompts } from '../../../core/resources/prompts';
 import { replacePromptToken } from '@/app/core/utils/predictions';
 import supabase from '@/app/core/clients/supabase';
 import { toast } from 'react-hot-toast';
+import replicate from '@/app/core/clients/replicate';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -50,6 +51,7 @@ export default function ModelPage() {
   const params = useParams();
   const id = params.userId;
   const model = params.modelId;
+  const [cancellingPrediction, setCancellingPrediction] = useState(false);
   const [instancePrompt, setInstancePrompt] = useState(
     localStorage.getItem(`ip${model}`) || ''
   );
@@ -161,11 +163,12 @@ export default function ModelPage() {
         (data: any) => {
           setPredictionId(data.prediction_id);
           setQueueingPrediction(true);
+          setCancellingPrediction(false);
         }
       );
       userData.image_tokens--;
     } else {
-      toast.error('No te quedan tokens, ve a la tienda a por más');
+      toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
   }
 
@@ -212,6 +215,50 @@ export default function ModelPage() {
     }
   }
 
+  async function cancelPrediction(predictionId: string) {
+    const apiUrl = `https://api.replicate.com/v1/predictions/${predictionId}/cancel`;
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`
+        },
+      });
+      console.log(response)
+
+      if (response.ok) {
+        return true; // Cancellation successful
+      } else {
+        const errorMessage = await response.text();
+        console.error('Error cancelling prediction:', errorMessage);
+        return false; // Cancellation failed
+      }
+    } catch (error) {
+      console.error('Error cancelling prediction:', error);
+      return false; // Cancellation failed
+    }
+  }
+  async function handleCancelPrediction() {
+    if (queueingPrediction) {
+      console.log('Cancelling prediction...');
+      setCancellingPrediction(true);
+      const cancellationSuccessful = await cancelPrediction(predictionId);
+      setCancellingPrediction(false);
+
+      if (cancellationSuccessful) {
+        console.log('Cancellation successful.');
+        setQueueingPrediction(false);
+        // Handle any additional logic or UI updates here
+      } else {
+        console.log('Cancellation failed.');
+      }
+    }
+  }
+
   function checkIfImageExists(url: any, callback: any) {
     const img = new Image();
     img.src = url;
@@ -249,6 +296,13 @@ export default function ModelPage() {
           style={{ marginTop: '1rem' }}
         >
           Eliminar Modelo
+        </button>
+        <button
+          onClick={handleCancelPrediction}
+          className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all ml-2"
+          disabled={!queueingPrediction || cancellingPrediction}
+        >
+          {cancellingPrediction ? 'Cancelando...' : 'Cancelar Generación'}
         </button>
       </div>
       <main className={styles.main}>
