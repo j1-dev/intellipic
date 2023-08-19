@@ -12,7 +12,6 @@ import { prompts } from '../../../core/resources/prompts';
 import { replacePromptToken } from '@/app/core/utils/predictions';
 import supabase from '@/app/core/clients/supabase';
 import { toast } from 'react-hot-toast';
-import replicate from '@/app/core/clients/replicate';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -187,13 +186,19 @@ export default function ModelPage() {
             setImageUrl(data.output);
             setQueueingPrediction(false);
           }
-          if (data.status === 'canceled' || data.status === 'failed') {
+          if (data.status === 'failed') {
             setImageUrl('');
             setQueueingPrediction(false);
             userData.image_tokens++;
             toast.error(
               'Ha habido un fallo con la generación, prueba otra vez'
             );
+          }
+          if (data.status === 'canceled') {
+            setImageUrl('');
+            setQueueingPrediction(false);
+            userData.image_tokens++;
+            toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
         }
       );
@@ -215,43 +220,23 @@ export default function ModelPage() {
     }
   }
 
-  async function cancelPrediction(predictionId: string) {
-    const apiUrl = `https://api.replicate.com/v1/predictions/${predictionId}/cancel`;
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`
-        },
-      });
-      console.log(response)
-
-      if (response.ok) {
-        return true; // Cancellation successful
-      } else {
-        const errorMessage = await response.text();
-        console.error('Error cancelling prediction:', errorMessage);
-        return false; // Cancellation failed
-      }
-    } catch (error) {
-      console.error('Error cancelling prediction:', error);
-      return false; // Cancellation failed
-    }
-  }
   async function handleCancelPrediction() {
     if (queueingPrediction) {
+      let succesful;
       console.log('Cancelling prediction...');
-      setCancellingPrediction(true);
-      const cancellationSuccessful = await cancelPrediction(predictionId);
-      setCancellingPrediction(false);
+      await post(
+        `/api/ai/${id}/cancel-prediction`,
+        {
+          prediction_id: predictionId
+        },
+        (data: any) => {
+          console.log(data);
+          succesful = data;
+        }
+      );
 
-      if (cancellationSuccessful) {
+      if (succesful) {
         console.log('Cancellation successful.');
-        setQueueingPrediction(false);
         // Handle any additional logic or UI updates here
       } else {
         console.log('Cancellation failed.');
