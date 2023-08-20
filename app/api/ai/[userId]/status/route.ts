@@ -22,6 +22,7 @@ export async function GET(
       return NextResponse.error();
     }
 
+    const userDataEntry = userData?.[0];
     const runId = userData?.[0]?.run_id;
 
     if (runId !== null) {
@@ -49,8 +50,9 @@ export async function GET(
       }
 
       const response = NextResponse.json({
-        healthy: modelResponse.status === 'succeeded',
-        model_id: runId
+        dataset: userDataEntry?.dataset,
+        run_id: userDataEntry?.run_id,
+        run_data: { status: modelResponse.status }
       });
 
       response.headers.set('Cache-Control', 'no-cache');
@@ -58,8 +60,9 @@ export async function GET(
       return response;
     } else {
       const response = NextResponse.json({
-        healthy: false,
-        model_id: null
+        dataset: userDataEntry?.dataset,
+        run_id: null,
+        run_data: { status: null }
       });
 
       response.headers.set('Cache-Control', 'no-cache');
