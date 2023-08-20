@@ -320,13 +320,13 @@ export default function TrainPage() {
               <div>
                 Ahora es el momento de darle un nombre único y especial a tu
                 modelo. Este nombre ayudará a identificar al sujeto con el que
-                estás trabajando. Por ejemplo, si tu sujeto es
-                `&#34`María`&#34`, podrías usar un nombre como
-                `&#34`TOKMAR`&#34`. Recuerda que mientras más único y diferente
-                sea el nombre, ¡mejor reconocerá el modelo a tu sujeto! También,
-                por favor, selecciona el tipo de sujeto que estás utilizando:
-                ¿es una persona, un coche, un animal, una planta u otra cosa?
-                Esto asegurará que el modelo genere imágenes coherentes.
+                estás trabajando. Por ejemplo, si tu sujeto es <b>María</b>,
+                podrías usar un nombre como <b>TOKMAR</b>. Recuerda que mientras
+                más único y diferente sea el nombre, ¡mejor reconocerá el modelo
+                a tu sujeto! También, por favor, selecciona el tipo de sujeto
+                que estás utilizando: ¿es una persona, un coche, un animal, una
+                planta u otra cosa? Esto asegurará que el modelo genere imágenes
+                coherentes.
               </div>
               <div className="mt-4 max-w-screen-xs m-auto grid columns-2">
                 <label className="font-bold text-xl my-1" htmlFor="name">
@@ -372,7 +372,7 @@ export default function TrainPage() {
           )}
 
           {fineTuningInProgress && (
-            <div className="">
+            <div>
               <div className="text-lg font-bold">
                 3er paso: Espera a que tu modelo se entrene
               </div>
@@ -418,7 +418,7 @@ export default function TrainPage() {
           )}
 
           {fineTuningSucceeded && (
-            <div className="text-center">
+            <div>
               <div className="text-lg font-bold">
                 Paso 4: Genera Imágenes Mágicas a partir de Prompts
               </div>
@@ -432,7 +432,6 @@ export default function TrainPage() {
                 color="green"
                 className="w-50 m-auto"
               />
-              <span>El modelo ha sido completado</span>
             </div>
           )}
 
@@ -457,7 +456,28 @@ export default function TrainPage() {
             </main>
           )}
 
-          {fineTuningData?.run_id && (
+          {fineTuningSucceeded && (
+            <main className={styles.main}>
+              <div className={styles.clear}>
+                <button
+                  onClick={() => clearUserData()}
+                  className={classNames(styles.button, styles.reset)}
+                  style={{
+                    width: 'max-content',
+                    backgroundColor: '#e0e0e0',
+                    padding: '6px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  Empezar de nuevo
+                </button>
+              </div>
+            </main>
+          )}
+
+          {fineTuningData?.run_id && !fineTuningSucceeded && (
             <main className={styles.main}>
               <div className={styles.clear}>
                 <button
