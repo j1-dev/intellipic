@@ -48,50 +48,54 @@ export default function DashboardPage() {
   );
 
   useEffect(() => {
-    const fetchModels = async () => {
-      const { data, error } = await supabase
-        .from('trainings')
-        .select('*')
-        .eq('user_id', user)
-        .order('created_at', { ascending: false });
-
-      if (error) {
-        console.error(error);
-      } else {
-        setModels(data);
-        let str = '';
-        data.map((d: any) => {
-          str += JSON.stringify(d) + '(sep)';
-        });
-        localStorage.setItem('models', str);
-      }
-    };
-
-    const fetchUserInfo = async () => {
-      const { data: d, error: e } = await supabase
-        .from('user-data')
-        .select('*')
-        .eq('id', user);
-
-      if (e) {
-        console.error(e);
-      } else {
-        //console.log(d[0].image_tokens);
-        //console.log(d[0].model_tokens);
-        setUserData(d[0]);
-        localStorage.setItem('userData', JSON.stringify(d[0] || {}));
-      }
-    };
-
     fetchUserInfo();
     fetchModels();
   }, [user]);
+
+  const fetchModels = async () => {
+    const { data, error } = await supabase
+      .from('trainings')
+      .select('*')
+      .eq('user_id', user)
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      console.error(error);
+    } else {
+      setModels(data);
+      let str = '';
+      data.map((d: any) => {
+        str += JSON.stringify(d) + '(sep)';
+      });
+      localStorage.setItem('models', str);
+    }
+  };
+
+  const fetchUserInfo = async () => {
+    const { data: d, error: e } = await supabase
+      .from('user-data')
+      .select('*')
+      .eq('id', user);
+
+    if (e) {
+      console.error(e);
+    } else {
+      //console.log(d[0].image_tokens);
+      //console.log(d[0].model_tokens);
+      setUserData(d[0]);
+      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+    }
+  };
 
   async function getModelStatus(user: any) {
     await fetch(`/api/ai/${user}/status`, { cache: 'no-store' });
   }
 
-  useInterval(() => getModelStatus(user), 5000);
+  useInterval(() => {
+    getModelStatus(user);
+    fetchUserInfo();
+    fetchModels();
+  }, 2000);
 
   return (
     <div className="py-8">

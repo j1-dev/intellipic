@@ -11,6 +11,8 @@ import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { FadeLoader } from 'react-spinners';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { toast } from 'react-hot-toast';
+import { AiOutlineUpload } from 'react-icons/ai';
+import { BsExclamationLg } from 'react-icons/bs';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -60,12 +62,7 @@ export default function TrainPage() {
       }
     }
   );
-  const [modelStatus, setModelStatus] = useState(
-    JSON.parse(localStorage.getItem('modelStatus') as string) || {
-      healthy: null,
-      modelId: null
-    }
-  );
+
   const [uploading, setUploading] = useState(
     localStorage.getItem('uploading') === 'true'
   );
@@ -85,8 +82,7 @@ export default function TrainPage() {
   useEffect(() => {
     const fetchData = async () => {
       if (id) {
-        getOrInsertUserData(id);
-        getModelStatus(id);
+        getModelStatus();
       }
     };
 
@@ -96,7 +92,6 @@ export default function TrainPage() {
   useEffect(() => {
     localStorage.setItem('ready', ready.toString());
     localStorage.setItem('fineTuningData', JSON.stringify(fineTuningData));
-    localStorage.setItem('modelStatus', JSON.stringify(modelStatus));
     localStorage.setItem('uploading', uploading.toString());
     localStorage.setItem('queueingFinetuning', queueingFinetuning.toString());
     localStorage.setItem('instanceName', instanceName);
@@ -104,7 +99,6 @@ export default function TrainPage() {
   }, [
     ready,
     fineTuningData,
-    modelStatus,
     uploading,
     queueingFinetuning,
     instanceName,
@@ -123,11 +117,10 @@ export default function TrainPage() {
   }, [userData.model_tokens]);
 
   useInterval(() => {
-    getOrInsertUserData(id);
-    getModelStatus(id);
-  }, 10000);
+    getModelStatus();
+  }, 2000);
 
-  async function clearUserData(id: any) {
+  async function clearUserData() {
     post(`/api/ai/${id}/clear`, {}, (data: any) => {
       setFinetuningData({
         dataset: null,
@@ -146,19 +139,6 @@ export default function TrainPage() {
     });
   }
 
-  async function getOrInsertUserData(id: any) {
-    if (runStatus !== 'succeeded') {
-      await fetch(`/api/ai/${id}`, { cache: 'no-store' })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          setFinetuningData(data);
-        });
-
-      setReady(true);
-    }
-  }
-
   async function handleCancelTraining(runId: string) {
     console.log(runId);
     if (runStatus === 'starting' || runStatus === 'processing') {
@@ -174,30 +154,25 @@ export default function TrainPage() {
           succesful = data;
         }
       );
-
       if (succesful) {
         console.log('Cancellation successful.');
-        getModelStatus(id);
-        userData.model_tokens++;
-        clearUserData(id);
-        // Handle any additional logic or UI updates here
       } else {
         console.log('Cancellation failed.');
       }
     }
   }
 
-  async function getModelStatus(id: any) {
+  async function getModelStatus() {
     if (runStatus !== 'succeeded') {
       await fetch(`/api/ai/${id}/status`, { cache: 'no-store' })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          setModelStatus({
-            modelId: data.model_id,
-            healthy: data.healthy
-          });
+          setFinetuningData(data);
         });
+      if (runStatus === 'failed' || runStatus === 'canceled') {
+        userData.model_tokens++;
+      }
       console.log(runStatus);
       setReady(true);
     }
@@ -238,7 +213,7 @@ export default function TrainPage() {
 
         console.log(id);
         console.log(data);
-        getOrInsertUserData(id);
+        getModelStatus();
       }
       setUploading(false);
     });
@@ -259,7 +234,7 @@ export default function TrainPage() {
         },
         (data: any) => console.log(data)
       );
-      getOrInsertUserData(id);
+      getModelStatus();
       setQueueingFinetuning(false);
       userData.model_tokens--;
     } else {
@@ -276,6 +251,7 @@ export default function TrainPage() {
     runStatus === 'processing' ||
     runStatus === 'queued';
   const fineTuningFailed = runStatus === 'failed';
+  const fineTuningCanceled = runStatus === 'canceled';
   const fineTuningSucceeded = runStatus === 'succeeded';
 
   return (
@@ -289,112 +265,132 @@ export default function TrainPage() {
       </h3>
       {ready ? (
         <div>
-          <main className={styles.main}>
-            <div
-              className={classNames(styles.step, {
-                [styles.complete]: hasUploadedData
-              })}
-            >
+          {!hasUploadedData && (
+            <div>
+              <div className="text-lg font-bold">1er paso: Subir imágenes</div>
               <div>
-                <div className={styles.stepheading}>Subir Imágenes</div>
-                <div>
-                  Selecciona algunas imágenes para entrenar a la IA con un
-                  modelo
-                </div>
-
-                {!hasUploadedData && (
-                  <>
-                    <input
-                      type="file"
-                      id="files"
-                      className={styles.hidden}
-                      multiple
-                      onChange={handleFileUpload}
-                      ref={itemButton}
-                    />
-                    <label htmlFor="files">
-                      <button
-                        className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400 mt-6"
-                        onClick={() =>
-                          !uploading && itemButton.current?.click()
-                        }
-                        disabled={uploading}
-                      >
-                        Subir Imágenes
-                      </button>
-                    </label>
-                  </>
-                )}
+                Primero, asegúrate de tener entre 8 y 12 imágenes de alta
+                calidad para entrenar a tu modelo. Asegúrate de que en cada
+                imagen solo aparezca una persona, animal o cosa. También es
+                crucial que el sujeto esté claramente separado del fondo para
+                obtener los mejores resultados. ¡Selecciona tus imágenes
+                favoritas!
               </div>
-            </div>
 
-            <div
-              className={classNames(styles.step, {
-                [styles.ineligible]: !hasUploadedData,
-                [styles.complete]: hasFinetunedModel,
-                [styles.blinker]: fineTuningInProgress,
-                [styles.failed]: fineTuningFailed
-              })}
-              style={{ marginBottom: 0 }}
-            >
-              <div>
-                <div className={styles.stepheading}>Ajustar el modelo</div>
-                <div>
-                  Para comenzar a entrenar la IA.
-                  <br />
-                  Dale un nombre único a tu modelo (Por ejemplo Davidrmk2)
-                </div>
-                <div
-                  className={classNames(styles.finetuningsection, {
-                    [styles.hidden]: hasFinetunedModel || !hasUploadedData
-                  })}
-                >
-                  <input
-                    className={styles.instance}
-                    value={instanceName}
-                    onChange={(ev) => setInstanceName(ev.target.value)}
-                    placeholder={'Nombre Único'}
-                  />
-                  {/* New select for the instance type */}
-                  <select
-                    name="instance_type"
-                    id="ip"
-                    className={styles.instance}
-                    onChange={(ev) => setInstanceType(ev.target.value)}
-                  >
-                    <option value="man">Hombre</option>
-                    <option value="woman">Mujer</option>
-                    <option value="dog">Perro</option>
-                    <option value="cat">Gato</option>
-                    <option value="thing">Cosa</option>
-                  </select>
+              <div className="relative">
+                <input
+                  type="file"
+                  id="files"
+                  className="border border-black w-full h-48 opacity-0 z-50 absolute top-0"
+                  multiple
+                  onChange={handleFileUpload}
+                  ref={itemButton}
+                />
+                <label htmlFor="files">
                   <button
-                    disabled={
-                      instanceName.length === 0 ||
-                      hasFinetunedModel ||
-                      queueingFinetuning
-                    }
-                    onClick={handleValidationAndFinetuningStart}
-                    className={classNames(styles.button, styles.primary)}
-                    style={{
-                      marginLeft: '8px',
-                      pointerEvents:
-                        instanceName.length === 0 ||
-                        hasFinetunedModel ||
-                        queueingFinetuning
-                          ? 'none'
-                          : 'inherit'
-                    }}
+                    className="bg-white dark:bg-black text-black dark:text-white border-black dark:border-white w-full h-48 border rounded-lg my-4 transition-all top-0 absolute"
+                    onClick={() => !uploading && itemButton.current?.click()}
+                    disabled={uploading}
                   >
-                    🪄 Continuar
+                    <div>
+                      <div>
+                        {!hasUploadedData ? (
+                          <AiOutlineUpload
+                            size={100}
+                            className="w-1/2 m-auto"
+                          />
+                        ) : (
+                          <AiOutlineCheckCircle
+                            size={100}
+                            className="w-1/2 m-auto"
+                          />
+                        )}
+                      </div>
+                      <span>{!hasUploadedData ? 'Subir Imágenes' : ''}</span>
+                    </div>
                   </button>
-                </div>
+                </label>
               </div>
             </div>
-          </main>
+          )}
+
+          {hasUploadedData && !hasFinetunedModel && (
+            <div>
+              <div className="text-lg font-bold">2o paso: Nombra tu modelo</div>
+              <div>
+                Ahora es el momento de darle un nombre único y especial a tu
+                modelo. Este nombre ayudará a identificar al sujeto con el que
+                estás trabajando. Por ejemplo, si tu sujeto es "María", podrías
+                usar un nombre como "TOKMAR". Recuerda que mientras más único y
+                diferente sea el nombre, ¡mejor reconocerá el modelo a tu
+                sujeto! También, por favor, selecciona el tipo de sujeto que
+                estás utilizando: ¿es una persona, un coche, un animal, una
+                planta u otra cosa? Esto asegurará que el modelo genere imágenes
+                coherentes.
+              </div>
+              <div className="mt-4 max-w-screen-xs m-auto grid columns-2">
+                <label className="font-bold text-xl my-1" htmlFor="name">
+                  Nombre:{' '}
+                </label>
+                <input
+                  className="my-1"
+                  id="name"
+                  value={instanceName}
+                  onChange={(ev) => setInstanceName(ev.target.value)}
+                  placeholder={'Nombre Único'}
+                />
+
+                <label className="font-bold text-xl my-1" htmlFor="ip">
+                  Tipo
+                </label>
+                <select
+                  name="instance_type"
+                  id="ip"
+                  className="my-1"
+                  onChange={(ev) => setInstanceType(ev.target.value)}
+                >
+                  <option value="man">Hombre</option>
+                  <option value="woman">Mujer</option>
+                  <option value="dog">Perro</option>
+                  <option value="cat">Gato</option>
+                  <option value="thing">Cosa</option>
+                </select>
+
+                <button
+                  disabled={
+                    instanceName.length === 0 ||
+                    hasFinetunedModel ||
+                    queueingFinetuning
+                  }
+                  onClick={handleValidationAndFinetuningStart}
+                  className="mt-3 bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all float-"
+                >
+                  Continuar
+                </button>
+              </div>
+            </div>
+          )}
 
           {fineTuningInProgress && (
-            <div className="text-center">
+            <div className="">
+              <div className="text-lg font-bold">
+                3er paso: Espera a que tu modelo se entrene
+              </div>
+              <div>
+                Este proceso puede tomar alrededor de 15 a 20 minutos, así que
+                tómate un respiro y aprovecha para hacer algo que disfrutes.
+                Durante este tiempo, nuestro poderoso sistema está aprendiendo
+                de tus imágenes y preparándose para generar imágenes
+                personalizadas basadas en tus instrucciones.
+              </div>
+              <div className="mt-3">
+                ¡Una vez que el entrenamiento esté completo, estarás listo para
+                sumergirte en el emocionante mundo de la creación de imágenes
+                personalizadas! Estamos emocionados de ser parte de tu viaje
+                creativo y no podemos esperar para ver las asombrosas imágenes
+                que crearás. ¡Disfruta de la anticipación y prepárate para dar
+                vida a tus ideas!
+              </div>
               <FadeLoader
                 className="w-1/5 m-auto my-4"
                 color="#d3d3d3"
@@ -404,14 +400,33 @@ export default function TrainPage() {
                 speedMultiplier={0.6}
                 width={13}
               />
-              <span className="pt-10">
-                El modelo se está entrenando, tardará unos 20 minutos
-              </span>
+            </div>
+          )}
+
+          {fineTuningFailed && (
+            <div className="text-center">
+              <BsExclamationLg size={140} color="red" className="w-50 m-auto" />
+              <span>El modelo ha fallado, inténtelo de nuevo</span>
+            </div>
+          )}
+
+          {fineTuningCanceled && (
+            <div className="text-center">
+              <BsExclamationLg size={140} color="red" className="w-50 m-auto" />
+              <span>Ha cancelado el entrenamiento, inténtelo de nuevo</span>
             </div>
           )}
 
           {fineTuningSucceeded && (
             <div className="text-center">
+              <div className="text-lg font-bold">
+                Paso 4: Genera Imágenes Mágicas a partir de Prompts
+              </div>
+              <div>
+                ¡Felicidades! Tu modelo está entrenado y listo para desatar su
+                creatividad. Ahora es el momento de generar imágenes
+                personalizadas que te dejarán boquiabierto.
+              </div>
               <AiOutlineCheckCircle
                 size={140}
                 color="green"
@@ -421,11 +436,11 @@ export default function TrainPage() {
             </div>
           )}
 
-          {fineTuningData?.dataset && (
+          {fineTuningData?.dataset && !fineTuningData?.run_id && (
             <main className={styles.main}>
               <div className={styles.clear}>
                 <button
-                  onClick={() => clearUserData(id)}
+                  onClick={() => clearUserData()}
                   className={classNames(styles.button, styles.reset)}
                   style={{
                     width: 'max-content',
