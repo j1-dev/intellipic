@@ -239,6 +239,8 @@ export default function ModelPage() {
 
       if (succesful) {
         console.log('Cancellation successful.');
+        userData.image_tokens++;
+        setQueueingPrediction(false);
         // Handle any additional logic or UI updates here
       } else {
         console.log('Cancellation failed.');
