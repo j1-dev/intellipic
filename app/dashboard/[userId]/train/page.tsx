@@ -320,13 +320,13 @@ export default function TrainPage() {
               <div>
                 Ahora es el momento de darle un nombre único y especial a tu
                 modelo. Este nombre ayudará a identificar al sujeto con el que
-                estás trabajando. Por ejemplo, si tu sujeto es "María", podrías
-                usar un nombre como "TOKMAR". Recuerda que mientras más único y
-                diferente sea el nombre, ¡mejor reconocerá el modelo a tu
-                sujeto! También, por favor, selecciona el tipo de sujeto que
-                estás utilizando: ¿es una persona, un coche, un animal, una
-                planta u otra cosa? Esto asegurará que el modelo genere imágenes
-                coherentes.
+                estás trabajando. Por ejemplo, si tu sujeto es
+                `&#34`María`&#34`, podrías usar un nombre como
+                `&#34`TOKMAR`&#34`. Recuerda que mientras más único y diferente
+                sea el nombre, ¡mejor reconocerá el modelo a tu sujeto! También,
+                por favor, selecciona el tipo de sujeto que estás utilizando:
+                ¿es una persona, un coche, un animal, una planta u otra cosa?
+                Esto asegurará que el modelo genere imágenes coherentes.
               </div>
               <div className="mt-4 max-w-screen-xs m-auto grid columns-2">
                 <label className="font-bold text-xl my-1" htmlFor="name">
