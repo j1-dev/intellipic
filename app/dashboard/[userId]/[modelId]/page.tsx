@@ -198,8 +198,6 @@ export default function ModelPage() {
           if (data.status === 'canceled') {
             setImageUrl('');
             setQueueingPrediction(false);
-            userData.image_tokens++;
-            toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
         }
       );
@@ -240,6 +238,7 @@ export default function ModelPage() {
       if (succesful) {
         console.log('Cancellation successful.');
         userData.image_tokens++;
+        toast.success('Ha cancelado la generación, pruebe de nuevo');
         setQueueingPrediction(false);
         // Handle any additional logic or UI updates here
       } else {
