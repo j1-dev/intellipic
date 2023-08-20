@@ -5,13 +5,13 @@ import classNames from 'classnames';
 import { Menu, Transition } from '@headlessui/react';
 import { BsChevronDown } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
-
 import styles from '../../../Home.module.css';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { prompts } from '../../../core/resources/prompts';
 import { replacePromptToken } from '@/app/core/utils/predictions';
 import supabase from '@/app/core/clients/supabase';
 import { toast } from 'react-hot-toast';
+import { ClipLoader } from 'react-spinners';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -50,6 +50,7 @@ export default function ModelPage() {
   const params = useParams();
   const id = params.userId;
   const model = params.modelId;
+  const [cancellingPrediction, setCancellingPrediction] = useState(false);
   const [instancePrompt, setInstancePrompt] = useState(
     localStorage.getItem(`ip${model}`) || ''
   );
@@ -161,11 +162,12 @@ export default function ModelPage() {
         (data: any) => {
           setPredictionId(data.prediction_id);
           setQueueingPrediction(true);
+          setCancellingPrediction(false);
         }
       );
       userData.image_tokens--;
     } else {
-      toast.error('No te quedan tokens, ve a la tienda a por más');
+      toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
   }
 
@@ -184,13 +186,19 @@ export default function ModelPage() {
             setImageUrl(data.output);
             setQueueingPrediction(false);
           }
-          if (data.status === 'canceled' || data.status === 'failed') {
+          if (data.status === 'failed') {
             setImageUrl('');
             setQueueingPrediction(false);
             userData.image_tokens++;
             toast.error(
               'Ha habido un fallo con la generación, prueba otra vez'
             );
+          }
+          if (data.status === 'canceled') {
+            setImageUrl('');
+            setQueueingPrediction(false);
+            userData.image_tokens++;
+            toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
         }
       );
@@ -208,6 +216,31 @@ export default function ModelPage() {
         router.push(`/dashboard/${id}`);
       } catch (error) {
         console.error('Error deleting model:', error);
+      }
+    }
+  }
+
+  async function handleCancelPrediction() {
+    if (queueingPrediction) {
+      let succesful;
+      console.log('Cancelling prediction...');
+      await post(
+        `/api/ai/${id}/cancel-prediction`,
+        {
+          prediction_id: predictionId
+        },
+        (data: any) => {
+          handleGetPrediction();
+          console.log(data);
+          succesful = data;
+        }
+      );
+
+      if (succesful) {
+        console.log('Cancellation successful.');
+        // Handle any additional logic or UI updates here
+      } else {
+        console.log('Cancellation failed.');
       }
     }
   }
@@ -385,16 +418,31 @@ export default function ModelPage() {
                 src={imageUrl}
               />
             )}
-            <button
-              onClick={handleCallModel}
-              className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
-              style={{ marginTop: 0 }}
-              disabled={queueingPrediction || modelStatus !== 'succeeded'}
-            >
-              {queueingPrediction ? 'Generando...' : 'Generar'}
-            </button>
+            <div>
+              <button
+                onClick={handleCallModel}
+                className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
+                style={{ marginTop: 0 }}
+                disabled={queueingPrediction || modelStatus !== 'succeeded'}
+              >
+                {queueingPrediction ? 'Generando...' : 'Generar'}
+              </button>
+              {queueingPrediction && (
+                <button
+                  onClick={handleCancelPrediction}
+                  className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all ml-2"
+                  disabled={!queueingPrediction || cancellingPrediction}
+                >
+                  {cancellingPrediction
+                    ? 'Cancelando...'
+                    : 'Cancelar Generación'}
+                </button>
+              )}
+            </div>
           </div>
-          {queueingPrediction && <span>{predictionStatus}</span>}
+          {queueingPrediction && (
+            <ClipLoader className="m-3" speedMultiplier={0.6} />
+          )}
           {modelStatus !== 'succeeded' && (
             <span>El modelo no esta preparado todavia</span>
           )}

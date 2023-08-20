@@ -1,4 +1,3 @@
-import supabase from '@/app/core/clients/supabase';
 import axios from 'axios';
 import { NextResponse } from 'next/server';
 
@@ -9,7 +8,7 @@ export async function GET(
   const replicateClient = axios.create({
     baseURL: 'https://dreambooth-api-experimental.replicate.com',
     headers: {
-      Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+      Authorization: `Token ${process.env.NEXT_PUBLIC_REPLICATE_API_TOKEN}`,
       'Content-Type': 'application/json',
       'Accept-Encoding': '*'
     }
@@ -40,7 +39,7 @@ export async function GET(
     },
     {
       headers: {
-        Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
+        Authorization: `Token ${process.env.NEXT_PUBLIC_REPLICATE_API_TOKEN}`,
         'Content-Type': 'application/json'
       }
     }

@@ -8,7 +8,7 @@ import styles from '../../../Home.module.css';
 
 import JSZip from 'jszip';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
-import { FadeLoader, PulseLoader } from 'react-spinners';
+import { FadeLoader } from 'react-spinners';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { toast } from 'react-hot-toast';
 
@@ -159,6 +159,34 @@ export default function TrainPage() {
     }
   }
 
+  async function handleCancelTraining(runId: string) {
+    console.log(runId);
+    if (runStatus === 'starting' || runStatus === 'processing') {
+      let succesful;
+      console.log('Cancelling training...');
+      await post(
+        `/api/ai/${id}/cancel-training`,
+        {
+          run_id: runId
+        },
+        (data: any) => {
+          console.log(data);
+          succesful = data;
+        }
+      );
+
+      if (succesful) {
+        console.log('Cancellation successful.');
+        getModelStatus(id);
+        userData.model_tokens++;
+        clearUserData(id);
+        // Handle any additional logic or UI updates here
+      } else {
+        console.log('Cancellation failed.');
+      }
+    }
+  }
+
   async function getModelStatus(id: any) {
     if (runStatus !== 'succeeded') {
       await fetch(`/api/ai/${id}/status`, { cache: 'no-store' })
@@ -253,6 +281,12 @@ export default function TrainPage() {
   return (
     <div className="py-8 max-w-screen-lg mx-auto px-8">
       <h2 className="text-4xl font-bold mb-4">Entrenar 🦾</h2>
+      <h3 className="text-xl mb-4">
+        Tokens para entrenar:{' '}
+        {!!userData && userData.model_tokens !== undefined
+          ? userData.model_tokens
+          : '...'}
+      </h3>
       {ready ? (
         <div>
           <main className={styles.main}>
@@ -403,6 +437,27 @@ export default function TrainPage() {
                   }}
                 >
                   Empezar de nuevo
+                </button>
+              </div>
+            </main>
+          )}
+
+          {fineTuningData?.run_id && (
+            <main className={styles.main}>
+              <div className={styles.clear}>
+                <button
+                  onClick={() => handleCancelTraining(fineTuningData?.run_id)}
+                  className={classNames(styles.button, styles.reset)}
+                  style={{
+                    width: 'max-content',
+                    backgroundColor: 'red',
+                    padding: '6px 12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  cancelar prediccion
                 </button>
               </div>
             </main>
