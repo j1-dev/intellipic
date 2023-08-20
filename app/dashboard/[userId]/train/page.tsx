@@ -282,14 +282,14 @@ export default function TrainPage() {
                 <input
                   type="file"
                   id="files"
-                  className="border border-black w-full h-48 opacity-0 z-50 absolute top-0"
+                  className="border border-black w-full h-48 opacity-0 absolute top-0"
                   multiple
                   onChange={handleFileUpload}
                   ref={itemButton}
                 />
                 <label htmlFor="files">
                   <button
-                    className="bg-white dark:bg-black text-black dark:text-white border-black dark:border-white w-full h-48 border rounded-lg my-4 transition-all top-0 absolute"
+                    className="hover:scale-[1.02] bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black w-full h-48 border rounded-lg my-4 transition-all top-0 absolute"
                     onClick={() => !uploading && itemButton.current?.click()}
                     disabled={uploading}
                   >

@@ -41,7 +41,7 @@ export default function RegisterPage() {
           </nav>
         </header>
         <div className="flex-col max-w-screen-xs mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
-          <h1 className="text-9xl font-bold font-sans  w-fit m-auto ">
+          <h1 className="text-8xl font-bold font-sans  w-fit m-auto h-32">
             Register
           </h1>
           <SignUp t={false} />

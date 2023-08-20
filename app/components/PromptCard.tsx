@@ -8,8 +8,15 @@ interface PromptCardProps {
 
 function PromptCard({ img, text }: PromptCardProps) {
   return (
-    <div className="my-1 inline-block mx-2 w-72 h-72 border-2 border-black ">
-      <Image src={img} alt="" width={300} height={300} objectFit="cover" />
+    <div className="my-2 inline-block mx-2 w-60 h-60 border border-black rounded-lg hover:scale-[1.02] transition-all max-w-screen-lg mx-auto">
+      <Image
+        src={img}
+        alt=""
+        width={250}
+        height={250}
+        objectFit="cover"
+        className="rounded-lg"
+      />
       <p className="text-center my-1">{text}</p>
     </div>
   );
