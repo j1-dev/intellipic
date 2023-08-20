@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 
 interface buttonProps {
   onClick: () => void;
+  disabled: boolean;
+  className: string;
   cooldownTime: number;
   children: React.ReactNode;
   // Add any other props you want to support
@@ -10,6 +12,8 @@ interface buttonProps {
 
 const Button: React.FC<buttonProps> = ({
   onClick,
+  disabled,
+  className,
   cooldownTime,
   children,
   ...otherProps
@@ -27,8 +31,13 @@ const Button: React.FC<buttonProps> = ({
   };
 
   return (
-    <button onClick={handleClick} disabled={isCooldown} {...otherProps}>
-      {isCooldown ? 'Cooldown...' : children}
+    <button
+      onClick={handleClick}
+      className={className}
+      disabled={isCooldown && disabled}
+      {...otherProps}
+    >
+      {children}
     </button>
   );
 };

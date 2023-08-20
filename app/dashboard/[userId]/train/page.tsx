@@ -13,6 +13,7 @@ import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { toast } from 'react-hot-toast';
 import { AiOutlineUpload } from 'react-icons/ai';
 import { BsExclamationLg } from 'react-icons/bs';
+import Button from '@/app/components/Button';
 
 async function post(url: string, body: any, callback: any) {
   await fetch(url, {
@@ -356,17 +357,18 @@ export default function TrainPage() {
                   <option value="thing">Cosa</option>
                 </select>
 
-                <button
+                <Button
                   disabled={
                     instanceName.length === 0 ||
                     hasFinetunedModel ||
                     queueingFinetuning
                   }
+                  cooldownTime={5000}
                   onClick={handleValidationAndFinetuningStart}
                   className="mt-3 bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all float-"
                 >
                   Continuar
-                </button>
+                </Button>
               </div>
             </div>
           )}
