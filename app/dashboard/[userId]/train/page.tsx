@@ -8,7 +8,7 @@ import styles from '../../../Home.module.css';
 
 import JSZip from 'jszip';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
-import { FadeLoader, PulseLoader } from 'react-spinners';
+import { FadeLoader } from 'react-spinners';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import { toast } from 'react-hot-toast';
 
