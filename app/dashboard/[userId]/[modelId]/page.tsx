@@ -174,6 +174,7 @@ export default function ModelPage() {
 
   async function handleGetPrediction() {
     if (queueingPrediction) {
+      console.log(queueingPrediction);
       post(
         `/api/ai/${id}/get-prediction`,
         {
@@ -423,9 +424,9 @@ export default function ModelPage() {
             <div className="mt-3">
               <Button
                 onClick={handleCallModel}
-                cooldownTime={5000}
+                cooldownTime={2000}
                 className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
-                disabled={queueingPrediction || modelStatus !== 'succeeded'}
+                disabled={queueingPrediction}
               >
                 {queueingPrediction ? 'Generando...' : 'Generar'}
               </Button>
