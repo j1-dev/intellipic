@@ -34,7 +34,7 @@ const Button: React.FC<buttonProps> = ({
     <button
       onClick={handleClick}
       className={className}
-      disabled={isCooldown && disabled}
+      disabled={isCooldown || disabled}
       {...otherProps}
     >
       {children}
