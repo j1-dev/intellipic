@@ -6,7 +6,7 @@ import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';
 import { TrainButton } from '@/app/components/TrainButton';
 
-interface userDataType {
+export interface userDataType {
   id: string;
   created_at: Date;
   dataset: object;
