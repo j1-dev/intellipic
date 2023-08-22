@@ -140,7 +140,13 @@ export default function DashboardPage() {
               Todavía no has entrenado ningún modelo
             </h1>
             <h2 className="text-xl font-bold mt-3">
-              Compra tokens en la tienda para entrenar tu primer modelo
+              {userData.modelTokens === 0 ? (
+                'Compra tokens en la tienda para entrenar tu primer modelo'
+              ) : (
+                <div className="max-w-screen-xs m-auto">
+                  <TrainButton userData={userData} />
+                </div>
+              )}
             </h2>
           </div>
         )}
