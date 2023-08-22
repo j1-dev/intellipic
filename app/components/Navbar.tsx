@@ -1,11 +1,9 @@
 'use client';
 import 'tailwindcss/tailwind.css';
-import React from 'react';
-//import supabase from '@/app/core/clients/supabase';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { HiLogout } from 'react-icons/hi';
 import Logo from '../core/resources/logo';
 
@@ -46,7 +44,6 @@ export default function Navbar() {
     <div className="fixed w-full font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all z-50">
       {typeof window !== 'undefined' && windowWidth && windowWidth > 479 && (
         <header className="absolute left-4">
-          {/* <h1 className="text-3xl font-bold">Intellipic</h1> */}
           <Link href={`/dashboard/${user?.id}`}>
             <Logo />
           </Link>

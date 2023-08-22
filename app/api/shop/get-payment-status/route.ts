@@ -1,6 +1,6 @@
+import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import stripe from '../../../core/clients/stripe';
-import supabase from '@/app/core/clients/supabase';
 
 export async function POST(request: any) {
   let data = await request.json();
@@ -35,8 +35,6 @@ export async function POST(request: any) {
               last_payment_status: 'paid'
             })
             .eq('id', userId);
-          console.log(data);
-          console.log(error);
         });
 
       await supabase

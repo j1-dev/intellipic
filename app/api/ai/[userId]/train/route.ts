@@ -14,14 +14,12 @@ export async function POST(
   try {
     const req = await request.json();
 
-    // get request data and instatiate useful data
     const instanceClass = req.instance_type as string;
     const url = req.url as string;
     const id = req.user_id as string;
     const instanceToken = req.prompt as string;
     const instanceData = SUPABASE_OBJECT_URL + url;
 
-    // initiate training
     const dest =
       `${process.env.REPLICATE_USERNAME}/${id}` as `${string}/${string}`;
     const model_owner = 'stability-ai';
@@ -52,7 +50,6 @@ export async function POST(
 
     const replicateModelId = responseReplicate.id;
 
-    // Update user's data in Supabase
     const { error } = await supabase.from(SUPABASE_TABLE_NAME).insert({
       run_id: replicateModelId,
       user_id: id,

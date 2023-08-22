@@ -1,50 +1,18 @@
 'use client';
-import { useParams } from 'next/navigation';
-import { Fragment, useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
-import { Menu, Transition } from '@headlessui/react';
-import { BsChevronDown } from 'react-icons/bs';
-import { useRouter } from 'next/navigation';
-import styles from '../../../Home.module.css';
-import { useIsomorphicLayoutEffect } from 'usehooks-ts';
-import { prompts } from '../../../core/resources/prompts';
-import { replacePromptToken } from '@/app/core/utils/predictions';
-import supabase from '@/app/core/clients/supabase';
-import { toast } from 'react-hot-toast';
-import { ClipLoader } from 'react-spinners';
 import Button from '@/app/components/Button';
-
-async function post(url: string, body: any, callback: any) {
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  })
-    .then((response) => response.json())
-    .then(callback);
-}
-
-function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useRef(callback);
-
-  // Remember the latest callback if it changes.
-  useIsomorphicLayoutEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    // Don't schedule if no delay is specified.
-    // Note: 0 is a valid value for delay.
-    if (!delay && delay !== 0) {
-      return;
-    }
-
-    const id = setInterval(() => savedCallback.current(), delay);
-
-    return () => clearInterval(id);
-  }, [delay]);
-}
+import supabase from '@/app/core/clients/supabase';
+import { post } from '@/app/core/utils/post';
+import { replacePromptToken } from '@/app/core/utils/predictions';
+import { useInterval } from '@/app/core/utils/useInterval';
+import { Menu, Transition } from '@headlessui/react';
+import classNames from 'classnames';
+import { useParams, useRouter } from 'next/navigation';
+import { Fragment, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { BsChevronDown } from 'react-icons/bs';
+import { ClipLoader } from 'react-spinners';
+import styles from '../../../Home.module.css';
+import { prompts } from '../../../core/resources/prompts';
 
 export default function ModelPage() {
   const router = useRouter();
@@ -151,8 +119,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token, instanceClass);
-      // console.log(prompt);
+      const prompt = replacePromptToken(instancePrompt, token);
       post(
         `/api/ai/${id}/call-model`,
         {
@@ -174,7 +141,6 @@ export default function ModelPage() {
 
   async function handleGetPrediction() {
     if (queueingPrediction) {
-      console.log(queueingPrediction);
       post(
         `/api/ai/${id}/get-prediction`,
         {
@@ -223,7 +189,6 @@ export default function ModelPage() {
   async function handleCancelPrediction() {
     if (queueingPrediction) {
       let succesful;
-      console.log('Cancelling prediction...');
       await post(
         `/api/ai/${id}/cancel-prediction`,
         {
@@ -237,13 +202,12 @@ export default function ModelPage() {
       );
 
       if (succesful) {
-        console.log('Cancellation successful.');
         userData.image_tokens++;
         toast.success('Ha cancelado la generación, pruebe de nuevo');
         setQueueingPrediction(false);
-        // Handle any additional logic or UI updates here
       } else {
         console.log('Cancellation failed.');
+        toast.error('Algo ha fallado...');
       }
     }
   }
@@ -434,7 +398,7 @@ export default function ModelPage() {
                 <Button
                   onClick={handleCancelPrediction}
                   cooldownTime={5000}
-                  className="max-w-screen-sm bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2"
+                  className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction

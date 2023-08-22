@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
 import replicate from '@/app/core/clients/replicate';
 import supabase from '@/app/core/clients/supabase';
+import { NextResponse } from 'next/server';
 
 export async function POST(
   request: Request,
@@ -8,7 +8,6 @@ export async function POST(
 ) {
   const req = await request.json();
   const runId = req.run_id as string;
-  console.log(runId);
 
   const response = replicate.trainings.cancel(runId);
 

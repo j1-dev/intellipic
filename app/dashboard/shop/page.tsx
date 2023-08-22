@@ -1,9 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import axios from 'axios';
-//import supabase from '@/app/core/clients/supabase';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 interface Product {

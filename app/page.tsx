@@ -1,16 +1,10 @@
 'use client';
-import Link from 'next/link';
-import Morph from './components/Morph';
-import { FaInstagram, FaGithub, FaDiscord, FaLinkedin } from 'react-icons/fa';
-import { FiInfo } from 'react-icons/fi';
 import Image from 'next/image';
+import Link from 'next/link';
+import { FaDiscord, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FiInfo } from 'react-icons/fi';
+import Morph from './components/Morph';
 import Logo from './core/resources/logo';
-
-/**
- * @TODO: Document everything
- *
- * @returns home page
- */
 
 export default function Home() {
   return (
