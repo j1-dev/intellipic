@@ -6,19 +6,13 @@ import { FiInfo } from 'react-icons/fi';
 import Image from 'next/image';
 import Logo from './core/resources/logo';
 
-
-
-
 /**
  * @TODO: Document everything
  *
  * @returns home page
  */
 
-
-
 export default function Home() {
-  
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
@@ -27,7 +21,7 @@ export default function Home() {
           <h1 className="text-2xl sm:text-3xl font-bold hidden xs:block m-0">
             IntelliPic
           </h1>
-          <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-3 transition-all ml-0 xs:ml-auto float-left xs:float-none">
+          <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-3 transition-all ml-auto float-none z-50">
             <Link href="/login">Inicia sesión</Link>
           </button>
           <button className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1">
@@ -118,64 +112,64 @@ export default function Home() {
       </section>
 
       <section className="py-5">
-        <div className="max-w-screen-lg mx-auto px-8 ">  
-         <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
+        <div className="max-w-screen-lg mx-auto px-8 ">
+          <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
         </div>
         <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             <a href="#" className="group">
-          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-            <Image
-              alt=""
-              src="/Images/Elon.png"
-              layout="fill"
-              objectFit="cover"
-              className="group-hover:opacity-75"
-            />
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/Elon.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75"
+                />
+              </div>
+              <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
+              <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+            </a>
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/Messi3.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75"
+                />
+              </div>
+              <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
+              <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
+            </a>
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/dvid1.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75"
+                />
+              </div>
+              <h3 className="mt-4 text-sm text-gray-700"></h3>
+              <p className="mt-1 text-lg font-medium text-gray-900"></p>
+            </a>
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/dua1.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75"
+                />
+              </div>
+              <h3 className="mt-4 text-sm text-gray-700">Dua Lipa</h3>
+              <p className="mt-1 text-lg font-medium text-gray-900"></p>
+            </a>
           </div>
-          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
-         </a>  
-         <a href="#" className="group">
-          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-            <Image
-              alt=""
-              src="/Images/Messi3.png"
-              layout="fill"
-              objectFit="cover"
-              className="group-hover:opacity-75"
-            />
-          </div>
-          <h3 className="mt-4 text-sm text-gray-700">Elon Musk</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900">@leeerob</p>
-         </a>  
-         <a href="#" className="group">
-          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-            <Image
-              alt=""
-              src="/Images/dvid1.png"
-              layout="fill"
-              objectFit="cover"
-              className="group-hover:opacity-75"
-            />
-          </div>
-          <h3 className="mt-4 text-sm text-gray-700"></h3>
-          <p className="mt-1 text-lg font-medium text-gray-900"></p>
-         </a>  
-         <a href="#" className="group">
-          <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-            <Image
-              alt=""
-              src="/Images/dua1.png"
-              layout="fill"
-              objectFit="cover"
-              className="group-hover:opacity-75"
-            />
-          </div>
-          <h3 className="mt-4 text-sm text-gray-700">Dua Lipa</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900"></p>
-         </a>  
-        </div>
         </div>
       </section>
 

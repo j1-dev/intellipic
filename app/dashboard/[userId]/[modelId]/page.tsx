@@ -174,6 +174,7 @@ export default function ModelPage() {
 
   async function handleGetPrediction() {
     if (queueingPrediction) {
+      console.log(queueingPrediction);
       post(
         `/api/ai/${id}/get-prediction`,
         {
@@ -198,8 +199,6 @@ export default function ModelPage() {
           if (data.status === 'canceled') {
             setImageUrl('');
             setQueueingPrediction(false);
-            userData.image_tokens++;
-            toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
         }
       );
@@ -240,6 +239,7 @@ export default function ModelPage() {
       if (succesful) {
         console.log('Cancellation successful.');
         userData.image_tokens++;
+        toast.success('Ha cancelado la generación, pruebe de nuevo');
         setQueueingPrediction(false);
         // Handle any additional logic or UI updates here
       } else {
@@ -424,7 +424,7 @@ export default function ModelPage() {
             <div className="mt-3">
               <Button
                 onClick={handleCallModel}
-                cooldownTime={5000}
+                cooldownTime={2000}
                 className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
@@ -434,7 +434,7 @@ export default function ModelPage() {
                 <Button
                   onClick={handleCancelPrediction}
                   cooldownTime={5000}
-                  className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all ml-2"
+                  className="max-w-screen-sm bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2"
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction

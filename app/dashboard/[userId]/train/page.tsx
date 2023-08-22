@@ -157,6 +157,8 @@ export default function TrainPage() {
       );
       if (succesful) {
         console.log('Cancellation successful.');
+        setFinetuningData(null);
+        userData.model_tokens++;
       } else {
         console.log('Cancellation failed.');
       }
@@ -171,9 +173,6 @@ export default function TrainPage() {
           console.log(data);
           setFinetuningData(data);
         });
-      if (runStatus === 'failed' || runStatus === 'canceled') {
-        userData.model_tokens++;
-      }
       console.log(runStatus);
       setReady(true);
     }
@@ -282,14 +281,14 @@ export default function TrainPage() {
                 <input
                   type="file"
                   id="files"
-                  className="border border-black w-full h-48 opacity-0 z-50 absolute top-0"
+                  className="border border-black w-full h-48 opacity-0 absolute top-0"
                   multiple
                   onChange={handleFileUpload}
                   ref={itemButton}
                 />
                 <label htmlFor="files">
                   <button
-                    className="bg-white dark:bg-black text-black dark:text-white border-black dark:border-white w-full h-48 border rounded-lg my-4 transition-all top-0 absolute"
+                    className="hover:scale-[1.02] bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black w-full h-48 border rounded-lg my-4 transition-all top-0 absolute"
                     onClick={() => !uploading && itemButton.current?.click()}
                     disabled={uploading}
                   >
@@ -412,7 +411,7 @@ export default function TrainPage() {
             </div>
           )}
 
-          {fineTuningCanceled && (
+          {fineTuningCanceled && !!fineTuningData && (
             <div className="text-center">
               <BsExclamationLg size={140} color="red" className="w-50 m-auto" />
               <span>Ha cancelado el entrenamiento, inténtelo de nuevo</span>
@@ -482,20 +481,14 @@ export default function TrainPage() {
           {fineTuningData?.run_id && !fineTuningSucceeded && (
             <main className={styles.main}>
               <div className={styles.clear}>
-                <button
+                <Button
                   onClick={() => handleCancelTraining(fineTuningData?.run_id)}
-                  className={classNames(styles.button, styles.reset)}
-                  style={{
-                    width: 'max-content',
-                    backgroundColor: 'red',
-                    padding: '6px 12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
+                  className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
+                  cooldownTime={2000}
+                  disabled={false}
                 >
                   cancelar prediccion
-                </button>
+                </Button>
               </div>
             </main>
           )}
