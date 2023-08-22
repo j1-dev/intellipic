@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import supabase from '@/app/core/clients/supabase';
+import { NextResponse } from 'next/server';
 
 export async function POST(
   request: Request,
@@ -18,7 +18,6 @@ export async function POST(
     return NextResponse.error();
   }
 
-  // Send a JSON response
   const response = NextResponse.json({ success: true });
 
   response.headers.set('Cache-Control', 'no-cache');

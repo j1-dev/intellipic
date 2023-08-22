@@ -1,9 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
 import supabase from '@/app/core/clients/supabase';
-import { useRouter } from 'next/navigation';
-import SignUp from '../components/SignUp';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import SignUp from '../components/SignUp';
 
 export default function RegisterPage() {
   const [session, setSession] = useState<any>(null);
@@ -22,8 +22,6 @@ export default function RegisterPage() {
 
     return () => {
       subscription.unsubscribe();
-      console.log(session);
-      // router.push(`dashboard/${session.data.user.id}`)
     };
   }, []);
 

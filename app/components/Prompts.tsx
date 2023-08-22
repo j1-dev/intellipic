@@ -1,4 +1,3 @@
-import React from 'react';
 import PromptCard from './PromptCard';
 
 export default function Prompts() {
@@ -28,13 +27,6 @@ export default function Prompts() {
       text1: 'Paladin'
     }
   ];
-  // const chunkSize = 3; // Number of images in each horizontal row
-
-  // // Chunk the promptInfo array into smaller arrays of size 'chunkSize'
-  // const chunkedPrompts = [];
-  // for (let i = 0; i < promptInfo.length; i += chunkSize) {
-  //   chunkedPrompts.push(promptInfo.slice(i, i + chunkSize));
-  // }
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">

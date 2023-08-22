@@ -1,6 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-//import supabase from '@/app/core/clients/supabase';
+import React, { useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { AuthError } from '@supabase/supabase-js';
 import type { UserResponse } from '@supabase/supabase-js';
@@ -23,10 +22,6 @@ function SignUp({ t }: { t: boolean }) {
   const handlePasswordChange = (e: any) => {
     setPassword(e.target?.value);
   };
-
-  useEffect(() => {
-    console.log(t);
-  }, [t]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -126,7 +121,6 @@ function SignUp({ t }: { t: boolean }) {
             <button className="block">Olvidaste tu Contraseña?</button>
           )}
         </div>
-        {/* {error && <div className="text-red-500 mt-4">{error}</div>} */}
       </form>
     </div>
   );

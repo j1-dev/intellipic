@@ -1,6 +1,6 @@
+import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import stripe from '../../../core/clients/stripe';
-import supabase from '@/app/core/clients/supabase';
 
 export async function POST(request: any) {
   let data = await request.json();
@@ -8,8 +8,7 @@ export async function POST(request: any) {
   let userId = data.userId;
   let tokenAmountGenerating = 0;
   let tokenAmountTraining = 0;
-  let url = request.url.substring(0, request.url.length - 19); // crap
-  // console.log(url);
+  let url = request.url.substring(0, request.url.length - 19);
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -44,11 +43,6 @@ export async function POST(request: any) {
       break;
   }
 
-  console.log(tokenAmountGenerating);
-  console.log(tokenAmountTraining);
-
-  console.log(session.amount_total);
-
   await supabase.from('payments').insert({
     id: session.id,
     payment_status: session.payment_status,
@@ -56,7 +50,6 @@ export async function POST(request: any) {
     token_amount_training: tokenAmountTraining,
     price: session.amount_total
   });
-  console.log(userId);
   await supabase
     .from('user-data')
     .update({
