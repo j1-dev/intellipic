@@ -4,6 +4,7 @@ import supabase from '@/app/core/clients/supabase';
 import { useEffect, useState, useRef } from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';
+import { TrainButton } from '@/app/components/TrainButton';
 
 function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = useRef(callback);
@@ -119,6 +120,7 @@ export default function DashboardPage() {
               };
               return <ModelCard props={props} key={data.run_id} />;
             })}
+            <TrainButton />
           </div>
         ) : (
           <div className="w-full m-auto mt-24 text-center">
