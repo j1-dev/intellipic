@@ -4,6 +4,18 @@ import supabase from '@/app/core/clients/supabase';
 import { useEffect, useState, useRef } from 'react';
 import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';
+import { TrainButton } from '@/app/components/TrainButton';
+
+export interface userDataType {
+  id: string;
+  created_at: Date;
+  dataset: object;
+  run_id: string;
+  image_tokens: number;
+  model_tokens: number;
+  last_payment_id: string;
+  last_payment_status: string;
+}
 
 function useInterval(callback: () => void, delay: number | null) {
   const savedCallback = useRef(callback);
@@ -50,6 +62,7 @@ export default function DashboardPage() {
   useEffect(() => {
     fetchUserInfo();
     fetchModels();
+    console.log(userData);
   }, [user]);
 
   const fetchModels = async () => {
@@ -119,6 +132,7 @@ export default function DashboardPage() {
               };
               return <ModelCard props={props} key={data.run_id} />;
             })}
+            <TrainButton userData={userData} />
           </div>
         ) : (
           <div className="w-full m-auto mt-24 text-center">
@@ -126,7 +140,13 @@ export default function DashboardPage() {
               Todavía no has entrenado ningún modelo
             </h1>
             <h2 className="text-xl font-bold mt-3">
-              Compra tokens en la tienda para entrenar tu primer modelo
+              {userData.modelTokens === 0 ? (
+                'Compra tokens en la tienda para entrenar tu primer modelo'
+              ) : (
+                <div className="max-w-screen-xs m-auto">
+                  <TrainButton userData={userData} />
+                </div>
+              )}
             </h2>
           </div>
         )}
