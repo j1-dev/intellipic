@@ -11,7 +11,6 @@ import { Fragment, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { BsChevronDown } from 'react-icons/bs';
 import { ClipLoader } from 'react-spinners';
-import styles from '../../../Home.module.css';
 import { prompts } from '../../../core/resources/prompts';
 
 export default function ModelPage() {
@@ -377,13 +376,15 @@ export default function ModelPage() {
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className={classNames(styles.image, styles.modeloutput)}
-                alt="Generated image"
-                width={400}
-                height={400}
-                src={imageUrl}
-              />
+              <div className="flex justify-center items-center">
+                <img
+                  alt="Generated image"
+                  width={400}
+                  height={400}
+                  src={imageUrl}
+                  className="mb-4 w-full"
+                />
+              </div>
             )}
             <div className="flex justify-center items-center">
               <Button
