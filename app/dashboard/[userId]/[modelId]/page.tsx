@@ -426,7 +426,7 @@ export default function ModelPage() {
                 onClick={handleCallModel}
                 cooldownTime={2000}
                 className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
-                disabled={queueingPrediction}
+                disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
                 {queueingPrediction ? 'Generando...' : 'Generar'}
               </Button>
