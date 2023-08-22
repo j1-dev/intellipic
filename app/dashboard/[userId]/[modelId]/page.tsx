@@ -239,7 +239,7 @@ export default function ModelPage() {
         Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
         los prompts predeterminados disponibles
       </span>
-      <div className="relative mb-10">
+      <div className="relative mb-24">
         <span className="absolute lef-0 my-7 font-semibold">
           Tokens restantes: {userData.image_tokens}
         </span>
@@ -251,10 +251,10 @@ export default function ModelPage() {
           Eliminar Modelo
         </button>
       </div>
-      <main className={styles.main}>
-        <div className={classNames(styles.step, styles.columnstep)}>
-          <div className={styles.prompt}>
-            <Menu as="div" className="mb-8 relative w-[400px]">
+      <main className="max-w-screen-xs m-auto center">
+        <div>
+          <div>
+            <Menu as="div" className="mb-8 relative w-full">
               <div>
                 <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
                   {promptType}
@@ -369,7 +369,7 @@ export default function ModelPage() {
 
             {promptType === 'Prompt escrito' && (
               <textarea
-                className="w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
+                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
                 value={instancePrompt}
                 onChange={(e) => setInstancePrompt(e.target.value)}
                 placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
@@ -385,11 +385,11 @@ export default function ModelPage() {
                 src={imageUrl}
               />
             )}
-            <div className="mt-3">
+            <div className="flex justify-center items-center">
               <Button
                 onClick={handleCallModel}
                 cooldownTime={2000}
-                className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
+                className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
                 {queueingPrediction ? 'Generando...' : 'Generar'}
@@ -398,7 +398,7 @@ export default function ModelPage() {
                 <Button
                   onClick={handleCancelPrediction}
                   cooldownTime={5000}
-                  className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
+                  className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction
@@ -409,7 +409,9 @@ export default function ModelPage() {
             </div>
           </div>
           {queueingPrediction && (
-            <ClipLoader className="m-3" speedMultiplier={0.6} />
+            <div className="flex justify-center items-center mt-3">
+              <ClipLoader className="m-3" speedMultiplier={0.6} />
+            </div>
           )}
           {modelStatus !== 'succeeded' && (
             <span>El modelo no esta preparado todavia</span>
