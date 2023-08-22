@@ -33,10 +33,7 @@ export async function GET(
         .update({ status: modelResponse.status })
         .eq('run_id', runId);
 
-      if (
-        modelResponse.status === 'failed' ||
-        modelResponse.status === 'canceled'
-      ) {
+      if (modelResponse.status === 'failed') {
         await supabase.from('trainings').delete().eq('run_id', runId);
 
         await supabase
@@ -47,6 +44,25 @@ export async function GET(
             dataset: null
           })
           .eq('id', userData?.[0].id);
+      }
+      if (modelResponse.status === 'canceled') {
+        await supabase
+          .from(SUPABASE_TABLE_NAME)
+          .update({
+            run_id: null,
+            dataset: null
+          })
+          .eq('id', userData?.[0].id);
+
+        const response = NextResponse.json({
+          dataset: null,
+          run_id: null,
+          run_data: { status: null }
+        });
+
+        response.headers.set('Cache-Control', 'no-cache');
+
+        return response;
       }
 
       const response = NextResponse.json({
