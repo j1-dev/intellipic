@@ -59,7 +59,6 @@ export default function ShopPage() {
   useEffect(() => {
     const sub = async () => {
       supabase.auth.getSession().then((s) => {
-        console.log(s?.data?.session?.user.id);
         setUser(s?.data?.session?.user);
       });
     };

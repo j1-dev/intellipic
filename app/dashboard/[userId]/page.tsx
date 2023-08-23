@@ -2,7 +2,7 @@
 import ModelCard from '@/app/components/ModelCard';
 import { TrainButton } from '@/app/components/TrainButton';
 import supabase from '@/app/core/clients/supabase';
-import { useInterval } from '@/app/core/utils/useInterval';
+import useInterval from '@/app/core/utils/useInterval';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
