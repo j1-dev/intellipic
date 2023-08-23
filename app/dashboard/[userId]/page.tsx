@@ -38,7 +38,6 @@ export default function DashboardPage() {
   useEffect(() => {
     fetchUserInfo();
     fetchModels();
-    console.log(userData);
   }, [user]);
 
   const fetchModels = async () => {
