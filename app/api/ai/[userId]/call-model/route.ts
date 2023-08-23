@@ -1,15 +1,13 @@
-import replicate from '../../../../core/clients/replicate';
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
+import replicate from '../../../../core/clients/replicate';
 
 export async function POST(
   request: Request,
   { params }: { params: { userId: string } }
 ) {
   try {
-    // Get request data
     const req = await request.json();
-    console.log(req);
 
     const prompt = req.instance_prompt as string;
     const id = req.run_id as string;
@@ -17,7 +15,6 @@ export async function POST(
 
     const modelResponse = await replicate.trainings.get(id);
 
-    // Call model
     const options = {
       version: modelResponse.output.version.split(':')[1],
       input: {
@@ -34,7 +31,6 @@ export async function POST(
 
     const predictionData = await replicate.predictions.create(options);
 
-    // Insert prediction into supabase
     await supabase.from('predictions').insert({
       user_id: user,
       created_at: predictionData.created_at,

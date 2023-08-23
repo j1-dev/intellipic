@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import replicate from '@/app/core/clients/replicate';
+import { NextResponse } from 'next/server';
 
 export async function POST(
   request: Request,

@@ -1,7 +1,7 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { Switch } from '@headlessui/react';
-import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
+import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { useEffect, useState } from 'react';
 
 const ColorSchemeToggleButton = () => {
   const [colorScheme, setColorScheme] = useState('light');

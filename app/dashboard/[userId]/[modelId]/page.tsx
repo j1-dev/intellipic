@@ -1,50 +1,18 @@
 'use client';
-import { useParams } from 'next/navigation';
-import { Fragment, useEffect, useRef, useState } from 'react';
-import classNames from 'classnames';
-import { Menu, Transition } from '@headlessui/react';
-import { BsChevronDown } from 'react-icons/bs';
-import { useRouter } from 'next/navigation';
-import styles from '../../../Home.module.css';
-import { useIsomorphicLayoutEffect } from 'usehooks-ts';
-import { prompts } from '../../../core/resources/prompts';
-import { replacePromptToken } from '@/app/core/utils/predictions';
-import supabase from '@/app/core/clients/supabase';
-import { toast } from 'react-hot-toast';
-import { ClipLoader } from 'react-spinners';
 import Button from '@/app/components/Button';
-
-async function post(url: string, body: any, callback: any) {
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  })
-    .then((response) => response.json())
-    .then(callback);
-}
-
-function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useRef(callback);
-
-  // Remember the latest callback if it changes.
-  useIsomorphicLayoutEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    // Don't schedule if no delay is specified.
-    // Note: 0 is a valid value for delay.
-    if (!delay && delay !== 0) {
-      return;
-    }
-
-    const id = setInterval(() => savedCallback.current(), delay);
-
-    return () => clearInterval(id);
-  }, [delay]);
-}
+import supabase from '@/app/core/clients/supabase';
+import post from '@/app/core/utils/post';
+import replacePromptToken from '@/app/core/utils/predictions';
+import translatePrompt from '@/app/core/utils/translate';
+import useInterval from '@/app/core/utils/useInterval';
+import { Menu, Transition } from '@headlessui/react';
+import classNames from 'classnames';
+import { useParams, useRouter } from 'next/navigation';
+import { Fragment, useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { BsChevronDown } from 'react-icons/bs';
+import { ClipLoader } from 'react-spinners';
+import { prompts } from '../../../core/resources/prompts';
 
 export default function ModelPage() {
   const router = useRouter();
@@ -151,22 +119,24 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token, instanceClass);
-      // console.log(prompt);
-      post(
-        `/api/ai/${id}/call-model`,
-        {
-          run_id: model,
-          instance_prompt: prompt,
-          user_id: id
-        },
-        (data: any) => {
-          setPredictionId(data.prediction_id);
-          setQueueingPrediction(true);
-          setCancellingPrediction(false);
-        }
-      );
-      userData.image_tokens--;
+      const prompt = replacePromptToken(instancePrompt, token);
+      await translatePrompt(prompt).then((tp: string) => {
+        console.log(tp);
+      });
+      // post(
+      //   `/api/ai/${id}/call-model`,
+      //   {
+      //     run_id: model,
+      //     instance_prompt: prompt,
+      //     user_id: id
+      //   },
+      //   (data: any) => {
+      //     setPredictionId(data.prediction_id);
+      //     setQueueingPrediction(true);
+      //     setCancellingPrediction(false);
+      //   }
+      // );
+      // userData.image_tokens--;
     } else {
       toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
@@ -174,7 +144,6 @@ export default function ModelPage() {
 
   async function handleGetPrediction() {
     if (queueingPrediction) {
-      console.log(queueingPrediction);
       post(
         `/api/ai/${id}/get-prediction`,
         {
@@ -223,7 +192,6 @@ export default function ModelPage() {
   async function handleCancelPrediction() {
     if (queueingPrediction) {
       let succesful;
-      console.log('Cancelling prediction...');
       await post(
         `/api/ai/${id}/cancel-prediction`,
         {
@@ -237,13 +205,12 @@ export default function ModelPage() {
       );
 
       if (succesful) {
-        console.log('Cancellation successful.');
         userData.image_tokens++;
         toast.success('Ha cancelado la generación, pruebe de nuevo');
         setQueueingPrediction(false);
-        // Handle any additional logic or UI updates here
       } else {
         console.log('Cancellation failed.');
+        toast.error('Algo ha fallado...');
       }
     }
   }
@@ -275,7 +242,7 @@ export default function ModelPage() {
         Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
         los prompts predeterminados disponibles
       </span>
-      <div className="relative mb-10">
+      <div className="relative mb-24">
         <span className="absolute lef-0 my-7 font-semibold">
           Tokens restantes: {userData.image_tokens}
         </span>
@@ -287,10 +254,10 @@ export default function ModelPage() {
           Eliminar Modelo
         </button>
       </div>
-      <main className={styles.main}>
-        <div className={classNames(styles.step, styles.columnstep)}>
-          <div className={styles.prompt}>
-            <Menu as="div" className="mb-8 relative w-[400px]">
+      <main className="max-w-screen-xs m-auto center">
+        <div>
+          <div>
+            <Menu as="div" className="mb-8 relative w-full">
               <div>
                 <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
                   {promptType}
@@ -405,7 +372,7 @@ export default function ModelPage() {
 
             {promptType === 'Prompt escrito' && (
               <textarea
-                className="w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
+                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
                 value={instancePrompt}
                 onChange={(e) => setInstancePrompt(e.target.value)}
                 placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
@@ -413,19 +380,21 @@ export default function ModelPage() {
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
-              <img
-                className={classNames(styles.image, styles.modeloutput)}
-                alt="Generated image"
-                width={400}
-                height={400}
-                src={imageUrl}
-              />
+              <div className="flex justify-center items-center">
+                <img
+                  alt="Generated image"
+                  width={400}
+                  height={400}
+                  src={imageUrl}
+                  className="mb-4 w-full"
+                />
+              </div>
             )}
-            <div className="mt-3">
+            <div className="flex justify-center items-center">
               <Button
                 onClick={handleCallModel}
                 cooldownTime={2000}
-                className="bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
+                className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
                 {queueingPrediction ? 'Generando...' : 'Generar'}
@@ -434,7 +403,7 @@ export default function ModelPage() {
                 <Button
                   onClick={handleCancelPrediction}
                   cooldownTime={5000}
-                  className="max-w-screen-sm bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2"
+                  className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction
@@ -445,7 +414,9 @@ export default function ModelPage() {
             </div>
           </div>
           {queueingPrediction && (
-            <ClipLoader className="m-3" speedMultiplier={0.6} />
+            <div className="flex justify-center items-center mt-3">
+              <ClipLoader className="m-3" speedMultiplier={0.6} />
+            </div>
           )}
           {modelStatus !== 'succeeded' && (
             <span>El modelo no esta preparado todavia</span>

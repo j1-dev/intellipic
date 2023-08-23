@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, useRef, useCallback } from 'react';
 import debounce from 'lodash/debounce';
+import { useCallback, useEffect, useRef } from 'react';
 
 export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   const text1Ref = useRef<HTMLSpanElement>(null);

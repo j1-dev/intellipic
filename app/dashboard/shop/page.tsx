@@ -1,9 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import axios from 'axios';
-//import supabase from '@/app/core/clients/supabase';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 interface Product {
@@ -60,7 +59,6 @@ export default function ShopPage() {
   useEffect(() => {
     const sub = async () => {
       supabase.auth.getSession().then((s) => {
-        console.log(s?.data?.session?.user.id);
         setUser(s?.data?.session?.user);
       });
     };

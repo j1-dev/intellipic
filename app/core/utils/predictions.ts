@@ -1,9 +1,5 @@
-export const replacePromptToken = (
-  prompt: string,
-  token: string,
-  instanceClass: string
-) => {
+export default function replacePromptToken(prompt: string, token: string) {
   const refinedPrompt = prompt.replaceAll('@me', `${token}`);
 
   return refinedPrompt;
-};
+}

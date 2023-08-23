@@ -1,10 +1,10 @@
 'use client';
-import { useParams } from 'next/navigation';
-import supabase from '@/app/core/clients/supabase';
-import { useEffect, useState, useRef } from 'react';
-import { useIsomorphicLayoutEffect } from 'usehooks-ts';
 import ModelCard from '@/app/components/ModelCard';
 import { TrainButton } from '@/app/components/TrainButton';
+import supabase from '@/app/core/clients/supabase';
+import useInterval from '@/app/core/utils/useInterval';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export interface userDataType {
   id: string;
@@ -17,30 +17,6 @@ export interface userDataType {
   last_payment_status: string;
 }
 
-function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useRef(callback);
-
-  // Remember the latest callback if it changes.
-  useIsomorphicLayoutEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    // Don't schedule if no delay is specified.
-    // Note: 0 is a valid value for delay.
-    if (!delay && delay !== 0) {
-      return;
-    }
-
-    const id = setInterval(() => savedCallback.current(), delay);
-
-    return () => clearInterval(id);
-  }, [delay]);
-}
-
-// TODO: Add "Entrenar modelo" button to start the training process from this tab. Show it when the user has tokens
-//       and hide it if they don't
 export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;
@@ -62,7 +38,6 @@ export default function DashboardPage() {
   useEffect(() => {
     fetchUserInfo();
     fetchModels();
-    console.log(userData);
   }, [user]);
 
   const fetchModels = async () => {
@@ -93,8 +68,6 @@ export default function DashboardPage() {
     if (e) {
       console.error(e);
     } else {
-      //console.log(d[0].image_tokens);
-      //console.log(d[0].model_tokens);
       setUserData(d[0]);
       localStorage.setItem('userData', JSON.stringify(d[0] || {}));
     }

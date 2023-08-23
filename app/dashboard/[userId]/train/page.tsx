@@ -1,54 +1,18 @@
 'use client';
+import Button from '@/app/components/Button';
 import supabase from '@/app/core/clients/supabase';
+import post from '@/app/core/utils/post';
+import useInterval from '@/app/core/utils/useInterval';
 import classNames from 'classnames';
+import JSZip from 'jszip';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-
+import { toast } from 'react-hot-toast';
+import { AiOutlineCheckCircle, AiOutlineUpload } from 'react-icons/ai';
+import { BsExclamationLg } from 'react-icons/bs';
+import { FadeLoader } from 'react-spinners';
 import styles from '../../../Home.module.css';
 
-import JSZip from 'jszip';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
-import { FadeLoader } from 'react-spinners';
-import { useIsomorphicLayoutEffect } from 'usehooks-ts';
-import { toast } from 'react-hot-toast';
-import { AiOutlineUpload } from 'react-icons/ai';
-import { BsExclamationLg } from 'react-icons/bs';
-import Button from '@/app/components/Button';
-
-async function post(url: string, body: any, callback: any) {
-  await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body)
-  })
-    .then((response) => response.json())
-    .then(callback);
-}
-
-function useInterval(callback: () => void, delay: number | null) {
-  const savedCallback = useRef(callback);
-
-  // Remember the latest callback if it changes.
-  useIsomorphicLayoutEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    // Don't schedule if no delay is specified.
-    // Note: 0 is a valid value for delay.
-    if (!delay && delay !== 0) {
-      return;
-    }
-
-    const id = setInterval(() => savedCallback.current(), delay);
-
-    return () => clearInterval(id);
-  }, [delay]);
-}
-
-// TODO: Change the styling of the training tab to fit the styling of the page
-// TODO: Add better explanations to guide the user properly
 export default function TrainPage() {
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
@@ -141,10 +105,8 @@ export default function TrainPage() {
   }
 
   async function handleCancelTraining(runId: string) {
-    console.log(runId);
     if (runStatus === 'starting' || runStatus === 'processing') {
       let succesful;
-      console.log('Cancelling training...');
       await post(
         `/api/ai/${id}/cancel-training`,
         {
@@ -156,11 +118,12 @@ export default function TrainPage() {
         }
       );
       if (succesful) {
-        console.log('Cancellation successful.');
         setFinetuningData(null);
         userData.model_tokens++;
+        toast.success('Entrenamiento cancelado con éxito');
       } else {
         console.log('Cancellation failed.');
+        toast.error('Algo ha fallado...');
       }
     }
   }
