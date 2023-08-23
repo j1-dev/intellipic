@@ -9,8 +9,8 @@ import { userDataType } from '../dashboard/[userId]/page';
 export const TrainButton = ({ userData }: { userData: userDataType }) => {
   const router = useRouter();
   const message =
-    userData.model_tokens !== 0 && userData.model_tokens !== null
-      ? !!userData.dataset
+    userData?.model_tokens !== 0 && userData?.model_tokens !== null
+      ? !!userData?.dataset
         ? 'Continúa con la configuración del entrenamiento'
         : 'Entrena un modelo'
       : !!userData.dataset
@@ -20,13 +20,13 @@ export const TrainButton = ({ userData }: { userData: userDataType }) => {
   return (
     <button
       disabled={
-        (userData.model_tokens === 0 || userData.model_tokens === null) &&
-        userData.dataset === null
+        (userData?.model_tokens === 0 || userData?.model_tokens === null) &&
+        userData?.dataset === null
       }
       className="py-3 w-full h-full rounded-lg group dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white transition-all ease-in-out duration-75 hover:scale-[1.03] disabled:bg-black disabled:text-white dark:disabled:bg-white dark:disabled:text-black"
       onClick={() => router.push('train/')}
     >
-      {!!userData.dataset ? (
+      {!!userData?.dataset ? (
         <div className="">
           <ClipLoader size={50} speedMultiplier={0.5} />
         </div>
