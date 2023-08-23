@@ -25,7 +25,7 @@ export async function POST(
         scheduler: 'K_EULER',
         apply_watermark: false,
         high_noise_frac: 0.9,
-        lora_scale: 0.85
+        lora_scale: 0.75
       }
     };
 
