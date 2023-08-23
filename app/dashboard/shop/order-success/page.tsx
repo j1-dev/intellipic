@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useInterval } from '@/app/core/utils/useInterval';
+import useInterval from '@/app/core/utils/useInterval';
 
 function SuccessPage() {
   const [user, setUser] = useState<any>(null);
@@ -15,7 +15,6 @@ function SuccessPage() {
   useEffect(() => {
     const sub = async () => {
       supabase.auth.getSession().then((s) => {
-        console.log(s?.data?.session?.user.id);
         setUser(s?.data?.session?.user);
       });
     };
