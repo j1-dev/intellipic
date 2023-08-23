@@ -9,8 +9,11 @@ export default async function translatePrompt(prompt: string) {
     input: {
       prompt: prompt,
       system_prompt:
-        'You are a translator and you will translate any input you receive to English. You will output only the translated text. IF THE INPUT IS IN ENGLISH, THE OUTPUT SHOULD BE EXACTLY THE SAME AS THE INPUT',
-      max_new_tokens: 500
+        'You are a translator and an AI optimizer and you will translate prompts used for text2img to ENGLISH. ' +
+        'You will translate and optimize the input so that it gets the best results on stable diffusion models. ' +
+        'Output ONLY THE PROMPT, NOTHING ELSE, no EXPLANATION, nothing like that.' +
+        'You will output only the translated/optimized text. The finished prompt has to be wrapped between {} symbols.',
+      max_new_tokens: 100
     }
   });
   const id = prediction?.id;
@@ -27,11 +30,9 @@ export default async function translatePrompt(prompt: string) {
     });
     response = await res.json();
     status = response.status;
-    console.log(status);
   }
-  console.log(response);
   let promptFinal = '';
   response?.output?.map((s: string) => (promptFinal += s));
-  console.log(promptFinal);
-  return promptFinal;
+
+  return promptFinal.replace('{', '').replace('}', '').trim();
 }

@@ -122,21 +122,21 @@ export default function ModelPage() {
       const prompt = replacePromptToken(instancePrompt, token);
       await translatePrompt(prompt).then((tp: string) => {
         console.log(tp);
+        post(
+          `/api/ai/${id}/call-model`,
+          {
+            run_id: model,
+            instance_prompt: tp,
+            user_id: id
+          },
+          (data: any) => {
+            setPredictionId(data.prediction_id);
+            setQueueingPrediction(true);
+            setCancellingPrediction(false);
+          }
+        );
+        userData.image_tokens--;
       });
-      // post(
-      //   `/api/ai/${id}/call-model`,
-      //   {
-      //     run_id: model,
-      //     instance_prompt: prompt,
-      //     user_id: id
-      //   },
-      //   (data: any) => {
-      //     setPredictionId(data.prediction_id);
-      //     setQueueingPrediction(true);
-      //     setCancellingPrediction(false);
-      //   }
-      // );
-      // userData.image_tokens--;
     } else {
       toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
