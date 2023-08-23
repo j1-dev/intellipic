@@ -7,12 +7,10 @@ export default async function translatePrompt(prompt: string) {
   const prediction = await replicate.predictions.create({
     version: '58d078176e02c219e11eb4da5a02a7830a283b14cf8f94537af893ccff5ee781',
     input: {
-      prompt: prompt,
-      system_prompt:
-        'You are a translator and an AI optimizer and you will translate prompts used for text2img to ENGLISH. ' +
-        'You will translate and optimize the input so that it gets the best results on stable diffusion models. ' +
-        'Output ONLY THE PROMPT, NOTHING ELSE, no EXPLANATION, nothing like that.' +
-        'You will output only the translated/optimized text. The finished prompt has to be wrapped between {} symbols.',
+      prompt:
+        'translate the given prompt to English and optimize it to be used on a stable diffusion model. Your answer has to be only the final translated and optimized prompt, no explanation or introduction please. Wrapped the final prompt in {} symbols. This is the prompt you need to translate and optimize: ' +
+        prompt,
+      system_prompt: 'Act like a robot who follows orders literally',
       max_new_tokens: 100
     }
   });
@@ -33,6 +31,7 @@ export default async function translatePrompt(prompt: string) {
   }
   let promptFinal = '';
   response?.output?.map((s: string) => (promptFinal += s));
+  let matches = promptFinal.match(/\{(.*?)\}/);
 
-  return promptFinal.replace('{', '').replace('}', '').trim();
+  return matches?.[1] || '';
 }
