@@ -19,7 +19,7 @@ export async function POST(
           'translate the given prompt to english and optimize it to be used on a stable diffusion or text2img AI model. DO NOT CHANGE ANY WORDS YOU DO NOT UNDERSTAND, as they may be the token used to refer to the subject. Your answer has to be only the final translated and optimized prompt, no explanation or introduction please. Wrapped the final prompt in {} symbols. This is the prompt you need to translate and optimize: ' +
           prompt,
         system_prompt:
-          'Act like a computer function that receives an input and returns a result. You should only return the result, no further comments should be added'
+          'Act like a computer function that receives an input and returns a result. You will return ONLY what is asked for, do not output more tokens than needed'
       }
     });
 
