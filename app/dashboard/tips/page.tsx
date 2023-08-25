@@ -10,7 +10,7 @@ const TipsPage: React.FC = () => {
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">Consejos 📖</h2>
-        <main className="flex justify-center items-center">
+        <main className="flex justify-center items-center flex-col">
           <TipsToggle toggle={toggle} toggleHandler={setToggle} />
           <TipsMain toggle={toggle} />
         </main>
