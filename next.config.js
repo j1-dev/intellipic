@@ -4,8 +4,5 @@ module.exports = {
   reactStrictMode: true,
   images: {
     domains: ['photoshot.app', 'i.ibb.co', 'bit.ly']
-  },
-  experimental: {
-    serverActions: true
   }
 };

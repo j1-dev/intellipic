@@ -3,7 +3,6 @@ import Button from '@/app/components/Button';
 import supabase from '@/app/core/clients/supabase';
 import post from '@/app/core/utils/post';
 import replacePromptToken from '@/app/core/utils/predictions';
-import translatePrompt from '@/app/core/utils/translate';
 import useInterval from '@/app/core/utils/useInterval';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
