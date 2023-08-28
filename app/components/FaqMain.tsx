@@ -20,7 +20,7 @@ const FaqMain = () => {
     {
       question: '¿Qué sucederá con mis fotos? 🖼',
       answer:
-        'Puedes eliminar todas las fotos y conjuntos de datos asociados al estudio al eliminar el estudio de tu cuenta. Una vez que se hayan agotado los créditos del estudio, el modelo se eliminará automáticamente en un plazo de 24 horas.\n\nPara solicitar que se elimine tu cuenta y todos los datos asociados, envía un correo electrónico a support@photoshot. Ten en cuenta que al eliminar tu cuenta, ya no tendrás acceso a ningún dato o contenido asociado a ella.\n\nPor favor, ten en cuenta que solo se eliminarán los datos en los servidores de Photoshot. Los datos que se transmitieron a Replicate no se eliminarán. Deberás ponerte en contacto con ellos para hacerlo, según sus Términos de Servicio.'
+        'Puedes eliminar todas las fotos y conjuntos de datos asociados al modelo al eliminar el modelo de tu cuenta.\n\nPara solicitar que se elimine tu cuenta y todos los datos asociados, envía un correo electrónico a intellipic1@gmail.com. Ten en cuenta que al eliminar tu cuenta, ya no tendrás acceso a ningún dato o contenido asociado a ella.'
     }
   ];
 
