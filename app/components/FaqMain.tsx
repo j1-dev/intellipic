@@ -8,7 +8,7 @@ const FaqMain = () => {
         'Recomendamos que subas una variedad de fotos para asegurar que tu avatar sea lo más preciso posible. Esto puede incluir tomas de primer plano de tu rostro, fotos de tu perfil y fotos de cuerpo completo. Es importante asegurarse de que tus fotos sean claras y de alta calidad, y que no incluyan a otras personas ni animales. También te recomendamos incluir una variedad de expresiones, ubicaciones, fondos y perspectivas en tus fotos para crear el avatar más preciso posible.'
     },
     {
-      question: '¿Qué tan parecido será el avatar a mi apariencia? 👩‍🎨',
+      question: '¿Cómo de parecido será el avatar a mi apariencia? 👩‍🎨',
       answer:
         'La precisión de tu avatar dependerá en gran medida de la cantidad y variedad de las fotos que proporciones. Cuanto mejores y más diversas sean las fotos, más fácil será para la IA entender y replicar tus características faciales y corporales. Como resultado, ¡tu avatar tendrá más probabilidad de parecerse a tu apariencia real!'
     },
