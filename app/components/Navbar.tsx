@@ -69,19 +69,6 @@ export default function Navbar() {
             key={Math.random()}
           >
             <Link
-              href={`/dashboard/tips`}
-              className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
-            >
-              {windowWidth > 479 ? 'Consejos' : '📖'}
-              <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
-              <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
-            </Link>
-          </li>
-          <li
-            className="list-none lg:mx-2 mx-0 my-2 relative group grow xs:grow-0"
-            key={Math.random()}
-          >
-            <Link
               href="/dashboard/examples"
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
@@ -112,6 +99,19 @@ export default function Navbar() {
                 {windowWidth > 768 ? 'Cerrar Sesión' : <HiLogout />}
               </button>
             </div>
+          </li>
+          <li
+            className="list-none lg:mx-2 mx-0 my-2 relative group grow xs:grow-0"
+            key={Math.random()}
+          >
+            <Link
+              href={`/dashboard/tips`}
+              className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
+            >
+              {windowWidth > 479 ? 'Preguntas' : '📖'}
+              <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
+              <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
+            </Link>
           </li>
         </ul>
       )}
