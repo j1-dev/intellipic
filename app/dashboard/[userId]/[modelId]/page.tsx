@@ -1,9 +1,9 @@
 'use client';
 import Button from '@/app/components/Button';
 import supabase from '@/app/core/clients/supabase';
-import { post } from '@/app/core/utils/post';
-import { replacePromptToken } from '@/app/core/utils/predictions';
-import { useInterval } from '@/app/core/utils/useInterval';
+import post from '@/app/core/utils/post';
+import replacePromptToken from '@/app/core/utils/predictions';
+import useInterval from '@/app/core/utils/useInterval';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import { useParams, useRouter } from 'next/navigation';
@@ -119,20 +119,31 @@ export default function ModelPage() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
       const prompt = replacePromptToken(instancePrompt, token);
-      post(
-        `/api/ai/${id}/call-model`,
-        {
-          run_id: model,
-          instance_prompt: prompt,
-          user_id: id
-        },
+      console.log(prompt);
+      await post(
+        `/api/ai/${id}/translate/`,
+        { prompt: prompt },
         (data: any) => {
-          setPredictionId(data.prediction_id);
-          setQueueingPrediction(true);
-          setCancellingPrediction(false);
+          console.log(data);
+          if (data.success) {
+            const tp = data.prompt;
+            post(
+              `/api/ai/${id}/call-model`,
+              {
+                run_id: model,
+                instance_prompt: tp,
+                user_id: id
+              },
+              (data: any) => {
+                setPredictionId(data.prediction_id);
+                setQueueingPrediction(true);
+                setCancellingPrediction(false);
+              }
+            );
+            userData.image_tokens--;
+          }
         }
       );
-      userData.image_tokens--;
     } else {
       toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
@@ -389,7 +400,7 @@ export default function ModelPage() {
             <div className="flex justify-center items-center">
               <Button
                 onClick={handleCallModel}
-                cooldownTime={2000}
+                cooldownTime={7000}
                 className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >

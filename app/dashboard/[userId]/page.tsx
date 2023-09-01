@@ -2,7 +2,7 @@
 import ModelCard from '@/app/components/ModelCard';
 import { TrainButton } from '@/app/components/TrainButton';
 import supabase from '@/app/core/clients/supabase';
-import { useInterval } from '@/app/core/utils/useInterval';
+import useInterval from '@/app/core/utils/useInterval';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -31,7 +31,7 @@ export default function DashboardPage() {
     });
     return arr;
   });
-  const [userData, setUserData] = useState<any>(() =>
+  const [userData, setUserData] = useState<userDataType>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
   );
 
@@ -113,7 +113,7 @@ export default function DashboardPage() {
               Todavía no has entrenado ningún modelo
             </h1>
             <h2 className="text-xl font-bold mt-3">
-              {userData.modelTokens === 0 ? (
+              {userData?.model_tokens === 0 ? (
                 'Compra tokens en la tienda para entrenar tu primer modelo'
               ) : (
                 <div className="max-w-screen-xs m-auto">

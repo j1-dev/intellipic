@@ -1,6 +1,6 @@
 import './globals.css';
 import SupabaseProvider from './supabase-provider';
-import ThemeSwitcher from './components/ThemeSwitcher';
+import ThemeToggle from './components/ThemeToggle';
 import { Toaster } from 'react-hot-toast';
 import localFont from 'next/font/local';
 
@@ -57,7 +57,7 @@ export default function RootLayout({
       <body>
         <SupabaseProvider>
           <Toaster position="bottom-right" reverseOrder={false} />
-          <ThemeSwitcher />
+          <ThemeToggle />
           {children}
         </SupabaseProvider>
       </body>
