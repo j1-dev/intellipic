@@ -115,35 +115,58 @@ export default function ModelPage() {
     });
   }, [imageUrl]);
 
+  // async function handleCallModel() {
+  //   let tokens = userData.image_tokens;
+  //   if (tokens > 0) {
+  //     const prompt = replacePromptToken(instancePrompt, token);
+  //     console.log(prompt);
+  //     await post(
+  //       `/api/ai/${id}/translate/`,
+  //       { prompt: prompt },
+  //       (data: any) => {
+  //         console.log(data);
+  //         if (data.success) {
+  //           const tp = data.prompt;
+  //           post(
+  //             `/api/ai/${id}/call-model`,
+  //             {
+  //               run_id: model,
+  //               instance_prompt: tp,
+  //               user_id: id
+  //             },
+  //             (data: any) => {
+  //               setPredictionId(data.prediction_id);
+  //               setQueueingPrediction(true);
+  //               setCancellingPrediction(false);
+  //             }
+  //           );
+  //           userData.image_tokens--;
+  //         }
+  //       }
+  //     );
+  //   } else {
+  //     toast.error('No te quedan tokens, puedes adquirir más en la tienda');
+  //   }
+  // }
+
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
       const prompt = replacePromptToken(instancePrompt, token);
-      console.log(prompt);
-      await post(
-        `/api/ai/${id}/translate/`,
-        { prompt: prompt },
+      post(
+        `/api/ai/${id}/call-model`,
+        {
+          run_id: model,
+          instance_prompt: prompt,
+          user_id: id
+        },
         (data: any) => {
-          console.log(data);
-          if (data.success) {
-            const tp = data.prompt;
-            post(
-              `/api/ai/${id}/call-model`,
-              {
-                run_id: model,
-                instance_prompt: tp,
-                user_id: id
-              },
-              (data: any) => {
-                setPredictionId(data.prediction_id);
-                setQueueingPrediction(true);
-                setCancellingPrediction(false);
-              }
-            );
-            userData.image_tokens--;
-          }
+          setPredictionId(data.prediction_id);
+          setQueueingPrediction(true);
+          setCancellingPrediction(false);
         }
       );
+      userData.image_tokens--;
     } else {
       toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
