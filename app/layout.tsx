@@ -1,6 +1,6 @@
 import './globals.css';
 import SupabaseProvider from './supabase-provider';
-import ThemeToggle from './components/ThemeToggle';
+import ThemeToggle from '../components/ThemeToggle';
 import { Toaster } from 'react-hot-toast';
 import localFont from 'next/font/local';
 

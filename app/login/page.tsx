@@ -1,9 +1,9 @@
 'use client';
-import supabase from '@/app/core/clients/supabase';
 import Link from 'next/link';
+import SignUp from '@/components/SignUp';
+import supabase from '@/app/core/clients/supabase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import SignUp from '../components/SignUp';
 
 export default function LoginPage() {
   const [session, setSession] = useState<any>(null);
