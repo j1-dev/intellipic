@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { HiLogout } from 'react-icons/hi';
-import Logo from '../core/resources/logo';
+import Logo from '../app/core/resources/logo';
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null);
