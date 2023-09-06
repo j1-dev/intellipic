@@ -153,7 +153,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token);
+      const prompt = replacePromptToken(instancePrompt, token, instanceClass);
       post(
         `/api/ai/${id}/call-model`,
         {
@@ -403,7 +403,11 @@ export default function ModelPage() {
 
             {promptType === 'Prompt escrito' && (
               <div>
-                <PromptBuilder setPrompt={setInstancePrompt} />
+                <PromptBuilder
+                  setPrompt={(p: string) => {
+                    setInstancePrompt(p);
+                  }}
+                />
                 <textarea
                   className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
                   value={instancePrompt}
