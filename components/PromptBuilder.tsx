@@ -144,12 +144,21 @@ const PromptBuilder = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleGeneratePrompt}>Generate Prompt</button>
-      <div>
-        <label>
+    <div className="p-4 max-w-md mx-auto bg-white rounded-lg shadow-lg">
+      <button
+        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-4"
+        onClick={handleGeneratePrompt}
+      >
+        Generate Prompt
+      </button>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2">
           Medium:
-          <select value={medium} onChange={(e) => setMedium(e.target.value)}>
+          <select
+            value={medium}
+            onChange={(e) => setMedium(e.target.value)}
+            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+          >
             {mediumOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -158,12 +167,13 @@ const PromptBuilder = () => {
           </select>
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2">
           Clothing:
           <select
             value={clothing}
             onChange={(e) => setClothing(e.target.value)}
+            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
           >
             {clothingOptions.map((option) => (
               <option key={option} value={option}>
@@ -173,10 +183,14 @@ const PromptBuilder = () => {
           </select>
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2">
           Pose:
-          <select value={pose} onChange={(e) => setPose(e.target.value)}>
+          <select
+            value={pose}
+            onChange={(e) => setPose(e.target.value)}
+            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+          >
             {posesOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -185,10 +199,14 @@ const PromptBuilder = () => {
           </select>
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2">
           Scene:
-          <select value={scene} onChange={(e) => setScene(e.target.value)}>
+          <select
+            value={scene}
+            onChange={(e) => setScene(e.target.value)}
+            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+          >
             {sceneOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -197,10 +215,14 @@ const PromptBuilder = () => {
           </select>
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2">
           Artist:
-          <select value={artist} onChange={(e) => setArtist(e.target.value)}>
+          <select
+            value={artist}
+            onChange={(e) => setArtist(e.target.value)}
+            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+          >
             {artistOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -209,12 +231,13 @@ const PromptBuilder = () => {
           </select>
         </label>
       </div>
-      <div>
-        <label>
+      <div className="mb-4">
+        <label className="block text-gray-700 font-bold mb-2">
           Settings:
           <select
             value={settings}
             onChange={(e) => setSettings(e.target.value)}
+            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
           >
             {settingsOptions.map((option) => (
               <option key={option} value={option}>
@@ -224,7 +247,7 @@ const PromptBuilder = () => {
           </select>
         </label>
       </div>
-      <p>{generatePrompt()}</p>
+      <p className="text-gray-800">{generatePrompt()}</p>
     </div>
   );
 };
