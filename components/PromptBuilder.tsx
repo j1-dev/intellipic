@@ -1,5 +1,7 @@
 'use client';
 import { useState } from 'react';
+import { BiChevronDown } from 'react-icons/bi';
+import { Transition } from '@headlessui/react';
 import categories from '@/app/core/resources/categories';
 
 interface SelectedOptions {
@@ -12,8 +14,9 @@ interface SelectedOptions {
 }
 
 const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
-    medium: '',
+    medium: 'portrait',
     clothing: '',
     pose: '',
     scene: '',
@@ -48,7 +51,9 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
     }
 
     {
-      artist && artist !== 'None' && (generatedPrompt += `, made by ${artist}`);
+      artist &&
+        artist !== 'None' &&
+        (generatedPrompt += `, in the style of ${artist}`);
     }
 
     {
@@ -76,38 +81,61 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white rounded-lg shadow-lg">
-      <button
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-4"
-        onClick={handleGeneratePrompt}
+      <div
+        className="flex justify-between items-center cursor-pointer"
+        onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        Generate Prompt
-      </button>
-      {Object.keys(selectedOptions).map((category) => (
-        <div className="mb-4" key={category}>
-          <label className="block text-gray-700 font-bold mb-2">
-            {category.charAt(0).toUpperCase() + category.slice(1)}:
-            <select
-              value={selectedOptions[category as keyof SelectedOptions]}
-              onChange={(e) =>
-                setSelectedOptions({
-                  ...selectedOptions,
-                  [category as keyof SelectedOptions]: e.target.value
-                })
-              }
-              className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-            >
-              {categoryOptions[category as keyof SelectedOptions].map(
-                (option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                )
-              )}
-            </select>
-          </label>
+        <h2 className="text-lg font-semibold">Prompt Builder</h2>
+        <BiChevronDown
+          className={`${
+            isCollapsed ? 'transform rotate-0' : 'transform rotate-180'
+          } h-5 w-5 transition-transform`}
+        />
+      </div>
+      <Transition
+        show={!isCollapsed}
+        enter="transition-opacity duration-200"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-200"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-4"
+            onClick={handleGeneratePrompt}
+          >
+            Generate Prompt
+          </button>
+          {Object.keys(selectedOptions).map((category) => (
+            <div className="mb-4" key={category}>
+              <label className="block text-gray-700 font-bold mb-2">
+                {category.charAt(0).toUpperCase() + category.slice(1)}:
+                <select
+                  value={selectedOptions[category as keyof SelectedOptions]}
+                  onChange={(e) => {
+                    setSelectedOptions({
+                      ...selectedOptions,
+                      [category as keyof SelectedOptions]: e.target.value
+                    });
+                  }}
+                  className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+                >
+                  {categoryOptions[category as keyof SelectedOptions].map(
+                    (option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    )
+                  )}
+                </select>
+              </label>
+            </div>
+          ))}
+          <p className="hidden">{generatePrompt()}</p>
         </div>
-      ))}
-      <p className="text-gray-800">{generatePrompt()}</p>
+      </Transition>
     </div>
   );
 };
