@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
-import { Transition } from '@headlessui/react';
+import translate from '@/app/core/utils/translateCategories';
 import categories from '@/app/core/resources/categories';
 
 interface SelectedOptions {
@@ -95,7 +95,7 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
       <div
         className={`overflow-hidden ${
           isCollapsed ? 'max-h-0' : 'max-h-screen'
-        } transition-max-height duration-[500ms]`}
+        } transition-max-height ease-in-out duration-[500ms]`}
       >
         <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md my-4"
@@ -106,7 +106,9 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
         {Object.keys(selectedOptions).map((category) => (
           <div className="mb-4" key={category}>
             <label className="block text-gray-700 font-bold mb-2">
-              {category.charAt(0).toUpperCase() + category.slice(1)}:
+              {translate(category, 'es').charAt(0).toUpperCase() +
+                translate(category, 'es').slice(1)}
+              :
               <select
                 value={selectedOptions[category as keyof SelectedOptions]}
                 onChange={(e) => {
@@ -120,7 +122,7 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
                 {categoryOptions[category as keyof SelectedOptions].map(
                   (option) => (
                     <option key={option} value={option}>
-                      {option}
+                      {translate(option, 'es')}
                     </option>
                   )
                 )}
