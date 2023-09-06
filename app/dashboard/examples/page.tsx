@@ -1,5 +1,5 @@
 'use client';
-import Prompts from '@/app/components/Prompts';
+import Prompts from '@/components/Prompts';
 
 export default function ExamplesPage() {
   return (
