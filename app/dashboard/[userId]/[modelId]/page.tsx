@@ -12,6 +12,7 @@ import { toast } from 'react-hot-toast';
 import { BsChevronDown } from 'react-icons/bs';
 import { ClipLoader } from 'react-spinners';
 import { prompts } from '../../../core/resources/prompts';
+import { default as NextImage } from 'next/image';
 
 export default function ModelPage() {
   const router = useRouter();
@@ -411,7 +412,7 @@ export default function ModelPage() {
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
               <div className="flex justify-center items-center">
-                <img
+                <NextImage
                   alt="Generated image"
                   width={400}
                   height={400}
