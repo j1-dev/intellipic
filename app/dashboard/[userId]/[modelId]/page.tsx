@@ -12,6 +12,7 @@ import { toast } from 'react-hot-toast';
 import { BsChevronDown } from 'react-icons/bs';
 import { ClipLoader } from 'react-spinners';
 import { prompts } from '../../../core/resources/prompts';
+import PromptBuilder from '@/components/PromptBuilder';
 
 export default function ModelPage() {
   const router = useRouter();
@@ -401,12 +402,15 @@ export default function ModelPage() {
             )}
 
             {promptType === 'Prompt escrito' && (
-              <textarea
-                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
-                value={instancePrompt}
-                onChange={(e) => setInstancePrompt(e.target.value)}
-                placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
-              />
+              <div>
+                <PromptBuilder setPrompt={setInstancePrompt} />
+                <textarea
+                  className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
+                  value={instancePrompt}
+                  onChange={(e) => setInstancePrompt(e.target.value)}
+                  placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+                />
+              </div>
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element

@@ -11,7 +11,7 @@ interface SelectedOptions {
   settings: string;
 }
 
-const PromptBuilder = () => {
+const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
     medium: '',
     clothing: '',
@@ -56,6 +56,7 @@ const PromptBuilder = () => {
     }
 
     generatedPrompt += '.';
+    setPrompt(generatedPrompt);
 
     return generatedPrompt;
   };
