@@ -1,6 +1,5 @@
 const categories: { [key: string]: string[] } = {
   medium: [
-    'None',
     'portrait',
     'painting',
     'digital art',
