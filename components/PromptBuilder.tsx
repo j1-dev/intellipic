@@ -1,103 +1,36 @@
 'use client';
 import { useState } from 'react';
+import categories from '@/app/core/resources/categories';
+
+interface SelectedOptions {
+  medium: string;
+  clothing: string;
+  pose: string;
+  scene: string;
+  artist: string;
+  settings: string;
+}
 
 const PromptBuilder = () => {
-  const [medium, setMedium] = useState<string>('photo');
-  const [clothing, setClothing] = useState<string>('');
-  const [pose, setPose] = useState<string>('');
-  const [scene, setScene] = useState<string>('');
-  const [artist, setArtist] = useState<string>('');
-  const [settings, setSettings] = useState<string>('');
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
+    medium: '',
+    clothing: '',
+    pose: '',
+    scene: '',
+    artist: '',
+    settings: ''
+  });
 
-  const mediumOptions = [
-    'portrait',
-    'painting',
-    'digital art',
-    'sculpture',
-    'photograph',
-    'collage',
-    'illustration',
-    'animation',
-    'mixed media',
-    'watercolor'
-  ];
+  const categoryOptions: { [key: string]: string[] } = categories;
 
-  const clothingOptions = [
-    'None',
-    'red hoodie',
-    'formal suit',
-    'casual jeans and t-shirt',
-    'superhero costume',
-    'bohemian dress',
-    'sports uniform',
-    'vintage attire',
-    'business attire',
-    'punk outfit',
-    'swimwear'
-  ];
-
-  const posesOptions = [
-    'None',
-    'flexing',
-    'standing tall',
-    'sitting gracefully',
-    'dancing',
-    'jumping',
-    'reading',
-    'meditating',
-    'running',
-    'yoga',
-    'cartwheel'
-  ];
-
-  const sceneOptions = [
-    'None',
-    'mountain',
-    'beach',
-    'cityscape',
-    'fantasy realm',
-    'underwater',
-    'outer space',
-    'countryside',
-    'urban street',
-    'desert',
-    'jungle'
-  ];
-
-  const artistOptions = [
-    'None',
-    'Leonardo Da Vinci',
-    'Pablo Picasso',
-    'Frida Kahlo',
-    'Vincent van Gogh',
-    'Georgia O Keeffe',
-    'Salvador Dali',
-    'Rembrandt',
-    'Claude Monet',
-    'Andy Warhol',
-    'Yayoi Kusama'
-  ];
-
-  const settingsOptions = [
-    'None',
-    'cinematic',
-    'surreal',
-    'minimalistic',
-    'vibrant',
-    'nostalgic',
-    'futuristic',
-    'dreamy',
-    'grunge',
-    'romantic',
-    'ethereal'
-  ];
-
-  const getRandomOption = (options: string[]) => {
+  const getRandomOption = (category: string) => {
+    const options = categoryOptions[category];
     const index = Math.floor(Math.random() * options.length);
     return options[index] === 'None' ? '' : options[index];
   };
 
   const generatePrompt = () => {
+    const { medium, clothing, pose, scene, artist, settings } = selectedOptions;
     let generatedPrompt = `A ${medium} of @me`;
 
     {
@@ -128,19 +61,16 @@ const PromptBuilder = () => {
   };
 
   const handleGeneratePrompt = () => {
-    const newMedium = getRandomOption(mediumOptions);
-    const newClothing = getRandomOption(clothingOptions);
-    const newPose = getRandomOption(posesOptions);
-    const newScene = getRandomOption(sceneOptions);
-    const newArtist = getRandomOption(artistOptions);
-    const newSettings = getRandomOption(settingsOptions);
+    const newSelectedOptions = {
+      medium: getRandomOption('medium'),
+      clothing: getRandomOption('clothing'),
+      pose: getRandomOption('pose'),
+      scene: getRandomOption('scene'),
+      artist: getRandomOption('artist'),
+      settings: getRandomOption('settings')
+    };
 
-    setMedium(newMedium);
-    setClothing(newClothing);
-    setPose(newPose);
-    setScene(newScene);
-    setArtist(newArtist);
-    setSettings(newSettings);
+    setSelectedOptions(newSelectedOptions);
   };
 
   return (
@@ -151,102 +81,31 @@ const PromptBuilder = () => {
       >
         Generate Prompt
       </button>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
-          Medium:
-          <select
-            value={medium}
-            onChange={(e) => setMedium(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-          >
-            {mediumOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
-          Clothing:
-          <select
-            value={clothing}
-            onChange={(e) => setClothing(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-          >
-            {clothingOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
-          Pose:
-          <select
-            value={pose}
-            onChange={(e) => setPose(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-          >
-            {posesOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
-          Scene:
-          <select
-            value={scene}
-            onChange={(e) => setScene(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-          >
-            {sceneOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
-          Artist:
-          <select
-            value={artist}
-            onChange={(e) => setArtist(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-          >
-            {artistOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">
-          Settings:
-          <select
-            value={settings}
-            onChange={(e) => setSettings(e.target.value)}
-            className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-          >
-            {settingsOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
+      {Object.keys(selectedOptions).map((category) => (
+        <div className="mb-4" key={category}>
+          <label className="block text-gray-700 font-bold mb-2">
+            {category.charAt(0).toUpperCase() + category.slice(1)}:
+            <select
+              value={selectedOptions[category as keyof SelectedOptions]}
+              onChange={(e) =>
+                setSelectedOptions({
+                  ...selectedOptions,
+                  [category as keyof SelectedOptions]: e.target.value
+                })
+              }
+              className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+            >
+              {categoryOptions[category as keyof SelectedOptions].map(
+                (option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                )
+              )}
+            </select>
+          </label>
+        </div>
+      ))}
       <p className="text-gray-800">{generatePrompt()}</p>
     </div>
   );
