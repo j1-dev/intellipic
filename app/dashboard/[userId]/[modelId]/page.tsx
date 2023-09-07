@@ -15,7 +15,6 @@ import { prompts } from '../../../core/resources/prompts';
 import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 
-
 export default function ModelPage() {
   const router = useRouter();
   const params = useParams();
@@ -420,15 +419,15 @@ export default function ModelPage() {
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
-              <div className="flex justify-center items-center">
-                <NextImage
+              <picture className="flex justify-center items-center">
+                <img
                   alt="Generated image"
                   width={400}
                   height={400}
                   src={imageUrl}
                   className="mb-4 w-full"
                 />
-              </div>
+              </picture>
             )}
             <div className="flex justify-center items-center">
               <Button
