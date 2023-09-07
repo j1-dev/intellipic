@@ -1,5 +1,9 @@
 // Translations as objects
 const translations: { [key: string]: { [lang: string]: string } } = {
+  customOptions: {
+    en: 'Custom Options',
+    es: 'Otras Opciones'
+  },
   medium: {
     en: 'Medium',
     es: 'Medio'
