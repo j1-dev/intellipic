@@ -1,5 +1,5 @@
 'use client';
-import Button from '@/app/components/Button';
+import Button from '@/components/Button';
 import supabase from '@/app/core/clients/supabase';
 import post from '@/app/core/utils/post';
 import replacePromptToken from '@/app/core/utils/predictions';
@@ -12,6 +12,8 @@ import { toast } from 'react-hot-toast';
 import { BsChevronDown } from 'react-icons/bs';
 import { ClipLoader } from 'react-spinners';
 import { prompts } from '../../../core/resources/prompts';
+import { default as NextImage } from 'next/image';
+import PromptBuilder from '@/components/PromptBuilder';
 
 export default function ModelPage() {
   const router = useRouter();
@@ -115,35 +117,58 @@ export default function ModelPage() {
     });
   }, [imageUrl]);
 
+  // async function handleCallModel() {
+  //   let tokens = userData.image_tokens;
+  //   if (tokens > 0) {
+  //     const prompt = replacePromptToken(instancePrompt, token);
+  //     console.log(prompt);
+  //     await post(
+  //       `/api/ai/${id}/translate/`,
+  //       { prompt: prompt },
+  //       (data: any) => {
+  //         console.log(data);
+  //         if (data.success) {
+  //           const tp = data.prompt;
+  //           post(
+  //             `/api/ai/${id}/call-model`,
+  //             {
+  //               run_id: model,
+  //               instance_prompt: tp,
+  //               user_id: id
+  //             },
+  //             (data: any) => {
+  //               setPredictionId(data.prediction_id);
+  //               setQueueingPrediction(true);
+  //               setCancellingPrediction(false);
+  //             }
+  //           );
+  //           userData.image_tokens--;
+  //         }
+  //       }
+  //     );
+  //   } else {
+  //     toast.error('No te quedan tokens, puedes adquirir más en la tienda');
+  //   }
+  // }
+
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token);
-      console.log(prompt);
-      await post(
-        `/api/ai/${id}/translate/`,
-        { prompt: prompt },
+      const prompt = replacePromptToken(instancePrompt, token, instanceClass);
+      post(
+        `/api/ai/${id}/call-model`,
+        {
+          run_id: model,
+          instance_prompt: prompt,
+          user_id: id
+        },
         (data: any) => {
-          console.log(data);
-          if (data.success) {
-            const tp = data.prompt;
-            post(
-              `/api/ai/${id}/call-model`,
-              {
-                run_id: model,
-                instance_prompt: tp,
-                user_id: id
-              },
-              (data: any) => {
-                setPredictionId(data.prediction_id);
-                setQueueingPrediction(true);
-                setCancellingPrediction(false);
-              }
-            );
-            userData.image_tokens--;
-          }
+          setPredictionId(data.prediction_id);
+          setQueueingPrediction(true);
+          setCancellingPrediction(false);
         }
       );
+      userData.image_tokens--;
     } else {
       toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
@@ -378,16 +403,18 @@ export default function ModelPage() {
             )}
 
             {promptType === 'Prompt escrito' && (
-              <textarea
-                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
-                value={instancePrompt}
-                onChange={(e) => setInstancePrompt(e.target.value)}
-                placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
-              />
+              <div>
+                <PromptBuilder
+                  setPrompt={(p: string) => {
+                    setInstancePrompt(p);
+                  }}
+                  id={id as string}
+                />
+              </div>
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
-              <div className="flex justify-center items-center">
+              <picture className="flex justify-center items-center">
                 <img
                   alt="Generated image"
                   width={400}
@@ -395,7 +422,7 @@ export default function ModelPage() {
                   src={imageUrl}
                   className="mb-4 w-full"
                 />
-              </div>
+              </picture>
             )}
             <div className="flex justify-center items-center">
               <Button

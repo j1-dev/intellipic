@@ -1,4 +1,4 @@
-import FaqMain from '@/app/components/FaqMain';
+import FaqMain from '@/components/FaqMain';
 
 const TipsPage = () => {
   return (

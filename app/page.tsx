@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaDiscord, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
-import Morph from './components/Morph';
+import Morph from '../components/Morph';
 import Logo from './core/resources/logo';
 
 export default function Home() {
