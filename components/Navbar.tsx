@@ -90,16 +90,6 @@ export default function Navbar() {
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
           </li>
-          <li className="xs:absolute xs:right-4 xs:top-5 grow xs:grow-0 group xs:group ">
-            <div className="max-w-screen-lg mx-auto flex justify-between items-center">
-              <button
-                onClick={handleLogout}
-                className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
-              >
-                {windowWidth > 768 ? 'Cerrar Sesión' : <HiLogout />}
-              </button>
-            </div>
-          </li>
           <li
             className="list-none lg:mx-2 mx-0 my-2 relative group grow xs:grow-0"
             key={Math.random()}
@@ -112,6 +102,16 @@ export default function Navbar() {
               <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
+          </li>
+          <li className="xs:absolute xs:right-4 xs:top-5 grow xs:grow-0 group xs:group ">
+            <div className="max-w-screen-lg mx-auto flex justify-between items-center">
+              <button
+                onClick={handleLogout}
+                className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
+              >
+                {windowWidth > 768 ? 'Cerrar Sesión' : <HiLogout />}
+              </button>
+            </div>
           </li>
         </ul>
       )}
