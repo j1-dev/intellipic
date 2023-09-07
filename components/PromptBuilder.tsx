@@ -33,13 +33,14 @@ const PromptBuilder = ({
   const [customCategories, setCustomCategories] = useState<string[]>([]);
   const [newCategory, setNewCategory] = useState<string>('');
 
-  // Separate state for custom inputs
-  const [customMedium, setCustomMedium] = useState<string>('');
-  const [customClothing, setCustomClothing] = useState<string>('');
-  const [customPose, setCustomPose] = useState<string>('');
-  const [customScene, setCustomScene] = useState<string>('');
-  const [customArtist, setCustomArtist] = useState<string>('');
-  const [customSettings, setCustomSettings] = useState<string>('');
+  const [customOptions, setCustomOptions] = useState<SelectedOptions>({
+    medium: '',
+    clothing: '',
+    pose: '',
+    scene: '',
+    artist: '',
+    settings: ''
+  });
 
   const categoryOptions: { [key: string]: string[] } = categories;
 
@@ -53,28 +54,30 @@ const PromptBuilder = ({
     const { medium, clothing, pose, scene, artist, settings } = selectedOptions;
 
     let generatedPrompt = `A ${
-      medium === 'Other' ? customMedium : medium
+      medium === 'Other' ? customOptions['medium'] || '' : medium
     } of @me`;
 
     {
       clothing &&
         clothing !== 'None' &&
         (generatedPrompt += ` wearing ${
-          clothing === 'Other' ? customClothing : clothing
+          clothing === 'Other' ? customOptions['clothing'] || '' : clothing
         }`);
     }
 
     {
       pose &&
         pose !== 'None' &&
-        (generatedPrompt += `, ${pose === 'Other' ? customPose : pose}`);
+        (generatedPrompt += `, ${
+          pose === 'Other' ? customOptions['pose'] || '' : pose
+        }`);
     }
 
     {
       scene &&
         scene !== 'None' &&
         (generatedPrompt += `, in a ${
-          scene === 'Other' ? customScene : scene
+          scene === 'Other' ? customOptions['scene'] || '' : scene
         }`);
     }
 
@@ -82,7 +85,7 @@ const PromptBuilder = ({
       artist &&
         artist !== 'None' &&
         (generatedPrompt += `, in the style of ${
-          artist === 'Other' ? customArtist : artist
+          artist === 'Other' ? customOptions['artist'] || '' : artist
         }`);
     }
 
@@ -90,7 +93,7 @@ const PromptBuilder = ({
       settings &&
         settings !== 'None' &&
         (generatedPrompt += `, ${
-          settings === 'Other' ? customSettings : settings
+          settings === 'Other' ? customOptions['settings'] || '' : settings
         }`);
     }
 
@@ -176,20 +179,13 @@ const PromptBuilder = ({
                   type="text"
                   className="mt-2 p-2 border border-gray-300 rounded-lg w-full"
                   placeholder="Ingrese su opción personalizada"
-                  value={category === 'medium' ? customMedium : ''}
-                  onChange={(e) =>
-                    category === 'medium'
-                      ? setCustomMedium(e.target.value)
-                      : category === 'clothing'
-                      ? setCustomClothing(e.target.value)
-                      : category === 'pose'
-                      ? setCustomPose(e.target.value)
-                      : category === 'scene'
-                      ? setCustomScene(e.target.value)
-                      : category === 'artist'
-                      ? setCustomArtist(e.target.value)
-                      : setCustomSettings(e.target.value)
-                  }
+                  value={customOptions[category as keyof SelectedOptions] || ''}
+                  onChange={(e) => {
+                    setCustomOptions({
+                      ...customOptions,
+                      [category]: e.target.value
+                    });
+                  }}
                 />
               )}
             </label>
