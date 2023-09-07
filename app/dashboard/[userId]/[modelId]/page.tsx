@@ -408,12 +408,7 @@ export default function ModelPage() {
                   setPrompt={(p: string) => {
                     setInstancePrompt(p);
                   }}
-                />
-                <textarea
-                  className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
-                  value={instancePrompt}
-                  onChange={(e) => setInstancePrompt(e.target.value)}
-                  placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+                  id={id as string}
                 />
               </div>
             )}
