@@ -15,7 +15,6 @@ import { prompts } from '../../../core/resources/prompts';
 import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 
-
 export default function ModelPage() {
   const router = useRouter();
   const params = useParams();
@@ -409,26 +408,21 @@ export default function ModelPage() {
                   setPrompt={(p: string) => {
                     setInstancePrompt(p);
                   }}
-                />
-                <textarea
-                  className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
-                  value={instancePrompt}
-                  onChange={(e) => setInstancePrompt(e.target.value)}
-                  placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+                  id={id as string}
                 />
               </div>
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
-              <div className="flex justify-center items-center">
-                <NextImage
+              <picture className="flex justify-center items-center">
+                <img
                   alt="Generated image"
                   width={400}
                   height={400}
                   src={imageUrl}
                   className="mb-4 w-full"
                 />
-              </div>
+              </picture>
             )}
             <div className="flex justify-center items-center">
               <Button

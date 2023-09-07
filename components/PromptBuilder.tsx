@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-import { BiChevronDown } from 'react-icons/bi';
-import { Transition } from '@headlessui/react';
+import { BsChevronDown } from 'react-icons/bs';
+import translate from '@/app/core/utils/translateCategories';
 import categories from '@/app/core/resources/categories';
 
 interface SelectedOptions {
@@ -13,10 +13,28 @@ interface SelectedOptions {
   settings: string;
 }
 
-const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
+const PromptBuilder = ({
+  setPrompt,
+  id
+}: {
+  setPrompt: Function;
+  id: string;
+}) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
     medium: 'portrait',
+    clothing: '',
+    pose: '',
+    scene: '',
+    artist: '',
+    settings: ''
+  });
+
+  const [customCategories, setCustomCategories] = useState<string[]>([]);
+  const [newCategory, setNewCategory] = useState<string>('');
+
+  const [customOptions, setCustomOptions] = useState<SelectedOptions>({
+    medium: '',
     clothing: '',
     pose: '',
     scene: '',
@@ -34,30 +52,49 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
 
   const generatePrompt = () => {
     const { medium, clothing, pose, scene, artist, settings } = selectedOptions;
-    let generatedPrompt = `A ${medium} of @me`;
+
+    let generatedPrompt = `A ${
+      medium === 'Other' ? customOptions['medium'] || '' : medium
+    } of @me`;
 
     {
       clothing &&
         clothing !== 'None' &&
-        (generatedPrompt += ` wearing ${clothing}`);
+        (generatedPrompt += ` wearing ${
+          clothing === 'Other' ? customOptions['clothing'] || '' : clothing
+        }`);
     }
 
     {
-      pose && pose !== 'None' && (generatedPrompt += `, ${pose}`);
+      pose &&
+        pose !== 'None' &&
+        (generatedPrompt += `, ${
+          pose === 'Other' ? customOptions['pose'] || '' : pose
+        }`);
     }
 
     {
-      scene && scene !== 'None' && (generatedPrompt += `, in a ${scene}`);
+      scene &&
+        scene !== 'None' &&
+        (generatedPrompt += `, in a ${
+          scene === 'Other' ? customOptions['scene'] || '' : scene
+        }`);
     }
 
     {
       artist &&
         artist !== 'None' &&
-        (generatedPrompt += `, in the style of ${artist}`);
+        (generatedPrompt += `, in the style of ${
+          artist === 'Other' ? customOptions['artist'] || '' : artist
+        }`);
     }
 
     {
-      settings && settings !== 'None' && (generatedPrompt += `, ${settings}`);
+      settings &&
+        settings !== 'None' &&
+        (generatedPrompt += `, ${
+          settings === 'Other' ? customOptions['settings'] || '' : settings
+        }`);
     }
 
     generatedPrompt += '.';
@@ -79,63 +116,84 @@ const PromptBuilder = ({ setPrompt }: { setPrompt: Function }) => {
     setSelectedOptions(newSelectedOptions);
   };
 
+  const handleAddNewCategory = () => {
+    // Add the new category to the customCategories list
+    setCustomCategories([...customCategories, newCategory]);
+
+    // Clear the newCategory input field
+    setNewCategory('');
+  };
+
   return (
-    <div className="p-4 max-w-md mx-auto bg-white rounded-lg shadow-lg">
+    <div className="py-4 px-3 mx-auto mb-7 bg-white dark:bg-black text-black dark:text-white border border-black dark:border-white rounded-lg ">
       <div
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        <h2 className="text-lg font-semibold">Prompt Builder</h2>
-        <BiChevronDown
+        <h2 className="text-lg font-semibold">Generador de Prompts</h2>
+        <BsChevronDown
           className={`${
             isCollapsed ? 'transform rotate-0' : 'transform rotate-180'
           } h-5 w-5 transition-transform`}
         />
       </div>
-      <Transition
-        show={!isCollapsed}
-        enter="transition-opacity duration-200"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="transition-opacity duration-200"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
+      <div
+        className={`overflow-hidden ${
+          isCollapsed ? 'max-h-0' : 'max-h-screen'
+        } transition-max-height ease-in-out duration-[500ms]`}
       >
-        <div>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full mb-4"
-            onClick={handleGeneratePrompt}
-          >
-            Generate Prompt
-          </button>
-          {Object.keys(selectedOptions).map((category) => (
-            <div className="mb-4" key={category}>
-              <label className="block text-gray-700 font-bold mb-2">
-                {category.charAt(0).toUpperCase() + category.slice(1)}:
-                <select
-                  value={selectedOptions[category as keyof SelectedOptions]}
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md my-4"
+          onClick={handleGeneratePrompt}
+        >
+          Generar Prompt
+        </button>
+        {Object.keys(selectedOptions).map((category) => (
+          <div className="mb-4" key={category}>
+            <label className="block text-gray-700 font-bold mb-2">
+              {translate(category, 'es').charAt(0).toUpperCase() +
+                translate(category, 'es').slice(1)}
+              :
+              <select
+                value={selectedOptions[category as keyof SelectedOptions]}
+                onChange={(e) => {
+                  setSelectedOptions({
+                    ...selectedOptions,
+                    [category as keyof SelectedOptions]: e.target.value
+                  });
+                }}
+                className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+              >
+                {categoryOptions[category as keyof SelectedOptions].map(
+                  (option) => (
+                    <option key={option} value={option}>
+                      {translate(option, 'es')}
+                    </option>
+                  )
+                )}
+                <option value="Other">Otro</option>
+              </select>
+              {selectedOptions[category as keyof SelectedOptions] ===
+                'Other' && (
+                <input
+                  type="text"
+                  className="mt-2 p-2 border border-gray-300 rounded-lg w-full"
+                  placeholder="Ingrese su opción personalizada"
+                  value={customOptions[category as keyof SelectedOptions] || ''}
                   onChange={(e) => {
-                    setSelectedOptions({
-                      ...selectedOptions,
-                      [category as keyof SelectedOptions]: e.target.value
+                    setCustomOptions({
+                      ...customOptions,
+                      [category]: e.target.value
                     });
                   }}
-                  className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
-                >
-                  {categoryOptions[category as keyof SelectedOptions].map(
-                    (option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    )
-                  )}
-                </select>
-              </label>
-            </div>
-          ))}
-          <p className="hidden">{generatePrompt()}</p>
-        </div>
-      </Transition>
+                />
+              )}
+            </label>
+          </div>
+        ))}
+        <h3 className="text-base font-semibold">Prompt generado: </h3>
+        <p>{generatePrompt()}</p>
+      </div>
     </div>
   );
 };
