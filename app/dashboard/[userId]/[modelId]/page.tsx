@@ -117,40 +117,6 @@ export default function ModelPage() {
     });
   }, [imageUrl]);
 
-  // async function handleCallModel() {
-  //   let tokens = userData.image_tokens;
-  //   if (tokens > 0) {
-  //     const prompt = replacePromptToken(instancePrompt, token);
-  //     console.log(prompt);
-  //     await post(
-  //       `/api/ai/${id}/translate/`,
-  //       { prompt: prompt },
-  //       (data: any) => {
-  //         console.log(data);
-  //         if (data.success) {
-  //           const tp = data.prompt;
-  //           post(
-  //             `/api/ai/${id}/call-model`,
-  //             {
-  //               run_id: model,
-  //               instance_prompt: tp,
-  //               user_id: id
-  //             },
-  //             (data: any) => {
-  //               setPredictionId(data.prediction_id);
-  //               setQueueingPrediction(true);
-  //               setCancellingPrediction(false);
-  //             }
-  //           );
-  //           userData.image_tokens--;
-  //         }
-  //       }
-  //     );
-  //   } else {
-  //     toast.error('No te quedan tokens, puedes adquirir más en la tienda');
-  //   }
-  // }
-
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
@@ -186,7 +152,7 @@ export default function ModelPage() {
             setPredictionStatus(data.status);
           }
           if (data.status === 'succeeded') {
-            setImageUrl(data.output);
+            setImageUrl(data.output[0]);
             setQueueingPrediction(false);
           }
           if (data.status === 'failed') {
@@ -408,21 +374,20 @@ export default function ModelPage() {
                   setPrompt={(p: string) => {
                     setInstancePrompt(p);
                   }}
-                  id={id as string}
+                  model={model as string}
                 />
               </div>
             )}
             {imageUrl && (
               // eslint-disable-next-line @next/next/no-img-element
-              <picture className="flex justify-center items-center">
-                <img
-                  alt="Generated image"
-                  width={400}
-                  height={400}
-                  src={imageUrl}
-                  className="mb-4 w-full"
-                />
-              </picture>
+              <NextImage
+                alt="Generated image"
+                width={400}
+                height={400}
+                src={imageUrl}
+                loading="eager"
+                className="mb-4 w-full"
+              />
             )}
             <div className="flex justify-center items-center">
               <Button
