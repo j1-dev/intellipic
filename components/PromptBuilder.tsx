@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import translate from '@/app/core/utils/translateCategories';
 import categories from '@/app/core/resources/categories';
@@ -15,43 +15,32 @@ interface SelectedOptions {
 
 const PromptBuilder = ({
   setPrompt,
-  model
+  id
 }: {
   setPrompt: Function;
-  model: string;
+  id: string;
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(
-    (localStorage.getItem(`cl${model}`) || 'true') === 'true'
-  );
-  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(
-    (JSON.parse(
-      localStorage.getItem(`so${model}`) as string
-    ) as SelectedOptions) || {
-      medium: 'portrait',
-      clothing: '',
-      pose: '',
-      scene: '',
-      artist: '',
-      settings: ''
-    }
-  );
-  const [customOptions, setCustomOptions] = useState<SelectedOptions>(
-    (JSON.parse(
-      localStorage.getItem(`co${model}`) as string
-    ) as SelectedOptions) || {
-      medium: '',
-      clothing: '',
-      pose: '',
-      scene: '',
-      artist: '',
-      settings: ''
-    }
-  );
-  useEffect(() => {
-    localStorage.setItem(`cl${model}`, isCollapsed.toString());
-    localStorage.setItem(`so${model}`, JSON.stringify(selectedOptions));
-    localStorage.setItem(`co${model}`, JSON.stringify(customOptions));
-  }, [isCollapsed, selectedOptions, customOptions]);
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({
+    medium: 'portrait',
+    clothing: '',
+    pose: '',
+    scene: '',
+    artist: '',
+    settings: ''
+  });
+
+  const [customCategories, setCustomCategories] = useState<string[]>([]);
+  const [newCategory, setNewCategory] = useState<string>('');
+
+  const [customOptions, setCustomOptions] = useState<SelectedOptions>({
+    medium: '',
+    clothing: '',
+    pose: '',
+    scene: '',
+    artist: '',
+    settings: ''
+  });
 
   const categoryOptions: { [key: string]: string[] } = categories;
 
@@ -125,6 +114,14 @@ const PromptBuilder = ({
     };
 
     setSelectedOptions(newSelectedOptions);
+  };
+
+  const handleAddNewCategory = () => {
+    // Add the new category to the customCategories list
+    setCustomCategories([...customCategories, newCategory]);
+
+    // Clear the newCategory input field
+    setNewCategory('');
   };
 
   return (

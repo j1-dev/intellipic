@@ -408,7 +408,7 @@ export default function ModelPage() {
                   setPrompt={(p: string) => {
                     setInstancePrompt(p);
                   }}
-                  model={model as string}
+                  id={id as string}
                 />
               </div>
             )}
