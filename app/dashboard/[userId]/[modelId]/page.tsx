@@ -386,7 +386,7 @@ export default function ModelPage() {
                 height={400}
                 src={imageUrl}
                 loading="eager"
-                className="mb-4 w-full"
+                className="mb-4 w-full rounded-lg"
               />
             )}
             <div className="flex justify-center items-center">
