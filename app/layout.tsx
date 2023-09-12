@@ -54,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={font.className}>
-      <body>
+      <body className="pb-20">
         <SupabaseProvider>
           <Toaster position="bottom-right" reverseOrder={false} />
           <ThemeToggle />
