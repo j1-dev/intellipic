@@ -164,7 +164,7 @@ export default function Home() {
             {/* Training a Model (2x2) */}
             <div className="card p-6 col-span-2 row-span-2">
               <h3 className="text-xl font-bold mb-2">Entrenar un modelo</h3>
-              <p className="leading-7">€3.5 por modelo</p>
+              <p className="leading-7">€4 por modelo</p>
               <p className="leading-7">Esto Incluye:</p>
               <ul className="list-disc list-inside ">
                 <li className="leading-7">Crear un modelo</li>
@@ -193,7 +193,7 @@ export default function Home() {
             {/* Generating 100 Images (1x1) */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">Generar 100 imágenes</h3>
-              <p>€7.5</p>
+              <p>€7</p>
             </div>
           </div>
         </div>
