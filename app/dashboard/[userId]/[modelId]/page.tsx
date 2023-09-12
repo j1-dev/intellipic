@@ -418,7 +418,9 @@ export default function ModelPage() {
             </div>
           )}
           {modelStatus !== 'succeeded' && (
-            <span>El modelo no esta preparado todavia</span>
+            <div className="pt-2 text-center">
+              <span>El modelo no esta preparado todavia</span>
+            </div>
           )}
         </div>
       </main>
