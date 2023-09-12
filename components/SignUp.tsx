@@ -40,11 +40,10 @@ function SignUp({ t }: { t: boolean }) {
       }
     } else {
       // code for signing up
-      await supabase.auth.admin
-        .createUser({
+      await supabase.auth
+        .signUp({
           email: email,
-          password: password,
-          email_confirm: true
+          password: password
         })
         .catch((error) => {
           toast.error(error.message);
@@ -64,6 +63,7 @@ function SignUp({ t }: { t: boolean }) {
           console.log(resData?.data?.user?.id);
           router.push('/login');
         });
+      supabase.auth.admin.generateLink;
     }
   };
 
