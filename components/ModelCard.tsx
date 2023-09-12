@@ -9,6 +9,18 @@ export default function ModelCard({
   const model = props.modelId;
   const status = props.status;
 
+  function translateStatus(status: string) {
+    if (status === 'starting') {
+      return 'Comenzando...';
+    }
+    if (status === 'processing') {
+      return 'En proceso';
+    }
+    if (status === 'succeeded') {
+      return 'Completado';
+    }
+  }
+
   return (
     <div className="card">
       <button className=" w-full h-full py-6">
@@ -18,7 +30,7 @@ export default function ModelCard({
         >
           <span className="font-bold text-xl mb-2">{props.token}</span>
           <br />
-          <span>{status}</span>
+          <span>{translateStatus(status)}</span>
         </Link>
       </button>
     </div>
