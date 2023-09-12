@@ -230,6 +230,22 @@ export default function ModelPage() {
     }
   }
 
+  async function downloadImage() {
+    if (!!imageUrl) {
+      const imageSrc = imageUrl;
+      const image = await fetch(imageSrc);
+      const imageBlog = await image.blob();
+      const imageURL = URL.createObjectURL(imageBlog);
+
+      const link = document.createElement('a');
+      link.href = imageURL;
+      link.download = "'" + instancePrompt + "'";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+
   useInterval(() => handleGetPrediction(), 3000);
 
   return (
@@ -414,6 +430,7 @@ export default function ModelPage() {
                 height={400}
                 src={imageUrl}
                 loading="eager"
+                priority
                 className="mb-4 w-full rounded-lg"
               />
             )}
@@ -436,6 +453,17 @@ export default function ModelPage() {
                   {cancellingPrediction
                     ? 'Cancelando...'
                     : 'Cancelar Generación'}
+                </Button>
+              )}
+              {!!imageUrl && (
+                <Button
+                  onClick={() => {
+                    downloadImage();
+                  }}
+                  cooldownTime={5000}
+                  className="w-max bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
+                >
+                  Descargar imagen
                 </Button>
               )}
             </div>
