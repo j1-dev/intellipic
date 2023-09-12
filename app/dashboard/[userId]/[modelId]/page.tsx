@@ -285,6 +285,24 @@ export default function ModelPage() {
                               : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
+                          onClick={() => setPromptType('Prompt generado')}
+                        >
+                          <span className="mr-2">Prompt generado</span>
+                          <span className="ml-auto text-gray-500">
+                            Genera un prompt a partir de una estructura
+                          </span>
+                        </button>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          className={classNames(
+                            active
+                              ? 'border text-white bg-black'
+                              : 'text-black hover:font-bold',
+                            'group flex rounded-md items-center w-full px-2 py-2 text-sm'
+                          )}
                           onClick={() => setPromptType('Prompt escrito')}
                         >
                           <span className="mr-2">Prompt escrito</span>
@@ -369,6 +387,15 @@ export default function ModelPage() {
             )}
 
             {promptType === 'Prompt escrito' && (
+              <textarea
+                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
+                value={instancePrompt}
+                onChange={(e) => setInstancePrompt(e.target.value)}
+                placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+              />
+            )}
+
+            {promptType === 'Prompt generado' && (
               <div>
                 <PromptBuilder
                   setPrompt={(p: string) => {
@@ -414,7 +441,7 @@ export default function ModelPage() {
           </div>
           {queueingPrediction && (
             <div className="flex justify-center items-center mt-3">
-              <ClipLoader className="m-3" speedMultiplier={0.6} />
+              <ClipLoader className="m-3" color="blue" speedMultiplier={0.6} />
             </div>
           )}
           {modelStatus !== 'succeeded' && (
