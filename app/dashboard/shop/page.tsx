@@ -17,8 +17,8 @@ const products: Product[] = [
   {
     id: 'prod_OAGAukWxQfrOVG',
     name: 'Entrenamiento de un modelo',
-    price: '€3.5',
-    priceId: 'price_1NOPqWIsZGNqsWfQQdddYGAx',
+    price: '€4',
+    priceId: 'price_1NpWCqIsZGNqsWfQjfx5eAtJ',
     features: ['Entrena un modelo', 'Genera 20 imagenes']
   },
   {
@@ -30,23 +30,23 @@ const products: Product[] = [
   },
   {
     id: 'prod_OAGD9THFNk3NAD',
-    name: 'Generación de 30 imágenes',
+    name: 'Generación de 25 imágenes',
     price: '€2',
     priceId: 'price_1NNvhUIsZGNqsWfQGsXojAbB',
-    features: ['Genera 30 imágenes', 'Prompts mejorados por IA']
+    features: ['Genera 25 imágenes', 'Prompts mejorados por IA']
   },
   {
     id: 'prod_OAGEvgK2m6HATL',
-    name: 'Generación de 50 imágenes',
+    name: 'Generación de 40 imágenes',
     price: '€3',
     priceId: 'price_1NNviMIsZGNqsWfQayaCdTZ7',
-    features: ['Genera 50 imágenes', 'Prompts mejorados por IA']
+    features: ['Genera 40 imágenes', 'Prompts mejorados por IA']
   },
   {
     id: 'prod_OAGFn5wQimhFvz',
     name: 'Generación de 100 imágenes',
-    price: '€7.5',
-    priceId: 'price_1NNvjMIsZGNqsWfQvWf6TDl0',
+    price: '€7',
+    priceId: 'price_1NpWBnIsZGNqsWfQIno5sHN5',
     features: ['Genera 100 imágenes', 'Prompts mejorados por IA']
   }
 ];
