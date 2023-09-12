@@ -153,7 +153,7 @@ const PromptBuilder = ({
         </button>
         {Object.keys(selectedOptions).map((category) => (
           <div className="mb-4" key={category}>
-            <label className="block text-gray-700 font-bold mb-2">
+            <label className="block text-black dark:text-white font-bold mb-2">
               {translate(category, 'es').charAt(0).toUpperCase() +
                 translate(category, 'es').slice(1)}
               :
@@ -165,11 +165,15 @@ const PromptBuilder = ({
                     [category as keyof SelectedOptions]: e.target.value
                   });
                 }}
-                className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+                className="mt-1 p-2 border text-black bg-white dark:text-white dark:bg-black border-gray-300 rounded-lg w-full"
               >
                 {categoryOptions[category as keyof SelectedOptions].map(
                   (option) => (
-                    <option key={option} value={option}>
+                    <option
+                      key={option}
+                      value={option}
+                      className="text-black bg-white dark:text-white dark:bg-black"
+                    >
                       {translate(option, 'es')}
                     </option>
                   )
