@@ -11,10 +11,10 @@ export const TrainButton = ({ userData }: { userData: userDataType }) => {
   const message =
     userData?.model_tokens !== 0 && userData?.model_tokens !== null
       ? !!userData?.dataset
-        ? 'Continúa con la configuración del entrenamiento'
+        ? !!userData?.run_id
+          ? 'Entrenamiento en proceso'
+          : 'Continúa con el entrenamiento'
         : 'Entrena un modelo'
-      : !!userData.dataset
-      ? 'Entrenamiento en proceso'
       : 'Compra tokens en la tienda';
 
   return (
