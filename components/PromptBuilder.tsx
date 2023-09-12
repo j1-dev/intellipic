@@ -128,7 +128,7 @@ const PromptBuilder = ({
   };
 
   return (
-    <div className="py-4 px-3 mx-auto mb-7 bg-white dark:bg-black text-black dark:text-white border border-black dark:border-white rounded-lg ">
+    <div className="py-4 px-3 mx-auto mb-7 bg-white dark:bg-black text-black dark:text-white border border-black dark:border-white rounded-lg transition-all">
       <div
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsCollapsed(!isCollapsed)}
@@ -146,14 +146,17 @@ const PromptBuilder = ({
         } transition-max-height ease-in-out duration-[500ms]`}
       >
         <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md my-4"
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md my-4 transition-all"
           onClick={handleGeneratePrompt}
         >
           Generar Prompt
         </button>
         {Object.keys(selectedOptions).map((category) => (
           <div className="mb-4" key={category}>
-            <label className="block text-gray-700 font-bold mb-2">
+            <label
+              className="transition-all block text-black dark:text-white font-bold mb-2"
+              transition-all
+            >
               {translate(category, 'es').charAt(0).toUpperCase() +
                 translate(category, 'es').slice(1)}
               :
@@ -165,11 +168,15 @@ const PromptBuilder = ({
                     [category as keyof SelectedOptions]: e.target.value
                   });
                 }}
-                className="mt-1 p-2 border border-gray-300 rounded-lg w-full"
+                className="transition-all font-semibold mt-1 p-2 border text-black bg-white dark:text-white dark:bg-black border-gray-300 rounded-lg w-full"
               >
                 {categoryOptions[category as keyof SelectedOptions].map(
                   (option) => (
-                    <option key={option} value={option}>
+                    <option
+                      key={option}
+                      value={option}
+                      className="transition-all text-black bg-white dark:text-white dark:bg-black"
+                    >
                       {translate(option, 'es')}
                     </option>
                   )

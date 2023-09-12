@@ -41,7 +41,7 @@ export default function ModelPage() {
     localStorage.getItem(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState(
-    localStorage.getItem(`pt${model}`) || 'Prompt escrito'
+    localStorage.getItem(`pt${model}`) || 'Prompt generado'
   );
   const [promptName, setPromptName] = useState(
     localStorage.getItem(`pn${model}`) || 'Prompts disponibles'
@@ -230,6 +230,22 @@ export default function ModelPage() {
     }
   }
 
+  async function downloadImage() {
+    if (!!imageUrl) {
+      const imageSrc = imageUrl;
+      const image = await fetch(imageSrc);
+      const imageBlog = await image.blob();
+      const imageURL = URL.createObjectURL(imageBlog);
+
+      const link = document.createElement('a');
+      link.href = imageURL;
+      link.download = instancePrompt + '.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }
+
   useInterval(() => handleGetPrediction(), 3000);
 
   return (
@@ -237,8 +253,9 @@ export default function ModelPage() {
       <h2 className="text-4xl font-bold mb-2">Modelos 🤖</h2>
       <h3 className="text-2xl font-bold mb-2">Token del modelo: {token}</h3>
       <span>
-        Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
-        los prompts predeterminados disponibles
+        Escribe tu prompt usando el token del modelo o <b>@me</b> o usa
+        cualquiera de los prompts predeterminados disponibles. Asegurate de que
+        el prompt está en <b>Inglés</b> para conseguir los mejores resultados,
       </span>
       <div className="relative mb-24">
         <span className="absolute lef-0 my-7 font-semibold">
@@ -257,10 +274,10 @@ export default function ModelPage() {
           <div>
             <Menu as="div" className="mb-8 relative w-full">
               <div>
-                <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
-                  {promptType}
+                <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-4 text-sm font-medium text-black dark:text-white transition-all">
+                  <span className="font-semibold text-lg">{promptType}</span>
                   <BsChevronDown
-                    className="right-0 absolute h-5 w-5 text-black dark:text-white transition-all"
+                    className="right-3 top-5 absolute h-5 w-5 text-black dark:text-white transition-all"
                     aria-hidden="true"
                   />
                 </Menu.Button>
@@ -276,6 +293,24 @@ export default function ModelPage() {
               >
                 <Menu.Items className="absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                   <div className="px-1 py-1 ">
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          className={classNames(
+                            active
+                              ? 'border text-white bg-black'
+                              : 'text-black hover:font-bold',
+                            'group flex rounded-md items-center w-full px-2 py-2 text-sm'
+                          )}
+                          onClick={() => setPromptType('Prompt generado')}
+                        >
+                          <span className="mr-2">Prompt generado</span>
+                          <span className="ml-auto text-gray-500">
+                            Genera un prompt a partir de una estructura
+                          </span>
+                        </button>
+                      )}
+                    </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
                         <button
@@ -320,10 +355,10 @@ export default function ModelPage() {
               <div className="w-full m-auto ">
                 <Menu as="div" className="mb-8 relative">
                   <div>
-                    <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
+                    <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
                       {!promptName ? 'Prompts disponibles' : `${promptName}`}
                       <BsChevronDown
-                        className="right-0 absolute h-5 w-5 text-black dark:text-white transition-all"
+                        className="right-3 absolute h-5 w-5 text-black dark:text-white transition-all"
                         aria-hidden="true"
                       />
                     </Menu.Button>
@@ -369,6 +404,15 @@ export default function ModelPage() {
             )}
 
             {promptType === 'Prompt escrito' && (
+              <textarea
+                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
+                value={instancePrompt}
+                onChange={(e) => setInstancePrompt(e.target.value)}
+                placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+              />
+            )}
+
+            {promptType === 'Prompt generado' && (
               <div>
                 <PromptBuilder
                   setPrompt={(p: string) => {
@@ -386,7 +430,8 @@ export default function ModelPage() {
                 height={400}
                 src={imageUrl}
                 loading="eager"
-                className="mb-4 w-full"
+                priority
+                className="mb-4 w-full rounded-lg"
               />
             )}
             <div className="flex justify-center items-center">
@@ -410,15 +455,28 @@ export default function ModelPage() {
                     : 'Cancelar Generación'}
                 </Button>
               )}
+              {!!imageUrl && !queueingPrediction && (
+                <Button
+                  onClick={() => {
+                    downloadImage();
+                  }}
+                  cooldownTime={5000}
+                  className="w-max bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
+                >
+                  Descargar imagen
+                </Button>
+              )}
             </div>
           </div>
           {queueingPrediction && (
             <div className="flex justify-center items-center mt-3">
-              <ClipLoader className="m-3" speedMultiplier={0.6} />
+              <ClipLoader className="m-3" color="blue" speedMultiplier={0.6} />
             </div>
           )}
           {modelStatus !== 'succeeded' && (
-            <span>El modelo no esta preparado todavia</span>
+            <div className="pt-2 text-center">
+              <span>El modelo no esta preparado todavia</span>
+            </div>
           )}
         </div>
       </main>

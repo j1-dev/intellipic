@@ -25,7 +25,7 @@ export async function POST(
     const model_owner = 'stability-ai';
     const model_name = 'sdxl';
     const version_id =
-      'd830ba5dabf8090ec0db6c10fc862c6eb1c929e1a194a5411852d25fd954ac82';
+      '8beff3369e81422112d93b89ca01426147de542cd4684c244b673b105188fe5f';
     const options = {
       destination: dest,
       input: {

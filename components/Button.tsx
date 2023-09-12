@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 interface buttonProps {
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
   className: string;
   cooldownTime: number;
   children: React.ReactNode;
