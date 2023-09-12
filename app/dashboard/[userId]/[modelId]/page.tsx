@@ -239,7 +239,7 @@ export default function ModelPage() {
 
       const link = document.createElement('a');
       link.href = imageURL;
-      link.download = "'" + instancePrompt + "'";
+      link.download = instancePrompt + '.png';
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -455,7 +455,7 @@ export default function ModelPage() {
                     : 'Cancelar Generación'}
                 </Button>
               )}
-              {!!imageUrl && (
+              {!!imageUrl && !queueingPrediction && (
                 <Button
                   onClick={() => {
                     downloadImage();
