@@ -237,8 +237,9 @@ export default function ModelPage() {
       <h2 className="text-4xl font-bold mb-2">Modelos 🤖</h2>
       <h3 className="text-2xl font-bold mb-2">Token del modelo: {token}</h3>
       <span>
-        Escribe tu prompt usando el token del modelo o @me o usa cualquiera de
-        los prompts predeterminados disponibles
+        Escribe tu prompt usando el token del modelo o <b>@me</b> o usa
+        cualquiera de los prompts predeterminados disponibles. Asegurate de que
+        el prompt está en <b>Inglés</b> para conseguir los mejores resultados,
       </span>
       <div className="relative mb-24">
         <span className="absolute lef-0 my-7 font-semibold">
@@ -257,10 +258,10 @@ export default function ModelPage() {
           <div>
             <Menu as="div" className="mb-8 relative w-full">
               <div>
-                <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
-                  {promptType}
+                <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-4 text-sm font-medium text-black dark:text-white transition-all">
+                  <span className="font-semibold text-lg">{promptType}</span>
                   <BsChevronDown
-                    className="right-0 absolute h-5 w-5 text-black dark:text-white transition-all"
+                    className="right-3 top-5 absolute h-5 w-5 text-black dark:text-white transition-all"
                     aria-hidden="true"
                   />
                 </Menu.Button>
@@ -338,10 +339,10 @@ export default function ModelPage() {
               <div className="w-full m-auto ">
                 <Menu as="div" className="mb-8 relative">
                   <div>
-                    <Menu.Button className="left-0 border-b-[1px] border-opacity-0 hover:border-opacity-100 hover:border-black hover:dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
+                    <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
                       {!promptName ? 'Prompts disponibles' : `${promptName}`}
                       <BsChevronDown
-                        className="right-0 absolute h-5 w-5 text-black dark:text-white transition-all"
+                        className="right-3 absolute h-5 w-5 text-black dark:text-white transition-all"
                         aria-hidden="true"
                       />
                     </Menu.Button>
