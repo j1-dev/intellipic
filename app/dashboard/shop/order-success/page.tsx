@@ -24,7 +24,6 @@ function SuccessPage() {
   useEffect(() => {
     if (done) {
       toast.success('Payment successful!');
-      router.push(`/dashboard/${user.id}/`);
     }
   }, [done]);
 
@@ -41,7 +40,9 @@ function SuccessPage() {
           }
         }
       );
-      console.log(data.done);
+      if (data.done) {
+        router.push(`/dashboard/${user.id}/`);
+      }
       setDone(data.done);
     }
   };
