@@ -23,6 +23,10 @@ body {
   @apply dark:bg-black dark:text-white transition-all;
 }
 
+.card {
+  @apply rounded-lg  dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black;
+}
+
 #container {
   /* Center the container horizontally and vertically. */
   position: absolute;

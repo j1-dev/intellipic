@@ -15,38 +15,38 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'prod_OAGAukWxQfrOVG',
+    id: 'prod_OcmbeX4AJFkVoF',
     name: 'Entrenamiento de un modelo',
-    price: '€3.5',
-    priceId: 'price_1NOPqWIsZGNqsWfQQdddYGAx',
+    price: '€4',
+    priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
     features: ['Entrena un modelo', 'Genera 20 imagenes']
   },
   {
-    id: 'prod_OAGCBKSOdimjwS',
+    id: 'prod_OcmbMwLY3PSKkd',
     name: 'Generación de 10 imágenes',
     price: '€1',
-    priceId: 'price_1NNvgXIsZGNqsWfQVLzT0EOi',
+    priceId: 'price_1NpX23IsZGNqsWfQwulR8Pie',
     features: ['Genera 10 imágenes', 'Prompts mejorados por IA']
   },
   {
-    id: 'prod_OAGD9THFNk3NAD',
-    name: 'Generación de 30 imágenes',
+    id: 'prod_OcmaoJNRfbjwqk',
+    name: 'Generación de 25 imágenes',
     price: '€2',
-    priceId: 'price_1NNvhUIsZGNqsWfQGsXojAbB',
-    features: ['Genera 30 imágenes', 'Prompts mejorados por IA']
+    priceId: 'price_1NpX1VIsZGNqsWfQ6Pq3YcNa',
+    features: ['Genera 25 imágenes', 'Prompts mejorados por IA']
   },
   {
-    id: 'prod_OAGEvgK2m6HATL',
-    name: 'Generación de 50 imágenes',
+    id: 'prod_OcmZDNFgWpbV65',
+    name: 'Generación de 40 imágenes',
     price: '€3',
-    priceId: 'price_1NNviMIsZGNqsWfQayaCdTZ7',
-    features: ['Genera 50 imágenes', 'Prompts mejorados por IA']
+    priceId: 'price_1NpX0oIsZGNqsWfQ6doXHr1o',
+    features: ['Genera 40 imágenes', 'Prompts mejorados por IA']
   },
   {
-    id: 'prod_OAGFn5wQimhFvz',
+    id: 'prod_OcmY6zvRL63Zhr',
     name: 'Generación de 100 imágenes',
-    price: '€7.5',
-    priceId: 'price_1NNvjMIsZGNqsWfQvWf6TDl0',
+    price: '€7',
+    priceId: 'price_1NpWzbIsZGNqsWfQb9RLZM8S',
     features: ['Genera 100 imágenes', 'Prompts mejorados por IA']
   }
 ];

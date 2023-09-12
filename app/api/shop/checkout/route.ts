@@ -27,16 +27,16 @@ export async function POST(request: any) {
       tokenAmountGenerating = 10;
       break;
     case 200:
-      tokenAmountGenerating = 30;
+      tokenAmountGenerating = 25;
       break;
     case 300:
-      tokenAmountGenerating = 50;
+      tokenAmountGenerating = 40;
       break;
-    case 350:
+    case 400:
       tokenAmountGenerating = 20;
       tokenAmountTraining = 1;
       break;
-    case 500:
+    case 700:
       tokenAmountGenerating = 100;
       break;
     default:

@@ -9,8 +9,20 @@ export default function ModelCard({
   const model = props.modelId;
   const status = props.status;
 
+  function translateStatus(status: string) {
+    if (status === 'starting') {
+      return 'Comenzando...';
+    }
+    if (status === 'processing') {
+      return 'En proceso';
+    }
+    if (status === 'succeeded') {
+      return 'Completado';
+    }
+  }
+
   return (
-    <div className="rounded-lg  dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">
+    <div className="card">
       <button className=" w-full h-full py-6">
         <Link
           href={`/dashboard/${user}/${model}`}
@@ -18,7 +30,7 @@ export default function ModelCard({
         >
           <span className="font-bold text-xl mb-2">{props.token}</span>
           <br />
-          <span>{status}</span>
+          <span>{translateStatus(status)}</span>
         </Link>
       </button>
     </div>
