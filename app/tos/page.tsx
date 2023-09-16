@@ -19,13 +19,7 @@ const Terms = () => {
 
       <p className="my-3">
         Solo podremos reembolsar los tokens de entrenamiento y generación de
-        imágenes que no hayan sido usados todavía. Además, se podrá reembolsar
-        los tokens de entrenamiento de un modelo entrenado siempre y cuando:
-        <ul>
-          <li>No se esté satisfecho con el modelo</li>
-          <li>No se hayan generado más de 20 fotos con el modelo</li>
-          <li>Las fotos con las que se ha entrenado el modelo son válidas</li>
-        </ul>
+        imágenes que no hayan sido usados todavía.
       </p>
 
       <h2 className="font-bold text-xl">Subida de Fotos</h2>

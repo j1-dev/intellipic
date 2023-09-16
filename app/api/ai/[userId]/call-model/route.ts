@@ -20,12 +20,12 @@ export async function POST(
       input: {
         prompt: prompt,
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
-        num_inference_steps: 50,
-        refine: 'expert_ensemble_refiner',
-        // scheduler: 'K_EULER',
-        // apply_watermark: false,
-        high_noise_frac: 0.9,
-        lora_scale: 0.85
+        // num_inference_steps: 50,
+        refine: 'base_image_refiner'
+        // // scheduler: 'K_EULER',
+        // // apply_watermark: false,
+        // high_noise_frac: 0.9,
+        // lora_scale: 0.85
       }
     };
 

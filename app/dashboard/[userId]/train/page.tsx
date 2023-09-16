@@ -12,6 +12,7 @@ import { AiOutlineCheckCircle, AiOutlineUpload } from 'react-icons/ai';
 import { BsExclamationLg } from 'react-icons/bs';
 import { FadeLoader } from 'react-spinners';
 import styles from '../../../Home.module.css';
+import Link from 'next/link';
 
 export default function TrainPage() {
   const FINETUNING_BUCKET = 'training-bucket';
@@ -232,12 +233,14 @@ export default function TrainPage() {
             <div>
               <div className="text-lg font-bold">1er paso: Subir imágenes</div>
               <div>
-                Primero, asegúrate de tener entre 8 y 12 imágenes de alta
-                calidad para entrenar a tu modelo. Asegúrate de que en cada
-                imagen solo aparezca una persona, animal o cosa. También es
-                crucial que el sujeto esté claramente separado del fondo para
-                obtener los mejores resultados. ¡Selecciona tus imágenes
-                favoritas!
+                Primero, asegúrate de tener entre 6 y 10 imágenes de alta
+                calidad para entrenar a tu modelo. Para obtener los mejores
+                resultados, tus imágnes deben ser primeros planos
+                preferiblemente, solo debe salir el sujeto y este deberá verse
+                entero. Para ver ejemplos de imágenes válidas y no válidas, ve a{' '}
+                <Link href="/dashboard/faq" className="hover:underline">
+                  preguntas frecuentes
+                </Link>
               </div>
 
               <div className="relative">
