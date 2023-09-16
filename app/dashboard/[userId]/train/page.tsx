@@ -28,7 +28,6 @@ export default function TrainPage() {
       }
     }
   );
-
   const [uploading, setUploading] = useState(
     localStorage.getItem('uploading') === 'true'
   );
@@ -40,6 +39,10 @@ export default function TrainPage() {
   );
   const [instanceType, setInstanceType] = useState(
     localStorage.getItem('instanceType') || 'man'
+  );
+
+  const [customInstanceType, setCustomInstanceType] = useState(
+    localStorage.getItem('customInstanceType') || ''
   );
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
@@ -62,13 +65,15 @@ export default function TrainPage() {
     localStorage.setItem('queueingFinetuning', queueingFinetuning.toString());
     localStorage.setItem('instanceName', instanceName);
     localStorage.setItem('instanceType', instanceType);
+    localStorage.setItem('customInstanceType', customInstanceType);
   }, [
     ready,
     fineTuningData,
     uploading,
     queueingFinetuning,
     instanceName,
-    instanceType
+    instanceType,
+    customInstanceType
   ]);
 
   useEffect(() => {
@@ -102,6 +107,14 @@ export default function TrainPage() {
       localStorage.removeItem('queueingFinetuning');
       localStorage.removeItem('instanceName');
       localStorage.removeItem('instanceType');
+      localStorage.removeItem('customInstanceType');
+      setReady(false);
+      setFinetuningData(null);
+      setUploading(false);
+      setQueueingFinetuning(false);
+      setInstanceName('');
+      setInstanceType('');
+      setCustomInstanceType('');
     });
   }
 
@@ -193,7 +206,8 @@ export default function TrainPage() {
         {
           url: fineTuningData.dataset,
           prompt: instanceName,
-          instance_type: instanceType,
+          instance_type:
+            instanceType === 'other' ? customInstanceType : instanceType,
           user_id: id
         },
         (data: any) => console.log(data)
@@ -296,10 +310,10 @@ export default function TrainPage() {
               </div>
               <div className="mt-4 max-w-screen-xs m-auto grid columns-2">
                 <label className="font-bold text-xl my-1" htmlFor="name">
-                  Nombre:{' '}
+                  Nombre{' '}
                 </label>
                 <input
-                  className="my-1"
+                  className="my-1  bg-white text-black dark:bg-black dark:text-white transition-all"
                   id="name"
                   value={instanceName}
                   onChange={(ev) => setInstanceName(ev.target.value)}
@@ -307,20 +321,29 @@ export default function TrainPage() {
                 />
 
                 <label className="font-bold text-xl my-1" htmlFor="ip">
-                  Tipo
+                  Tipo de sujeto
                 </label>
                 <select
                   name="instance_type"
                   id="ip"
-                  className="my-1"
+                  className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
                   onChange={(ev) => setInstanceType(ev.target.value)}
                 >
                   <option value="man">Hombre</option>
                   <option value="woman">Mujer</option>
                   <option value="dog">Perro</option>
                   <option value="cat">Gato</option>
-                  <option value="thing">Cosa</option>
+                  <option value="other">Otro</option>
                 </select>
+
+                {instanceType === 'other' && (
+                  <input
+                    className="my-1 ml-1 bg-white text-black dark:bg-black dark:text-white transition-all"
+                    value={customInstanceType}
+                    onChange={(ev) => setCustomInstanceType(ev.target.value)}
+                    placeholder={'Otro...'}
+                  />
+                )}
 
                 <Button
                   disabled={
