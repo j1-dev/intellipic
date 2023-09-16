@@ -35,16 +35,15 @@ function SignUp({ t }: { t: boolean }) {
         setError(error);
         toast.error(error.message);
       } else {
-        toast.success('Logged in successfully!');
+        toast.success('Iniciando sesión!');
         router.push(`/dashboard/${data.user.id}`);
       }
     } else {
       // code for signing up
-      await supabase.auth.admin
-        .createUser({
+      await supabase.auth
+        .signUp({
           email: email,
-          password: password,
-          email_confirm: true
+          password: password
         })
         .catch((error) => {
           toast.error(error.message);
@@ -62,8 +61,10 @@ function SignUp({ t }: { t: boolean }) {
           });
           await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
           console.log(resData?.data?.user?.id);
+          toast.success('Mira tu email para verificar tu cuenta');
           router.push('/login');
         });
+      supabase.auth.admin.generateLink;
     }
   };
 
