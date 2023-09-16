@@ -218,63 +218,63 @@ export default function Home() {
         <div className="max-w-screen-lg mx-auto px-8">
           <ul className="flex justify-start space-x-4 my-3">
             <li>
-              <a
-                href="#"
+              <Link
+                href="/faq"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 <FiInfo className="inline-block mr-1" />
                 FAQs
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/tos"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 Terms
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className="flex justify-start lg:justify-end my-3">
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 <FaInstagram size={24} className="mx-3" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 <FaGithub size={24} className="mx-3" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 <FaDiscord size={24} className="mx-3" />
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="#"
                 className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
               >
                 <FaLinkedin size={24} className="mx-3" />
-              </a>
+              </Link>
             </li>
           </ul>
           <p className="text-sm text-gray-500 dark:text-gray-400 my-7 ">
