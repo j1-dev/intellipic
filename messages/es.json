@@ -152,5 +152,22 @@
       "question": "¿Qué sucederá con mis fotos? 🖼",
       "answer": "Puedes eliminar todas las fotos y conjuntos de datos asociados al modelo al eliminar el modelo de tu cuenta.\n\nPara solicitar que se elimine tu cuenta y todos los datos asociados, envía un correo electrónico a intellipic1@gmail.com. Ten en cuenta que al eliminar tu cuenta, ya no tendrás acceso a ningún dato o contenido asociado a ella."
     }
+  },
+  "Dashboard": {
+    "title": "Modelos 🤖",
+    "tokensToTrain": "Tokens para entrenar:",
+    "noModelsMessage": "Todavía no has entrenado ningún modelo",
+    "buyTokensMessage": "Compra tokens en la tienda para entrenar tu primer modelo"
+  },
+  "ModelCard": {
+    "starting": "Empezando",
+    "processing": "Procesando...",
+    "succeeded": "Completado"
+  },
+  "TrainButton": {
+    "trainingInProgress": "Entrenamiento en proceso",
+    "continueTraining": "Continúa con el entrenamiento",
+    "trainModel": "Entrena un modelo",
+    "buyTokens": "Compra tokens en la tienda"
   }
 }

@@ -14,8 +14,10 @@ import { ClipLoader } from 'react-spinners';
 import { prompts } from '@/app/core/resources/prompts';
 import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
+import { useTranslations } from 'next-intl';
 
 export default function ModelPage() {
+  const t = useTranslations('');
   const router = useRouter();
   const params = useParams();
   const id = params.userId;

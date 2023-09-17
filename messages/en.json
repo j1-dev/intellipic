@@ -153,5 +153,22 @@
       "question": "What will happen to my photos? 🖼",
       "answer": "You can delete all photos and associated datasets by removing the model from your account.\n\nTo request the deletion of your account and all associated data, please send an email to intellipic1@gmail.com. Please note that by deleting your account, you will no longer have access to any data or content associated with it."
     }
+  },
+  "Dashboard": {
+    "title": "Models 🤖",
+    "tokensToTrain": "Tokens for training:",
+    "noModelsMessage": "You haven't trained any models yet",
+    "buyTokensMessage": "Buy tokens in the store to train your first model"
+  },
+  "ModelCard": {
+    "starting": "Starting",
+    "processing": "Processing...",
+    "succeeded": "Done"
+  },
+  "TrainButton": {
+    "trainingInProgress": "Training in progress",
+    "continueTraining": "Continue training",
+    "trainModel": "Train a model",
+    "buyTokens": "Buy tokens in the store"
   }
 }

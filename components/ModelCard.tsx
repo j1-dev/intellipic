@@ -1,23 +1,25 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function ModelCard({
   props
 }: {
   props: { userId: string; modelId: string; token: string; status: string };
 }) {
+  const t = useTranslations('ModelCard');
   const user = props.userId;
   const model = props.modelId;
   const status = props.status;
 
   function translateStatus(status: string) {
     if (status === 'starting') {
-      return 'Comenzando...';
+      return t('starting');
     }
     if (status === 'processing') {
-      return 'En proceso';
+      return t('processing');
     }
     if (status === 'succeeded') {
-      return 'Completado';
+      return t('succeeded');
     }
   }
 
