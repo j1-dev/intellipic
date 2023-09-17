@@ -1,0 +1,84 @@
+{
+  "Home": {
+    "nav": {
+      "login": "Log in",
+      "signup": "Sign up"
+    },
+    "header": {
+      "subtitles": ["Redefine", "Your image"],
+      "cta": "Get Started"
+    },
+    "features": {
+      "feature1": {
+        "title": "Upload Image 📷",
+        "description": "Smoothly upload your favorite images of any subject you desire."
+      },
+      "feature2": {
+        "title": "Neural Network Training 🧠",
+        "description": "Utilize cutting-edge neural network technology to learn from the uploaded images and understand the subject's unique characteristics."
+      },
+      "feature3": {
+        "title": "Style Selection 🌈",
+        "description": "Choose from a wide collection of styles to apply to your images, allowing you to create stunning visual combinations."
+      },
+      "feature4": {
+        "title": "Image Generation ⚡️",
+        "description": "Watch in awe as IntelliPic generates new impressive images, merging the subject with the chosen style in real-time."
+      },
+      "feature5": {
+        "title": "Infinite Creativity 🔁",
+        "description": "With IntelliPic, there are no limits to your imagination. Keep experimenting, training, and generating to discover captivating results."
+      },
+      "feature6": {
+        "title": "AI-Powered Work Comes with Associated Costs. 💡",
+        "description": "Due to substantial resources required for training, providing this service for free is not feasible."
+      }
+    },
+    "examples": {
+      "title": "Examples 📸"
+    },
+    "prices": {
+      "title": "Prices 💰",
+      "trainModel": {
+        "title": "Train a Model",
+        "price": "€4 per model",
+        "includes": "This includes:",
+        "includesList": ["Creating a model", "Generating 20 images"]
+      },
+      "generate10": {
+        "title": "Generate 10 images",
+        "price": "€1"
+      },
+      "generate25": {
+        "title": "Generate 25 images",
+        "price": "€2"
+      },
+      "generate40": {
+        "title": "Generate 40 images",
+        "price": "€3"
+      },
+      "generate100": {
+        "title": "Generate 100 images",
+        "price": "€7"
+      }
+    },
+    "privacy": {
+      "title": "Privacy and Security 🔒",
+      "description": "At IntelliPic, we prioritize your privacy and security. To ensure that your images are protected, we delete all uploaded images and generated artworks after 24 hours. This prevents any malicious use or unauthorized access to your data. You can use IntelliPic with confidence, knowing that your privacy is our top priority."
+    },
+    "footer": {
+      "links": {
+        "faqs": "FAQs",
+        "terms": "Terms",
+        "contact": "Contact"
+      },
+      "social": {
+        "instagram": "Instagram",
+        "github": "GitHub",
+        "discord": "Discord",
+        "linkedin": "LinkedIn"
+      },
+      "license": "This project is licensed under the MIT License."
+    }
+  }
+}

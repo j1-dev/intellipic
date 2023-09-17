@@ -2,10 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaDiscord, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
-import Morph from '../components/Morph';
-import Logo from './core/resources/logo';
+import Morph from '../../components/Morph';
+import Logo from '../core/resources/logo';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+  const t = useTranslations('Home');
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">

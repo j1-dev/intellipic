@@ -1,0 +1,85 @@
+{
+  "Home": {
+    "nav": {
+      "login": "Inicia sesión",
+      "signup": "Regístrate"
+    },
+    "header": {
+      "title": "IntelliPic",
+      "subtitles": ["Redefine", "Tu imagen"],
+      "cta": "Comenzar"
+    },
+    "features": {
+      "feature1": {
+        "title": "Subir imagen 📷",
+        "description": "Sube sin problemas tus imágenes favoritas de cualquier tema que desees."
+      },
+      "feature2": {
+        "title": "Entrenamiento de la red neuronal 🧠",
+        "description": "Utiliza tecnología de vanguardia de redes neuronales para aprender de las imágenes subidas y comprender las características únicas del sujeto."
+      },
+      "feature3": {
+        "title": "Selección de estilo 🌈",
+        "description": "Elige entre una amplia colección de estilos para aplicar a tus imágenes, lo que te permitirá crear combinaciones visuales impresionantes."
+      },
+      "feature4": {
+        "title": "Generación de imágenes ⚡️",
+        "description": "Observa con asombro cómo Intellipic genera nuevas imágenes impresionantes, fusionando el sujeto con el estilo elegido en tiempo real."
+      },
+      "feature5": {
+        "title": "Creatividad infinita 🔁",
+        "description": "Con Intellipic, no hay límites para tu imaginación. Sigue experimentando, entrenando y generando para descubrir resultados cautivadores."
+      },
+      "feature6": {
+        "title": "El trabajo impulsado por IA tiene costos asociados. 💡",
+        "description": "Debido a los recursos sustanciales necesarios para el entrenamiento, no es factible proporcionar este servicio de forma gratuita."
+      }
+    },
+    "examples": {
+      "title": "Ejemplos 📸"
+    },
+    "prices": {
+      "title": "Precios 💰",
+      "trainModel": {
+        "title": "Entrenar un modelo",
+        "price": "€4 por modelo",
+        "includes": "Esto Incluye:",
+        "includesList": ["Crear un modelo", "Generar 20 imágenes"]
+      },
+      "generate10": {
+        "title": "Generar 10 imágenes",
+        "price": "€1"
+      },
+      "generate25": {
+        "title": "Generar 25 imágenes",
+        "price": "€2"
+      },
+      "generate40": {
+        "title": "Generar 40 imágenes",
+        "price": "€3"
+      },
+      "generate100": {
+        "title": "Generar 100 imágenes",
+        "price": "€7"
+      }
+    },
+    "privacy": {
+      "title": "Privacidad y Seguridad 🔒",
+      "description": "En Intellipic, priorizamos tu privacidad y seguridad. Para asegurarnos de que tus imágenes estén protegidas, eliminamos todas las imágenes subidas y las obras de arte generadas después de 24 horas. Esto evita cualquier uso malicioso o acceso no autorizado a tus datos. Puedes utilizar Intellipic con confianza, sabiendo que tu privacidad es nuestra máxima prioridad."
+    },
+    "footer": {
+      "links": {
+        "faqs": "FAQs",
+        "terms": "Términos",
+        "contact": "Contacto"
+      },
+      "social": {
+        "instagram": "Instagram",
+        "github": "GitHub",
+        "discord": "Discord",
+        "linkedin": "LinkedIn"
+      },
+      "license": "Este proyecto está bajo la Licencia MIT."
+    }
+  }
+}

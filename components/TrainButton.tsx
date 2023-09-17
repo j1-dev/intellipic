@@ -4,7 +4,7 @@ import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { ClipLoader } from 'react-spinners';
 
-import { userDataType } from '../app/dashboard/[userId]/page';
+import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
 
 export const TrainButton = ({ userData }: { userData: userDataType }) => {
   const router = useRouter();

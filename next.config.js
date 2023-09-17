@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const withNextIntl = require('next-intl/plugin')(
+  // This is the default (also the `src` folder is supported out of the box)
+  './i18n.ts'
+);
+
+module.exports = withNextIntl({
   trailingSlash: true,
   reactStrictMode: true,
   images: {
@@ -11,4 +16,4 @@ module.exports = {
       'replicate.delivery'
     ]
   }
-};
+});
