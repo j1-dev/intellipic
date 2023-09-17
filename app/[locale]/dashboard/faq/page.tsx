@@ -1,4 +1,3 @@
-'use-client';
 import FaqMain from '@/components/FaqMain';
 
 const TipsPage = () => {
