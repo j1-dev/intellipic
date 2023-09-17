@@ -21,7 +21,7 @@ const LangToggle = () => {
   }
 
   return (
-    <div className="inline-flex fixed left-6 bottom-6 z-50 bg-opacity-50 bg-gray-400 p-3 rounded-full">
+    <div className="inline-flex fixed left-3 bottom-3 z-50 bg-opacity-50 bg-gray-400 p-3 rounded-full">
       <US title="United States" className="w-7 mr-2" />
       <Switch
         onChange={toggleLang}
