@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import translate from '@/app/core/utils/translateCategories';
 import categories from '@/app/core/resources/categories';
+import { useTranslations } from 'next-intl';
 
 interface SelectedOptions {
   medium: string;
@@ -20,6 +21,7 @@ const PromptBuilder = ({
   setPrompt: Function;
   model: string;
 }) => {
+  const t = useTranslations('PromptBuilder');
   const [isCollapsed, setIsCollapsed] = useState(
     (localStorage.getItem(`cl${model}`) || 'true') === 'true'
   );
@@ -133,7 +135,7 @@ const PromptBuilder = ({
         className="flex justify-between items-center cursor-pointer"
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
-        <h2 className="text-lg font-semibold">Generador de Prompts</h2>
+        <h2 className="text-lg font-semibold">{t('generatorTitle')}</h2>
         <BsChevronDown
           className={`${
             isCollapsed ? 'transform rotate-0' : 'transform rotate-180'
@@ -149,7 +151,7 @@ const PromptBuilder = ({
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md my-4 transition-all"
           onClick={handleGeneratePrompt}
         >
-          Generar Prompt
+          {t('generatePrompt')}
         </button>
         {Object.keys(selectedOptions).map((category) => (
           <div className="mb-4" key={category}>
@@ -157,9 +159,7 @@ const PromptBuilder = ({
               className="transition-all block text-black dark:text-white font-bold mb-2"
               transition-all
             >
-              {translate(category, 'es').charAt(0).toUpperCase() +
-                translate(category, 'es').slice(1)}
-              :
+              {t(category)}:
               <select
                 value={selectedOptions[category as keyof SelectedOptions]}
                 onChange={(e) => {
@@ -177,18 +177,18 @@ const PromptBuilder = ({
                       value={option}
                       className="transition-all text-black bg-white dark:text-white dark:bg-black"
                     >
-                      {translate(option, 'es')}
+                      {t(option)}
                     </option>
                   )
                 )}
-                <option value="Other">Otro</option>
+                <option value="Other">{t('customOption')}</option>
               </select>
               {selectedOptions[category as keyof SelectedOptions] ===
                 'Other' && (
                 <input
                   type="text"
                   className="mt-2 p-2 border border-gray-300 rounded-lg w-full"
-                  placeholder="Ingrese su opción personalizada"
+                  placeholder={t('customOptionPlaceholder')}
                   value={customOptions[category as keyof SelectedOptions] || ''}
                   onChange={(e) => {
                     setCustomOptions({
@@ -201,7 +201,7 @@ const PromptBuilder = ({
             </label>
           </div>
         ))}
-        <h3 className="text-base font-semibold">Prompt generado: </h3>
+        <h3 className="text-base font-semibold">{t('promptGenerated')} </h3>
         <p>{generatePrompt()}</p>
       </div>
     </div>
