@@ -11,7 +11,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { BsChevronDown } from 'react-icons/bs';
 import { ClipLoader } from 'react-spinners';
-import { prompts } from '../../../core/resources/prompts';
+import { prompts } from '@/app/core/resources/prompts';
 import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 

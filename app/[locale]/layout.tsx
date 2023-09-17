@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import localFont from 'next/font/local';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
+import LangToggle from '@/components/LangToggle';
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }];
@@ -73,6 +74,7 @@ export default async function RootLayout({
           <SupabaseProvider>
             <Toaster position="bottom-right" reverseOrder={false} />
             <ThemeToggle />
+            <LangToggle />
             {children}
           </SupabaseProvider>
         </NextIntlClientProvider>
