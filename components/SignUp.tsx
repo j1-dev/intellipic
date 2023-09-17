@@ -10,6 +10,7 @@ import { toast } from 'react-hot-toast';
 function SignUp({ t }: { t: boolean }) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [tos, setTos] = useState<boolean>(false);
   const [error, setError] = useState<AuthError | null>(null);
   const [toggle, setToggle] = useState<boolean>(t);
   const router = useRouter();
@@ -64,7 +65,6 @@ function SignUp({ t }: { t: boolean }) {
           toast.success('Mira tu email para verificar tu cuenta');
           router.push('/login');
         });
-      supabase.auth.admin.generateLink;
     }
   };
 
@@ -106,10 +106,30 @@ function SignUp({ t }: { t: boolean }) {
             className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
           />
         </div>
+        {!toggle && (
+          <div>
+            <input
+              className="mb-4 mr-1"
+              type="checkbox"
+              name="tos"
+              id="tos"
+              checked={tos}
+              onChange={() => setTos(!tos)}
+            />{' '}
+            <label htmlFor="tos">
+              Acepta los{' '}
+              <Link className="z-50 hover:underline" href={'/tos'}>
+                términos y condiciones
+              </Link>
+            </label>
+          </div>
+        )}
+
         <div>
           <button
             type="submit"
-            className="w-full bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
+            className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
+            disabled={!tos && !toggle}
           >
             {toggle ? 'Iniciar Sesión' : 'Regristrarse'}
           </button>

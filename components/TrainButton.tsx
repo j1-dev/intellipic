@@ -28,7 +28,7 @@ export const TrainButton = ({ userData }: { userData: userDataType }) => {
     >
       {!!userData?.dataset ? (
         <div className="">
-          <ClipLoader size={50} speedMultiplier={0.5} />
+          <ClipLoader size={50} speedMultiplier={0.5} color="blue" />
         </div>
       ) : (
         <AiOutlinePlus

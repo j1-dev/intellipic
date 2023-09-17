@@ -34,7 +34,7 @@ export async function POST(
         unet_learning_rate: 4e-6,
         token_string: instanceToken,
         // is_lora: false,
-        mask_target_prompts: `photo of a ${instanceClass.toLowerCase()}`,
+        //mask_target_prompts: `photo of a ${instanceClass.toLowerCase()}`,
         caption_prefix: `a photo of ${instanceToken}`,
         crop_based_on_salience: false,
         use_face_detection_instead: true

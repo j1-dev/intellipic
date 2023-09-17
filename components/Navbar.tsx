@@ -95,7 +95,7 @@ export default function Navbar() {
             key={Math.random()}
           >
             <Link
-              href={`/dashboard/tips`}
+              href={`/dashboard/faq`}
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
               {windowWidth > 479 ? 'FAQs' : '📖'}
