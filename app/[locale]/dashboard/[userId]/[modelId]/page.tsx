@@ -17,7 +17,7 @@ import PromptBuilder from '@/components/PromptBuilder';
 import { useTranslations } from 'next-intl';
 
 export default function ModelPage() {
-  const t = useTranslations('');
+  const t = useTranslations('ModelPage');
   const router = useRouter();
   const params = useParams();
   const id = params.userId;
@@ -43,10 +43,10 @@ export default function ModelPage() {
     localStorage.getItem(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState(
-    localStorage.getItem(`pt${model}`) || 'Prompt generado'
+    localStorage.getItem(`pt${model}`) || 'generatedPrompt'
   );
   const [promptName, setPromptName] = useState(
-    localStorage.getItem(`pn${model}`) || 'Prompts disponibles'
+    localStorage.getItem(`pn${model}`) || t('availablePrompts')
   );
   const [modelStatus, setModelStatus] = useState(
     localStorage.getItem(`ms${model}`) || ''
@@ -66,7 +66,6 @@ export default function ModelPage() {
     localStorage.setItem(`ps${model}`, predictionStatus);
     localStorage.setItem(`tk${model}`, token);
     localStorage.setItem(`ic${model}`, instanceClass);
-    localStorage.setItem(`pn${model}`, promptName);
     localStorage.setItem(`pt${model}`, promptType as string);
     localStorage.setItem(`ms${model}`, modelStatus);
   }, [
@@ -79,7 +78,6 @@ export default function ModelPage() {
     token,
     instanceClass,
     promptType,
-    promptName,
     modelStatus
   ]);
 
@@ -252,23 +250,21 @@ export default function ModelPage() {
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
-      <h2 className="text-4xl font-bold mb-2">Modelos 🤖</h2>
-      <h3 className="text-2xl font-bold mb-2">Token del modelo: {token}</h3>
-      <span>
-        Escribe tu prompt usando el token del modelo o <b>@me</b> o usa
-        cualquiera de los prompts predeterminados disponibles. Asegurate de que
-        el prompt está en <b>Inglés</b> para conseguir los mejores resultados,
-      </span>
+      <h2 className="text-4xl font-bold mb-2">{t('modelTitle')}</h2>
+      <h3 className="text-2xl font-bold mb-2">
+        {t('modelToken').replace('token', token)}
+      </h3>
+      <span>{t('tokenInfo')}</span>
       <div className="relative mb-24">
         <span className="absolute lef-0 my-7 font-semibold">
-          Tokens restantes: {userData.image_tokens}
+          {t('remainingTokens')} {userData.image_tokens}
         </span>
         <button
           onClick={handleDeleteModel}
           className="absolute right-0 bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
           style={{ marginTop: '1rem' }}
         >
-          Eliminar Modelo
+          {t('deleteModel')}
         </button>
       </div>
       <main className="max-w-screen-xs m-auto center">
@@ -277,7 +273,7 @@ export default function ModelPage() {
             <Menu as="div" className="mb-8 relative w-full">
               <div>
                 <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-4 text-sm font-medium text-black dark:text-white transition-all">
-                  <span className="font-semibold text-lg">{promptType}</span>
+                  <span className="font-semibold text-lg">{t(promptType)}</span>
                   <BsChevronDown
                     className="right-3 top-5 absolute h-5 w-5 text-black dark:text-white transition-all"
                     aria-hidden="true"
@@ -304,11 +300,11 @@ export default function ModelPage() {
                               : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
-                          onClick={() => setPromptType('Prompt generado')}
+                          onClick={() => setPromptType('generatedPrompt')}
                         >
-                          <span className="mr-2">Prompt generado</span>
+                          <span className="mr-2">{t('generatedPrompt')}</span>
                           <span className="ml-auto text-gray-500">
-                            Genera un prompt a partir de una estructura
+                            {t('generatedPromptInfo')}
                           </span>
                         </button>
                       )}
@@ -322,11 +318,11 @@ export default function ModelPage() {
                               : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
-                          onClick={() => setPromptType('Prompt escrito')}
+                          onClick={() => setPromptType('writtenPrompt')}
                         >
-                          <span className="mr-2">Prompt escrito</span>
+                          <span className="mr-2">{t('writtenPrompt')}</span>
                           <span className="ml-auto text-gray-500">
-                            Crea tu prompt a tu manera
+                            {t('writtenPromptInfo')}
                           </span>
                         </button>
                       )}
@@ -340,11 +336,11 @@ export default function ModelPage() {
                               : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
-                          onClick={() => setPromptType('Prompt pre-hecho')}
+                          onClick={() => setPromptType('defaultPrompt')}
                         >
-                          <span className="mr-2">Prompt predeterminado</span>
+                          <span className="mr-2">{t('defaultPrompt')}</span>
                           <span className="ml-auto text-gray-500">
-                            Escoje uno de los prompts ya creados
+                            {t('defaultPromptInfo')}
                           </span>
                         </button>
                       )}
@@ -353,12 +349,12 @@ export default function ModelPage() {
                 </Menu.Items>
               </Transition>
             </Menu>
-            {promptType === 'Prompt pre-hecho' && (
+            {promptType === 'defaultPrompt' && (
               <div className="w-full m-auto ">
                 <Menu as="div" className="mb-8 relative">
                   <div>
                     <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
-                      {!promptName ? 'Prompts disponibles' : `${promptName}`}
+                      {promptName}
                       <BsChevronDown
                         className="right-3 absolute h-5 w-5 text-black dark:text-white transition-all"
                         aria-hidden="true"
@@ -405,7 +401,7 @@ export default function ModelPage() {
               </div>
             )}
 
-            {promptType === 'Prompt escrito' && (
+            {promptType === 'writtenPrompt' && (
               <textarea
                 className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
                 value={instancePrompt}
@@ -414,7 +410,7 @@ export default function ModelPage() {
               />
             )}
 
-            {promptType === 'Prompt generado' && (
+            {promptType === 'generatedPrompt' && (
               <div>
                 <PromptBuilder
                   setPrompt={(p: string) => {
@@ -443,7 +439,7 @@ export default function ModelPage() {
                 className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
-                {queueingPrediction ? 'Generando...' : 'Generar'}
+                {queueingPrediction ? t('generating') : t('generate')}
               </Button>
               {queueingPrediction && (
                 <Button
@@ -453,8 +449,8 @@ export default function ModelPage() {
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction
-                    ? 'Cancelando...'
-                    : 'Cancelar Generación'}
+                    ? t('cancelling')
+                    : t('cancelGeneration')}
                 </Button>
               )}
               {!!imageUrl && !queueingPrediction && (
@@ -465,7 +461,7 @@ export default function ModelPage() {
                   cooldownTime={5000}
                   className="w-max bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
                 >
-                  Descargar imagen
+                  {t('downloadImage')}
                 </Button>
               )}
             </div>
@@ -477,7 +473,7 @@ export default function ModelPage() {
           )}
           {modelStatus !== 'succeeded' && (
             <div className="pt-2 text-center">
-              <span>El modelo no esta preparado todavia</span>
+              <span>{t('modelNotReady')}</span>
             </div>
           )}
         </div>

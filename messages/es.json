@@ -169,5 +169,26 @@
     "continueTraining": "Continúa con el entrenamiento",
     "trainModel": "Entrena un modelo",
     "buyTokens": "Compra tokens en la tienda"
+  },
+  "ModelPage": {
+    "modelTitle": "Modelos 🤖",
+    "modelToken": "Token del modelo: token",
+    "tokenInfo": "Escribe tu prompt usando el token del modelo o @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
+    "remainingTokens": "Tokens restantes: ",
+    "deleteModel": "Eliminar Modelo",
+    "generatedPrompt": "Prompt generado",
+    "generatedPromptInfo": "Genera un prompt a partir de una estructura",
+    "writtenPrompt": "Prompt escrito",
+    "writtenPromptInfo": "Crea tu prompt a tu manera",
+    "defaultPrompt": "Prompt predeterminado",
+    "defaultPromptInfo": "Escoje uno de los prompts ya creados",
+    "availablePrompts": "Elige un estilo",
+    "generate": "Generar",
+    "generating": "Generando...",
+    "cancelGeneration": "Cancelar Generación",
+    "cancelling": "Cancelando...",
+    "downloadImage": "Descargar imagen",
+    "modelNotReady": "El modelo no está preparado todavía"
   }
+  
 }
