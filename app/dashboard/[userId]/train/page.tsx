@@ -341,7 +341,7 @@ export default function TrainPage() {
                     className="my-1 ml-1 bg-white text-black dark:bg-black dark:text-white transition-all"
                     value={customInstanceType}
                     onChange={(ev) => setCustomInstanceType(ev.target.value)}
-                    placeholder={'Otro...'}
+                    placeholder={'Otro... (en inglés)'}
                   />
                 )}
 

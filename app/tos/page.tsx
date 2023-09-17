@@ -1,6 +1,6 @@
 const Terms = () => {
   return (
-    <div className="mx-auto max-w-screen-lg p-10 rounded-lg w-full bg-white text-black dark:bg-black dark:text-white transition-all my-4">
+    <div className="mx-auto max-w-screen-lg px-10 rounded-lg w-full bg-white text-black dark:bg-black dark:text-white transition-all my-4">
       <h1 className="font-bold text-5xl">
         Términos y Condiciones de Intellipic
       </h1>
