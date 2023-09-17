@@ -154,6 +154,13 @@
       "answer": "You can delete all photos and associated datasets by removing the model from your account.\n\nTo request the deletion of your account and all associated data, please send an email to intellipic1@gmail.com. Please note that by deleting your account, you will no longer have access to any data or content associated with it."
     }
   },
+  "Navbar": {
+    "models": "Models",
+    "examples": "Examples",
+    "shop": "Shop",
+    "faqs": "FAQs",
+    "logout": "Logout"
+  },
   "Dashboard": {
     "title": "Models 🤖",
     "tokensToTrain": "Tokens for training:",
@@ -266,5 +273,24 @@
     "cancelling": "Cancelling...",
     "downloadImage": "Download Image",
     "modelNotReady": "The model is not ready yet"
+  },
+  "ShopPage": {
+    "shop": "Shop 💰",
+    "modelTraining": "Model Training",
+    "modelTrainingInfo": "Train a custom AI model",
+    "generate10Title": "Generate 10 images",
+    "generate10Info": "10 Tokens for generating images",
+    "generate20Title": "Generate 20 images",
+    "generate20Info": "20 Tokens for generating images",
+    "generate25Title": "Generate 25 images",
+    "generate25Info": "25 Tokens for generating images",
+    "generate40Title": "Generate 40 images",
+    "generate40Info": "40 Tokens for generating images",
+    "generate100Title": "Generate 100 images",
+    "generate100Info": "100 Tokens for generating images",
+    "extraInfo": "Infinite possibilities for creating custom styles",
+    "price": "Price:",
+    "features": "Features:",
+    "buyNow": "Buy now"
   }
 }

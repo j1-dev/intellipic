@@ -2,6 +2,7 @@
 import { Dialog } from '@headlessui/react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import axios from 'axios';
+import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -13,48 +14,49 @@ interface Product {
   features: string[];
 }
 
-const products: Product[] = [
-  {
-    id: 'prod_OcmbeX4AJFkVoF',
-    name: 'Entrenamiento de un modelo',
-    price: '€4',
-    priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
-    features: ['Entrena un modelo', 'Genera 20 imagenes']
-  },
-  {
-    id: 'prod_OcmbMwLY3PSKkd',
-    name: 'Generación de 10 imágenes',
-    price: '€1',
-    priceId: 'price_1NpX23IsZGNqsWfQwulR8Pie',
-    features: ['Genera 10 imágenes', 'Prompts mejorados por IA']
-  },
-  {
-    id: 'prod_OcmaoJNRfbjwqk',
-    name: 'Generación de 25 imágenes',
-    price: '€2',
-    priceId: 'price_1NpX1VIsZGNqsWfQ6Pq3YcNa',
-    features: ['Genera 25 imágenes', 'Prompts mejorados por IA']
-  },
-  {
-    id: 'prod_OcmZDNFgWpbV65',
-    name: 'Generación de 40 imágenes',
-    price: '€3',
-    priceId: 'price_1NpX0oIsZGNqsWfQ6doXHr1o',
-    features: ['Genera 40 imágenes', 'Prompts mejorados por IA']
-  },
-  {
-    id: 'prod_OcmY6zvRL63Zhr',
-    name: 'Generación de 100 imágenes',
-    price: '€7',
-    priceId: 'price_1NpWzbIsZGNqsWfQb9RLZM8S',
-    features: ['Genera 100 imágenes', 'Prompts mejorados por IA']
-  }
-];
-
 export default function ShopPage() {
+  const t = useTranslations('ShopPage');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [user, setUser] = useState<any>(null);
   const supabase = createClientComponentClient();
+
+  const products: Product[] = [
+    {
+      id: 'prod_OcmbeX4AJFkVoF',
+      name: t('modelTraining'),
+      price: '€4',
+      priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
+      features: [t('modelTrainingInfo'), t('generate20Images')]
+    },
+    {
+      id: 'prod_OcmbMwLY3PSKkd',
+      name: t('generate10Title'),
+      price: '€1',
+      priceId: 'price_1NpX23IsZGNqsWfQwulR8Pie',
+      features: [t('generate10Info'), t('extraInfo')]
+    },
+    {
+      id: 'prod_OcmaoJNRfbjwqk',
+      name: t('generate25Title'),
+      price: '€2',
+      priceId: 'price_1NpX1VIsZGNqsWfQ6Pq3YcNa',
+      features: [t('generate25Info'), t('extraInfo')]
+    },
+    {
+      id: 'prod_OcmZDNFgWpbV65',
+      name: t('generate40Title'),
+      price: '€3',
+      priceId: 'price_1NpX0oIsZGNqsWfQ6doXHr1o',
+      features: [t('generate40Info'), t('extraInfo')]
+    },
+    {
+      id: 'prod_OcmY6zvRL63Zhr',
+      name: t('generate100Title'),
+      price: '€7',
+      priceId: 'price_1NpWzbIsZGNqsWfQb9RLZM8S',
+      features: [t('generate100Info'), t('extraInfo')]
+    }
+  ];
 
   useEffect(() => {
     const sub = async () => {
@@ -97,20 +99,9 @@ export default function ShopPage() {
   return (
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
-        <h2 className="text-4xl font-bold mb-4">Tienda 💰</h2>
+        <h2 className="text-4xl font-bold mb-4">{t('shop')}</h2>
         <div className="grid grid-cols-2 gap-4">
-          {/* Entrenamiento de un modelo (2x2) */}
-          <div
-            key={products[0].id}
-            className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 row-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-            onClick={() => handleProductClick(products[0])}
-          >
-            <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
-            <p>{products[0].price}</p>
-          </div>
-
-          {/* Generación de X imágenes (1x1) */}
-          {products.slice(1).map((product) => (
+          {products.map((product) => (
             <div
               key={product.id}
               className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
@@ -136,11 +127,11 @@ export default function ShopPage() {
                 {selectedProduct.name}
               </Dialog.Title>
               <div className="mb-4">
-                <h3 className="text-lg font-bold mb-2">Precio:</h3>
+                <h3 className="text-lg font-bold mb-2">{t('price')}</h3>
                 <p>{selectedProduct.price}</p>
               </div>
               <div className="mb-4">
-                <h3 className="text-lg font-bold mb-2">Características:</h3>
+                <h3 className="text-lg font-bold mb-2">{t('features')}</h3>
                 <ul>
                   {selectedProduct.features.map((feature) => (
                     <li key={feature}>{feature}</li>
@@ -152,7 +143,7 @@ export default function ShopPage() {
                   className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
                   onClick={handleBuyNow}
                 >
-                  Comprar Ahora
+                  {t('buyNow')}
                 </button>
               </div>
             </div>

@@ -6,8 +6,10 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { HiLogout } from 'react-icons/hi';
 import Logo from '../app/core/resources/logo';
+import { useTranslations } from 'next-intl';
 
 export default function Navbar() {
+  const t = useTranslations('Navbar');
   const [user, setUser] = useState<any>(null);
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
   const router = useRouter();
@@ -59,7 +61,7 @@ export default function Navbar() {
               href={`/dashboard/${user?.id}`}
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
-              {windowWidth > 479 ? 'Modelos' : '🤖'}
+              {windowWidth > 479 ? t('models') : '🤖'}
               <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
@@ -72,7 +74,7 @@ export default function Navbar() {
               href="/dashboard/examples"
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
-              {windowWidth > 479 ? 'Ejemplos' : '🔍'}
+              {windowWidth > 479 ? t('examples') : '🔍'}
               <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
@@ -85,7 +87,7 @@ export default function Navbar() {
               href="/dashboard/shop"
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
-              {windowWidth > 479 ? 'Tienda' : '💰'}
+              {windowWidth > 479 ? t('shop') : '💰'}
               <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
@@ -98,7 +100,7 @@ export default function Navbar() {
               href={`/dashboard/faq`}
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
-              {windowWidth > 479 ? 'FAQs' : '📖'}
+              {windowWidth > 479 ? t('faqs') : '📖'}
               <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2"></span>
               <span className="absolute bottom-0 left-0 h-0 w-0 border-b border-l border-black dark:border-white opacity-0 group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform translate-x-full translate-y-1/2"></span>
             </Link>
@@ -109,7 +111,7 @@ export default function Navbar() {
                 onClick={handleLogout}
                 className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all"
               >
-                {windowWidth > 768 ? 'Cerrar Sesión' : <HiLogout />}
+                {windowWidth > 768 ? t('logout') : <HiLogout />}
               </button>
             </div>
           </li>
