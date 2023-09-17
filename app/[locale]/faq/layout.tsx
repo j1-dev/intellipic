@@ -1,4 +1,3 @@
-import '@/app/globals.css';
 import Logo from '@/app/core/resources/logo';
 import Link from 'next/link';
 

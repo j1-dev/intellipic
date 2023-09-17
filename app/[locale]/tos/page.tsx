@@ -1,116 +1,110 @@
 import { useTranslations } from 'next-intl';
 
 const Terms = () => {
-  const t = useTranslations();
+  const t = useTranslations('Tos');
   return (
     <div className="mx-auto max-w-screen-lg px-10 rounded-lg w-full bg-white text-black dark:bg-black dark:text-white transition-all my-4">
-      <h1 className="font-bold text-5xl">{t('Tos.title')}</h1>
+      <h1 className="font-bold text-5xl">{t('title')}</h1>
 
-      <p className="my-3">{t('Tos.content')}</p>
+      <p className="my-3">{t(' content')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.refundsTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('refundsTitle')}</h2>
 
-      <p className="my-3">{t('Tos.refundsContent')}</p>
+      <p className="my-3">{t('refundsContent')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.photoUploadTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('photoUploadTitle')}</h2>
 
-      <p className="my-3">{t('Tos.photoUploadContent')}</p>
+      <p className="my-3">{t('photoUploadContent')}</p>
 
-      <h2 className="font-bold text-xl">
-        {t('Tos.informationCollectionTitle')}
-      </h2>
+      <h2 className="font-bold text-xl">{t('informationCollectionTitle')}</h2>
 
-      <p className="my-3">{t('Tos.informationCollectionContent')}</p>
+      <p className="my-3">{t('informationCollectionContent')}</p>
 
-      <h3 className="font-semibold text-md">
-        {t('Tos.legitimateReasonsTitle')}
-      </h3>
+      <h3 className="font-semibold text-md">{t('legitimateReasonsTitle')}</h3>
 
-      <p className="my-3">{t('Tos.legitimateReasonsContent')}</p>
+      <p className="my-3">{t('legitimateReasonsContent')}</p>
 
-      <h3 className="font-semibold text-md">
-        {t('Tos.collectionAndUseTitle')}
-      </h3>
+      <h3 className="font-semibold text-md">{t('collectionAndUseTitle')}</h3>
 
-      <p className="my-3">{t('Tos.collectionAndUseContent')}</p>
+      <p className="my-3">{t('collectionAndUseContent')}</p>
 
-      <p className="my-3">{t('Tos.collectionActionsTitle')}</p>
+      <p className="my-3">{t('collectionActionsTitle')}</p>
 
       <ul className="list-inside list-disc pl-4">
-        <li>{t('Tos.collectionActions1')}</li>
-        <li>{t('Tos.collectionActions2')}</li>
-        <li>{t('Tos.collectionActions3')}</li>
+        <li>{t('collectionActions1')}</li>
+        <li>{t('collectionActions2')}</li>
+        <li>{t('collectionActions3')}</li>
       </ul>
 
-      <p className="my-3">{t('Tos.collectionPurposesTitle')}</p>
+      <p className="my-3">{t('collectionPurposesTitle')}</p>
 
       <ul className="list-inside list-disc pl-4">
-        <li>{t('Tos.collectionPurposesContent')}</li>
+        <li>{t('collectionPurposesContent')}</li>
       </ul>
 
-      <p className="my-3">{t('Tos.informationCombinationTitle')}</p>
+      <p className="my-3">{t('informationCombinationTitle')}</p>
 
-      <p className="my-3">{t('Tos.informationCombinationContent')}</p>
-
-      <h3 className="font-semibold text-md">
-        {t('Tos.personalInformationSecurityTitle')}
-      </h3>
-
-      <p className="my-3">{t('Tos.personalInformationSecurityContent')}</p>
-
-      <p className="my-3">{t('Tos.personalInformationSecurityNote')}</p>
-
-      <p className="my-3">{t('Tos.personalInformationSecurityPassword')}</p>
+      <p className="my-3">{t('informationCombinationContent')}</p>
 
       <h3 className="font-semibold text-md">
-        {t('Tos.personalInformationDurationTitle')}
+        {t('personalInformationSecurityTitle')}
       </h3>
 
-      <p className="my-3">{t('Tos.personalInformationDurationContent')}</p>
+      <p className="my-3">{t('personalInformationSecurityContent')}</p>
 
-      <p className="my-3">{t('Tos.personalInformationDurationNote')}</p>
+      <p className="my-3">{t('personalInformationSecurityNote')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.childrenPrivacyTitle')}</h2>
+      <p className="my-3">{t('personalInformationSecurityPassword')}</p>
 
-      <p className="my-3">{t('Tos.childrenPrivacyContent')}</p>
+      <h3 className="font-semibold text-md">
+        {t('personalInformationDurationTitle')}
+      </h3>
+
+      <p className="my-3">{t('personalInformationDurationContent')}</p>
+
+      <p className="my-3">{t('personalInformationDurationNote')}</p>
+
+      <h2 className="font-bold text-xl">{t('childrenPrivacyTitle')}</h2>
+
+      <p className="my-3">{t('childrenPrivacyContent')}</p>
 
       <h2 className="font-bold text-xl">
-        {t('Tos.personalInformationDisclosureTitle')}
+        {t('personalInformationDisclosureTitle')}
       </h2>
 
-      <p className="my-3">{t('Tos.personalInformationDisclosureContent')}</p>
+      <p className="my-3">{t('personalInformationDisclosureContent')}</p>
 
       <ul className="list-inside list-disc pl-4">
-        <li>{t('Tos.personalInformationDisclosure1')}</li>
-        <li>{t('Tos.personalInformationDisclosure2')}</li>
+        <li>{t('personalInformationDisclosure1')}</li>
+        <li>{t('personalInformationDisclosure2')}</li>
       </ul>
 
       <h2 className="font-bold text-xl">
-        {t('Tos.internationalPersonalInformationTitle')}
+        {t('internationalPersonalInformationTitle')}
       </h2>
 
-      <p className="my-3">{t('Tos.internationalPersonalInformationContent')}</p>
+      <p className="my-3">{t('internationalPersonalInformationContent')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.yourRightsTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('yourRightsTitle')}</h2>
 
-      <p className="my-3">{t('Tos.yourRightsContent')}</p>
+      <p className="my-3">{t('yourRightsContent')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.cookieUsageTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('cookieUsageTitle')}</h2>
 
-      <p className="my-3">{t('Tos.cookieUsageContent')}</p>
+      <p className="my-3">{t('cookieUsageContent')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.policyLimitsTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('policyLimitsTitle')}</h2>
 
-      <p className="my-3">{t('Tos.policyLimitsContent')}</p>
+      <p className="my-3">{t('policyLimitsContent')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.policyChangesTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('policyChangesTitle')}</h2>
 
-      <p className="my-3">{t('Tos.policyChangesContent')}</p>
+      <p className="my-3">{t('policyChangesContent')}</p>
 
-      <h2 className="font-bold text-xl">{t('Tos.contactUsTitle')}</h2>
+      <h2 className="font-bold text-xl">{t('contactUsTitle')}</h2>
 
       <p className="my-3">
-        {t('Tos.contactUsContent')}{' '}
+        {t('contactUsContent')}{' '}
         <a href="mailto:support@Intellipic.app">support@Intellipic.app</a>
       </p>
     </div>

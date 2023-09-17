@@ -14,7 +14,7 @@ export default function Home() {
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
           <Logo />
           <h1 className="text-2xl sm:text-3xl font-bold hidden xs:block m-0">
-            Intellipic
+            IntelliPic
           </h1>
           <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-1 xs:px-3 transition-all ml-auto float-none z-50">
             <Link href="/login">{t('nav.login')}</Link>

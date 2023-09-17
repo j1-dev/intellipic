@@ -134,5 +134,24 @@
     "policyChangesContent": "At our discretion, we may change our privacy policy to reflect updates in our business processes, current acceptable practices, or legislative or regulatory changes. If we decide to change this privacy policy, we will post the changes here at the same link by which you are accessing this privacy policy. If required by law, we will obtain your permission or provide you with the opportunity to opt in or out, as applicable, to any new use of your personal information.",
     "contactUsTitle": "Contact Us",
     "contactUsContent": "For any questions or concerns related to your privacy, you can contact us using the following details: support@Intellipic.app"
+  },
+  "Faq": {
+    "questionsTitle": "Frequently Asked Questions 📖",
+    "question1": {
+      "question": "What type of photos should I upload to the platform? 📸",
+      "answer": "We recommend uploading a variety of photos to ensure that your avatar is as accurate as possible. This can include close-up shots of your face, profile photos, and full-body photos. It's important to ensure that your photos are clear and high-quality, and do not include other people or animals. We also recommend including a variety of expressions, locations, backgrounds, and perspectives in your photos to create the most accurate avatar possible."
+    },
+    "question2": {
+      "question": "How similar will the avatar be to my appearance? 👩‍🎨",
+      "answer": "The accuracy of your avatar will depend largely on the quantity and variety of photos you provide. The better and more diverse the photos, the easier it will be for the AI to understand and replicate your facial and body features. As a result, your avatar is more likely to resemble your real appearance!"
+    },
+    "question3": {
+      "question": "Is it possible to get a refund? 💰",
+      "answer": "It is possible to get a refund for purchases made within the first 14 days, as long as you have not trained the AI yet. However, once the 14-day period has passed or if you have already used the service (by clicking the training button), you will no longer be eligible for a refund."
+    },
+    "question4": {
+      "question": "What will happen to my photos? 🖼",
+      "answer": "You can delete all photos and associated datasets by removing the model from your account.\n\nTo request the deletion of your account and all associated data, please send an email to intellipic1@gmail.com. Please note that by deleting your account, you will no longer have access to any data or content associated with it."
+    }
   }
 }
