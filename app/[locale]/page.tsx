@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaDiscord, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { FiInfo } from 'react-icons/fi';
-import Morph from '../../components/Morph';
-import Logo from '../core/resources/logo';
+import Morph from '@/components/Morph';
+import Logo from '@/app/core/resources/logo';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {
@@ -14,28 +14,26 @@ export default function Home() {
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
           <Logo />
           <h1 className="text-2xl sm:text-3xl font-bold hidden xs:block m-0">
-            IntelliPic
+            Intellipic
           </h1>
           <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-1 xs:px-3 transition-all ml-auto float-none z-50">
-            <Link href="/login">Inicia sesión</Link>
+            <Link href="/login">{t('nav.login')}</Link>
           </button>
           <button className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1">
-            <Link href="/register">Regístrate</Link>
+            <Link href="/register">{t('nav.signup')}</Link>
           </button>
         </nav>
       </header>
 
       <section className="bg-white dark:bg-black py-16 transition-all border-t-[1px] border-b-[1px] border-black dark:border-white">
         <div className="max-w-screen-lg mx-auto px-8">
-          <Morph texts={['IntelliPic', 'Redefine', 'Tu imagen']} />
+          <Morph
+            texts={[t('header.morph1'), t('header.morph2'), t('header.morph3')]}
+          />
           <div className="text-center">
-            <p className="text-lg mb-8">
-              Desata tu creatividad con Intellipic. Sube imágenes de cualquier
-              sujeto, entrena una red neuronal y transfórmala en una increíbles
-              obras de arte con numerosos estilos.
-            </p>
+            <p className="text-lg mb-8">{t('header.description')}</p>
             <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all">
-              <Link href="/register">Comenzar</Link>
+              <Link href="/register">{t('header.cta')}</Link>
             </button>
           </div>
         </div>
@@ -43,62 +41,49 @@ export default function Home() {
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Características ✨</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('features.title')}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            <div className="card p-6">
-              <h3 className="text-xl font-bold mb-2">Subir imagen 📷</h3>
-              <p>
-                Sube sin problemas tus imágenes favoritas de cualquier tema que
-                desees.
-              </p>
-            </div>
+            {/* Feature 1 */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
-                Entrenamiento de la red neuronal🧠
+                {t('features.feature1.title')}
               </h3>
-              <p>
-                Utiliza tecnología de vanguardia de redes neuronales para
-                aprender de las imágenes subidas y comprender las
-                características únicas del sujeto.
-              </p>
+              <p>{t('features.feature1.description')}</p>
             </div>
-            <div className="card p-6">
-              <h3 className="text-xl font-bold mb-2">Selección de estilo 🌈</h3>
-              <p>
-                Elige entre una amplia colección de estilos para aplicar a tus
-                imágenes, lo que te permitirá crear combinaciones visuales
-                impresionantes.
-              </p>
-            </div>
+            {/* Feature 2 */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
-                Generación de imágenes⚡️
+                {t('features.feature2.title')}
               </h3>
-              <p>
-                Observa con asombro cómo Intellipic genera nuevas imágenes
-                impresionantes, fusionando el sujeto con el estilo elegido en
-                tiempo real.
-              </p>
+              <p>{t('features.feature2.description')}</p>
             </div>
+            {/* Feature 3 */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
-                Creatividad infinita 🔁
+                {t('features.feature3.title')}
               </h3>
-              <p>
-                Con Intellipic, no hay límites para tu imaginación. Sigue
-                experimentando, entrenando y generando para descubrir resultados
-                cautivadores.
-              </p>
+              <p>{t('features.feature3.description')}</p>
             </div>
+            {/* Feature 4 */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
-                El trabajo impulsado por IA tiene costos asociados. 💡
+                {t('features.feature4.title')}
               </h3>
-              <p>
-                Debido a los recursos sustanciales necesarios para el
-                entrenamiento, no es factible proporcionar este servicio de
-                forma gratuita.
-              </p>
+              <p>{t('features.feature4.description')}</p>
+            </div>
+            {/* Feature 5 */}
+            <div className="card p-6">
+              <h3 className="text-xl font-bold mb-2">
+                {t('features.feature5.title')}
+              </h3>
+              <p>{t('features.feature5.description')}</p>
+            </div>
+            {/* Feature 6 */}
+            <div className="card p-6">
+              <h3 className="text-xl font-bold mb-2">
+                {t('features.feature6.title')}
+              </h3>
+              <p>{t('features.feature6.description')}</p>
             </div>
           </div>
         </div>
@@ -106,10 +91,11 @@ export default function Home() {
 
       <section className="py-5">
         <div className="max-w-screen-lg mx-auto px-8 ">
-          <h2 className="text-2xl font-bold mb-4">Ejemplos📸</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('examples.title')}</h2>
         </div>
         <div className="max-w-screen-lg mx-auto px-8">
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
+            {/* Example 1 */}
             <a href="#" className="group">
               <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <Image
@@ -121,6 +107,7 @@ export default function Home() {
                 />
               </div>
             </a>
+            {/* Example 2 */}
             <a href="#" className="group">
               <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <Image
@@ -132,6 +119,7 @@ export default function Home() {
                 />
               </div>
             </a>
+            {/* Example 3 */}
             <a href="#" className="group">
               <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <Image
@@ -143,6 +131,7 @@ export default function Home() {
                 />
               </div>
             </a>
+            {/* Example 4 */}
             <a href="#" className="group">
               <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                 <Image
@@ -158,60 +147,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Prices Section */}
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Precios 💰</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('prices.title')}</h2>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Training a Model (2x2) */}
+            {/* Training a Model */}
             <div className="card p-6 col-span-2 row-span-2">
-              <h3 className="text-xl font-bold mb-2">Entrenar un modelo</h3>
-              <p className="leading-7">€4 por modelo</p>
-              <p className="leading-7">Esto Incluye:</p>
+              <h3 className="text-xl font-bold mb-2">
+                {t('prices.trainModel.title')}
+              </h3>
+              <p className="leading-7">{t('prices.trainModel.price')}</p>
+              <p className="leading-7">{t('prices.trainModel.includes')}</p>
               <ul className="list-disc list-inside ">
-                <li className="leading-7">Crear un modelo</li>
-                <li className="leading-7">Generar 20 imágenes</li>
+                <li className="leading-7">{t('prices.trainModel.include1')}</li>
+                <li className="leading-7">{t('prices.trainModel.include2')}</li>
               </ul>
             </div>
 
-            {/* Generating 10 Images (1x1) */}
+            {/* Generating 10 Images */}
             <div className="card p-6">
-              <h3 className="text-xl font-bold mb-2">Generar 10 imágenes</h3>
-              <p>€1</p>
+              <h3 className="text-xl font-bold mb-2">
+                {t('prices.generate10.title')}
+              </h3>
+              <p>{t('prices.generate10.price')}</p>
             </div>
 
-            {/* Generating 25 Images (1x1) */}
+            {/* Generating 25 Images */}
             <div className="card p-6">
-              <h3 className="text-xl font-bold mb-2">Generar 25 imágenes</h3>
-              <p>€2</p>
+              <h3 className="text-xl font-bold mb-2">
+                {t('prices.generate25.title')}
+              </h3>
+              <p>{t('prices.generate25.price')}</p>
             </div>
 
-            {/* Generating 50 Images (1x1) */}
+            {/* Generating 50 Images */}
             <div className="card p-6">
-              <h3 className="text-xl font-bold mb-2">Generar 40 imágenes</h3>
-              <p>€3</p>
+              <h3 className="text-xl font-bold mb-2">
+                {t('prices.generate40.title')}
+              </h3>
+              <p>{t('prices.generate40.price')}</p>
             </div>
 
-            {/* Generating 100 Images (1x1) */}
+            {/* Generating 100 Images */}
             <div className="card p-6">
-              <h3 className="text-xl font-bold mb-2">Generar 100 imágenes</h3>
-              <p>€7</p>
+              <h3 className="text-xl font-bold mb-2">
+                {t('prices.generate100.title')}
+              </h3>
+              <p>{t('prices.generate100.price')}</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Privacy Section */}
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
-          <h2 className="text-2xl font-bold mb-4">Privacidad y Seguridad 🔒</h2>
+          <h2 className="text-2xl font-bold mb-4">{t('privacy.title')}</h2>
           <p className="text-lg font-semibold mb-8">
-            En Intellipic, priorizamos tu privacidad y seguridad. Para
-            asegurarnos de que tus imágenes estén protegidas, eliminamos todas
-            las imágenes subidas y las obras de arte generadas después de 24
-            horas. Esto evita cualquier uso malicioso o acceso no autorizado a
-            tus datos. Puedes utilizar Intellipic con confianza, sabiendo que tu
-            privacidad es nuestra máxima prioridad.
+            {t('privacy.description')}
           </p>
         </div>
       </section>
@@ -280,7 +272,7 @@ export default function Home() {
             </li>
           </ul>
           <p className="text-sm text-gray-500 dark:text-gray-400 my-7 ">
-            This project is licensed under the MIT License.
+            {t('footer.license')}
           </p>
         </div>
       </footer>

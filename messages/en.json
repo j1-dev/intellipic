@@ -5,10 +5,14 @@
       "signup": "Sign up"
     },
     "header": {
-      "subtitles": ["Redefine", "Your image"],
+      "morph1": "Intellipic",
+      "morph2": "Remake",
+      "morph3": "Yourself",
+      "description": "Unleash your creativity with Intellipic. Upload images of any subject, train a neural network, and transform them into incredible artworks with various styles.",
       "cta": "Get Started"
     },
     "features": {
+      "title": "Features ✨",
       "feature1": {
         "title": "Upload Image 📷",
         "description": "Smoothly upload your favorite images of any subject you desire."
@@ -43,7 +47,8 @@
         "title": "Train a Model",
         "price": "€4 per model",
         "includes": "This includes:",
-        "includesList": ["Creating a model", "Generating 20 images"]
+        "include1": "Creating a model" ,
+        "include2": "Generating 20 images"
       },
       "generate10": {
         "title": "Generate 10 images",
