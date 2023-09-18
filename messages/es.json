@@ -47,7 +47,8 @@
         "title": "Entrenar un modelo",
         "price": "€4 por modelo",
         "includes": "Esto Incluye:",
-        "includesList": ["Crear un modelo", "Generar 20 imágenes"]
+        "include1": "Generar un modelo",
+        "include2": "20 tokens para generar imágenes"
       },
       "generate10": {
         "title": "Generar 10 imágenes",
