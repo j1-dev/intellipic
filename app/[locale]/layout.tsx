@@ -1,11 +1,10 @@
 import './globals.css';
 import SupabaseProvider from './supabase-provider';
-import ThemeToggle from '../../components/ThemeToggle';
 import { Toaster } from 'react-hot-toast';
 import localFont from 'next/font/local';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
-import LangToggle from '@/components/LangToggle';
+import Footer from '@/components/Footer';
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }];
@@ -69,13 +68,12 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={font.className}>
-      <body className="pb-20">
+      <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SupabaseProvider>
             <Toaster position="bottom-right" reverseOrder={false} />
-            <ThemeToggle />
-            <LangToggle />
-            {children}
+            <main className="flex-grow">{children}</main>
+            <Footer />
           </SupabaseProvider>
         </NextIntlClientProvider>
       </body>

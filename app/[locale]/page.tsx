@@ -1,8 +1,6 @@
 'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaDiscord, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { FiInfo } from 'react-icons/fi';
 import Morph from '@/components/Morph';
 import Logo from '@/app/core/resources/logo';
 import { useTranslations } from 'next-intl';
@@ -208,75 +206,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-
-      <footer className="py-8 text-center bg-white dark:bg-black transition-all">
-        <div className="max-w-screen-lg mx-auto px-8">
-          <ul className="flex justify-start space-x-4 my-3">
-            <li>
-              <Link
-                href="/faq"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                <FiInfo className="inline-block mr-1" />
-                FAQs
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/tos"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                Terms
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
-          <ul className="flex justify-start lg:justify-end my-3">
-            <li>
-              <Link
-                href="#"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                <FaInstagram size={24} className="mx-3" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                <FaGithub size={24} className="mx-3" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                <FaDiscord size={24} className="mx-3" />
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="text-gray-900 dark:text-white hover:text-black dark:hover:text-gray-400"
-              >
-                <FaLinkedin size={24} className="mx-3" />
-              </Link>
-            </li>
-          </ul>
-          <p className="text-sm text-gray-500 dark:text-gray-400 my-7 ">
-            {t('footer.license')}
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -1,10 +1,8 @@
 'use client';
-import { Switch } from '@headlessui/react';
 import { usePathname, useRouter } from 'next-intl/client';
 import { useLocale } from 'next-intl';
 import { useState } from 'react';
-import ES from 'country-flag-icons/react/3x2/ES';
-import US from 'country-flag-icons/react/3x2/US';
+import { Menu } from '@headlessui/react';
 
 const LangToggle = () => {
   const pathname = usePathname();
@@ -21,21 +19,27 @@ const LangToggle = () => {
   }
 
   return (
-    <div className="inline-flex fixed left-3 bottom-3 z-50 bg-opacity-50 bg-gray-400 p-3 rounded-full">
-      <US title="United States" className="w-7 mr-2" />
-      <Switch
-        onChange={toggleLang}
-        className="bg-black dark:bg-white transition-all hover:shadow-lg relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75"
-      >
-        <span className="sr-only">Use setting</span>
-        <span
-          aria-hidden="true"
-          className={`${enabled ? 'translate-x-9' : 'translate-x-0'}
-            pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white dark:bg-black shadow-lg ring-0 transition duration-200 ease-in-out`}
-        />
-      </Switch>
-      <ES title="España" className="w-7 ml-2" />
-    </div>
+    <Menu as="div" className="absolute inline-block text-left right-40">
+      <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+        Idoma
+      </Menu.Button>
+      <Menu.Items className="absolute top-0 lef-0 block -translate-x-12 -translate-y-6">
+        <Menu.Item>
+          {({ active }) => (
+            <div className="bg-[url('https://cdn.ipregistry.co/flags/twemoji/es.png')] bg-contain w-10 h-10">
+              {}
+            </div>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <div className="bg-[url('https://cdn.ipregistry.co/flags/twemoji/gb.png')] bg-contain w-10 h-10">
+              {}
+            </div>
+          )}
+        </Menu.Item>
+      </Menu.Items>
+    </Menu>
   );
 };
 

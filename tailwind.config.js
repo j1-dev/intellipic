@@ -35,6 +35,10 @@ module.exports = {
 
       '2xl': '1536px'
       // => @media (min-width: 1536px) { ... }
+    },
+    backgroundImage: {
+      spain: 'https://cdn.ipregistry.co/flags/twemoji/es.png',
+      gb: 'https://cdn.ipregistry.co/flags/twemoji/gb.png'
     }
   },
   plugins: [require('@tailwindcss/aspect-ratio')]
