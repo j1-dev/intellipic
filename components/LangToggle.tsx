@@ -7,7 +7,6 @@ import { Menu } from '@headlessui/react';
 const LangToggle = () => {
   const pathname = usePathname();
   const router = useRouter();
-  const locale = useLocale();
 
   return (
     <Menu as="div" className="inline-block">
