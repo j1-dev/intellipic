@@ -1,0 +1,296 @@
+{
+  "Home": {
+    "nav": {
+      "login": "Log in",
+      "signup": "Sign up"
+    },
+    "header": {
+      "morph1": "Intellipic",
+      "morph2": "Remake",
+      "morph3": "Yourself",
+      "description": "Unleash your creativity with Intellipic. Upload images of any subject, train a neural network, and transform them into incredible artworks with various styles.",
+      "cta": "Get Started"
+    },
+    "features": {
+      "title": "Features ✨",
+      "feature1": {
+        "title": "Upload Image 📷",
+        "description": "Smoothly upload your favorite images of any subject you desire."
+      },
+      "feature2": {
+        "title": "Neural Network Training 🧠",
+        "description": "Utilize cutting-edge neural network technology to learn from the uploaded images and understand the subject's unique characteristics."
+      },
+      "feature3": {
+        "title": "Style Selection 🌈",
+        "description": "Choose from a wide collection of styles to apply to your images, allowing you to create stunning visual combinations."
+      },
+      "feature4": {
+        "title": "Image Generation ⚡️",
+        "description": "Watch in awe as IntelliPic generates new impressive images, merging the subject with the chosen style in real-time."
+      },
+      "feature5": {
+        "title": "Infinite Creativity 🔁",
+        "description": "With IntelliPic, there are no limits to your imagination. Keep experimenting, training, and generating to discover captivating results."
+      },
+      "feature6": {
+        "title": "AI-Powered Work Comes with Associated Costs. 💡",
+        "description": "Due to substantial resources required for training, providing this service for free is not feasible."
+      }
+    },
+    "examples": {
+      "title": "Examples 📸"
+    },
+    "prices": {
+      "title": "Prices 💰",
+      "trainModel": {
+        "title": "Train a Model",
+        "price": "€4 per model",
+        "includes": "This includes:",
+        "include1": "Creating a model" ,
+        "include2": "Generating 20 images"
+      },
+      "generate10": {
+        "title": "Generate 10 images",
+        "price": "€1"
+      },
+      "generate25": {
+        "title": "Generate 25 images",
+        "price": "€2"
+      },
+      "generate40": {
+        "title": "Generate 40 images",
+        "price": "€3"
+      },
+      "generate100": {
+        "title": "Generate 100 images",
+        "price": "€7"
+      }
+    },
+    "privacy": {
+      "title": "Privacy and Security 🔒",
+      "description": "At IntelliPic, we prioritize your privacy and security. To ensure that your images are protected, we delete all uploaded images and generated artworks after 24 hours. This prevents any malicious use or unauthorized access to your data. You can use IntelliPic with confidence, knowing that your privacy is our top priority."
+    },
+    "footer": {
+      "links": {
+        "faqs": "FAQs",
+        "terms": "Terms",
+        "contact": "Contact"
+      },
+      "social": {
+        "instagram": "Instagram",
+        "github": "GitHub",
+        "discord": "Discord",
+        "linkedin": "LinkedIn"
+      },
+      "license": "This project is licensed under the MIT License."
+    }
+  },
+  "Tos": {
+    "title": "Terms and Conditions of Intellipic",
+    "content": "It is our policy to respect your privacy and comply with any applicable laws and regulations regarding any personal information we may collect about you, including all our website, https://intellipic.vercel.app/, and other sites we own and operate.",
+    "refundsTitle": "Refunds",
+    "refundsContent": "We can only refund training and image generation tokens that have not been used yet.",
+    "photoUploadTitle": "Photo Upload",
+    "photoUploadContent": "To upload photos to this site, you must ensure that they are either of you or you have the rights or permission to use them, and they are not nude or pornographic. We are not responsible for any harm that may result from uploading photos that do not meet these criteria.",
+    "informationCollectionTitle": "Information We Collect",
+    "informationCollectionContent": "The information we collect includes both the information you consciously and actively provide to us when using or participating in any of our services and promotions, as well as information automatically sent by your devices when accessing our products and services.",
+    "legitimateReasonsTitle": "Legitimate Reasons for Processing Your Personal Information",
+    "legitimateReasonsContent": "We only collect and use your personal information when we have a legitimate reason to do so. In such cases, we only collect personal information that is reasonably necessary to provide you with our services.",
+    "collectionAndUseTitle": "Collection and Use of Information",
+    "collectionAndUseContent": "By accessing and using Intellipic, you are also using the Replicate service, and therefore, you agree to the terms of use described at https://replicate.com/privacy. Please review these terms carefully before using the service. If you do not agree to these terms, please refrain from using the service.",
+    "collectionActionsTitle": "Collection Actions",
+    "collectionActionsContent": "We may collect personal information from you when you perform any of the following actions on our website:",
+    "collectionActions1": "Using a mobile device or web browser to access our content",
+    "collectionActions2":  "Contacting us via email, social media, or similar technologies",
+    "collectionActions3":  "Mentioning us on social media",
+    "collectionPurposesTitle": "Collection Purposes",
+    "collectionPurposesContent": "We may collect, retain, use, and disclose information for the following purposes, and personal information will not be processed in a way that is incompatible with these purposes:",
+    "collectionPurposes": "Allowing you to access and use our website, associated applications, and associated social media platforms",
+    "informationCombinationTitle": "Information Combination",
+    "informationCombinationContent": "Please note that we may combine information we collect about you with general information or research data we receive from other trusted sources.",
+    "personalInformationSecurityTitle": "Security of Your Personal Information",
+    "personalInformationSecurityContent": "When we collect and process personal information, and while we retain it, we will protect it commercially acceptable to prevent loss and theft, as well as unauthorized access, disclosure, copying, use, or modification.",
+    "personalInformationSecurityNote": "Although we will do our best to protect the personal information you provide to us, we recommend that no method of electronic transmission or storage is 100% secure, and no one can guarantee absolute data security. We will comply with applicable laws in case of data breach.",
+    "personalInformationSecurityPassword": "You are responsible for selecting a password and its overall strength, ensuring the security of your own information within the limits of our services.",
+    "personalInformationDurationTitle": "Duration of Storage of Your Personal Information",
+    "personalInformationDurationContent": "We keep your personal information only for as long as necessary. This time period may depend on what we are using your information for, in accordance with this privacy policy. If your personal information is no longer required, we will either delete it or anonymize it by removing all identifying details.",
+    "personalInformationDurationNote": "However, if necessary, we may retain your personal information to comply with a legal, accounting, or reporting obligation, or for archiving purposes in the public interest, scientific research, or historical or statistical purposes.",
+    "childrenPrivacyTitle": "Children's Privacy",
+    "childrenPrivacyContent": "We do not directly target any of our products or services to children under the age of 13, and we do not knowingly collect personal information about children under the age of 13.",
+    "personalInformationDisclosureTitle": "Disclosure of Personal Information to Third Parties",
+    "personalInformationDisclosureContent": "We may disclose personal information to:",
+    "personalInformationDisclosure1": "A parent company, subsidiary, or affiliate of our company",
+    "personalInformationDisclosure2": "Third-party service providers for the purpose of enabling them to provide their services, such as IT service providers, data storage, hosting, and server providers, advertisers, or analytics platforms",
+    "internationalPersonalInformationTitle": "International Transfers of Personal Information",
+    "internationalPersonalInformationContent": "The personal information we collect is stored and/or processed where we or our partners, affiliates, and third-party providers maintain facilities. Please note that the places to which we store, process, or transfer your personal information may not have the same data protection laws as the country in which you originally provided the information. If we transfer your personal information to third parties in other countries: (i) we will perform those transfers in accordance with applicable law; and (ii) we will protect the transferred personal information in accordance with this privacy policy.",
+    "yourRightsTitle": "Your Rights and Control of Your Personal Information",
+    "yourRightsContent": "You always have the right to withhold your personal information, with the understanding that your experience on our website may be affected. We will not discriminate against you for exercising any of your rights regarding your personal information. By providing us with personal information, you understand that we will collect, retain, use, and disclose it in accordance with this privacy policy. You have the right to request details about any personal information we have about you.",
+    "cookieUsageTitle": "Use of Cookies",
+    "cookieUsageContent": "We use cookies to collect information about you and your activity on our site. A cookie is a small piece of data that our website stores on your computer and accesses each time you visit, so we can understand how you use our site. This helps us serve you content based on the preferences you have specified.",
+    "policyLimitsTitle": "Limits of Our Policy",
+    "policyLimitsContent": "Our website may link to external sites that are not operated by us. Please note that we have no control over the content and policies of those sites, and we cannot accept responsibility or liability for their respective privacy practices.",
+    "policyChangesTitle": "Changes to This Policy",
+    "policyChangesContent": "At our discretion, we may change our privacy policy to reflect updates in our business processes, current acceptable practices, or legislative or regulatory changes. If we decide to change this privacy policy, we will post the changes here at the same link by which you are accessing this privacy policy. If required by law, we will obtain your permission or provide you with the opportunity to opt in or out, as applicable, to any new use of your personal information.",
+    "contactUsTitle": "Contact Us",
+    "contactUsContent": "For any questions or concerns related to your privacy, you can contact us using the following details: support@Intellipic.app"
+  },
+  "Faq": {
+    "questionsTitle": "Frequently Asked Questions 📖",
+    "question1": {
+      "question": "What type of photos should I upload to the platform? 📸",
+      "answer": "We recommend uploading a variety of photos to ensure that your avatar is as accurate as possible. This can include close-up shots of your face, profile photos, and full-body photos. It's important to ensure that your photos are clear and high-quality, and do not include other people or animals. We also recommend including a variety of expressions, locations, backgrounds, and perspectives in your photos to create the most accurate avatar possible."
+    },
+    "question2": {
+      "question": "How similar will the avatar be to my appearance? 👩‍🎨",
+      "answer": "The accuracy of your avatar will depend largely on the quantity and variety of photos you provide. The better and more diverse the photos, the easier it will be for the AI to understand and replicate your facial and body features. As a result, your avatar is more likely to resemble your real appearance!"
+    },
+    "question3": {
+      "question": "Is it possible to get a refund? 💰",
+      "answer": "It is possible to get a refund for purchases made within the first 14 days, as long as you have not trained the AI yet. However, once the 14-day period has passed or if you have already used the service (by clicking the training button), you will no longer be eligible for a refund."
+    },
+    "question4": {
+      "question": "What will happen to my photos? 🖼",
+      "answer": "You can delete all photos and associated datasets by removing the model from your account.\n\nTo request the deletion of your account and all associated data, please send an email to intellipic1@gmail.com. Please note that by deleting your account, you will no longer have access to any data or content associated with it."
+    }
+  },
+  "Navbar": {
+    "models": "Models",
+    "examples": "Examples",
+    "shop": "Shop",
+    "faqs": "FAQs",
+    "logout": "Logout"
+  },
+  "Dashboard": {
+    "title": "Models 🤖",
+    "tokensToTrain": "Tokens for training:",
+    "noModelsMessage": "You haven't trained any models yet",
+    "buyTokensMessage": "Buy tokens in the store to train your first model"
+  },
+  "ModelCard": {
+    "starting": "Starting",
+    "processing": "Processing...",
+    "succeeded": "Done"
+  },
+  "TrainButton": {
+    "trainingInProgress": "Training in progress",
+    "continueTraining": "Continue training",
+    "trainModel": "Train a model",
+    "buyTokens": "Buy tokens in the store"
+  },
+  "PromptBuilder": {
+    "generatorTitle": "Prompt Generator",
+    "generatePrompt": "Generate Prompt",
+    "promptGenerated": "Generated Prompt",
+    "selectOption": "Select an option",
+    "customOption": "Other",
+    "customOptionPlaceholder": "Enter your custom option",
+    "customOptions": "Custom Options",
+    "medium": "Medium",
+    "clothing": "Clothing",
+    "pose": "Pose",
+    "scene": "Scene",
+    "artist": "Artist",
+    "settings": "Settings",
+    "None": "None",
+    "portrait": "Portrait",
+    "painting": "Painting",
+    "digital art": "Digital Art",
+    "sculpture": "Sculpture",
+    "photograph": "Photograph",
+    "collage": "Collage",
+    "illustration": "Illustration",
+    "animation": "Animation",
+    "mixed media": "Mixed Media",
+    "watercolor": "Watercolor",
+    "red hoodie": "Red Hoodie",
+    "formal suit": "Formal Suit",
+    "casual jeans and t-shirt": "Casual Jeans and T-shirt",
+    "superhero costume": "Superhero Costume",
+    "bohemian dress": "Bohemian Dress",
+    "sports uniform": "Sports Uniform",
+    "vintage attire": "Vintage Attire",
+    "business attire": "Business Attire",
+    "punk outfit": "Punk Outfit",
+    "swimwear": "Swimwear",
+    "flexing": "Flexing",
+    "standing tall": "Standing Tall",
+    "sitting gracefully": "Sitting Gracefully",
+    "dancing": "Dancing",
+    "jumping": "Jumping",
+    "reading": "Reading",
+    "meditating": "Meditating",
+    "running": "Running",
+    "yoga": "Yoga",
+    "cartwheel": "Cartwheel",
+    "mountain": "Mountain",
+    "beach": "Beach",
+    "cityscape": "Cityscape",
+    "fantasy realm": "Fantasy Realm",
+    "underwater": "Underwater",
+    "outer space": "Outer Space",
+    "countryside": "Countryside",
+    "urban street": "Urban Street",
+    "desert": "Desert",
+    "jungle": "Jungle",
+    "Leonardo Da Vinci": "Leonardo Da Vinci",
+    "Pablo Picasso": "Pablo Picasso",
+    "Frida Kahlo": "Frida Kahlo",
+    "Vincent van Gogh": "Vincent van Gogh",
+    "Georgia O Keeffe": "Georgia O Keeffe",
+    "Salvador Dali": "Salvador Dali",
+    "Rembrandt": "Rembrandt",
+    "Claude Monet": "Claude Monet",
+    "Andy Warhol": "Andy Warhol",
+    "Yayoi Kusama": "Yayoi Kusama",
+    "cinematic": "Cinematic",
+    "surreal": "Surreal",
+    "minimalistic": "Minimalistic",
+    "vibrant": "Vibrant",
+    "nostalgic": "Nostalgic",
+    "futuristic": "Futuristic",
+    "dreamy": "Dreamy",
+    "grunge": "Grunge",
+    "romantic": "Romantic",
+    "ethereal": "Ethereal"
+  },
+  "ModelPage": {
+    "modelTitle": "Models 🤖",
+    "modelToken": "Model Token: token",
+    "tokenInfo": "Write your prompt using the model token or @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
+    "remainingTokens": "Remaining Tokens: ",
+    "deleteModel": "Delete Model",
+    "generatedPrompt": "Generated Prompt",
+    "generatedPromptInfo": "Generated a prompt from a template",
+    "writtenPrompt": "Written Prompt",
+    "writtenPromptInfo": "Create a prompt your way",
+    "defaultPrompt": "Default Prompt",
+    "defaultPromptInfo": "Choose from one of the premade prompts",
+    "availablePrompts": "Choose a style",
+    "generate": "Generate",
+    "generating": "Generating...",
+    "cancelGeneration": "Cancel Generation",
+    "cancelling": "Cancelling...",
+    "downloadImage": "Download Image",
+    "modelNotReady": "The model is not ready yet"
+  },
+  "ShopPage": {
+    "shop": "Shop 💰",
+    "modelTraining": "Model Training",
+    "modelTrainingInfo": "Train a custom AI model",
+    "generate10Title": "Generate 10 images",
+    "generate10Info": "10 Tokens for generating images",
+    "generate20Title": "Generate 20 images",
+    "generate20Info": "20 Tokens for generating images",
+    "generate25Title": "Generate 25 images",
+    "generate25Info": "25 Tokens for generating images",
+    "generate40Title": "Generate 40 images",
+    "generate40Info": "40 Tokens for generating images",
+    "generate100Title": "Generate 100 images",
+    "generate100Info": "100 Tokens for generating images",
+    "extraInfo": "Infinite possibilities for creating custom styles",
+    "price": "Price:",
+    "features": "Features:",
+    "buyNow": "Buy now"
+  }
+}

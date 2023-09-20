@@ -1,3 +1,4 @@
+'use client';
 import FaqMain from '@/components/FaqMain';
 
 const Faq = () => {

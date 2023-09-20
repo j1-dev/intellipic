@@ -3,19 +3,21 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { ClipLoader } from 'react-spinners';
+import { useTranslations } from 'next-intl';
 
-import { userDataType } from '../app/dashboard/[userId]/page';
+import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
 
 export const TrainButton = ({ userData }: { userData: userDataType }) => {
+  const t = useTranslations('TrainButton');
   const router = useRouter();
   const message =
     userData?.model_tokens !== 0 && userData?.model_tokens !== null
       ? !!userData?.dataset
         ? !!userData?.run_id
-          ? 'Entrenamiento en proceso'
-          : 'Continúa con el entrenamiento'
-        : 'Entrena un modelo'
-      : 'Compra tokens en la tienda';
+          ? t('trainingInProgress')
+          : t('continueTraining')
+        : t('trainModel')
+      : t('buyTokens');
 
   return (
     <button

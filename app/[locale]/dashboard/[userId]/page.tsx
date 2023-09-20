@@ -5,6 +5,7 @@ import supabase from '@/app/core/clients/supabase';
 import useInterval from '@/app/core/utils/useInterval';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export interface userDataType {
   id: string;
@@ -18,6 +19,7 @@ export interface userDataType {
 }
 
 export default function DashboardPage() {
+  const t = useTranslations('Dashboard');
   const params = useParams();
   const user = params.userId;
   const [models, setModels] = useState<any>(() => {
@@ -86,9 +88,9 @@ export default function DashboardPage() {
   return (
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
-        <h2 className="text-4xl font-bold mb-4">Modelos 🤖</h2>
+        <h2 className="text-4xl font-bold mb-4">{t('title')}</h2>
         <h3 className="text-xl mb-4">
-          Tokens para entrenar:{' '}
+          {t('tokensToTrain')}{' '}
           {!!userData && userData.model_tokens !== undefined
             ? userData.model_tokens
             : '...'}
@@ -109,12 +111,10 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="w-full m-auto mt-24 text-center">
-            <h1 className="text-3xl font-bold">
-              Todavía no has entrenado ningún modelo
-            </h1>
+            <h1 className="text-3xl font-bold">{t('noModelsMessage')}</h1>
             <h2 className="text-xl font-bold mt-3">
               {userData?.model_tokens === 0 ? (
-                'Compra tokens en la tienda para entrenar tu primer modelo'
+                t('buyTokensMessage')
               ) : (
                 <div className="max-w-screen-xs m-auto">
                   <TrainButton userData={userData} />
