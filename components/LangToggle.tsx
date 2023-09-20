@@ -19,23 +19,33 @@ const LangToggle = () => {
   }
 
   return (
-    <Menu as="div" className="absolute inline-block text-left right-40">
-      <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+    <Menu as="div">
+      <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium card focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
         Idoma
       </Menu.Button>
-      <Menu.Items className="absolute top-0 lef-0 block -translate-x-12 -translate-y-6">
+      <Menu.Items className="absolute top-0 lef-0 block -translate-y-9  -translate-x-8 border bg-white dark:bg-black border-black dark:border-white px-3 rounded-md">
         <Menu.Item>
           {({ active }) => (
-            <div className="bg-[url('https://cdn.ipregistry.co/flags/twemoji/es.png')] bg-contain w-10 h-10">
+            <button
+              className="bg-[url('https://cdn.ipregistry.co/flags/twemoji/es.png')] bg-contain w-10 h-10 hover:scale-105 transition-all m-2"
+              onClick={() => {
+                router.replace(pathname, { locale: 'es' });
+              }}
+            >
               {}
-            </div>
+            </button>
           )}
         </Menu.Item>
         <Menu.Item>
           {({ active }) => (
-            <div className="bg-[url('https://cdn.ipregistry.co/flags/twemoji/gb.png')] bg-contain w-10 h-10">
+            <button
+              className="bg-[url('https://cdn.ipregistry.co/flags/twemoji/gb.png')] bg-contain w-10 h-10 hover:scale-105 transition-all m-2"
+              onClick={() => {
+                router.replace(pathname, { locale: 'en' });
+              }}
+            >
               {}
-            </div>
+            </button>
           )}
         </Menu.Item>
       </Menu.Items>

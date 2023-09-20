@@ -45,8 +45,10 @@ const Footer = () => {
             </Link>
           </li>
         </ul>
-        <ThemeToggle />
-        <LangToggle />
+        <div className="ml-auto inline-flex">
+          <ThemeToggle />
+          <LangToggle />
+        </div>
       </div>
     </footer>
   );
