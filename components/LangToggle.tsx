@@ -1,17 +1,17 @@
 'use client';
 import { usePathname, useRouter } from 'next-intl/client';
-import { useLocale } from 'next-intl';
-import { useState } from 'react';
 import { Menu } from '@headlessui/react';
+import { useLocale } from 'next-intl';
 
 const LangToggle = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const locale = useLocale();
 
   return (
     <Menu as="div" className="inline-block">
       <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium card focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-        Idoma
+        {locale === 'es' ? 'Idioma' : 'Language'}
       </Menu.Button>
       <Menu.Items className="absolute top-0 lef-0 inline-block -translate-y-20  -translate-x-[84px] border bg-white dark:bg-black border-black dark:border-white px-2 rounded-md">
         <Menu.Item>
