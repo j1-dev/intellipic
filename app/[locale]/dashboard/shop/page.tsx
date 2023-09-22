@@ -26,7 +26,7 @@ export default function ShopPage() {
       name: t('modelTraining'),
       price: '€4',
       priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
-      features: [t('modelTrainingInfo'), t('generate20Images')]
+      features: [t('modelTrainingInfo'), t('generate20Title')]
     },
     {
       id: 'prod_OcmbMwLY3PSKkd',

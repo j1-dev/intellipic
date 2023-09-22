@@ -6,6 +6,7 @@ import type { UserResponse } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
+import { useTranslations } from 'next-intl';
 
 function SignUp({ t }: { t: boolean }) {
   const [email, setEmail] = useState<string>('');
@@ -15,6 +16,7 @@ function SignUp({ t }: { t: boolean }) {
   const [toggle, setToggle] = useState<boolean>(t);
   const router = useRouter();
   const supabase = createClientComponentClient();
+  const tr = useTranslations('Signup');
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target?.value);
@@ -36,7 +38,7 @@ function SignUp({ t }: { t: boolean }) {
         setError(error);
         toast.error(error.message);
       } else {
-        toast.success('Iniciando sesión!');
+        toast.success(tr('loggingIn'));
         router.push(`/dashboard/${data.user.id}`);
       }
     } else {
@@ -62,7 +64,7 @@ function SignUp({ t }: { t: boolean }) {
           });
           await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
           console.log(resData?.data?.user?.id);
-          toast.success('Mira tu email para verificar tu cuenta');
+          toast.success(tr('verifyEmail'));
           router.push('/login');
         });
     }
@@ -79,7 +81,7 @@ function SignUp({ t }: { t: boolean }) {
             htmlFor="email"
             className="block font-medium text-gray-700 dark:text-white mb-2"
           >
-            Email:
+            {tr('emailLabel')}
           </label>
           <input
             type="email"
@@ -95,7 +97,7 @@ function SignUp({ t }: { t: boolean }) {
             htmlFor="password"
             className="block font-medium text-gray-700 dark:text-white mb-2"
           >
-            Contraseña:
+            {tr('passwordLabel')}
           </label>
           <input
             type="password"
@@ -117,9 +119,9 @@ function SignUp({ t }: { t: boolean }) {
               onChange={() => setTos(!tos)}
             />{' '}
             <label htmlFor="tos">
-              Acepta los{' '}
+              {tr('acceptThe')}{' '}
               <Link className="z-50 hover:underline" href={'/tos'}>
-                términos y condiciones
+                {tr('terms')}
               </Link>
             </label>
           </div>
@@ -131,16 +133,12 @@ function SignUp({ t }: { t: boolean }) {
             className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
             disabled={!tos && !toggle}
           >
-            {toggle ? 'Iniciar Sesión' : 'Regristrarse'}
+            {toggle ? tr('login') : tr('register')}
           </button>
           <Link href={toggle ? '/register' : '/login'}>
-            {toggle
-              ? 'No tienes cuenta? Entra aqui!'
-              : 'Ya tienes cuenta? Entra aqui!'}
+            {toggle ? tr('noAccount') : tr('alreadyAccount')}
           </Link>
-          {toggle && (
-            <button className="block">Olvidaste tu Contraseña?</button>
-          )}
+          {toggle && <button className="block">{tr('forgotPass')}</button>}
         </div>
       </form>
     </div>

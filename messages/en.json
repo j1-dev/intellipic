@@ -86,6 +86,19 @@
       "license": "This project is licensed under the MIT License."
     }
   },
+  "Signup": {
+    "loggingIn": "Logging in!",
+    "verifyEmail": "Account created! Check your email to verify your account.",
+    "emailLabel": "Email:",
+    "passwordLabel": "Password:",
+    "acceptThe": "Accept the ",
+    "terms": "Terms and Privacy Policy",
+    "login": "Log In",
+    "register": "Register",
+    "noAccount": "Don't have an account? Click here",
+    "alreadyAccount": "Already have an account? Log in here",
+    "forgotPass": "Forgot your password? Click here"
+  },
   "Tos": {
     "title": "Terms and Conditions of Intellipic",
     "content": "It is our policy to respect your privacy and comply with any applicable laws and regulations regarding any personal information we may collect about you, including all our website, https://intellipic.vercel.app/, and other sites we own and operate.",
