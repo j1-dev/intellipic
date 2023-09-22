@@ -28,8 +28,8 @@ const ColorSchemeToggleButton = () => {
   };
 
   return (
-    <div className="inline-flex fixed right-6 bottom-6 z-50">
-      <SunIcon className="m-3 scale-150" />
+    <div className="inline-flex z-50 bg-opacity-50 mb-6 rounded-full scale-75">
+      <SunIcon className="my-3 mr-3 scale-[2]" />
 
       <Switch
         onChange={toggleColorScheme}
@@ -44,7 +44,7 @@ const ColorSchemeToggleButton = () => {
         />
       </Switch>
 
-      <MoonIcon className="m-3 scale-150" />
+      <MoonIcon className="my-3 ml-3 scale-[2]" />
     </div>
   );
 };

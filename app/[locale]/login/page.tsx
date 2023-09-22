@@ -4,10 +4,13 @@ import SignUp from '@/components/SignUp';
 import supabase from '@/app/core/clients/supabase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useLocale } from 'next-intl';
+useLocale;
 
 export default function LoginPage() {
   const [session, setSession] = useState<any>(null);
   const router = useRouter();
+  const locale = useLocale();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -42,14 +45,14 @@ export default function LoginPage() {
               href="/register"
               className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all ml-auto "
             >
-              Regístrate
+              {locale === 'es' ? 'Regístrate' : 'Register'}
             </Link>
           </nav>
         </header>
         <div className="flex-col max-w-screen-xl mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
           <div className="text-center">
             <h1 className="text-9xl font-bold font-sans max-w-screen-xs m-auto h-32">
-              Login
+              Log in
             </h1>
           </div>
           <SignUp t={true} />
