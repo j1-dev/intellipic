@@ -9,7 +9,7 @@ const LangToggle = () => {
   const locale = useLocale();
 
   return (
-    <Menu as="div" className="inline-block">
+    <Menu as="div" className="inline-block -translate-y-2 xs:translate-y-0">
       <Menu.Button className="inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium card focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
         {locale === 'es' ? 'Idioma' : 'Language'}
       </Menu.Button>
