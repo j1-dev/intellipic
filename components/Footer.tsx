@@ -1,5 +1,5 @@
 'use client';
-import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 import { FaDiscord, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
@@ -7,7 +7,7 @@ import ThemeToggle from './ThemeToggle';
 import LangToggle from './LangToggle';
 
 const Footer = () => {
-  const t = useTranslations('Home');
+  const locale = useLocale();
   return (
     <footer className="pt-8 text-center bg-white dark:bg-black text-black dark:text-white transition-all relative h-24">
       <hr className="-translate-y-7 border border-black dark:border-white transition-all" />
@@ -17,10 +17,10 @@ const Footer = () => {
             <Link href="/faq">FAQs</Link>
           </li>
           <li>
-            <Link href="/tos">Terms</Link>
+            <Link href="/tos">{locale === 'es' ? 'Términos' : 'Terms'}</Link>
           </li>
           <li>
-            <Link href="#">Contact</Link>
+            <Link href="#">{locale === 'es' ? 'Contacto' : 'Contact'}</Link>
           </li>
         </ul>
         <ul className="flex justify-start lg:justify-end absolute bottom-0 xs:bottom-5 translate-y-2 xs:translate-y-0">
