@@ -6,6 +6,7 @@ import categories from '@/app/core/resources/categories';
 import { useTranslations } from 'next-intl';
 
 interface SelectedOptions {
+  distance: string;
   medium: string;
   clothing: string;
   pose: string;
@@ -29,6 +30,7 @@ const PromptBuilder = ({
     (JSON.parse(
       localStorage.getItem(`so${model}`) as string
     ) as SelectedOptions) || {
+      distance: '',
       medium: 'portrait',
       clothing: '',
       pose: '',
@@ -41,6 +43,7 @@ const PromptBuilder = ({
     (JSON.parse(
       localStorage.getItem(`co${model}`) as string
     ) as SelectedOptions) || {
+      distance: '',
       medium: '',
       clothing: '',
       pose: '',
@@ -64,9 +67,20 @@ const PromptBuilder = ({
   };
 
   const generatePrompt = () => {
-    const { medium, clothing, pose, scene, artist, settings } = selectedOptions;
+    const { distance, medium, clothing, pose, scene, artist, settings } =
+      selectedOptions;
 
-    let generatedPrompt = `A ${
+    let generatedPrompt = 'A';
+
+    {
+      distance &&
+        distance !== 'None' &&
+        (generatedPrompt += ` ${
+          distance === 'Other' ? customOptions['distance'] || '' : distance
+        }`);
+    }
+
+    generatedPrompt += ` ${
       medium === 'Other' ? customOptions['medium'] || '' : medium
     } of @me`;
 
@@ -118,6 +132,7 @@ const PromptBuilder = ({
 
   const handleGeneratePrompt = () => {
     const newSelectedOptions = {
+      distance: getRandomOption('distance'),
       medium: getRandomOption('medium'),
       clothing: getRandomOption('clothing'),
       pose: getRandomOption('pose'),
@@ -181,7 +196,7 @@ const PromptBuilder = ({
                     </option>
                   )
                 )}
-                <option value="Other">{t('customOption')}</option>
+                <option value="Other">{t('Other')}</option>
               </select>
               {selectedOptions[category as keyof SelectedOptions] ===
                 'Other' && (

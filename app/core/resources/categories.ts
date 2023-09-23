@@ -1,4 +1,11 @@
 const categories: { [key: string]: string[] } = {
+  distance: [
+    'None',
+    'extreme close-up',
+    'close-up',
+    'medium close-up',
+    'full-shot'
+  ],
   medium: [
     'portrait',
     'painting',
@@ -26,6 +33,7 @@ const categories: { [key: string]: string[] } = {
   ],
   pose: [
     'None',
+    'side profile',
     'flexing',
     'standing tall',
     'sitting gracefully',
@@ -34,8 +42,7 @@ const categories: { [key: string]: string[] } = {
     'reading',
     'meditating',
     'running',
-    'yoga',
-    'cartwheel'
+    'doing yoga'
   ],
   scene: [
     'None',

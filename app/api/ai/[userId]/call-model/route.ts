@@ -22,7 +22,7 @@ export async function POST(
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
         // num_inference_steps: 50,
         refine: 'expert_ensemble_refiner',
-        scheduler: 'K_EULER_ANCESTRAL',
+        //scheduler: 'K_EULER_ANCESTRAL',
         apply_watermark: false,
         high_noise_frac: 0.9,
         lora_scale: 0.8
