@@ -76,7 +76,7 @@ const PromptBuilder = ({
       distance &&
         distance !== 'None' &&
         (generatedPrompt += ` ${
-          distance === 'Other' ? customOptions['distance'] : distance
+          distance === 'Other' ? customOptions['distance'] || '' : distance
         }`);
     }
 
