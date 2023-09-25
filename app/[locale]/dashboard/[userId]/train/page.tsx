@@ -26,7 +26,15 @@ export default function TrainPage() {
     'Mixed',
     'Other'
   ];
-  const eyeColors = ['Blue', 'Brown', 'Green', 'Hazel', 'Gray', 'Amber'];
+  const eyeColors = [
+    'Blue',
+    'Brown',
+    'Green',
+    'Hazel',
+    'Gray',
+    'Amber',
+    'Other'
+  ];
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
