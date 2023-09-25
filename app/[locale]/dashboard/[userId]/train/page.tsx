@@ -15,6 +15,18 @@ import styles from '../../../Home.module.css';
 import Link from 'next/link';
 
 export default function TrainPage() {
+  const ethnicities = [
+    'Caucasian',
+    'African',
+    'Asian',
+    'Hispanic',
+    'Native American',
+    'Middle Eastern',
+    'Pacific Islander',
+    'Mixed',
+    'Other'
+  ];
+  const eyeColors = ['Blue', 'Brown', 'Green', 'Hazel', 'Gray', 'Amber'];
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
