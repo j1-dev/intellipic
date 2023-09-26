@@ -89,7 +89,6 @@ export default function TrainPage() {
     localStorage.setItem('instanceName', instanceName);
     localStorage.setItem('instanceType', instanceType);
     localStorage.setItem('customInstanceType', customInstanceType);
-    localStorage.setItem('userData', JSON.stringify(userData));
   }, [
     ready,
     fineTuningData,
@@ -97,8 +96,7 @@ export default function TrainPage() {
     queueingFinetuning,
     instanceName,
     instanceType,
-    customInstanceType,
-    userData
+    customInstanceType
   ]);
 
   useInterval(() => {
@@ -266,6 +264,7 @@ export default function TrainPage() {
       getModelStatus();
       setQueueingFinetuning(false);
       userData.model_tokens--;
+      localStorage.setItem('userData', JSON.stringify(userData));
     } else {
       toast.error('No te quedan tokens, ve a la tienda a por más');
     }
