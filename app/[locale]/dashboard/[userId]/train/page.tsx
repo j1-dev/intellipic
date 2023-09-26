@@ -156,7 +156,7 @@ export default function TrainPage() {
       );
       if (succesful) {
         setFinetuningData(null);
-        userData.model_tokens++;
+        //userData.model_tokens++;
         toast.success('Entrenamiento cancelado con éxito');
       } else {
         console.log('Cancellation failed.');
@@ -176,7 +176,7 @@ export default function TrainPage() {
       setReady(true);
       if (runStatus === 'failed') {
         console.log(runStatus);
-        userData.model_tokens++;
+        //userData.model_tokens++;
       }
     }
   }
