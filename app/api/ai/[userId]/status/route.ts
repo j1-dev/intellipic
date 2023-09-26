@@ -33,31 +33,42 @@ export async function GET(
         .update({ status: modelResponse.status })
         .eq('run_id', runId);
 
-      if (modelResponse.status === 'failed') {
-        await supabase.from('trainings').delete().eq('run_id', runId);
+      // if (modelResponse.status === 'failed') {
+      //   await supabase.from('trainings').delete().eq('run_id', runId);
 
+      //   await supabase
+      //     .from(SUPABASE_TABLE_NAME)
+      //     .update({
+      //       model_tokens: userData?.[0]?.model_tokens + 1,
+      //       run_id: null,
+      //       dataset: null
+      //     })
+      //     .eq('id', userData?.[0].id);
+      // }
+      if (
+        modelResponse.status === 'canceled' ||
+        modelResponse.status === 'failed'
+      ) {
+        const modelTokens = () => {
+          userData?.[0]?.dataset !== null
+            ? userData?.[0]?.model_tokens + 1
+            : userData?.[0]?.model_tokens;
+        };
         await supabase
           .from(SUPABASE_TABLE_NAME)
           .update({
-            model_tokens: userData?.[0]?.model_tokens + 1,
             run_id: null,
+            model_tokens: modelTokens,
             dataset: null
           })
           .eq('id', userData?.[0].id);
-      }
-      if (modelResponse.status === 'canceled') {
-        await supabase
-          .from(SUPABASE_TABLE_NAME)
-          .update({
-            run_id: null,
-            dataset: null
-          })
-          .eq('id', userData?.[0].id);
+
+        await supabase.from('trainings').delete().eq('run_id', runId);
 
         const response = NextResponse.json({
           dataset: null,
           run_id: null,
-          run_data: { status: null }
+          run_data: { status: modelResponse.status }
         });
 
         response.headers.set('Cache-Control', 'no-cache');

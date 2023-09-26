@@ -40,7 +40,7 @@ export default function DashboardPage() {
   useEffect(() => {
     fetchUserInfo();
     fetchModels();
-  }, [user]);
+  }, []);
 
   const fetchModels = async () => {
     const { data, error } = await supabase
@@ -62,16 +62,18 @@ export default function DashboardPage() {
   };
 
   const fetchUserInfo = async () => {
-    const { data: d, error: e } = await supabase
-      .from('user-data')
-      .select('*')
-      .eq('id', user);
+    if (!userData) {
+      const { data: d, error: e } = await supabase
+        .from('user-data')
+        .select('*')
+        .eq('id', user);
 
-    if (e) {
-      console.error(e);
-    } else {
-      setUserData(d[0]);
-      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      if (e) {
+        console.error(e);
+      } else {
+        setUserData(d[0]);
+        localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      }
     }
   };
 

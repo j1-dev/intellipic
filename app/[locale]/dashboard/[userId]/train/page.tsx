@@ -13,8 +13,30 @@ import { BsExclamationLg } from 'react-icons/bs';
 import { FadeLoader } from 'react-spinners';
 import styles from '../../../Home.module.css';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function TrainPage() {
+  const t = useTranslations('TrainPage');
+  const ethnicities = [
+    'none',
+    'caucasian',
+    'african',
+    'asian',
+    'hispanic',
+    'native american',
+    'middle eastern',
+    'pacific islander',
+    'mixed'
+  ];
+  const eyeColors = [
+    'none',
+    'blue',
+    'brown',
+    'green',
+    'hazel',
+    'gray',
+    'amber'
+  ];
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
@@ -40,13 +62,14 @@ export default function TrainPage() {
   const [instanceType, setInstanceType] = useState(
     localStorage.getItem('instanceType') || 'man'
   );
-
   const [customInstanceType, setCustomInstanceType] = useState(
     localStorage.getItem('customInstanceType') || ''
   );
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
   );
+  const [ethnicity, setEthnicity] = useState('none');
+  const [eyeColor, setEyeColor] = useState('none');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,20 +99,9 @@ export default function TrainPage() {
     customInstanceType
   ]);
 
-  useEffect(() => {
-    const updateDatabase = async () => {
-      await supabase
-        .from('user-data')
-        .update({ model_tokens: userData.model_tokens as number })
-        .eq('id', userData.id);
-      localStorage.setItem('userData', JSON.stringify(userData));
-    };
-    updateDatabase();
-  }, [userData.model_tokens]);
-
   useInterval(() => {
     getModelStatus();
-  }, 2000);
+  }, 4000);
 
   async function clearUserData() {
     post(`/api/ai/${id}/clear`, {}, (data: any) => {
@@ -113,7 +125,7 @@ export default function TrainPage() {
       setUploading(false);
       setQueueingFinetuning(false);
       setInstanceName('');
-      setInstanceType('');
+      setInstanceType('man');
       setCustomInstanceType('');
     });
   }
@@ -132,8 +144,23 @@ export default function TrainPage() {
         }
       );
       if (succesful) {
-        setFinetuningData(null);
-        userData.model_tokens++;
+        const fetchUserInfo = async () => {
+          const { data: d, error: e } = await supabase
+            .from('user-data')
+            .select('*')
+            .eq('id', userData.id);
+
+          if (e) {
+            console.error(e);
+          } else {
+            setUserData(d[0]);
+            localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+          }
+        };
+        fetchUserInfo().then(() => {
+          setFinetuningData(null);
+        });
+        //userData.model_tokens++;
         toast.success('Entrenamiento cancelado con éxito');
       } else {
         console.log('Cancellation failed.');
@@ -148,9 +175,25 @@ export default function TrainPage() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          if (data.run_data.status === 'failed') {
+            const fetchUserInfo = async () => {
+              const { data: d, error: e } = await supabase
+                .from('user-data')
+                .select('*')
+                .eq('id', userData.id);
+
+              if (e) {
+                console.error(e);
+              } else {
+                setUserData(d[0]);
+                localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+              }
+            };
+            fetchUserInfo();
+            //userData.model_tokens++;
+          }
           setFinetuningData(data);
         });
-      console.log(runStatus);
       setReady(true);
     }
   }
@@ -200,6 +243,12 @@ export default function TrainPage() {
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
+      const fullInstanceType =
+        (ethnicity !== 'none' ? ethnicity : '') +
+        ' ' +
+        instanceType +
+        ' ' +
+        (eyeColor !== 'none' ? eyeColor + ' eyes' : '');
       setQueueingFinetuning(true);
       await post(
         `/api/ai/${id}/train`,
@@ -207,7 +256,7 @@ export default function TrainPage() {
           url: fineTuningData.dataset,
           prompt: instanceName,
           instance_type:
-            instanceType === 'other' ? customInstanceType : instanceType,
+            instanceType === 'other' ? customInstanceType : fullInstanceType,
           user_id: id
         },
         (data: any) => console.log(data)
@@ -215,6 +264,7 @@ export default function TrainPage() {
       getModelStatus();
       setQueueingFinetuning(false);
       userData.model_tokens--;
+      localStorage.setItem('userData', JSON.stringify(userData));
     } else {
       toast.error('No te quedan tokens, ve a la tienda a por más');
     }
@@ -234,9 +284,9 @@ export default function TrainPage() {
 
   return (
     <div className="py-8 max-w-screen-lg mx-auto px-8">
-      <h2 className="text-4xl font-bold mb-4">Entrenar 🦾</h2>
+      <h2 className="text-4xl font-bold mb-4">{t('trainLabel')}</h2>
       <h3 className="text-xl mb-4">
-        Tokens para entrenar:{' '}
+        {t('tokensLabel')}:{' '}
         {!!userData && userData.model_tokens !== undefined
           ? userData.model_tokens
           : '...'}
@@ -245,15 +295,11 @@ export default function TrainPage() {
         <div>
           {!hasUploadedData && (
             <div>
-              <div className="text-lg font-bold">1er paso: Subir imágenes</div>
+              <div className="text-lg font-bold">{t('step1Label')}</div>
               <div>
-                Primero, asegúrate de tener entre 6 y 10 imágenes de alta
-                calidad para entrenar a tu modelo. Para obtener los mejores
-                resultados, tus imágnes deben ser primeros planos
-                preferiblemente, solo debe salir el sujeto y este deberá verse
-                entero. Para ver ejemplos de imágenes válidas y no válidas, ve a{' '}
+                {t('step1Description')}
                 <Link href="/dashboard/faq" className="hover:underline">
-                  preguntas frecuentes
+                  {t('faqLink')}
                 </Link>
               </div>
 
@@ -286,7 +332,7 @@ export default function TrainPage() {
                           />
                         )}
                       </div>
-                      <span>{!hasUploadedData ? 'Subir Imágenes' : ''}</span>
+                      <span>{!hasUploadedData ? t('uploadLabel') : ''}</span>
                     </div>
                   </button>
                 </label>
@@ -296,32 +342,22 @@ export default function TrainPage() {
 
           {hasUploadedData && !hasFinetunedModel && (
             <div>
-              <div className="text-lg font-bold">2o paso: Nombra tu modelo</div>
-              <div>
-                Ahora es el momento de darle un nombre único y especial a tu
-                modelo. Este nombre ayudará a identificar al sujeto con el que
-                estás trabajando. Por ejemplo, si tu sujeto es <b>María</b>,
-                podrías usar un nombre como <b>TOKMAR</b>. Recuerda que mientras
-                más único y diferente sea el nombre, ¡mejor reconocerá el modelo
-                a tu sujeto! También, por favor, selecciona el tipo de sujeto
-                que estás utilizando: ¿es una persona, un coche, un animal, una
-                planta u otra cosa? Esto asegurará que el modelo genere imágenes
-                coherentes.
-              </div>
+              <div className="text-lg font-bold">{t('step2Label')}</div>
+              <div>{t('step2Description')}</div>
               <div className="mt-4 max-w-screen-xs m-auto grid columns-2">
                 <label className="font-bold text-xl my-1" htmlFor="name">
-                  Nombre{' '}
+                  {t('nameLabel')}{' '}
                 </label>
                 <input
                   className="my-1  bg-white text-black dark:bg-black dark:text-white transition-all"
                   id="name"
                   value={instanceName}
                   onChange={(ev) => setInstanceName(ev.target.value)}
-                  placeholder={'Nombre Único'}
+                  placeholder={t('uniqueNamePlaceholder')}
                 />
 
                 <label className="font-bold text-xl my-1" htmlFor="ip">
-                  Tipo de sujeto
+                  {t('subjectTypeLabel')}
                 </label>
                 <select
                   name="instance_type"
@@ -329,19 +365,60 @@ export default function TrainPage() {
                   className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
                   onChange={(ev) => setInstanceType(ev.target.value)}
                 >
-                  <option value="man">Hombre</option>
-                  <option value="woman">Mujer</option>
-                  <option value="dog">Perro</option>
-                  <option value="cat">Gato</option>
-                  <option value="other">Otro</option>
+                  <option value="man">{t('manOption')}</option>
+                  <option value="woman">{t('womanOption')}</option>
+                  <option value="dog">{t('dogOption')}</option>
+                  <option value="cat">{t('catOption')}</option>
+                  <option value="other">{t('otherOption')}</option>
                 </select>
+
+                {(instanceType === 'man' || instanceType === 'woman') && (
+                  <div className="grid columns-2">
+                    <label className="font-bold text-xl my-1" htmlFor="ip">
+                      {t('ethnicityLabel')}
+                    </label>
+                    <select
+                      name="instance_type"
+                      id="ip"
+                      className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
+                      onChange={(ev) => {
+                        setEthnicity(ev.target.value);
+                      }}
+                    >
+                      {ethnicities.map((e: string) => {
+                        return (
+                          <option value={e} key={e}>
+                            {t(e)}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <label className="font-bold text-xl my-1" htmlFor="ip">
+                      {t('eyeColorLabel')}
+                    </label>
+                    <select
+                      name="instance_type"
+                      id="ip"
+                      className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
+                      onChange={(ev) => setEyeColor(ev.target.value)}
+                    >
+                      {eyeColors.map((e: string) => {
+                        return (
+                          <option value={e} key={e}>
+                            {t(e)}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                )}
 
                 {instanceType === 'other' && (
                   <input
                     className="my-1 ml-1 bg-white text-black dark:bg-black dark:text-white transition-all"
                     value={customInstanceType}
                     onChange={(ev) => setCustomInstanceType(ev.target.value)}
-                    placeholder={'Otro... (en inglés)'}
+                    placeholder={t('otherTypePlaceholder')}
                   />
                 )}
 
@@ -355,7 +432,7 @@ export default function TrainPage() {
                   onClick={handleValidationAndFinetuningStart}
                   className="mt-3 bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all float-"
                 >
-                  Continuar
+                  {t('continueButton')}
                 </Button>
               </div>
             </div>
@@ -363,24 +440,9 @@ export default function TrainPage() {
 
           {fineTuningInProgress && (
             <div>
-              <div className="text-lg font-bold">
-                3er paso: Espera a que tu modelo se entrene
-              </div>
-              <div>
-                Este proceso puede tomar alrededor de 15 a 20 minutos, así que
-                tómate un respiro y aprovecha para hacer algo que disfrutes.
-                Durante este tiempo, nuestro poderoso sistema está aprendiendo
-                de tus imágenes y preparándose para generar imágenes
-                personalizadas basadas en tus instrucciones.
-              </div>
-              <div className="mt-3">
-                ¡Una vez que el entrenamiento esté completo, estarás listo para
-                sumergirte en el emocionante mundo de la creación de imágenes
-                personalizadas! Estamos emocionados de ser parte de tu viaje
-                creativo y no podemos esperar para ver las asombrosas imágenes
-                que crearás. ¡Disfruta de la anticipación y prepárate para dar
-                vida a tus ideas!
-              </div>
+              <div className="text-lg font-bold">{t('step3Label')}</div>
+              <div>{t('step3Description')}</div>
+              <div className="mt-3">{t('step3CompletionText')}</div>
               <FadeLoader
                 className="w-1/5 m-auto my-4"
                 color="#d3d3d3"
@@ -396,27 +458,21 @@ export default function TrainPage() {
           {fineTuningFailed && (
             <div className="text-center">
               <BsExclamationLg size={140} color="red" className="w-50 m-auto" />
-              <span>El modelo ha fallado, inténtelo de nuevo</span>
+              <span>{t('trainingFailed')}</span>
             </div>
           )}
 
           {fineTuningCanceled && !!fineTuningData && (
             <div className="text-center">
               <BsExclamationLg size={140} color="red" className="w-50 m-auto" />
-              <span>Ha cancelado el entrenamiento, inténtelo de nuevo</span>
+              <span>{t('trainingCanceled')}</span>
             </div>
           )}
 
           {fineTuningSucceeded && (
             <div>
-              <div className="text-lg font-bold">
-                Paso 4: Genera Imágenes Mágicas a partir de Prompts
-              </div>
-              <div>
-                ¡Felicidades! Tu modelo está entrenado y listo para desatar su
-                creatividad. Ahora es el momento de generar imágenes
-                personalizadas que te dejarán boquiabierto.
-              </div>
+              <div className="text-lg font-bold">{t('step4Label')}</div>
+              <div>{t('step4Description')}</div>
               <AiOutlineCheckCircle
                 size={140}
                 color="green"
@@ -426,45 +482,25 @@ export default function TrainPage() {
           )}
 
           {fineTuningData?.dataset && !fineTuningData?.run_id && (
-            <main className={styles.main}>
-              <div className={styles.clear}>
-                <button
-                  onClick={() => clearUserData()}
-                  className={classNames(styles.button, styles.reset)}
-                  style={{
-                    width: 'max-content',
-                    backgroundColor: '#e0e0e0',
-                    padding: '6px 12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  Empezar de nuevo
-                </button>
-              </div>
-            </main>
+            <div className="w-full relative">
+              <button
+                onClick={() => clearUserData()}
+                className="border border-black dark:border-white text-white rounded-md p-3 bg-indigo-600 hover:bg-indigo-800 dark:bg-indigo-900 dark:hover:bg-indigo-400 transition-all duratio-150 absolute left-1/2 -translate-x-1/2 mt-7"
+              >
+                {t('startOverButton')}
+              </button>
+            </div>
           )}
 
           {fineTuningSucceeded && (
-            <main className={styles.main}>
-              <div className={styles.clear}>
-                <button
-                  onClick={() => clearUserData()}
-                  className={classNames(styles.button, styles.reset)}
-                  style={{
-                    width: 'max-content',
-                    backgroundColor: '#e0e0e0',
-                    padding: '6px 12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  Empezar de nuevo
-                </button>
-              </div>
-            </main>
+            <div className="w-full relative">
+              <button
+                onClick={() => clearUserData()}
+                className="border border-black dark:border-white text-white rounded-md p-3 bg-purple-600 hover:bg-purple-800 dark:bg-purple-900 dark:hover:bg-purple-400 transition-all duratio-150 absolute left-1/2 -translate-x-1/2 mt-7"
+              >
+                {t('startOverButton')}
+              </button>
+            </div>
           )}
 
           {fineTuningData?.run_id && !fineTuningSucceeded && (
@@ -476,7 +512,7 @@ export default function TrainPage() {
                   cooldownTime={2000}
                   disabled={false}
                 >
-                  cancelar prediccion
+                  {t('cancelTrainingButton')}
                 </Button>
               </div>
             </main>
@@ -484,7 +520,7 @@ export default function TrainPage() {
         </div>
       ) : (
         <div className=" mt-24 text-center">
-          <span className="text-xl text-gray-400">Loading...</span>
+          <span className="text-xl text-gray-400">{t('loadingText')}</span>
         </div>
       )}
     </div>
