@@ -49,11 +49,16 @@ export async function GET(
         modelResponse.status === 'canceled' ||
         modelResponse.status === 'failed'
       ) {
+        const modelTokens = () => {
+          userData?.[0]?.dataset !== null
+            ? userData?.[0]?.model_tokens + 1
+            : userData?.[0]?.model_tokens;
+        };
         await supabase
           .from(SUPABASE_TABLE_NAME)
           .update({
             run_id: null,
-            model_tokens: userData?.[0]?.model_tokens + 1,
+            model_tokens: modelTokens,
             dataset: null
           })
           .eq('id', userData?.[0].id);

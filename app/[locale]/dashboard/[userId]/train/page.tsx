@@ -89,6 +89,7 @@ export default function TrainPage() {
     localStorage.setItem('instanceName', instanceName);
     localStorage.setItem('instanceType', instanceType);
     localStorage.setItem('customInstanceType', customInstanceType);
+    localStorage.setItem('userData', JSON.stringify(userData));
   }, [
     ready,
     fineTuningData,
@@ -96,23 +97,13 @@ export default function TrainPage() {
     queueingFinetuning,
     instanceName,
     instanceType,
-    customInstanceType
+    customInstanceType,
+    userData
   ]);
-
-  useEffect(() => {
-    const updateDatabase = async () => {
-      await supabase
-        .from('user-data')
-        .update({ model_tokens: userData.model_tokens as number })
-        .eq('id', userData.id);
-      localStorage.setItem('userData', JSON.stringify(userData));
-    };
-    updateDatabase();
-  }, [userData.model_tokens]);
 
   useInterval(() => {
     getModelStatus();
-  }, 2000);
+  }, 4000);
 
   async function clearUserData() {
     post(`/api/ai/${id}/clear`, {}, (data: any) => {
@@ -155,7 +146,22 @@ export default function TrainPage() {
         }
       );
       if (succesful) {
-        setFinetuningData(null);
+        const fetchUserInfo = async () => {
+          const { data: d, error: e } = await supabase
+            .from('user-data')
+            .select('*')
+            .eq('id', userData.id);
+
+          if (e) {
+            console.error(e);
+          } else {
+            setUserData(d[0]);
+            localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+          }
+        };
+        fetchUserInfo().then(() => {
+          setFinetuningData(null);
+        });
         //userData.model_tokens++;
         toast.success('Entrenamiento cancelado con éxito');
       } else {
@@ -171,13 +177,26 @@ export default function TrainPage() {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          if (data.run_data.status === 'failed') {
+            const fetchUserInfo = async () => {
+              const { data: d, error: e } = await supabase
+                .from('user-data')
+                .select('*')
+                .eq('id', userData.id);
+
+              if (e) {
+                console.error(e);
+              } else {
+                setUserData(d[0]);
+                localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+              }
+            };
+            fetchUserInfo();
+            //userData.model_tokens++;
+          }
           setFinetuningData(data);
         });
       setReady(true);
-      if (runStatus === 'failed') {
-        console.log(runStatus);
-        //userData.model_tokens++;
-      }
     }
   }
 
@@ -464,45 +483,25 @@ export default function TrainPage() {
           )}
 
           {fineTuningData?.dataset && !fineTuningData?.run_id && (
-            <main className={styles.main}>
-              <div className={styles.clear}>
-                <button
-                  onClick={() => clearUserData()}
-                  className={classNames(styles.button, styles.reset)}
-                  style={{
-                    width: 'max-content',
-                    backgroundColor: '#e0e0e0',
-                    padding: '6px 12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  {t('startOverButton')}
-                </button>
-              </div>
-            </main>
+            <div className="w-full relative">
+              <button
+                onClick={() => clearUserData()}
+                className="border border-black dark:border-white text-white rounded-md p-3 bg-indigo-600 hover:bg-indigo-800 dark:bg-indigo-900 dark:hover:bg-indigo-400 transition-all duratio-150 absolute left-1/2 -translate-x-1/2 mt-7"
+              >
+                {t('startOverButton')}
+              </button>
+            </div>
           )}
 
           {fineTuningSucceeded && (
-            <main className={styles.main}>
-              <div className={styles.clear}>
-                <button
-                  onClick={() => clearUserData()}
-                  className={classNames(styles.button, styles.reset)}
-                  style={{
-                    width: 'max-content',
-                    backgroundColor: '#e0e0e0',
-                    padding: '6px 12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  {t('startOverButton')}
-                </button>
-              </div>
-            </main>
+            <div className="w-full relative">
+              <button
+                onClick={() => clearUserData()}
+                className="border border-black dark:border-white text-white rounded-md p-3 bg-purple-600 hover:bg-purple-800 dark:bg-purple-900 dark:hover:bg-purple-400 transition-all duratio-150 absolute left-1/2 -translate-x-1/2 mt-7"
+              >
+                {t('startOverButton')}
+              </button>
+            </div>
           )}
 
           {fineTuningData?.run_id && !fineTuningSucceeded && (
