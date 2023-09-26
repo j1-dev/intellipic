@@ -62,7 +62,6 @@ export default function TrainPage() {
   const [instanceType, setInstanceType] = useState(
     localStorage.getItem('instanceType') || 'man'
   );
-
   const [customInstanceType, setCustomInstanceType] = useState(
     localStorage.getItem('customInstanceType') || ''
   );
@@ -137,7 +136,7 @@ export default function TrainPage() {
       setUploading(false);
       setQueueingFinetuning(false);
       setInstanceName('');
-      setInstanceType('');
+      setInstanceType('man');
       setCustomInstanceType('');
     });
   }
@@ -365,7 +364,6 @@ export default function TrainPage() {
                       id="ip"
                       className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
                       onChange={(ev) => {
-                        console.log(ev.target.value);
                         setEthnicity(ev.target.value);
                       }}
                     >
