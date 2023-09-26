@@ -358,6 +358,7 @@
     "green": "Verde",
     "hazel": "Avellana",
     "gray": "Gris",
-    "amber": "Ambar"
+    "amber": "Ambar",
+    "none": "Ninguno"
   }
 }

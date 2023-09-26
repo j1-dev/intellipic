@@ -315,7 +315,7 @@
   },
   "TrainPage":{
     "trainLabel": "Train 🦾",
-    "tokensLabel": "Tokens to Train:",
+    "tokensLabel": "Tokens to Train",
     "step1Label": "Step 1: Upload Images",
     "step1Description": "First, make sure you have between 6 and 10 high-quality images to train your model. For the best results, your images should be close-ups preferably, showing only the subject, and the subject should be fully visible. For examples of valid and invalid images, go to ",
     "faqLink": "FAQs",
@@ -358,6 +358,7 @@
     "green": "Green",
     "hazel": "Hazel",
     "gray": "Gray",
-    "amber": "Amber"
+    "amber": "Amber",
+    "none": "None"
   }
 }

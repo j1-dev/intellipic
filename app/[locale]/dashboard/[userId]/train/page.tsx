@@ -18,6 +18,7 @@ import { useTranslations } from 'next-intl';
 export default function TrainPage() {
   const t = useTranslations('TrainPage');
   const ethnicities = [
+    'none',
     'caucasian',
     'african',
     'asian',
@@ -25,17 +26,16 @@ export default function TrainPage() {
     'native american',
     'middle eastern',
     'pacific islander',
-    'mixed',
-    'other'
+    'mixed'
   ];
   const eyeColors = [
+    'none',
     'blue',
     'brown',
     'green',
     'hazel',
     'gray',
-    'amber',
-    'other'
+    'amber'
   ];
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
@@ -69,6 +69,8 @@ export default function TrainPage() {
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
   );
+  const [ethnicity, setEthnicity] = useState('none');
+  const [eyeColor, setEyeColor] = useState('none');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -172,8 +174,11 @@ export default function TrainPage() {
           console.log(data);
           setFinetuningData(data);
         });
-      console.log(runStatus);
       setReady(true);
+      if (runStatus === 'failed') {
+        console.log(runStatus);
+        userData.model_tokens++;
+      }
     }
   }
 
@@ -222,6 +227,12 @@ export default function TrainPage() {
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
+      const fullInstanceType =
+        (ethnicity !== 'none' ? ethnicity : '') +
+        ' ' +
+        instanceType +
+        ' ' +
+        (eyeColor !== 'none' ? eyeColor + ' eyes' : '');
       setQueueingFinetuning(true);
       await post(
         `/api/ai/${id}/train`,
@@ -229,7 +240,7 @@ export default function TrainPage() {
           url: fineTuningData.dataset,
           prompt: instanceName,
           instance_type:
-            instanceType === 'other' ? customInstanceType : instanceType,
+            instanceType === 'other' ? customInstanceType : fullInstanceType,
           user_id: id
         },
         (data: any) => console.log(data)
@@ -353,7 +364,10 @@ export default function TrainPage() {
                       name="instance_type"
                       id="ip"
                       className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
-                      onChange={(ev) => setInstanceType(ev.target.value)}
+                      onChange={(ev) => {
+                        console.log(ev.target.value);
+                        setEthnicity(ev.target.value);
+                      }}
                     >
                       {ethnicities.map((e: string) => {
                         return (
@@ -370,7 +384,7 @@ export default function TrainPage() {
                       name="instance_type"
                       id="ip"
                       className="my-1 bg-white text-black dark:bg-black dark:text-white transition-all"
-                      onChange={(ev) => setInstanceType(ev.target.value)}
+                      onChange={(ev) => setEyeColor(ev.target.value)}
                     >
                       {eyeColors.map((e: string) => {
                         return (
