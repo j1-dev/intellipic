@@ -133,10 +133,15 @@ export default function ModelPage() {
           user: userData
         },
         async (data: any) => {
+          console.log(data);
           fetchUserInfo();
-          setPredictionId(data.prediction_id);
-          setQueueingPrediction(true);
-          setCancellingPrediction(false);
+          if (data.error_code === 'CLIENT_SERVER_TOKENS_DESYNC') {
+            toast.error(t('token_desync_error'));
+          } else {
+            setPredictionId(data.prediction_id);
+            setQueueingPrediction(true);
+            setCancellingPrediction(false);
+          }
         }
       );
     } else {
