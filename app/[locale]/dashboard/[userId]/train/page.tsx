@@ -162,7 +162,6 @@ export default function TrainPage() {
         fetchUserInfo().then(() => {
           setFinetuningData(null);
         });
-        //userData.model_tokens++;
         toast.success('Entrenamiento cancelado con éxito');
       } else {
         console.log('Cancellation failed.');
@@ -179,7 +178,6 @@ export default function TrainPage() {
           console.log(data);
           if (data.run_data.status === 'failed') {
             fetchUserInfo();
-            //userData.model_tokens++;
           }
           setFinetuningData(data);
         });
@@ -228,7 +226,6 @@ export default function TrainPage() {
     });
   }
 
-  // Include instanceType on the object sent to Blueprint with the name instance_type
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
@@ -251,12 +248,10 @@ export default function TrainPage() {
         (data: any) => {
           fetchUserInfo();
           getModelStatus();
-          console.log(data);
           if (data.error_code === 'CLIENT_SERVER_TOKENS_DESYNC') {
             clearUserData();
             toast.error(t('token_desync_error'));
             router.push(`/dashboard/${userData.id}`);
-            router;
           } else {
             setQueueingFinetuning(false);
           }

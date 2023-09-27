@@ -13,12 +13,10 @@ export async function POST(
     const prompt = req.instance_prompt as string;
     const id = req.run_id as string;
     const user = req.user as userDataType;
-    //TODO: check user image tokens on database before calling replicate call model
     const { data: imageTokens, error: userError } = await supabase
       .from('user-data')
       .select('image_tokens')
       .eq('id', user.id);
-    console.log(imageTokens?.[0]?.image_tokens);
 
     if (userError) {
       console.error('Supabase error: ', userError);
@@ -52,7 +50,6 @@ export async function POST(
         prompt: prompt
       });
 
-      console.log(imageTokens);
       await supabase
         .from('user-data')
         .update({ image_tokens: user.image_tokens - 1 })

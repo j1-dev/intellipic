@@ -15,7 +15,6 @@ export async function POST(
     .from('user-data')
     .select('model_tokens')
     .eq('id', params.userId);
-  console.log(modelTokens?.[0]?.model_tokens);
 
   if (userError) {
     console.error('Supabase error: ', userError);

@@ -133,7 +133,6 @@ export default function ModelPage() {
           user: userData
         },
         async (data: any) => {
-          console.log(data);
           fetchUserInfo();
           if (data.error_code === 'CLIENT_SERVER_TOKENS_DESYNC') {
             toast.error(t('token_desync_error'));
@@ -207,7 +206,6 @@ export default function ModelPage() {
         },
         (data: any) => {
           handleGetPrediction();
-          console.log(data);
           succesful = data;
         }
       );
