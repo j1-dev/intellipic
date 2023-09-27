@@ -101,7 +101,21 @@ export default function TrainPage() {
 
   useInterval(() => {
     getModelStatus();
-  }, 4000);
+  }, 2000);
+
+  const fetchUserInfo = async () => {
+    const { data: d, error: e } = await supabase
+      .from('user-data')
+      .select('*')
+      .eq('id', userData.id);
+
+    if (e) {
+      console.error(e);
+    } else {
+      setUserData(d[0]);
+      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+    }
+  };
 
   async function clearUserData() {
     post(`/api/ai/${id}/clear`, {}, (data: any) => {
@@ -144,19 +158,6 @@ export default function TrainPage() {
         }
       );
       if (succesful) {
-        const fetchUserInfo = async () => {
-          const { data: d, error: e } = await supabase
-            .from('user-data')
-            .select('*')
-            .eq('id', userData.id);
-
-          if (e) {
-            console.error(e);
-          } else {
-            setUserData(d[0]);
-            localStorage.setItem('userData', JSON.stringify(d[0] || {}));
-          }
-        };
         fetchUserInfo().then(() => {
           setFinetuningData(null);
         });
@@ -176,19 +177,6 @@ export default function TrainPage() {
         .then((data) => {
           console.log(data);
           if (data.run_data.status === 'failed') {
-            const fetchUserInfo = async () => {
-              const { data: d, error: e } = await supabase
-                .from('user-data')
-                .select('*')
-                .eq('id', userData.id);
-
-              if (e) {
-                console.error(e);
-              } else {
-                setUserData(d[0]);
-                localStorage.setItem('userData', JSON.stringify(d[0] || {}));
-              }
-            };
             fetchUserInfo();
             //userData.model_tokens++;
           }

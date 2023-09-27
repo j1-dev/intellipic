@@ -62,18 +62,16 @@ export default function DashboardPage() {
   };
 
   const fetchUserInfo = async () => {
-    if (!userData) {
-      const { data: d, error: e } = await supabase
-        .from('user-data')
-        .select('*')
-        .eq('id', user);
+    const { data: d, error: e } = await supabase
+      .from('user-data')
+      .select('*')
+      .eq('id', user);
 
-      if (e) {
-        console.error(e);
-      } else {
-        setUserData(d[0]);
-        localStorage.setItem('userData', JSON.stringify(d[0] || {}));
-      }
+    if (e) {
+      console.error(e);
+    } else {
+      setUserData(d[0]);
+      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
     }
   };
 

@@ -81,16 +81,20 @@ export default function ModelPage() {
     modelStatus
   ]);
 
-  useEffect(() => {
-    const updateDatabase = async () => {
-      await supabase
-        .from('user-data')
-        .update({ image_tokens: userData.image_tokens as number })
-        .eq('id', userData.id);
-      localStorage.setItem('userData', JSON.stringify(userData));
-    };
-    updateDatabase();
-  }, [userData.image_tokens]);
+  const fetchUserInfo = async () => {
+    const { data: d, error: e } = await supabase
+      .from('user-data')
+      .select('*')
+      .eq('id', userData.id);
+
+    if (e) {
+      console.error(e);
+    } else {
+      console.log(d);
+      setUserData(d[0]);
+      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+    }
+  };
 
   useEffect(() => {
     const sub = async () => {
@@ -126,15 +130,15 @@ export default function ModelPage() {
         {
           run_id: model,
           instance_prompt: prompt,
-          user_id: id
+          user: userData
         },
-        (data: any) => {
+        async (data: any) => {
+          fetchUserInfo();
           setPredictionId(data.prediction_id);
           setQueueingPrediction(true);
           setCancellingPrediction(false);
         }
       );
-      userData.image_tokens--;
     } else {
       toast.error('No te quedan tokens, puedes adquirir más en la tienda');
     }
@@ -158,13 +162,14 @@ export default function ModelPage() {
           if (data.status === 'failed') {
             setImageUrl('');
             setQueueingPrediction(false);
-            userData.image_tokens++;
+            fetchUserInfo();
             toast.error(
               'Ha habido un fallo con la generación, prueba otra vez'
             );
           }
           if (data.status === 'canceled') {
             setImageUrl('');
+            fetchUserInfo();
             setQueueingPrediction(false);
           }
         }
@@ -203,7 +208,6 @@ export default function ModelPage() {
       );
 
       if (succesful) {
-        userData.image_tokens++;
         toast.success('Ha cancelado la generación, pruebe de nuevo');
         setQueueingPrediction(false);
       } else {
@@ -246,7 +250,7 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 3000);
+  useInterval(() => handleGetPrediction(), 4000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">

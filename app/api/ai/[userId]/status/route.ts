@@ -33,18 +33,6 @@ export async function GET(
         .update({ status: modelResponse.status })
         .eq('run_id', runId);
 
-      // if (modelResponse.status === 'failed') {
-      //   await supabase.from('trainings').delete().eq('run_id', runId);
-
-      //   await supabase
-      //     .from(SUPABASE_TABLE_NAME)
-      //     .update({
-      //       model_tokens: userData?.[0]?.model_tokens + 1,
-      //       run_id: null,
-      //       dataset: null
-      //     })
-      //     .eq('id', userData?.[0].id);
-      // }
       if (
         modelResponse.status === 'canceled' ||
         modelResponse.status === 'failed'

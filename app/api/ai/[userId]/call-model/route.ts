@@ -1,6 +1,7 @@
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import replicate from '../../../../core/clients/replicate';
+import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
 
 export async function POST(
   request: Request,
@@ -11,7 +12,7 @@ export async function POST(
 
     const prompt = req.instance_prompt as string;
     const id = req.run_id as string;
-    const user = req.user_id as string;
+    const user = req.user as userDataType;
 
     const modelResponse = await replicate.trainings.get(id);
 
@@ -39,6 +40,13 @@ export async function POST(
       id: predictionData.id,
       prompt: prompt
     });
+
+    const imageTokens = user.image_tokens - 1;
+    console.log(imageTokens);
+    await supabase
+      .from('user-data')
+      .update({ image_tokens: user.image_tokens - 1 })
+      .eq('id', params.userId);
 
     return NextResponse.json({ prediction_id: predictionData.id });
   } catch (error) {
