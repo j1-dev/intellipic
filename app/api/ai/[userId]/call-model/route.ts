@@ -13,7 +13,7 @@ export async function POST(
     const prompt = req.instance_prompt as string;
     const id = req.run_id as string;
     const user = req.user as userDataType;
-
+    //TODO: check user image tokens on database before calling replicate call model
     const modelResponse = await replicate.trainings.get(id);
 
     const options = {
