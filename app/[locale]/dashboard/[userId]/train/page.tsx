@@ -3,7 +3,6 @@ import Button from '@/components/Button';
 import supabase from '@/app/core/clients/supabase';
 import post from '@/app/core/utils/post';
 import useInterval from '@/app/core/utils/useInterval';
-import classNames from 'classnames';
 import JSZip from 'jszip';
 import { useParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -14,8 +13,10 @@ import { FadeLoader } from 'react-spinners';
 import styles from '../../../Home.module.css';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 export default function TrainPage() {
+  const router = useRouter();
   const t = useTranslations('TrainPage');
   const ethnicities = [
     'none',
@@ -101,7 +102,21 @@ export default function TrainPage() {
 
   useInterval(() => {
     getModelStatus();
-  }, 4000);
+  }, 2000);
+
+  const fetchUserInfo = async () => {
+    const { data: d, error: e } = await supabase
+      .from('user-data')
+      .select('*')
+      .eq('id', userData.id);
+
+    if (e) {
+      console.error(e);
+    } else {
+      setUserData(d[0]);
+      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+    }
+  };
 
   async function clearUserData() {
     post(`/api/ai/${id}/clear`, {}, (data: any) => {
@@ -144,23 +159,9 @@ export default function TrainPage() {
         }
       );
       if (succesful) {
-        const fetchUserInfo = async () => {
-          const { data: d, error: e } = await supabase
-            .from('user-data')
-            .select('*')
-            .eq('id', userData.id);
-
-          if (e) {
-            console.error(e);
-          } else {
-            setUserData(d[0]);
-            localStorage.setItem('userData', JSON.stringify(d[0] || {}));
-          }
-        };
         fetchUserInfo().then(() => {
           setFinetuningData(null);
         });
-        //userData.model_tokens++;
         toast.success('Entrenamiento cancelado con éxito');
       } else {
         console.log('Cancellation failed.');
@@ -176,21 +177,7 @@ export default function TrainPage() {
         .then((data) => {
           console.log(data);
           if (data.run_data.status === 'failed') {
-            const fetchUserInfo = async () => {
-              const { data: d, error: e } = await supabase
-                .from('user-data')
-                .select('*')
-                .eq('id', userData.id);
-
-              if (e) {
-                console.error(e);
-              } else {
-                setUserData(d[0]);
-                localStorage.setItem('userData', JSON.stringify(d[0] || {}));
-              }
-            };
             fetchUserInfo();
-            //userData.model_tokens++;
           }
           setFinetuningData(data);
         });
@@ -239,7 +226,6 @@ export default function TrainPage() {
     });
   }
 
-  // Include instanceType on the object sent to Blueprint with the name instance_type
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
@@ -259,12 +245,18 @@ export default function TrainPage() {
             instanceType === 'other' ? customInstanceType : fullInstanceType,
           user_id: id
         },
-        (data: any) => console.log(data)
+        (data: any) => {
+          fetchUserInfo();
+          getModelStatus();
+          if (data.error_code === 'CLIENT_SERVER_TOKENS_DESYNC') {
+            clearUserData();
+            toast.error(t('token_desync_error'));
+            router.push(`/dashboard/${userData.id}`);
+          } else {
+            setQueueingFinetuning(false);
+          }
+        }
       );
-      getModelStatus();
-      setQueueingFinetuning(false);
-      userData.model_tokens--;
-      localStorage.setItem('userData', JSON.stringify(userData));
     } else {
       toast.error('No te quedan tokens, ve a la tienda a por más');
     }

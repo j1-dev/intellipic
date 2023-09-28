@@ -1,6 +1,7 @@
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import replicate from '../../../../core/clients/replicate';
+import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
 
 export async function POST(
   request: Request,
@@ -11,8 +12,16 @@ export async function POST(
 
     const prompt = req.instance_prompt as string;
     const id = req.run_id as string;
-    const user = req.user_id as string;
+    const user = req.user as userDataType;
+    const { data: imageTokens, error: userError } = await supabase
+      .from('user-data')
+      .select('image_tokens')
+      .eq('id', user.id);
 
+    if (userError) {
+      console.error('Supabase error: ', userError);
+      return NextResponse.error();
+    }
     const modelResponse = await replicate.trainings.get(id);
 
     const options = {
@@ -29,18 +38,27 @@ export async function POST(
       }
     };
 
-    const predictionData = await replicate.predictions.create(options);
+    if (imageTokens[0] && imageTokens?.[0]?.image_tokens > 0) {
+      const predictionData = await replicate.predictions.create(options);
 
-    await supabase.from('predictions').insert({
-      user_id: user,
-      created_at: predictionData.created_at,
-      status: predictionData.status,
-      url: predictionData.output,
-      id: predictionData.id,
-      prompt: prompt
-    });
+      await supabase.from('predictions').insert({
+        user_id: user,
+        created_at: predictionData.created_at,
+        status: predictionData.status,
+        url: predictionData.output,
+        id: predictionData.id,
+        prompt: prompt
+      });
 
-    return NextResponse.json({ prediction_id: predictionData.id });
+      await supabase
+        .from('user-data')
+        .update({ image_tokens: user.image_tokens - 1 })
+        .eq('id', params.userId);
+
+      return NextResponse.json({ prediction_id: predictionData.id });
+    } else {
+      return NextResponse.json({ error_code: 'CLIENT_SERVER_TOKENS_DESYNC' });
+    }
   } catch (error) {
     console.error('Call-model error: ', error);
     return NextResponse.json({ error: 'Internal Server Error' });
