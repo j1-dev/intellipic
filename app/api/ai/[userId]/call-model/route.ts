@@ -55,7 +55,7 @@ export async function POST(
 
       await supabase
         .from('user-data')
-        .update({ image_tokens: user.image_tokens - 1 })
+        .update({ image_tokens: imageTokens?.[0]?.image_tokens - 1 })
         .eq('id', params.userId);
 
       return NextResponse.json({ prediction_id: predictionData.id });
