@@ -25,16 +25,16 @@ export default function ModelCard({
 
   return (
     <div className="card">
-      <button className=" w-full h-full py-6">
-        <Link
-          href={`/dashboard/${user}/${model}`}
-          className=" w-full h-full py-10"
-        >
+      <Link
+        href={`/dashboard/${user}/${model}`}
+        className=" w-full h-full py-10"
+      >
+        <button className=" w-full h-full py-6">
           <span className="font-bold text-xl mb-2">{props.token}</span>
           <br />
           <span>{translateStatus(status)}</span>
-        </Link>
-      </button>
+        </button>
+      </Link>
     </div>
   );
 }

@@ -364,7 +364,7 @@ export default function TrainPage() {
                   <option value="other">{t('otherOption')}</option>
                 </select>
 
-                {(instanceType === 'man' || instanceType === 'woman') && (
+                {/* {(instanceType === 'man' || instanceType === 'woman') && (
                   <div className="grid columns-2">
                     <label className="font-bold text-xl my-1" htmlFor="ip">
                       {t('ethnicityLabel')}
@@ -403,7 +403,7 @@ export default function TrainPage() {
                       })}
                     </select>
                   </div>
-                )}
+                )} */}
 
                 {instanceType === 'other' && (
                   <input

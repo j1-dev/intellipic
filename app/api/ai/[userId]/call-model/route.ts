@@ -34,21 +34,24 @@ export async function POST(
         //scheduler: 'K_EULER_ANCESTRAL',
         apply_watermark: false,
         high_noise_frac: 0.9,
-        lora_scale: 0.8
+        lora_scale: 0.6
       }
     };
 
     if (imageTokens[0] && imageTokens?.[0]?.image_tokens > 0) {
       const predictionData = await replicate.predictions.create(options);
 
-      await supabase.from('predictions').insert({
-        user_id: user,
-        created_at: predictionData.created_at,
-        status: predictionData.status,
-        url: predictionData.output,
-        id: predictionData.id,
-        prompt: prompt
-      });
+      const { data: data, error: error } = await supabase
+        .from('predictions')
+        .insert({
+          user_id: user.id,
+          created_at: predictionData.created_at,
+          status: predictionData.status,
+          url: predictionData.output,
+          id: predictionData.id,
+          prompt: prompt
+        });
+      console.log(data, error);
 
       await supabase
         .from('user-data')
