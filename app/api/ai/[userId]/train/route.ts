@@ -77,7 +77,10 @@ export async function POST(
 
       await supabase
         .from('user-data')
-        .update({ run_id: replicateModelId })
+        .update({
+          run_id: replicateModelId,
+          model_tokens: modelTokens?.[0]?.model_tokens - 1
+        })
         .eq('id', id);
 
       return NextResponse.json({ run_id: replicateModelId });

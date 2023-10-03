@@ -18,7 +18,6 @@ export async function POST(
       .from(SUPABASE_TABLE_NAME)
       .select('*')
       .eq('id', id);
-    console.log(userData);
 
     const { data: predictionData, error: predictionError } = await supabase
       .from('predictions')
@@ -47,26 +46,13 @@ export async function POST(
         predictionResponse.status === 'canceled') &&
       typeof predictionData?.[0] === 'undefined'
     ) {
-      // const imageTokens = () => {
-      //   return !predictionData
-      //     ? userData?.[0]?.image_tokens + 1
-      //     : userData?.[0]?.image_tokens;
-      // };
-      // console.log(imageTokens());
-      // console.log(predictionData);
-      console.log(predictionData?.[0]);
-      console.log(userData?.[0]?.image_tokens);
       const imageTokens = userData?.[0]?.image_tokens + 1;
       await supabase
         .from('user-data')
         .update({ image_tokens: imageTokens })
         .eq('id', userData?.[0].id);
 
-      await supabase
-        .from('predictions')
-        .delete()
-        .eq('id', prediction_id)
-        .then((e) => console.log(e));
+      await supabase.from('predictions').delete().eq('id', prediction_id);
     }
 
     return NextResponse.json(predictionResponse);
