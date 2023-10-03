@@ -28,7 +28,7 @@ export async function POST(
       version: modelResponse.output.version.split(':')[1],
       input: {
         prompt: prompt,
-        negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
+        //negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
         // num_inference_steps: 50,
         refine: 'expert_ensemble_refiner',
         //scheduler: 'K_EULER_ANCESTRAL',
