@@ -175,7 +175,6 @@ export default function TrainPage() {
       await fetch(`/api/ai/${id}/status`, { cache: 'no-store' })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           if (data.run_data.status === 'failed') {
             fetchUserInfo();
           }
@@ -217,9 +216,6 @@ export default function TrainPage() {
           .update({ dataset: `public/${id}/data.zip` })
           .eq('id', id)
           .select();
-
-        console.log(id);
-        console.log(data);
         getModelStatus();
       }
       setUploading(false);
@@ -275,7 +271,7 @@ export default function TrainPage() {
   const fineTuningSucceeded = runStatus === 'succeeded';
 
   return (
-    <div className="py-8 max-w-screen-lg mx-auto px-8">
+    <div className="py-8 max-w-screen-lg mx-auto px-8 pb-56">
       <h2 className="text-4xl font-bold mb-4">{t('trainLabel')}</h2>
       <h3 className="text-xl mb-4">
         {t('tokensLabel')}:{' '}
@@ -436,7 +432,7 @@ export default function TrainPage() {
               <div>{t('step3Description')}</div>
               <div className="mt-3">{t('step3CompletionText')}</div>
               <FadeLoader
-                className="w-1/5 m-auto my-4"
+                className="w-1/5 m-auto my-4 -translate-x-1"
                 color="#d3d3d3"
                 height={26}
                 margin={19}
@@ -496,18 +492,16 @@ export default function TrainPage() {
           )}
 
           {fineTuningData?.run_id && !fineTuningSucceeded && (
-            <main className={styles.main}>
-              <div className={styles.clear}>
-                <Button
-                  onClick={() => handleCancelTraining(fineTuningData?.run_id)}
-                  className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
-                  cooldownTime={2000}
-                  disabled={false}
-                >
-                  {t('cancelTrainingButton')}
-                </Button>
-              </div>
-            </main>
+            <div className="w-full relative">
+              <Button
+                onClick={() => handleCancelTraining(fineTuningData?.run_id)}
+                className="bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all absolute left-1/2 -translate-x-1/2 mt-7"
+                cooldownTime={2000}
+                disabled={false}
+              >
+                {t('cancelTrainingButton')}
+              </Button>
+            </div>
           )}
         </div>
       ) : (
