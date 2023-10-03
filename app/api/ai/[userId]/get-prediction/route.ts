@@ -36,16 +36,18 @@ export async function POST(
 
     const predictionResponse = await replicate.predictions.get(prediction_id);
 
+    console.log(predictionResponse.status);
+
     await supabase
       .from('predictions')
       .update({ status: predictionResponse.status })
       .eq('id', prediction_id);
 
     if (
-      (predictionResponse.status === 'failed' ||
-        predictionResponse.status === 'canceled') &&
-      typeof predictionData?.[0] === 'undefined'
+      predictionResponse.status === 'failed' ||
+      predictionResponse.status === 'canceled'
     ) {
+      console.log(predictionResponse.status);
       const imageTokens = userData?.[0]?.image_tokens + 1;
       await supabase
         .from('user-data')
