@@ -9,7 +9,6 @@ export async function POST(
 ) {
   try {
     const req = await request.json();
-
     const prompt = req.instance_prompt as string;
     const id = req.run_id as string;
     const user = req.user as userDataType;
@@ -22,6 +21,7 @@ export async function POST(
       console.error('Supabase error: ', userError);
       return NextResponse.error();
     }
+
     const modelResponse = await replicate.trainings.get(id);
 
     const options = {
@@ -34,24 +34,21 @@ export async function POST(
         //scheduler: 'K_EULER_ANCESTRAL',
         apply_watermark: false,
         high_noise_frac: 0.9,
-        lora_scale: 0.6
+        lora_scale: 0.7
       }
     };
 
     if (imageTokens[0] && imageTokens?.[0]?.image_tokens > 0) {
       const predictionData = await replicate.predictions.create(options);
 
-      const { data: data, error: error } = await supabase
-        .from('predictions')
-        .insert({
-          user_id: user.id,
-          created_at: predictionData.created_at,
-          status: predictionData.status,
-          url: predictionData.output,
-          id: predictionData.id,
-          prompt: prompt
-        });
-      console.log(data, error);
+      await supabase.from('predictions').insert({
+        user_id: user.id,
+        created_at: predictionData.created_at,
+        status: predictionData.status,
+        url: predictionData.output,
+        id: predictionData.id,
+        prompt: prompt
+      });
 
       await supabase
         .from('user-data')

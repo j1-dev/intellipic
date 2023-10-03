@@ -42,7 +42,7 @@ const LangToggle = () => {
         onClick={() => {
           setShow(!show);
         }}
-        className="menu-button inline-flex w-full justify-center rounded-md  px-4 py-2 text-sm font-medium card focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+        className={`px-3 menu-button inline-flex justify-center rounded-md py-2 text-sm font-medium card focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
       >
         {locale === 'es' ? 'Idioma' : 'Language'}
       </Menu.Button>
