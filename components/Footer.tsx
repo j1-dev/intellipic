@@ -26,7 +26,9 @@ const Footer = () => {
             <Link href="/tos">{locale === 'es' ? 'Términos' : 'Terms'}</Link>
           </li>
           <li>
-            <Link href="#">{locale === 'es' ? 'Contacto' : 'Contact'}</Link>
+            <Link href="mailto:support@intellipic.es">
+              {locale === 'es' ? 'Contacto' : 'Contact'}
+            </Link>
           </li>
         </ul>
         <ul className="flex justify-start lg:justify-end absolute bottom-0 xs:bottom-5 translate-y-2 xs:translate-y-0">
