@@ -11,11 +11,10 @@ const LangToggle = () => {
   const router = useRouter();
   const locale = useLocale();
 
-  function close() {
-    setShow(false);
-  }
-
   useEffect(() => {
+    function close() {
+      setShow(false);
+    }
     // Function to handle clicks outside the menu items box
     const handleClickOutside = (event: any) => {
       if (
@@ -34,7 +33,7 @@ const LangToggle = () => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [show, close]);
+  }, [show]);
 
   return (
     <Menu as="div" className="inline-block -translate-y-2 xs:translate-y-0">
