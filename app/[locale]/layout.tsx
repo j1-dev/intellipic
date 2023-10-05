@@ -12,7 +12,10 @@ export function generateStaticParams() {
 
 export const metadata = {
   title: 'IntelliPic',
-  description: 'IntelliPic app to make custom AI Portrait models'
+  description: 'IntelliPic app to make custom AI Portrait models',
+  icons: {
+    icon: '/favicon.ico'
+  }
 };
 
 const font = localFont({
