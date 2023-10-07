@@ -2,13 +2,7 @@
 import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
-import {
-  FaDiscord,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaYoutube
-} from 'react-icons/fa';
+import { FaDiscord, FaTiktok, FaInstagram, FaYoutube } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
 import LangToggle from './LangToggle';
 
@@ -38,18 +32,18 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="https://www.youtube.com/channel/UCkx5FG7isiM1GntBhF5QzMQ">
               <FaYoutube size={24} className="mx-3" />
             </Link>
           </li>
           <li>
-            <Link href="#">
+            <Link href="https://discord.gg/kyccV6hD">
               <FaDiscord size={24} className="mx-3" />
             </Link>
           </li>
           <li>
-            <Link href="#">
-              <FaLinkedin size={24} className="mx-3" />
+            <Link href="https://www.tiktok.com/@intellipic">
+              <FaTiktok size={24} className="mx-3" />
             </Link>
           </li>
         </ul>
