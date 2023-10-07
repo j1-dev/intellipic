@@ -102,6 +102,7 @@ export default function TrainPage() {
 
   useInterval(() => {
     getModelStatus();
+    fetchUserInfo();
   }, 2000);
 
   const fetchUserInfo = async () => {
@@ -113,6 +114,7 @@ export default function TrainPage() {
     if (e) {
       console.error(e);
     } else {
+      console.log(d[0]);
       setUserData(d[0]);
       localStorage.setItem('userData', JSON.stringify(d[0] || {}));
     }
@@ -159,9 +161,7 @@ export default function TrainPage() {
         }
       );
       if (succesful) {
-        fetchUserInfo().then(() => {
-          setFinetuningData(null);
-        });
+        setFinetuningData(null);
         toast.success('Entrenamiento cancelado con éxito');
       } else {
         console.log('Cancellation failed.');

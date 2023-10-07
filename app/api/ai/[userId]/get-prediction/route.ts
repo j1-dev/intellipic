@@ -45,6 +45,7 @@ export async function POST(
       predictionResponse.status === 'failed' ||
       predictionResponse.status === 'canceled'
     ) {
+      console.log(predictionResponse.status);
       const imageTokens = userData?.[0]?.image_tokens + 1;
       await supabase
         .from('user-data')

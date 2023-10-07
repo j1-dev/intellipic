@@ -40,6 +40,7 @@ export async function POST(
 
     if (imageTokens[0] && imageTokens?.[0]?.image_tokens > 0) {
       const predictionData = await replicate.predictions.create(options);
+      console.log(predictionData);
 
       await supabase.from('predictions').insert({
         user_id: user.id,

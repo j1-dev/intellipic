@@ -37,6 +37,7 @@ export async function GET(
         modelResponse.status === 'canceled' ||
         modelResponse.status === 'failed'
       ) {
+        console.log(userData?.[0]?.model_tokens);
         const modelTokens = () => {
           userData?.[0]?.dataset !== null
             ? userData?.[0]?.model_tokens + 1
@@ -46,7 +47,7 @@ export async function GET(
           .from(SUPABASE_TABLE_NAME)
           .update({
             run_id: null,
-            model_tokens: modelTokens,
+            model_tokens: userData?.[0]?.model_tokens + 1,
             dataset: null
           })
           .eq('id', userData?.[0].id);

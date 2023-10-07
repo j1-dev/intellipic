@@ -7,9 +7,9 @@ export async function POST(
 ) {
   const req = await request.json();
   const predictionId = req.prediction_id as string;
-
+  console.log(predictionId);
   const response = replicate.predictions.cancel(predictionId);
+  console.log(await response);
 
-  console.log((await response).error);
   return NextResponse.json({ succesful: (await response).error === null });
 }
