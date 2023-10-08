@@ -5,6 +5,7 @@ import localFont from 'next/font/local';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import Footer from '@/components/Footer';
+import Script from 'next/script';
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'de' }];
@@ -68,6 +69,24 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={font.className}>
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-V08S01HJ70"
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-V08S01HJ70', {
+            page_path: window.location.pathname,
+          });
+        `
+        }}
+      />
       <body className="flex flex-col min-h-screen">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SupabaseProvider>
