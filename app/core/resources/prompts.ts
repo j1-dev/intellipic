@@ -25,11 +25,6 @@ export const prompts = [
       'Closeup portrait of @me as an elf with long blond hair, fantasy concept art, intricate details, detailed armor, majestic background.'
   },
   {
-    name: 'Soccer',
-    prompt:
-      'closeup portrait of @me as a soccer player @me wearing a xred and white uniform, action shot, grassy field in the background, bright sunlight, motion blur, dramatic lighting, intense facial expression.'
-  },
-  {
     name: 'Clown',
     prompt:
       'Closeup portrait of @me as a clown, highly detailed, surreal, expressionless face, bright colors, contrast lighting, abstract background.'
@@ -37,27 +32,27 @@ export const prompts = [
   {
     name: 'Jedi',
     prompt:
-      'closeup portrait of @me as a jedi with a lightsaber, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour, art by marko djurdjevic, greg rutkowski, wlop, fredperry, digital painting, rossdraws.'
+      'closeup portrait of @me as a jedi with a lightsaber, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour.'
   },
   {
     name: 'Wizard',
     prompt:
-      'closeup portrait of @me as a wizard, highly detailed @me, fantasy concept art, intricate details and textures, magical, colorful, art by wlop, greg rutkowski, charlie bowater, magali villeneuve, alphonse mucha, surreal, @me looking into the distance, holding a staff, fire and stars in the background.'
+      'closeup portrait of @me as a wizard, highly detailed @me, fantasy concept art, intricate details and textures, magical, colorful, holding a staff, fire and stars in the background.'
   },
   {
     name: 'Cyberpunk',
     prompt:
-      'closeup portrait of @me as a cyberpunk, dark and gritty, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background, art by wlop, greg rutkowski, and charlie bowater, 8 k resolution, ultra-realistic, octane render, unreal engine.'
+      'closeup portrait of @me as a cyberpunk, dark and gritty, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background, unreal engine.'
   },
   {
     name: 'Astronaout',
     prompt:
-      'closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel, art by alphonse mucha, ryan kittleson, greg rutkowski, leesha hannigan, stephan martiniere, stanley artgerm lau.'
+      'closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel.'
   },
   {
     name: 'Samurai',
     prompt:
-      'closeup portrait of @me as a samurai warrior, war-torn landscape in the background, wearing a black and red armor, ready to fight, detailed textures, concept art, noir art, art by hinata matsumura, alphonse mucha, mike mignola, kazu kibuishi, and rev.matsuoka, digital painting, ultra-realistic.'
+      'closeup portrait of @me as a samurai warrior, war-torn landscape in the background, wearing a black and red armor.'
   },
   {
     name: 'Ninja',
@@ -87,7 +82,7 @@ export const prompts = [
   {
     name: 'Monster',
     prompt:
-      'closeup portrait of @me as monster with glowing eyes and sharp teeth, dark shadows, foggy background, highly detailed, photorealism, concept art, digital painting.'
+      'closeup portrait of @me as monster with glowing eyes and sharp teeth, dark shadows, foggy background, highly detailed, photorealism, concept art.'
   },
   {
     name: 'Vampire',
@@ -103,6 +98,11 @@ export const prompts = [
   name: 'Yearbook',
     prompt:
       'A yearbook closeup photo of @me, 1990s.'
+  },
+  {
+  name: 'Pharaoh',
+    prompt:
+      'a colorful drawing of @me as an ancient egyptian pharaoh.'
   }
   // {
   //   name: 'Zombie',
