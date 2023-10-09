@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { userDataType } from '../[userId]/page';
 
 interface Product {
   id: string;
@@ -18,6 +19,17 @@ export default function ShopPage() {
   const t = useTranslations('ShopPage');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [user, setUser] = useState<any>(null);
+  const [models] = useState<any>(() => {
+    let data = localStorage.getItem('models') || '';
+    let mod = data.split('(sep)');
+    let arr = [] as Array<Object>;
+    mod.map((m) => {
+      if (m) {
+        arr.push(JSON.parse(m));
+      }
+    });
+    return arr;
+  });
   const supabase = createClientComponentClient();
 
   const products: Product[] = [
@@ -100,18 +112,31 @@ export default function ShopPage() {
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">{t('shop')}</h2>
-        <div className="grid grid-cols-2 gap-4">
-          {products.map((product) => (
+        {models.length === 0 ? (
+          <div className="max-w-screen-sm w-full h-full m-auto">
             <div
-              key={product.id}
-              className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-              onClick={() => handleProductClick(product)}
+              key={products[0].id}
+              className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white py-12 px-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+              onClick={() => handleProductClick(products[0])}
             >
-              <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-              <p>{product.price}</p>
+              <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
+              <p>{products[0].price}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-4">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                onClick={() => handleProductClick(product)}
+              >
+                <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+                <p>{product.price}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {selectedProduct && (
