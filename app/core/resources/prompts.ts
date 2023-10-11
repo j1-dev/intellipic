@@ -45,7 +45,7 @@ export const prompts = [
       'closeup portrait of @me as a cyberpunk, dark and gritty, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background, unreal engine.'
   },
   {
-    name: 'Astronaout',
+    name: 'Astronaut',
     prompt:
       'closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel.'
   },
@@ -95,14 +95,12 @@ export const prompts = [
       'closeup portrait of @me as a witch surrounded by magical elements, highly detailed, photorealism, digital painting, dark colors, grayscale, intricate details ultra realism, magical elements.'
   },
   {
-  name: 'Yearbook',
-    prompt:
-      'A yearbook closeup photo of @me, 1990s.'
+    name: 'Yearbook',
+    prompt: 'A yearbook closeup photo of @me, 1990s.'
   },
   {
-  name: 'Pharaoh',
-    prompt:
-      'a colorful drawing of @me as an ancient egyptian pharaoh.'
+    name: 'Pharaoh',
+    prompt: 'a colorful drawing of @me as an ancient egyptian pharaoh.'
   }
   // {
   //   name: 'Zombie',

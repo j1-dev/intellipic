@@ -307,6 +307,24 @@ export default function ModelPage() {
                               : 'text-black hover:font-bold',
                             'group flex rounded-md items-center w-full px-2 py-2 text-sm'
                           )}
+                          onClick={() => setPromptType('defaultPrompt')}
+                        >
+                          <span className="mr-2">{t('defaultPrompt')}</span>
+                          <span className="ml-auto text-gray-500">
+                            {t('defaultPromptInfo')}
+                          </span>
+                        </button>
+                      )}
+                    </Menu.Item>
+                    <Menu.Item>
+                      {({ active }) => (
+                        <button
+                          className={classNames(
+                            active
+                              ? 'border text-white bg-black'
+                              : 'text-black hover:font-bold',
+                            'group flex rounded-md items-center w-full px-2 py-2 text-sm'
+                          )}
                           onClick={() => setPromptType('generatedPrompt')}
                         >
                           <span className="mr-2">{t('generatedPrompt')}</span>
@@ -330,24 +348,6 @@ export default function ModelPage() {
                           <span className="mr-2">{t('writtenPrompt')}</span>
                           <span className="ml-auto text-gray-500">
                             {t('writtenPromptInfo')}
-                          </span>
-                        </button>
-                      )}
-                    </Menu.Item>
-                    <Menu.Item>
-                      {({ active }) => (
-                        <button
-                          className={classNames(
-                            active
-                              ? 'border text-white bg-black'
-                              : 'text-black hover:font-bold',
-                            'group flex rounded-md items-center w-full px-2 py-2 text-sm'
-                          )}
-                          onClick={() => setPromptType('defaultPrompt')}
-                        >
-                          <span className="mr-2">{t('defaultPrompt')}</span>
-                          <span className="ml-auto text-gray-500">
-                            {t('defaultPromptInfo')}
                           </span>
                         </button>
                       )}
@@ -395,7 +395,7 @@ export default function ModelPage() {
                                     setPromptName(prompt.name);
                                   }}
                                 >
-                                  <span className="mr-2">{prompt.name}</span>
+                                  <span className="mr-2">{t(prompt.name)}</span>
                                 </button>
                               )}
                             </Menu.Item>
