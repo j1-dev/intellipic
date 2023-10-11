@@ -43,7 +43,7 @@ export default function ModelPage() {
     localStorage.getItem(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState(
-    localStorage.getItem(`pt${model}`) || 'generatedPrompt'
+    localStorage.getItem(`pt${model}`) || 'defaultPrompt'
   );
   const [promptName, setPromptName] = useState(
     localStorage.getItem(`pn${model}`) || t('availablePrompts')
