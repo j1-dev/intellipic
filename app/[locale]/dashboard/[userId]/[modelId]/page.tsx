@@ -361,7 +361,7 @@ export default function ModelPage() {
                 <Menu as="div" className="mb-8 relative">
                   <div>
                     <Menu.Button className="left-0 border rounded-lg pl-3 border-black dark:border-white inline-flex w-full py-2 text-sm font-medium text-black dark:text-white transition-all">
-                      {promptName}
+                      {t(promptName)}
                       <BsChevronDown
                         className="right-3 absolute h-5 w-5 text-black dark:text-white transition-all"
                         aria-hidden="true"
