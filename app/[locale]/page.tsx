@@ -142,6 +142,54 @@ export default function Home() {
                 />
               </div>
             </a>
+            {/* Example 5 */}
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/Hercules1.jpg"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75 transition-all"
+                />
+              </div>
+            </a>
+            {/* Example 6 */}
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/monster.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75 transition-all"
+                />
+              </div>
+            </a>
+            {/* Example 7 */}
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/missi.png"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75 transition-all"
+                />
+              </div>
+            </a>
+            {/* Example 8 */}
+            <a href="#" className="group">
+              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+                <Image
+                  alt=""
+                  src="/Images/bussiness.webp"
+                  layout="fill"
+                  objectFit="cover"
+                  className="group-hover:opacity-75 transition-all"
+                />
+              </div>
+            </a>
           </div>
         </div>
       </section>
