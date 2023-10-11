@@ -41,11 +41,12 @@ export async function POST(
         destination: dest,
         input: {
           input_images: instanceData,
-          max_train_steps: 2000,
-          unet_learning_rate: 1e-5,
+          max_train_steps: 1800,
+          unet_learning_rate: 4e-6,
           token_string: instanceToken,
           // is_lora: false,
           caption_prefix: `a photo of ${instanceToken}`,
+          crop_based_on_salience: false,
           use_face_detection_instead: true
         } as object
       };
