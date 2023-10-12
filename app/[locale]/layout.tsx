@@ -8,12 +8,44 @@ import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'de' }];
+  return [{ locale: 'en' }, { locale: 'es' }];
 }
 
 export const metadata = {
-  title: 'IntelliPic',
-  description: 'IntelliPic app to make custom AI Portrait models'
+  title: 'IntelliPic, El Estudio de IA Fácil de Usar',
+  description:
+    'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar',
+  generator: 'IntelliPic',
+  applicationName: 'IntelliPic',
+  referrer: 'origin-when-cross-origin',
+  keywords: [
+    'IntelliPic',
+    'Stable Diffusion',
+    'SDXL',
+    'Inteligencia Artificial',
+    'AI',
+    'IA'
+  ],
+  authors: [{ name: 'Juan García' }, { name: 'David Sedeño' }],
+  colorScheme: 'dark',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  }
 };
 
 const font = localFont({
