@@ -27,7 +27,6 @@ export const metadata = {
     'IA'
   ],
   authors: [{ name: 'Juan García' }, { name: 'David Sedeño' }],
-  colorScheme: 'dark',
   formatDetection: {
     email: false,
     address: false,
