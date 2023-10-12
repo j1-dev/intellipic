@@ -43,7 +43,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed w-full font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all z-50">
+    <div className="fixed w-full font-sans text-center bg-white dark:bg-black border-b-[1px] border-black dark:border-white shadow-sm transition-all z-[30]">
       {typeof window !== 'undefined' && windowWidth && windowWidth > 479 && (
         <header className="absolute left-4">
           <Link href={`/dashboard/${user?.id}`}>

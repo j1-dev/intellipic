@@ -128,16 +128,38 @@ export default function ShopPage() {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4">
-                {products.map((product) => (
-                  <div
-                    key={product.id}
-                    className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
-                    onClick={() => handleProductClick(product)}
-                  >
-                    <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                    <p>{product.price}</p>
+                <div
+                  key={products[0].id}
+                  className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 h-60 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                  onClick={() => handleProductClick(products[0])}
+                >
+                  <h3 className="text-5xl font-bold m-4">{products[0].name}</h3>
+                  <p className="text-xl font-semibold m-4">
+                    {products[0].price}
+                  </p>
+                  <div className="m-4">
+                    {products[0].features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
                   </div>
-                ))}
+                </div>
+                <hr className="w-full h-0 col-span-2 border-b-[1px] border-black dark:border-white transition-all ease-in-out" />
+                {products.map((product, index) => {
+                  if (index > 0) {
+                    return (
+                      <div
+                        key={product.id}
+                        className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 sm:col-span-1 row-span-1 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                        onClick={() => handleProductClick(product)}
+                      >
+                        <h3 className="text-xl font-bold mb-2">
+                          {product.name}
+                        </h3>
+                        <p>{product.price}</p>
+                      </div>
+                    );
+                  }
+                })}
               </div>
             )}
           </div>
@@ -148,7 +170,7 @@ export default function ShopPage() {
         <Dialog
           open={true}
           onClose={closeModal}
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-40 overflow-y-auto"
         >
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
           <div className="flex items-center justify-center min-h-screen">
