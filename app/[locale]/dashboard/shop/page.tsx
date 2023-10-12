@@ -130,7 +130,7 @@ export default function ShopPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div
                   key={products[0].id}
-                  className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 h-60 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                  className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
                   onClick={() => handleProductClick(products[0])}
                 >
                   <h3 className="text-5xl font-bold m-4">{products[0].name}</h3>
