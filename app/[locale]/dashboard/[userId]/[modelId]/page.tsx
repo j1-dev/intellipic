@@ -81,6 +81,10 @@ export default function ModelPage() {
     modelStatus
   ]);
 
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
   const fetchUserInfo = async () => {
     const { data: d, error: e } = await supabase
       .from('user-data')
@@ -199,6 +203,7 @@ export default function ModelPage() {
   async function handleCancelPrediction() {
     if (queueingPrediction) {
       let succesful;
+      setQueueingPrediction(false);
       await post(
         `/api/ai/${id}/cancel-prediction`,
         {
@@ -212,7 +217,6 @@ export default function ModelPage() {
 
       if (succesful) {
         toast.success('Ha cancelado la generación, pruebe de nuevo');
-        setQueueingPrediction(false);
       } else {
         console.log('Cancellation failed.');
         toast.error('Algo ha fallado...');
@@ -442,7 +446,7 @@ export default function ModelPage() {
             <div className="flex justify-center items-center">
               <Button
                 onClick={handleCallModel}
-                cooldownTime={7000}
+                cooldownTime={4000}
                 className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
