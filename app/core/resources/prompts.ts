@@ -17,17 +17,17 @@ export const prompts = [
   {
     name: 'Harry Potter',
     prompt:
-      'closeup portrait of @me as a Harry Potter character, magical world, wands, robes, Hogwarts castle in the background, enchanted forest, detailed lighting.'
+      'closeup portrait of @me as a Harry Potter character, Hogwarts castle in the background, detailed lighting.'
   },
   {
     name: 'Elf',
     prompt:
-      'Closeup portrait of @me as an elf with long blond hair, fantasy concept art, intricate details, detailed armor, majestic background.'
+      'Closeup portrait of @me as an elf, fantasy concept art, detailed armor, majestic background.'
   },
   {
     name: 'Clown',
     prompt:
-      'Closeup portrait of @me as a clown, highly detailed, surreal, expressionless face, bright colors, contrast lighting, abstract background.'
+      'Closeup portrait of @me as a clown, highly detailed, surreal, expressionless face, bright colors, contrast lighting, abstract background, art by wlop, greg rutkowski, charlie bowater, magali villeneuve, alphonse mucha, cartoonish, comic book style '
   },
   {
     name: 'Jedi',
@@ -37,12 +37,12 @@ export const prompts = [
   {
     name: 'Wizard',
     prompt:
-      'closeup portrait of @me as a wizard, highly detailed @me, fantasy concept art, intricate details and textures, magical, colorful, holding a staff, fire and stars in the background.'
+      'closeup portrait of @me as a wizard, fantasy concept art, intricate details and textures, magical, colorful, holding a staff, fire and stars in the background.'
   },
   {
     name: 'Cyberpunk',
     prompt:
-      'closeup portrait of @me as a cyberpunk, dark and gritty, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background, unreal engine.'
+      'closeup portrait of @me as a cyberpunk, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background'
   },
   {
     name: 'Astronaut',
@@ -75,19 +75,19 @@ export const prompts = [
       'closeup portrait of @me as a knight wearing a full suit of armor, intricate details, majestic and powerful, bright shining silver armor, matching blue cape, a golden crown, artstation trending, highly detailed, digital painting.'
   },
   {
+    name: 'GTA',
+    prompt:
+      'close-up of @me as a GTA character with Los Santos on the background'
+  },
+  {
+    name: 'Metal Gear Solid',
+    prompt:
+      'close up drawing of @me as a Metal Gear Solid character with helicopters flying in the background'
+  },
+  {
     name: 'Cyborg',
     prompt:
-      'closeup portrait of @me as a cyborg, mechanical parts, ultra realistic, concept art, intricate details, eerie, highly detailed, photorealistic, 8k, unreal engine. golden hour, cyberpunk, robotic, steampunk, neon colors, metallic textures.'
-  },
-  {
-    name: 'Monster',
-    prompt:
-      'closeup portrait of @me as monster with glowing eyes and sharp teeth, dark shadows, foggy background, highly detailed, photorealism, concept art.'
-  },
-  {
-    name: 'Vampire',
-    prompt:
-      'closeup portrait of @me as a vampire, pale skin, dark eyes, sharp fangs, detailed shadows and highlights, eerie atmosphere, mystical and magical, noir photorealism, surreal and dreamlike, deep red hues.'
+      'closeup portrait of @me as a cyborg, mechanical parts, ultra realistic, concept art, intricate details, eerie, highly detailed, photorealistic,cyberpunk, robotic, steampunk, neon colors, metallic textures.'
   },
   {
     name: 'Witch',
@@ -100,7 +100,8 @@ export const prompts = [
   },
   {
     name: 'Pharaoh',
-    prompt: 'a colorful drawing of @me as an ancient egyptian pharaoh.'
+    prompt:
+      'a colorful drawing of @me as an ancient egyptian pharaoh. with the piramids on the background'
   }
   // {
   //   name: 'Zombie',

@@ -1,7 +1,7 @@
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
-  title: 'Intellipic'
+  title: 'IntelliPic'
 };
 
 export default async function RootLayout({
