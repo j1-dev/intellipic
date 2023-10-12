@@ -76,7 +76,8 @@ export const prompts = [
   },
   {
     name: 'GTA',
-    prompt: '@me as a GTA character with Los Santos on the background'
+    prompt:
+      'close-up of @me as a GTA character with Los Santos on the background'
   },
   {
     name: 'Metal Gear Solid',

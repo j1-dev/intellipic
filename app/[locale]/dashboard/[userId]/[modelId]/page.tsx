@@ -46,7 +46,7 @@ export default function ModelPage() {
     localStorage.getItem(`pt${model}`) || 'defaultPrompt'
   );
   const [promptName, setPromptName] = useState(
-    localStorage.getItem(`pn${model}`) || t('availablePrompts')
+    localStorage.getItem(`pn${model}`) || 'availablePrompts'
   );
   const [modelStatus, setModelStatus] = useState(
     localStorage.getItem(`ms${model}`) || ''
@@ -124,7 +124,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token, instanceClass);
+      const prompt = replacePromptToken(instancePrompt, token);
       post(
         `/api/ai/${id}/call-model`,
         {
