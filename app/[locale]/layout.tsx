@@ -27,12 +27,12 @@ export const metadata = {
     'IA'
   ],
   authors: [{ name: 'Juan García' }, { name: 'David Sedeño' }],
-  colorScheme: 'dark',
   formatDetection: {
     email: false,
     address: false,
     telephone: false
   },
+  googleBot: {},
   robots: {
     index: true,
     follow: true,
@@ -45,6 +45,13 @@ export const metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1
     }
+  },
+  openGraph: {
+    type: 'website',
+    title: 'IntelliPic',
+    site_name: 'IntelliPic',
+    description:
+      'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar'
   }
 };
 

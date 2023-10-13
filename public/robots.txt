@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://intellipic.es
+
+# Sitemaps
+Sitemap: https://intellipic.es/sitemap.xml
