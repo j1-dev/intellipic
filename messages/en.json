@@ -334,6 +334,7 @@
     "extraInfo": "Infinite possibilities for creating custom styles",
     "price": "Price:",
     "features": "Features:",
+    "noTrainedModels":"You need to have trained at least one model before buying tokens for generating images",
     "buyNow": "Buy now"
   },
   "TrainPage":{

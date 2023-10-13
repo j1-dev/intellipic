@@ -116,14 +116,27 @@ export default function ShopPage() {
         {!!models && (
           <div>
             {models.length === 0 ? (
-              <div className="max-w-screen-sm w-full h-full m-auto">
+              <div className="grid grid-cols-2 gap-4">
                 <div
                   key={products[0].id}
-                  className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white py-12 px-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
+                  className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
                   onClick={() => handleProductClick(products[0])}
                 >
-                  <h3 className="text-xl font-bold mb-2">{products[0].name}</h3>
-                  <p>{products[0].price}</p>
+                  <h3 className="text-5xl font-bold m-4">{products[0].name}</h3>
+                  <p className="text-xl font-semibold m-4">
+                    {products[0].price}
+                  </p>
+                  <div className="m-4">
+                    {products[0].features.map((feature) => (
+                      <li key={feature}>{feature}</li>
+                    ))}
+                  </div>
+                </div>
+                <hr className="w-full h-0 col-span-2 border-b-[1px] border-black dark:border-white transition-all ease-in-out" />
+                <div className="w-full py-32 px-48  col col-span-2 text-center">
+                  <span className="text-gray-500 text-xl  ">
+                    {t('noTrainedModels')}
+                  </span>
                 </div>
               </div>
             ) : (

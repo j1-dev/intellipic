@@ -334,6 +334,7 @@
     "extraInfo": "Multitud de posibilidades para crear prompts",
     "price": "Precio:",
     "features": "Características:",
+    "noTrainedModels":"Necesitas haber entrenado un modelo antes de poder comprar tokens para generar imágenes",
     "buyNow": "Comprar Ahora"
   },
   "TrainPage":{
