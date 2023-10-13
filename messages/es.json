@@ -183,7 +183,9 @@
   "ModelCard": {
     "starting": "Empezando",
     "processing": "Procesando...",
-    "succeeded": "Completado"
+    "succeeded": "Completado",
+    "modelName":"Nombre: ",
+    "modelStatus":"Status: "
   },
   "TrainButton": {
     "trainingInProgress": "Entrenamiento en proceso",

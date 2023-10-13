@@ -29,10 +29,14 @@ export default function ModelCard({
         href={`/dashboard/${user}/${model}`}
         className=" w-full h-full py-10"
       >
-        <button className=" w-full h-full py-6">
-          <span className="font-bold text-xl mb-2">{props.token}</span>
-          <br />
-          <span>{translateStatus(status)}</span>
+        <button className="w-full h-full">
+          <div className="w-full h-full block">
+            <p className="font-bold text-xl m-5">
+              {t('modelName') + props.token}
+            </p>
+            <hr className="border-b-[1px] border-black dark:border-white transition-all" />
+            <p className="m-1">{t('modelStatus') + translateStatus(status)}</p>
+          </div>
         </button>
       </Link>
     </div>
