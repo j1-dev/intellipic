@@ -124,12 +124,12 @@ const font = localFont({
       path: '../core/fonts/SFProDisplay-Bold.ttf',
       weight: '700',
       style: 'normal'
+    },
+    {
+      path: '../core/fonts/SFProDisplay-Heavy.ttf',
+      weight: '800',
+      style: 'normal'
     }
-    // {
-    //   path: '../core/fonts/SFProDisplay-Heavy.ttf',
-    //   weight: '800',
-    //   style: 'normal'
-    // }
     // {
     //   path: '../core/fonts/SFProDisplay-Black.ttf',
     //   weight: '900',
