@@ -7,6 +7,7 @@ const withNextIntl = require('next-intl/plugin')(
 module.exports = withNextIntl({
   trailingSlash: true,
   reactStrictMode: true,
+  swcMinify: true,
   images: {
     domains: [
       'photoshot.app',
