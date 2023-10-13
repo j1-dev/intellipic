@@ -413,12 +413,19 @@ export default function ModelPage() {
             )}
 
             {promptType === 'writtenPrompt' && (
-              <textarea
-                className="max-w-screen-md w-full h-[125px] m-auto p-2 mb-4 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
-                value={instancePrompt}
-                onChange={(e) => setInstancePrompt(e.target.value)}
-                placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
-              />
+              <div>
+                <textarea
+                  className="max-w-screen-md w-full h-[125px] m-auto p-2 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
+                  value={instancePrompt}
+                  onChange={(e) => setInstancePrompt(e.target.value)}
+                  placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+                />
+                <p className="text-sm mb-4">
+                  Este método está pensado para usuarios experimentados, prueba
+                  los estilos predeterminados si no obtienes los resultados
+                  esperados
+                </p>
+              </div>
             )}
 
             {promptType === 'generatedPrompt' && (

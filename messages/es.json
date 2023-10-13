@@ -282,7 +282,7 @@
     "deleteModel": "Eliminar Modelo",
     "generatedPrompt": "Generador de estilos",
     "generatedPromptInfo": "Genera un prompt a partir de una estructura",
-    "writtenPrompt": "Prompt manual",
+    "writtenPrompt": "Prompt Manual",
     "writtenPromptInfo": "Crea un prompt a tu manera",
     "defaultPrompt": "Estilos Predefinidos",
     "defaultPromptInfo": "Escoje uno de los estilos ya creados",
