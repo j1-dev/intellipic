@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation';
 import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { Metadata, ResolvingMetadata } from 'next/types';
-import { Props } from 'next/script';
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
@@ -111,31 +110,31 @@ const font = localFont({
       weight: '400',
       style: 'normal'
     },
-    {
-      path: '../core/fonts/SFProDisplay-Medium.ttf',
-      weight: '500',
-      style: 'normal'
-    },
-    {
-      path: '../core/fonts/SFProDisplay-Semibold.ttf',
-      weight: '600',
-      style: 'normal'
-    },
+    // {
+    //   path: '../core/fonts/SFProDisplay-Medium.ttf',
+    //   weight: '500',
+    //   style: 'normal'
+    // },
+    // {
+    //   path: '../core/fonts/SFProDisplay-Semibold.ttf',
+    //   weight: '600',
+    //   style: 'normal'
+    // },
     {
       path: '../core/fonts/SFProDisplay-Bold.ttf',
       weight: '700',
       style: 'normal'
-    },
-    {
-      path: '../core/fonts/SFProDisplay-Heavy.ttf',
-      weight: '800',
-      style: 'normal'
-    },
-    {
-      path: '../core/fonts/SFProDisplay-Black.ttf',
-      weight: '900',
-      style: 'normal'
     }
+    // {
+    //   path: '../core/fonts/SFProDisplay-Heavy.ttf',
+    //   weight: '800',
+    //   style: 'normal'
+    // }
+    // {
+    //   path: '../core/fonts/SFProDisplay-Black.ttf',
+    //   weight: '900',
+    //   style: 'normal'
+    // }
   ],
   display: 'swap',
   variable: '--font-sans'
