@@ -4,10 +4,6 @@ import Link from 'next/link';
 import Morph from '@/components/Morph';
 import Logo from '@/app/core/resources/logo';
 import { useTranslations } from 'next-intl';
-import dynamic from 'next/dynamic';
-const WithCustomLoading = dynamic(() => import('@/components/Morph'), {
-  loading: () => <p>Loading...</p>
-});
 
 export default function Home() {
   const t = useTranslations('Home');
@@ -99,7 +95,7 @@ export default function Home() {
         <div className="max-w-screen-lg mx-auto px-8">
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {/* Example 1 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/Mask.png"
@@ -109,7 +105,7 @@ export default function Home() {
               />
             </div>
             {/* Example 2 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/f1driver.png"
@@ -119,7 +115,7 @@ export default function Home() {
               />
             </div>
             {/* Example 3 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/dvid1.png"
@@ -129,7 +125,7 @@ export default function Home() {
               />
             </div>
             {/* Example 4 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/dua1.png"
@@ -139,7 +135,7 @@ export default function Home() {
               />
             </div>
             {/* Example 5 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/Hercules1.jpg"
@@ -149,7 +145,7 @@ export default function Home() {
               />
             </div>
             {/* Example 6 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/monster.png"
@@ -159,7 +155,7 @@ export default function Home() {
               />
             </div>
             {/* Example 7 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/missi.png"
@@ -169,7 +165,7 @@ export default function Home() {
               />
             </div>
             {/* Example 8 */}
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image
                 alt=""
                 src="/Images/bussiness.webp"
