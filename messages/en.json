@@ -101,7 +101,7 @@
   },
   "Tos": {
     "title": "Terms and Conditions of Intellipic",
-    "content": "It is our policy to respect your privacy and comply with any applicable laws and regulations regarding any personal information we may collect about you, including all our website, https://intellipic.vercel.app/, and other sites we own and operate.",
+    "content": "It is our policy to respect your privacy and comply with any applicable laws and regulations regarding any personal information we may collect about you, including all our website, https://intellipic.es/, and other sites we own and operate.",
     "refundsTitle": "Refunds",
     "refundsContent": "We can only refund training and image generation tokens that have not been used yet.",
     "photoUploadTitle": "Photo Upload",
@@ -146,7 +146,7 @@
     "policyChangesTitle": "Changes to This Policy",
     "policyChangesContent": "At our discretion, we may change our privacy policy to reflect updates in our business processes, current acceptable practices, or legislative or regulatory changes. If we decide to change this privacy policy, we will post the changes here at the same link by which you are accessing this privacy policy. If required by law, we will obtain your permission or provide you with the opportunity to opt in or out, as applicable, to any new use of your personal information.",
     "contactUsTitle": "Contact Us",
-    "contactUsContent": "For any questions or concerns related to your privacy, you can contact us using the following details: support@Intellipic.app"
+    "contactUsContent": "For any questions or concerns related to your privacy, you can contact us using the following details:"
   },
   "Faq": {
     "questionsTitle": "Frequently Asked Questions 📖",
@@ -280,12 +280,12 @@
     "tokenInfo": "Write your prompt using the model token or @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
     "remainingTokens": "Remaining Tokens: ",
     "deleteModel": "Delete Model",
-    "generatedPrompt": "Generated Prompt",
+    "generatedPrompt": "Style generator",
     "generatedPromptInfo": "Generated a prompt from a template",
-    "writtenPrompt": "Written Prompt",
+    "writtenPrompt": "Manual Prompt",
     "writtenPromptInfo": "Create a prompt your way",
-    "defaultPrompt": "Default Prompt",
-    "defaultPromptInfo": "Choose from one of the premade prompts",
+    "defaultPrompt": "Default Styles",
+    "defaultPromptInfo": "Choose from one of the premade styles",
     "availablePrompts": "Choose a style",
     "generate": "Generate",
     "generating": "Generating...",

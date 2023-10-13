@@ -95,101 +95,85 @@ export default function Home() {
         <div className="max-w-screen-lg mx-auto px-8">
           <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
             {/* Example 1 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/Mask.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75  transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/Mask.png"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75  transition-all"
+              />
+            </div>
             {/* Example 2 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/f1driver.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/f1driver.png"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
             {/* Example 3 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/dvid1.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/dvid1.png"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
             {/* Example 4 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/dua1.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/dua1.png"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
             {/* Example 5 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/Hercules1.jpg"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/Hercules1.jpg"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
             {/* Example 6 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/monster.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/monster.png"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
             {/* Example 7 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/missi.png"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/missi.png"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
             {/* Example 8 */}
-            <a href="#" className="group">
-              <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
-                <Image
-                  alt=""
-                  src="/Images/bussiness.webp"
-                  layout="fill"
-                  objectFit="cover"
-                  className="group-hover:opacity-75 transition-all"
-                />
-              </div>
-            </a>
+            <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
+              <Image
+                alt=""
+                src="/Images/bussiness.webp"
+                layout="fill"
+                objectFit="cover"
+                className="group-hover:opacity-75 transition-all"
+              />
+            </div>
           </div>
         </div>
       </section>
