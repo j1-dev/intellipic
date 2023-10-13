@@ -6,54 +6,102 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { Metadata, ResolvingMetadata } from 'next/types';
+import { Props } from 'next/script';
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];
 }
 
-export const metadata = {
-  title: 'IntelliPic, El Estudio de IA Fácil de Usar',
-  description:
-    'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar',
-  generator: 'IntelliPic',
-  applicationName: 'IntelliPic',
-  referrer: 'origin-when-cross-origin',
-  keywords: [
-    'IntelliPic',
-    'Stable Diffusion',
-    'SDXL',
-    'Inteligencia Artificial',
-    'AI',
-    'IA'
-  ],
-  authors: [{ name: 'Juan García' }, { name: 'David Sedeño' }],
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false
-  },
-  googleBot: {},
-  robots: {
-    index: true,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: false,
-      noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  },
-  openGraph: {
-    type: 'website',
-    title: 'IntelliPic',
-    site_name: 'IntelliPic',
-    description:
-      'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar'
+export async function generateMetadata(
+  { params }: { params: { locale: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  if (params.locale === 'es') {
+    return {
+      title: 'IntelliPic, El Estudio de IA Fácil de Usar',
+      description:
+        'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar',
+      generator: 'IntelliPic',
+      applicationName: 'IntelliPic',
+      referrer: 'origin-when-cross-origin',
+      keywords: [
+        'IntelliPic',
+        'Stable Diffusion',
+        'SDXL',
+        'Inteligencia Artificial',
+        'IA'
+      ],
+      authors: [{ name: 'Juan García' }, { name: 'David Sedeño' }],
+      formatDetection: {
+        email: false,
+        address: false,
+        telephone: false
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: false,
+          noimageindex: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1
+        }
+      },
+      openGraph: {
+        type: 'website',
+        title: 'IntelliPic',
+        description:
+          'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar'
+      }
+    };
+  } else {
+    return {
+      title: 'IntelliPic, The Easy to Use AI Studio',
+      description:
+        'Intellipic is a cutting-edge Generative Artificial Intelligence (AI) application capable of creating images from scratch based on any concept you wish to teach it.',
+      generator: 'IntelliPic',
+      applicationName: 'IntelliPic',
+      referrer: 'origin-when-cross-origin',
+      keywords: [
+        'IntelliPic',
+        'Stable Diffusion',
+        'SDXL',
+        'Inteligencia Artificial',
+        'AI'
+      ],
+      authors: [{ name: 'Juan García' }, { name: 'David Sedeño' }],
+      formatDetection: {
+        email: false,
+        address: false,
+        telephone: false
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: false,
+          noimageindex: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1
+        }
+      },
+      openGraph: {
+        type: 'website',
+        title: 'IntelliPic',
+        description:
+          'Intellipic is a cutting-edge Generative Artificial Intelligence (AI) application capable of creating images from scratch based on any concept you wish to teach it.'
+      }
+    };
   }
-};
+}
 
 const font = localFont({
   // src: './core/fonts/SFProDisplay-Regular.ttf',
