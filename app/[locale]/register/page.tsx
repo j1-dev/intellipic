@@ -35,7 +35,9 @@ export default function RegisterPage() {
           <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
             <Link className="inline-flex" href="/">
               <BsArrowReturnLeft size={40} />
-              <h1 className="text-4xl font-bold mx-4">Intellipic</h1>
+              <h1 className="text-4xl font-bold mx-4 -translate-y-1">
+                Intellipic
+              </h1>
             </Link>
             <Link
               href="/login"
