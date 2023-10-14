@@ -13,18 +13,18 @@ export default function ModelCard({
 
   function translateStatus(status: string) {
     if (status === 'starting') {
-      return t('starting');
+      return t('starting') + ' 🆕';
     }
     if (status === 'processing') {
-      return t('processing');
+      return t('processing') + ' 🔧';
     }
     if (status === 'succeeded') {
-      return t('succeeded');
+      return t('succeeded') + ' ✅';
     }
   }
 
   return (
-    <div className="card">
+    <div className="card group">
       <Link
         href={`/dashboard/${user}/${model}`}
         className=" w-full h-full py-10"
@@ -34,7 +34,7 @@ export default function ModelCard({
             <p className="font-bold text-xl m-5">
               {t('modelName') + props.token}
             </p>
-            <div className="h-0 border-b-[1px] border-black dark:border-white transition-all" />
+            <div className="h-0 border-b-[1px] border-black group-hover:border-white dark:group-hover:border-black dark:border-white transition-all" />
             <p className="m-1">{t('modelStatus') + translateStatus(status)}</p>
           </div>
         </button>
