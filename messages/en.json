@@ -282,6 +282,7 @@
     "tokenInfo": "Write your prompt using the model token or @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
     "remainingTokens": "Remaining Tokens: ",
     "deleteModel": "Delete Model",
+    "advancedMethodWarning": "This method is designed for experienced users. Try the default styles if you're not getting the expected results",
     "generatedPrompt": "Style Generator",
     "generatedPromptInfo": "Generated a prompt from a template",
     "writtenPrompt": "Manual Prompt",

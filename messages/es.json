@@ -282,6 +282,7 @@
     "tokenInfo": "Escribe tu prompt usando el token del modelo o @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
     "remainingTokens": "Tokens restantes: ",
     "deleteModel": "Eliminar Modelo",
+    "advancedMethodWarning": "Este método está pensado para usuarios experimentados, prueba los estilos predeterminados si no obtienes los resultados esperados",
     "generatedPrompt": "Generador de estilos",
     "generatedPromptInfo": "Genera un prompt a partir de una estructura",
     "writtenPrompt": "Prompt Manual",

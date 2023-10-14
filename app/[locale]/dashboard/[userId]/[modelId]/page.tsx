@@ -420,11 +420,7 @@ export default function ModelPage() {
                   onChange={(e) => setInstancePrompt(e.target.value)}
                   placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
                 />
-                <p className="text-sm mb-4">
-                  Este método está pensado para usuarios experimentados, prueba
-                  los estilos predeterminados si no obtienes los resultados
-                  esperados
-                </p>
+                <p className="text-sm mb-4">{t('advancedMethodWarning')}</p>
               </div>
             )}
 
