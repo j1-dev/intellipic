@@ -34,7 +34,7 @@ export default function ModelCard({
             <p className="font-bold text-xl m-5">
               {t('modelName') + props.token}
             </p>
-            <hr className="border-b-[1px] border-black dark:border-white transition-all" />
+            <div className="h-0 border-b-[1px] border-black dark:border-white transition-all" />
             <p className="m-1">{t('modelStatus') + translateStatus(status)}</p>
           </div>
         </button>
