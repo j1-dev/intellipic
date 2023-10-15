@@ -141,14 +141,15 @@ function SignUp({ t }: { t: boolean }) {
             {toggle ? tr('noAccount') : tr('alreadyAccount')}
           </Link>
           {toggle && (
-            <div
-              onClick={() => {
+            <button
+              onClick={(e: any) => {
+                e.preventDefault();
                 router.push('/recovery');
               }}
               className="block"
             >
               {tr('forgotPass')}
-            </div>
+            </button>
           )}
         </div>
       </form>
