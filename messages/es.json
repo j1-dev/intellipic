@@ -2,7 +2,9 @@
   "Home": {
     "nav": {
       "login": "Inicia sesión",
-      "signup": "Regístrate"
+      "signup": "Regístrate",
+      "beta": "Esta página web está en desarrollo (beta).",
+      "accept": "Aceptar"
     },
     "header": {
       "morph1": "Intellipic",
@@ -99,6 +101,20 @@
     "alreadyAccount": "Ya tienes cuenta? Inicia sesión aquí",
     "forgotPass": "Olvidaste tu contraseña? Haz click aquí"
   },
+  "Recovery":{
+    "setEmail": "Introduzca su email:",
+    "submit": "Enviar",
+    "correctEmail": "Email enviado! Revisa tu bandeja de entrada",
+    "wrongEmailFormat":"Formato inadecuado"
+  },
+  "Reset": {
+    "setPassword": "Introduzca la contraseña:",
+    "setConfirmation": "Repita la contraseña:",
+    "submit": "Enviar",
+    "passwordRestablished":"Contraseña reestablecida correctamente!",
+    "InvalidPassword":"La contraseña debe tener más de 8 carácteres, 1 número y 1 letra mayúscula",
+    "noMatch":"Las contraseñas no coinciden"
+  },
   "Tos": {
     "title": "Términos y Condiciones de Intellipic",
     "content": "Nuestra política es respetar su privacidad y cumplir con todas las leyes y regulaciones aplicables con respecto a cualquier información personal que podamos recopilar sobre usted, incluyendo nuestro sitio web, https://intellipic.es/, y otros sitios que poseemos y operamos.",
@@ -183,7 +199,9 @@
   "ModelCard": {
     "starting": "Empezando",
     "processing": "Procesando...",
-    "succeeded": "Completado"
+    "succeeded": "Completado",
+    "modelName":"Nombre: ",
+    "modelStatus":"Status: "
   },
   "TrainButton": {
     "trainingInProgress": "Entrenamiento en proceso",
@@ -280,9 +298,10 @@
     "tokenInfo": "Escribe tu prompt usando el token del modelo o @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
     "remainingTokens": "Tokens restantes: ",
     "deleteModel": "Eliminar Modelo",
+    "advancedMethodWarning": "Este método está pensado para usuarios experimentados, prueba los estilos predeterminados si no obtienes los resultados esperados",
     "generatedPrompt": "Generador de estilos",
     "generatedPromptInfo": "Genera un prompt a partir de una estructura",
-    "writtenPrompt": "Prompt manual",
+    "writtenPrompt": "Prompt Manual",
     "writtenPromptInfo": "Crea un prompt a tu manera",
     "defaultPrompt": "Estilos Predefinidos",
     "defaultPromptInfo": "Escoje uno de los estilos ya creados",
@@ -334,6 +353,7 @@
     "extraInfo": "Multitud de posibilidades para crear prompts",
     "price": "Precio:",
     "features": "Características:",
+    "noTrainedModels":"Necesitas haber entrenado un modelo antes de poder comprar tokens para generar imágenes",
     "buyNow": "Comprar Ahora"
   },
   "TrainPage":{

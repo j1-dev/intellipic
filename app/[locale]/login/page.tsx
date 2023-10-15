@@ -5,7 +5,7 @@ import supabase from '@/app/core/clients/supabase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
-useLocale;
+import { BsArrowReturnLeft } from 'react-icons/bs';
 
 export default function LoginPage() {
   const [session, setSession] = useState<any>(null);
@@ -38,9 +38,12 @@ export default function LoginPage() {
       <div>
         <header className="py-8">
           <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
-            <h1 className="text-3xl font-bold">
-              <Link href="/">Intellipic</Link>
-            </h1>
+            <Link className="inline-flex" href="/">
+              <BsArrowReturnLeft size={40} />
+              <h1 className="text-4xl font-bold mx-4 -translate-y-1">
+                Intellipic
+              </h1>
+            </Link>
             <Link
               href="/register"
               className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all ml-auto "

@@ -3,16 +3,28 @@ import PromptCard from './PromptCard';
 export default function Prompts() {
   const promptInfo = [
     {
-      img: 'https://photoshot.app/prompts/sacha/viking.png',
+      img: '/Images/messVik.png',
       text1: 'Vikingo'
     },
     {
-      img: 'https://photoshot.app/prompts/sacha/superhero.png',
-      text1: 'Superhéroe'
+      img: '/Images/lebJedi.png',
+      text1: 'Jedi'
     },
     {
-      img: 'https://photoshot.app/prompts/sacha/astronaut.png',
-      text1: 'Astronauta'
+      img: '/Images/davJedi.png',
+      text1: 'Jedi'
+    },
+    {
+      img: '/Images/hercPixar.jpg',
+      text1: 'Pixar'
+    },
+    {
+      img: '/Images/juanHodor.JPG',
+      text1: 'Hodor'
+    },
+    {
+      img: '/Images/juanSnow.JPG',
+      text1: 'Snow'
     },
     {
       img: '/Images/dvid1.png',
@@ -23,8 +35,32 @@ export default function Prompts() {
       text1: 'Hobbit'
     },
     {
+      img: '/Images/davWiz.png',
+      text1: 'Hechicero'
+    },
+    {
+      img: '/Images/f1driver.png',
+      text1: 'F1'
+    },
+    {
+      img: '/Images/davKnight.png',
+      text1: 'Knight'
+    },
+    {
       img: '/Images/dua1.png',
       text1: 'Paladin'
+    },
+    {
+      img: '/Images/weloclown.png',
+      text1: 'Payaso'
+    },
+    {
+      img: '/Images/missi.png',
+      text1: 'Hobbit'
+    },
+    {
+      img: '/Images/weloMonster.png',
+      text1: 'Monstruo'
     }
   ];
 

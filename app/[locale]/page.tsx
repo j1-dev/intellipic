@@ -4,11 +4,13 @@ import Link from 'next/link';
 import Morph from '@/components/Morph';
 import Logo from '@/app/core/resources/logo';
 import { useTranslations } from 'next-intl';
+import UnderDevelopmentMessage from '@/components/BetaMessage';
 
 export default function Home() {
   const t = useTranslations('Home');
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
+      <UnderDevelopmentMessage />
       <header className="py-8">
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
           <Logo />
@@ -93,7 +95,7 @@ export default function Home() {
           <h2 className="text-2xl font-bold mb-4">{t('examples.title')}</h2>
         </div>
         <div className="max-w-screen-lg mx-auto px-8">
-          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 ">
+          <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 lg:gap-x-8 xl:grid-cols-4 xl:gap-x-8 ">
             {/* Example 1 */}
             <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
               <Image

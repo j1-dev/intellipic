@@ -2,7 +2,9 @@
   "Home": {
     "nav": {
       "login": "Log in",
-      "signup": "Sign up"
+      "signup": "Sign up",
+      "beta": "This website is still under development (beta).",
+      "accept": "Accept"
     },
     "header": {
       "morph1": "Intellipic",
@@ -99,6 +101,20 @@
     "alreadyAccount": "Already have an account? Log in here",
     "forgotPass": "Forgot your password? Click here"
   },
+    "Recovery":{
+    "setEmail": "Introduce your email:",
+    "submit": "Send",
+    "correctEmail": "Email sent! Check your inbox",
+    "wrongEmailFormat":"Wrong email format"
+  },
+  "Reset": {
+    "setPassword": "Introduce your password:",
+    "setConfirmation": "Repeat the password:",
+    "submit": "Send",
+    "passwordRestablished":"Password reset correctly!",
+    "InvalidPassword":"The password must have more than 8 characters, a number and an uppercase letter",
+    "noMatch":"The passwords don't match"
+  },
   "Tos": {
     "title": "Terms and Conditions of Intellipic",
     "content": "It is our policy to respect your privacy and comply with any applicable laws and regulations regarding any personal information we may collect about you, including all our website, https://intellipic.es/, and other sites we own and operate.",
@@ -183,7 +199,9 @@
   "ModelCard": {
     "starting": "Starting",
     "processing": "Processing...",
-    "succeeded": "Done"
+    "succeeded": "Done",
+    "modelName":"Name: ",
+    "modelStatus":"Status: "
   },
   "TrainButton": {
     "trainingInProgress": "Training in progress",
@@ -280,7 +298,8 @@
     "tokenInfo": "Write your prompt using the model token or @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
     "remainingTokens": "Remaining Tokens: ",
     "deleteModel": "Delete Model",
-    "generatedPrompt": "Style generator",
+    "advancedMethodWarning": "This method is designed for experienced users. Try the default styles if you're not getting the expected results",
+    "generatedPrompt": "Style Generator",
     "generatedPromptInfo": "Generated a prompt from a template",
     "writtenPrompt": "Manual Prompt",
     "writtenPromptInfo": "Create a prompt your way",
@@ -334,6 +353,7 @@
     "extraInfo": "Infinite possibilities for creating custom styles",
     "price": "Price:",
     "features": "Features:",
+    "noTrainedModels":"You need to have trained at least one model before buying tokens for generating images",
     "buyNow": "Buy now"
   },
   "TrainPage":{
