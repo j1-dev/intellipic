@@ -2,7 +2,6 @@
 import supabase from '@/app/core/clients/supabase';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsArrowReturnLeft } from 'react-icons/bs';
@@ -18,42 +17,10 @@ type passwordRequirements = {
 export default function RecoveryPage() {
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState();
-  const [requirements, setRequirements] = useState<passwordRequirements>({
-    length: false,
-    lowercase: false,
-    uppercase: false,
-    number: false
-  });
-  const searchParams = useSearchParams();
-  const email = searchParams.get('email');
   const t = useTranslations('Reset');
   const router = useRouter();
 
   const handlePasswordChange = (e: any) => {
-    let aux: passwordRequirements = {
-      length: requirements?.length,
-      lowercase: requirements?.lowercase,
-      uppercase: requirements?.uppercase,
-      number: requirements?.number
-    };
-    Object.keys(aux).map((key) => {
-      switch (key) {
-        case 'length':
-          aux.length = password.length >= 8;
-          break;
-        case 'uppercase':
-          aux.uppercase = /[A-Z]/.test(password);
-          break;
-        case 'lowercase':
-          aux.lowercase = /[a-z]/.test(password);
-          break;
-        case 'number':
-          aux.number = /\d/.test(password);
-          break;
-        default:
-      }
-    });
-    setRequirements(aux);
     setPassword(e.target?.value);
   };
 
@@ -101,54 +68,39 @@ export default function RecoveryPage() {
           </Link>
         </nav>
       </header>
-      <div className="flex-col max-w-screen-sm mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
+      <div className="flex-col max-w-screen-xs text-center mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
+        <h1 className="text-8xl font-bold font-sans max-w-screen-sm m-auto h-28">
+          Reset
+        </h1>
         <div className="max-w-screen-xs border border-black dark:border-white rounded-lg m-auto py-6">
           <form
             onSubmit={handleResetPassword}
             className="text-left flex-col grid px-3 py-2"
           >
-            <label className="text-3xl font-bold p-3">{email}</label>
-            <label htmlFor="password" className="text-xl font-semibold p-3">
+            <label htmlFor="password" className="text-3xl font-semibold p-3">
               {t('setPassword')}
             </label>
             <input
               type="password"
               id="password"
               onChange={handlePasswordChange}
-              className="m-3 border-b-[1px] border-gray-300 focus:border-gray-500 outline-0 transition-all "
+              className="m-3 text-xl dark:bg-black px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
             />
-            <div className="m-3" id="password-requirements">
-              <p>Requisitos de la contraseña:</p>
-              <ul>
-                <li className={`${requirements.length ? 'hidden' : 'block'}`}>
-                  Al menos 8 caracteres
-                </li>
-                <li
-                  className={`${requirements.uppercase ? 'hidden' : 'block'}`}
-                >
-                  Una letra mayúscula
-                </li>
-                <li
-                  className={`${requirements.lowercase ? 'hidden' : 'block'}`}
-                >
-                  Una letra minúscula
-                </li>
-                <li className={`${requirements.number ? 'hidden' : 'block'}`}>
-                  Un número
-                </li>
-              </ul>
-            </div>
-            <label htmlFor="confirmation" className="text-xl font-semibold p-3">
+
+            <label
+              htmlFor="confirmation"
+              className="text-3xl font-semibold p-3"
+            >
               {t('setConfirmation')}
             </label>
             <input
               type="password"
               id="confirmation"
               onChange={handleConfirmationChange}
-              className="m-3 border-b-[1px] border-gray-300 focus:border-gray-500 outline-0 transition-all "
+              className="m-3 text-xl dark:bg-black px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
             />
             <button
-              className="w-max bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all p-3 m-3"
+              className="mx-20 mt-3 bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all p-3 m-3"
               type="submit"
             >
               {t('submit')}

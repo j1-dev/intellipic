@@ -65,17 +65,17 @@ export default function RecoveryPage() {
               onSubmit={handleSendPasswordReset}
               className="text-left flex-col grid px-3 py-2"
             >
-              <label htmlFor="email" className="text-4xl font-semibold p-3">
+              <label htmlFor="email" className="text-3xl font-semibold p-3">
                 {t('setEmail')}
               </label>
               <input
                 type="text"
                 id="email"
                 onChange={handleEmailChange}
-                className="m-3 border-b-[1px] border-gray-300 focus:border-gray-500 outline-0 transition-all "
+                className="m-3 dark:bg-black px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
               />
               <button
-                className="w-max bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all p-3 m-3"
+                className="mx-20 mt-3 bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all p-3 m-3"
                 type="submit"
               >
                 {t('submit')}

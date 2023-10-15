@@ -76,12 +76,12 @@ function SignUp({ t }: { t: boolean }) {
     <div className="flex items-center justify-center mt-10">
       <form
         onSubmit={handleSubmit}
-        className="max-w-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
+        className="max-w-screen-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
       >
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block font-medium text-gray-700 dark:text-white mb-2"
+            className="block font-semibold text-2xl text-black dark:text-white mb-2"
           >
             {tr('emailLabel')}
           </label>
@@ -97,7 +97,7 @@ function SignUp({ t }: { t: boolean }) {
         <div className="mb-4">
           <label
             htmlFor="password"
-            className="block font-medium text-gray-700 dark:text-white mb-2"
+            className="block font-semibold text-2xl text-black dark:text-white mb-2"
           >
             {tr('passwordLabel')}
           </label>

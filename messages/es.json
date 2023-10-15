@@ -101,6 +101,20 @@
     "alreadyAccount": "Ya tienes cuenta? Inicia sesión aquí",
     "forgotPass": "Olvidaste tu contraseña? Haz click aquí"
   },
+  "Recovery":{
+    "setEmail": "Introduzca su email:",
+    "submit": "Enviar",
+    "correctEmail": "Email enviado! Revisa tu bandeja de entrada",
+    "wrongEmailFormat":"Formato inadecuado"
+  },
+  "Reset": {
+    "setPassword": "Introduzca la contraseña:",
+    "setConfirmation": "Repita la contraseña:",
+    "submit": "Enviar",
+    "passwordRestablished":"Contraseña reestablecida correctamente!",
+    "InvalidPassword":"La contraseña debe tener más de 8 carácteres, 1 número y 1 letra mayúscula",
+    "noMatch":"Las contraseñas no coinciden"
+  },
   "Tos": {
     "title": "Términos y Condiciones de Intellipic",
     "content": "Nuestra política es respetar su privacidad y cumplir con todas las leyes y regulaciones aplicables con respecto a cualquier información personal que podamos recopilar sobre usted, incluyendo nuestro sitio web, https://intellipic.es/, y otros sitios que poseemos y operamos.",
