@@ -15,16 +15,16 @@ export default function Prompts() {
       text1: 'Jedi'
     },
     {
-      img: 'https://photoshot.app/prompts/sacha/viking.png',
-      text1: 'Vikingo'
+      img: '/Images/hercPixar.jpg',
+      text1: 'Pixar'
     },
     {
-      img: 'https://photoshot.app/prompts/sacha/superhero.png',
-      text1: 'Superhéroe'
+      img: '/Images/juanHodor.JPG',
+      text1: 'Hodor'
     },
     {
-      img: 'https://photoshot.app/prompts/sacha/astronaut.png',
-      text1: 'Astronauta'
+      img: '/Images/juanSnow.JPG',
+      text1: 'Snow'
     },
     {
       img: '/Images/dvid1.png',
