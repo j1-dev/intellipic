@@ -4,10 +4,13 @@ import Link from 'next/link';
 import Morph from '@/components/Morph';
 import Logo from '@/app/core/resources/logo';
 import { useTranslations } from 'next-intl';
+import UnderDevelopmentMessage from '@/components/BetaMessage';
 
 export default function Home() {
   const t = useTranslations('Home');
   return (
+    <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
+      <UnderDevelopmentMessage />
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
@@ -238,6 +241,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+    </div>
     </div>
   );
 }

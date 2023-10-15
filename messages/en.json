@@ -2,7 +2,9 @@
   "Home": {
     "nav": {
       "login": "Log in",
-      "signup": "Sign up"
+      "signup": "Sign up",
+      "beta": "This website is still under development (beta).",
+      "accept": "Accept"
     },
     "header": {
       "morph1": "Intellipic",
