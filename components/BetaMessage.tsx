@@ -1,18 +1,23 @@
+'use client';
 import { useTranslations } from 'next-intl';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function UnderDevelopmentMessage() {
   const t = useTranslations('Home.nav');
-  const [isMessageVisible, setMessageVisible] = useState<boolean>(
-    localStorage.getItem('showWarning') === 'true'
-  );
+  const [isMessageVisible, setMessageVisible] = useState<boolean>(true);
 
   useEffect(() => {
-    localStorage.setItem('showWarning', isMessageVisible.toString());
-  }, [isMessageVisible]);
+    // Check if 'window' is defined, indicating it's on the client side
+    const messageClosed = localStorage.getItem('messageClosed');
+    if (messageClosed === 'true') {
+      setMessageVisible(false);
+    }
+  }, []);
 
   const closeMessage = () => {
     setMessageVisible(false);
+    // Check if 'window' is defined, indicating it's on the client side
+    localStorage.setItem('messageClosed', 'true');
   };
 
   return (

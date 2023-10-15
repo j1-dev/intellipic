@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <UnderDevelopmentMessage />
-    <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <header className="py-8">
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
           <Logo />
@@ -241,7 +240,6 @@ export default function Home() {
           </p>
         </div>
       </section>
-    </div>
     </div>
   );
 }
