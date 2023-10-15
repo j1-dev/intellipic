@@ -19,6 +19,7 @@ export async function generateMetadata(
   // read route params
   if (params.locale === 'es') {
     return {
+      metadataBase: new URL('https://intellipic.es'),
       title: 'IntelliPic, El Estudio de IA Fácil de Usar',
       description:
         'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar',
@@ -41,6 +42,7 @@ export async function generateMetadata(
       robots: {
         index: true,
         follow: true,
+        nocache: true,
         googleBot: {
           index: true,
           follow: true,
@@ -59,6 +61,7 @@ export async function generateMetadata(
     };
   } else {
     return {
+      metadataBase: new URL('https://intellipic.es'),
       title: 'IntelliPic, The Easy to Use AI Studio',
       description:
         'Intellipic is a cutting-edge Generative Artificial Intelligence (AI) application capable of creating images from scratch based on any concept you wish to teach it.',
@@ -84,7 +87,7 @@ export async function generateMetadata(
         nocache: true,
         googleBot: {
           index: true,
-          follow: false,
+          follow: true,
           noimageindex: true,
           'max-video-preview': -1,
           'max-image-preview': 'large',
