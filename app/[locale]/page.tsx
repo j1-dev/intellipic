@@ -33,7 +33,7 @@ export default function Home() {
           />
           <div className="text-center">
             <p className="text-lg mb-8">{t('header.description')}</p>
-            <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all">
+            <button className=" bg-blue-600 text-white border-white hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all">
               <Link href="/register">{t('header.cta')}</Link>
             </button>
           </div>

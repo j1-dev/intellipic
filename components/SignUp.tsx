@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
-import Button from './Button';
 
 function SignUp({ t }: { t: boolean }) {
   const [email, setEmail] = useState<string>('');
