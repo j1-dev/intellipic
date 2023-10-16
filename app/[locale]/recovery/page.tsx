@@ -15,21 +15,43 @@ export default function RecoveryPage() {
     setEmail(e.target?.value);
   };
 
-  function ValidateEmail(input: string) {
-    var validRegex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  function validateEmail(input: string) {
+    const validRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/;
 
-    if (input.match(validRegex)) {
-      return true;
-    } else {
-      return false;
+    if (input?.match(validRegex)) {
+      // Extract the domain from the email.
+      const parts = input.split('@');
+      if (parts.length === 2) {
+        const domain = parts[1];
+        // List of major email providers for comparison.
+        const validDomains = [
+          'gmail.com',
+          'yahoo.com',
+          'outlook.com',
+          'hotmail.com',
+          'hotmail.es',
+          'aol.com',
+          'icloud.com',
+          'protonmail.com',
+          'zoho.com',
+          'mail.com',
+          'yandex.com'
+          // Add more email providers here as needed
+        ];
+
+        if (validDomains.includes(domain)) {
+          return true;
+        }
+      }
     }
+    return false;
   }
 
   //TODO: finish this function
   const handleSendPasswordReset = async (e: any) => {
     e.preventDefault();
-    if (ValidateEmail(email)) {
+    if (validateEmail(email)) {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email);
       console.log(data);
       if (!error) {
