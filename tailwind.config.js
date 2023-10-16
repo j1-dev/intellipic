@@ -33,8 +33,9 @@ module.exports = {
       xl: '1280px',
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px'
+      '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
+      '2xs': '320px'
     },
     backgroundImage: {
       spain: 'https://cdn.ipregistry.co/flags/twemoji/es.png',
