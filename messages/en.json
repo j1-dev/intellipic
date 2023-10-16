@@ -99,7 +99,9 @@
     "register": "Register",
     "noAccount": "Don't have an account? Click here",
     "alreadyAccount": "Already have an account? Log in here",
-    "forgotPass": "Forgot your password? Click here"
+    "forgotPass": "Forgot your password? Click here",
+    "wrongEmailFormat": "Wrong email format or email not allowed",
+    "wrongPasswordFormat": "Wrong password, it should be at least 8 characters, have 1 uppercase and a number"
   },
     "Recovery":{
     "setEmail": "Introduce your email:",

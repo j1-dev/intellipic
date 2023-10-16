@@ -6,6 +6,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { BsArrowReturnLeft } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
+import { validatePassword } from '@/app/core/utils/validate';
 
 type passwordRequirements = {
   length: boolean;
@@ -30,30 +31,15 @@ export default function RecoveryPage() {
 
   const handleResetPassword = (e: any) => {
     e.preventDefault();
-    if (passwordIsValid(password) && password === confirmation) {
+    if (validatePassword(password) && password === confirmation) {
       supabase.auth.updateUser({ password: password });
       toast.success(t('passwordRestablished'));
       router.push('login');
-    } else if (!passwordIsValid(password)) {
+    } else if (!validatePassword(password)) {
       toast.error(t('InvalidPassword'));
     } else {
       toast.error(t('noMatch'));
     }
-  };
-
-  const passwordIsValid = (password: string) => {
-    // Verificar cada requisito por separado
-    const lengthRequirement = password.length >= 8;
-    const uppercaseRequirement = /[A-Z]/.test(password);
-    const lowercaseRequirement = /[a-z]/.test(password);
-    const numberRequirement = /\d/.test(password);
-
-    return (
-      lengthRequirement &&
-      uppercaseRequirement &&
-      lowercaseRequirement &&
-      numberRequirement
-    );
   };
 
   return (
