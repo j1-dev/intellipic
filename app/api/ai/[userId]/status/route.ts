@@ -66,25 +66,30 @@ export async function GET(
       }
 
       if (modelResponse.status === 'succeeded') {
-        const { data, error } = await supabase
-          .from(SUPABASE_TABLE_NAME)
-          .update({ run_id: null, dataset: null })
-          .eq('id', userData?.[0].id);
+        try {
+          const { data, error } = await supabase
+            .from(SUPABASE_TABLE_NAME)
+            .update({ run_id: null, dataset: null })
+            .eq('id', userData?.[0].id);
 
-        if (error) {
-          console.error('Supabase error:', error);
+          if (error) {
+            console.error('Supabase error:', error);
+            return NextResponse.error();
+          }
+
+          const response = NextResponse.json({
+            dataset: null,
+            run_id: null,
+            run_data: { status: modelResponse.status }
+          });
+
+          response.headers.set('Cache-Control', 'no-cache');
+
+          return response;
+        } catch (error) {
+          console.error('Error during "succeeded" status handling:', error);
           return NextResponse.error();
         }
-
-        const response = NextResponse.json({
-          dataset: null,
-          run_id: null,
-          run_data: { status: modelResponse.status }
-        });
-
-        response.headers.set('Cache-Control', 'no-cache');
-
-        return response;
       }
 
       const response = NextResponse.json({
