@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
-import Button from './Button';
+import { validateEmail, validatePassword } from '@/app/core/utils/validate';
 
 function SignUp({ t }: { t: boolean }) {
   const [email, setEmail] = useState<string>('');
@@ -45,30 +45,36 @@ function SignUp({ t }: { t: boolean }) {
       }
     } else {
       // code for signing up
-      await supabase.auth
-        .signUp({
-          email: email,
-          password: password
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        })
-        .then(async (data) => {
-          const resData = data as UserResponse;
-          const { error } = await supabase.from('user-data').insert({
-            id: resData?.data?.user?.id,
-            dataset: null,
-            run_id: null,
-            model_tokens: null,
-            image_tokens: null,
-            last_payment_id: null,
-            last_payment_status: null
+      if (validateEmail(email) && validatePassword(password)) {
+        await supabase.auth
+          .signUp({
+            email: email,
+            password: password
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          })
+          .then(async (data) => {
+            const resData = data as UserResponse;
+            const { error } = await supabase.from('user-data').insert({
+              id: resData?.data?.user?.id,
+              dataset: null,
+              run_id: null,
+              model_tokens: null,
+              image_tokens: null,
+              last_payment_id: null,
+              last_payment_status: null
+            });
+            await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+            console.log(resData?.data?.user?.id);
+            toast.success(tr('verifyEmail'));
+            router.push('/login');
           });
-          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          console.log(resData?.data?.user?.id);
-          toast.success(tr('verifyEmail'));
-          router.push('/login');
-        });
+      } else if (!validateEmail(email)) {
+        toast.error(tr('wrongEmailFormat'));
+      } else {
+        toast.error(tr('wrongPasswordFormat'));
+      }
     }
   };
 

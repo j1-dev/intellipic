@@ -112,7 +112,7 @@ export default function ShopPage() {
   return (
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
-        <h2 className="text-4xl font-bold mb-4">{t('shop')}</h2>
+        <h2 className="text-5xl font-bold mb-4">{t('shop')}</h2>
         {!!models && (
           <div>
             {models.length === 0 ? (
@@ -146,7 +146,9 @@ export default function ShopPage() {
                   className="cursor-pointer rounded-lg dark:shadow-slate-300 hover:shadow-lg border border-black dark:border-white col-span-2 p-6 transition-all ease-in-out duration-75 hover:scale-[1.03] hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black"
                   onClick={() => handleProductClick(products[0])}
                 >
-                  <h3 className="text-5xl font-bold m-4">{products[0].name}</h3>
+                  <h3 className="text-2xl xs:text-5xl font-bold m-4">
+                    {products[0].name}
+                  </h3>
                   <p className="text-xl font-semibold m-4">
                     {products[0].price}
                   </p>

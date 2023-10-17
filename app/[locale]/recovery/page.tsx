@@ -1,5 +1,6 @@
 'use client';
 import supabase from '@/app/core/clients/supabase';
+import { validateEmail } from '@/app/core/utils/validate';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -15,21 +16,10 @@ export default function RecoveryPage() {
     setEmail(e.target?.value);
   };
 
-  function ValidateEmail(input: string) {
-    var validRegex =
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    if (input.match(validRegex)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   //TODO: finish this function
   const handleSendPasswordReset = async (e: any) => {
     e.preventDefault();
-    if (ValidateEmail(email)) {
+    if (validateEmail(email)) {
       const { data, error } = await supabase.auth.resetPasswordForEmail(email);
       console.log(data);
       if (!error) {
