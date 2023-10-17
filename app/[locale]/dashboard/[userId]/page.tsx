@@ -112,7 +112,7 @@ export default function DashboardPage() {
         ) : (
           <div className="w-full m-auto mt-24 text-center">
             <h1 className="text-3xl font-bold">{t('noModelsMessage')}</h1>
-            <h2 className="text-xl font-bold mt-3">
+            <h2 className="text-xl font-semibold mt-3">
               {userData?.model_tokens === 0 ? (
                 t('buyTokensMessage')
               ) : (

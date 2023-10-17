@@ -209,7 +209,7 @@
     "trainingInProgress": "Entrenamiento en proceso",
     "continueTraining": "Continúa con el entrenamiento",
     "trainModel": "Entrena un modelo",
-    "buyTokens": "Compra tokens en la tienda"
+    "buyTokens": "Compra tokens en la Tienda"
   },
   "PromptBuilder": {
     "generatorTitle": "Generador de prompts",
