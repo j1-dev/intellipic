@@ -97,8 +97,8 @@
     "terms": "Terminos y condiciones de privacidad",
     "login": "Inicia sesión",
     "register": "Regístrate",
-    "noAccount": "No tienes cuenta? Haz click aquí",
-    "alreadyAccount": "Ya tienes cuenta? Inicia sesión aquí",
+    "noAccount": "¿No tienes cuenta? Haz click aquí",
+    "alreadyAccount": "¿Ya tienes cuenta? Inicia sesión aquí",
     "forgotPass": "Olvidaste tu contraseña? Haz click aquí",
     "wrongEmailFormat": "Correo erroneo o no permitido",
     "wrongPasswordFormat": "Contraseña erronea, debe tener al menos 8 carácteres, una mayúscula y un número"
