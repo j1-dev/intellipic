@@ -25,11 +25,11 @@ Intellipic is an innovative app that empowers users to unleash their creativity 
 
 Intellipic is not a free service. The pricing for using the app is as follows:
 
-- Training a model: €3 per model
+- Training a model: €4 per model
 - Generating 10 images: €1
 - Generating 25 images: €2
-- Generating 50 images: €3
-- Generating 100 images: €5
+- Generating 40 images: €3
+- Generating 100 images: €7
 
 ## Examples 📸
 
