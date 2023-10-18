@@ -1,12 +1,13 @@
 import './globals.css';
-import SupabaseProvider from './supabase-provider';
-import { Toaster } from 'react-hot-toast';
+import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
-import { NextIntlClientProvider } from 'next-intl';
-import { notFound } from 'next/navigation';
-import Footer from '@/components/Footer';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { Metadata, ResolvingMetadata } from 'next/types';
+import { NextIntlClientProvider } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { Toaster } from 'react-hot-toast';
+const SupabaseProvider = dynamic(() => import('./supabase-provider'));
+const Footer = dynamic(() => import('@/components/Footer'));
 
 export function generateStaticParams() {
   return [{ locale: 'en' }, { locale: 'es' }];

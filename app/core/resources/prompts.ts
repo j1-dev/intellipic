@@ -102,6 +102,11 @@ export const prompts = [
     name: 'Pharaoh',
     prompt:
       'a colorful drawing of @me as an ancient egyptian pharaoh. with the piramids on the background'
+  },
+  {
+    name: 'Pixar',
+    prompt:
+      'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background'
   }
   // {
   //   name: 'Zombie',

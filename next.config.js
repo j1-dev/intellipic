@@ -8,6 +8,7 @@ module.exports = withNextIntl({
   trailingSlash: true,
   reactStrictMode: true,
   swcMinify: true,
+  compress: true,
   images: {
     domains: [
       'photoshot.app',

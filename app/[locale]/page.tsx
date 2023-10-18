@@ -1,10 +1,11 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import Morph from '@/components/Morph';
-import Logo from '@/app/core/resources/logo';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import UnderDevelopmentMessage from '@/components/BetaMessage';
+const Image = dynamic(() => import('next/image'));
+const Link = dynamic(() => import('next/link'));
+const Morph = dynamic(() => import('@/components/Morph'));
+const Logo = dynamic(() => import('@/app/core/resources/logo'));
 
 export default function Home() {
   const t = useTranslations('Home');
