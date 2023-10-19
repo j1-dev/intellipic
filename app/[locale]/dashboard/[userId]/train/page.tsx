@@ -225,6 +225,10 @@ export default function TrainPage() {
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
+
+    const maxInstanceNameLength = 7; // Set your desired maximum length
+    const truncatedInstanceName = instanceName.slice(0, maxInstanceNameLength);
+
       const fullInstanceType =
         (ethnicity !== 'none' ? ethnicity : '') +
         ' ' +
@@ -236,9 +240,9 @@ export default function TrainPage() {
         `/api/ai/${id}/train`,
         {
           url: fineTuningData.dataset,
-          prompt: instanceName,
+          prompt: truncatedInstanceName,
           instance_type:
-            instanceType === 'other' ? customInstanceType : fullInstanceType,
+          instanceType === 'other' ? customInstanceType : fullInstanceType,
           user_id: id
         },
         (data: any) => {
@@ -342,6 +346,7 @@ export default function TrainPage() {
                   value={instanceName}
                   onChange={(ev) => setInstanceName(ev.target.value)}
                   placeholder={t('uniqueNamePlaceholder')}
+                  maxLength={7}
                 />
 
                 <label className="font-bold text-xl my-1" htmlFor="ip">
