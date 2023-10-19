@@ -9,8 +9,9 @@ import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiOutlineCheckCircle, AiOutlineUpload } from 'react-icons/ai';
 import { BsExclamationLg } from 'react-icons/bs';
-import { FadeLoader } from 'react-spinners';
-import styles from '../../../Home.module.css';
+import { ClipLoader, FadeLoader } from 'react-spinners';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
@@ -69,6 +70,9 @@ export default function TrainPage() {
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
   );
+  const [progress, setProgress] = useState<number>(() =>
+    parseInt(JSON.parse(localStorage.getItem('progress') as string))
+  );
   const [ethnicity, setEthnicity] = useState('none');
   const [eyeColor, setEyeColor] = useState('none');
 
@@ -90,6 +94,7 @@ export default function TrainPage() {
     localStorage.setItem('instanceName', instanceName);
     localStorage.setItem('instanceType', instanceType);
     localStorage.setItem('customInstanceType', customInstanceType);
+    localStorage.setItem('progress', progress.toString());
   }, [
     ready,
     fineTuningData,
@@ -97,7 +102,8 @@ export default function TrainPage() {
     queueingFinetuning,
     instanceName,
     instanceType,
-    customInstanceType
+    customInstanceType,
+    progress
   ]);
 
   useInterval(() => {
@@ -137,6 +143,7 @@ export default function TrainPage() {
       localStorage.removeItem('instanceName');
       localStorage.removeItem('instanceType');
       localStorage.removeItem('customInstanceType');
+      localStorage.removeItem('progress');
       setReady(false);
       setFinetuningData(null);
       setUploading(false);
@@ -144,6 +151,7 @@ export default function TrainPage() {
       setInstanceName('');
       setInstanceType('man');
       setCustomInstanceType('');
+      setProgress(-1);
     });
   }
 
@@ -178,6 +186,13 @@ export default function TrainPage() {
           if (data.run_data.status === 'failed') {
             fetchUserInfo();
           }
+          const progString = data.run_data.progress;
+          const progNum = parseInt(progString);
+          console.log(progNum);
+          if (!isNaN(progNum)) {
+            setProgress(progNum);
+          }
+
           setFinetuningData(data);
         });
       setReady(true);
@@ -225,9 +240,11 @@ export default function TrainPage() {
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
-
-    const maxInstanceNameLength = 7; // Set your desired maximum length
-    const truncatedInstanceName = instanceName.slice(0, maxInstanceNameLength);
+      const maxInstanceNameLength = 7; // Set your desired maximum length
+      const truncatedInstanceName = instanceName.slice(
+        0,
+        maxInstanceNameLength
+      );
 
       const fullInstanceType =
         (ethnicity !== 'none' ? ethnicity : '') +
@@ -242,7 +259,7 @@ export default function TrainPage() {
           url: fineTuningData.dataset,
           prompt: truncatedInstanceName,
           instance_type:
-          instanceType === 'other' ? customInstanceType : fullInstanceType,
+            instanceType === 'other' ? customInstanceType : fullInstanceType,
           user_id: id
         },
         (data: any) => {
@@ -324,7 +341,17 @@ export default function TrainPage() {
                           />
                         )}
                       </div>
-                      <span>{!hasUploadedData ? t('uploadLabel') : ''}</span>
+                      <span>
+                        {uploading ? (
+                          <ClipLoader
+                            size={30}
+                            speedMultiplier={0.5}
+                            color="blue"
+                          />
+                        ) : (
+                          t('uploadLabel')
+                        )}
+                      </span>
                     </div>
                   </button>
                 </label>
@@ -436,15 +463,48 @@ export default function TrainPage() {
               <div className="text-lg font-bold">{t('step3Label')}</div>
               <div>{t('step3Description')}</div>
               <div className="mt-3">{t('step3CompletionText')}</div>
-              <FadeLoader
-                className="w-1/5 m-auto my-4 -translate-x-1"
-                color="#d3d3d3"
-                height={26}
-                margin={19}
-                radius={36}
-                speedMultiplier={0.6}
-                width={13}
-              />
+              {progress === -1 ? (
+                <p>{t('comenzando')}</p>
+              ) : (
+                <div className="w-36 m-auto my-8">
+                  <CircularProgressbar
+                    value={progress}
+                    text={`${progress}%`}
+                    styles={{
+                      // Customize the root svg element
+                      root: {},
+                      // Customize the path, i.e. the "completed progress"
+                      path: {
+                        // Path color
+                        stroke: `#000000`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round',
+                        // Customize transition animation
+                        transition: 'stroke-dashoffset 0.5s ease 0s'
+                      },
+                      // Customize the circle behind the path, i.e. the "total progress"
+                      trail: {
+                        // Trail color
+                        stroke: '#FFFFFF',
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round'
+                        // Rotate the trail
+                      },
+                      // Customize the text
+                      text: {
+                        // Text color
+                        fill: '#f88',
+                        // Text size
+                        fontSize: '18px'
+                      },
+                      // Customize background - only used when the `background` prop is true
+                      background: {
+                        fill: '#3e98c7'
+                      }
+                    }}
+                  />
+                </div>
+              )}
             </div>
           )}
 
