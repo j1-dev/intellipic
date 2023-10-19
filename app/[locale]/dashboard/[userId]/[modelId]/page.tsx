@@ -54,6 +54,7 @@ export default function ModelPage() {
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
   );
+  const [toastId, setToastId] = useState<string>('');
 
   const p = prompts;
 
@@ -177,8 +178,10 @@ export default function ModelPage() {
           }
           if (data.status === 'canceled') {
             setImageUrl('');
-            fetchUserInfo();
             setQueueingPrediction(false);
+            fetchUserInfo();
+            toast.dismiss(toastId);
+            toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
         }
       );
@@ -203,20 +206,18 @@ export default function ModelPage() {
   async function handleCancelPrediction() {
     if (queueingPrediction) {
       let succesful;
-      setQueueingPrediction(false);
       await post(
         `/api/ai/${id}/cancel-prediction`,
         {
           prediction_id: predictionId
         },
         (data: any) => {
-          handleGetPrediction();
           succesful = data;
         }
       );
 
       if (succesful) {
-        toast.success('Ha cancelado la generación, pruebe de nuevo');
+        setToastId(toast.loading('Cancelando...'));
       } else {
         console.log('Cancellation failed.');
         toast.error('Algo ha fallado...');
@@ -257,7 +258,7 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 4000);
+  useInterval(() => handleGetPrediction(), 2000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
