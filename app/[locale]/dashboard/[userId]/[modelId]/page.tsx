@@ -258,7 +258,7 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 4000);
+  useInterval(() => handleGetPrediction(), 2000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
