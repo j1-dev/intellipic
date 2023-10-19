@@ -1,6 +1,7 @@
 import replicate from '@/app/core/clients/replicate';
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
+import { getPercentage } from '@/app/core/utils/getPercentage';
 
 export const revalidate = 0;
 
@@ -65,6 +66,10 @@ export async function GET(
         return response;
       }
 
+      let percentage = '-1';
+      if (typeof modelResponse.logs !== undefined && !!modelResponse.logs)
+        percentage = getPercentage(modelResponse.logs as string);
+
       if (modelResponse.status === 'succeeded') {
         try {
           const { data, error } = await supabase
@@ -95,7 +100,10 @@ export async function GET(
       const response = NextResponse.json({
         dataset: userDataEntry?.dataset,
         run_id: userDataEntry?.run_id,
-        run_data: { status: modelResponse.status }
+        run_data: {
+          status: modelResponse.status,
+          progress: percentage
+        }
       });
 
       response.headers.set('Cache-Control', 'no-cache');
