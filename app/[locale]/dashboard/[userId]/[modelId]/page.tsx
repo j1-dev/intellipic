@@ -271,7 +271,7 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 2000);
+  useInterval(() => handleGetPrediction(), 1000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
@@ -495,11 +495,12 @@ export default function ModelPage() {
             </div>
           </div>
           {queueingPrediction && (
-            <div className="flex justify-center items-center mt-3">
+            <div className="">
               {predictionStatus === 'processing' ? (
-                <div className="w-14 m-auto my-8">
+                <div className="w-36 m-auto my-8">
                   <CircularProgressbar
                     value={progress}
+                    text={`${progress}%`}
                     styles={{
                       // Customize the root svg element
                       root: {},
