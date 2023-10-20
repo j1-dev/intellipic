@@ -15,6 +15,7 @@ import { prompts } from '@/app/core/resources/prompts';
 import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 import { useTranslations } from 'next-intl';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 export default function ModelPage() {
   const t = useTranslations('ModelPage');
@@ -55,6 +56,9 @@ export default function ModelPage() {
     JSON.parse(localStorage.getItem('userData') as string)
   );
   const [toastId, setToastId] = useState<string>('');
+  const [progress, setProgress] = useState<number>(() =>
+    parseInt(JSON.parse(localStorage.getItem(`pr${model}`) as string))
+  );
 
   const p = prompts;
 
@@ -69,6 +73,7 @@ export default function ModelPage() {
     localStorage.setItem(`ic${model}`, instanceClass);
     localStorage.setItem(`pt${model}`, promptType as string);
     localStorage.setItem(`ms${model}`, modelStatus);
+    localStorage.setItem(`pr${model}`, progress.toString());
   }, [
     instancePrompt,
     imageUrl,
@@ -165,7 +170,7 @@ export default function ModelPage() {
             setPredictionStatus(data.status);
           }
           if (data.status === 'succeeded') {
-            setImageUrl(data.output[0]);
+            setImageUrl(data.output);
             setQueueingPrediction(false);
           }
           if (data.status === 'failed') {
@@ -183,6 +188,14 @@ export default function ModelPage() {
             toast.dismiss(toastId);
             toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
+          console.log(data.progress);
+          const progString = data.progress;
+          const progNum = parseInt(progString);
+          console.log(progNum);
+          if (!isNaN(progNum)) {
+            setProgress(progNum);
+          }
+          console.log(progress);
         }
       );
     }
@@ -483,7 +496,47 @@ export default function ModelPage() {
           </div>
           {queueingPrediction && (
             <div className="flex justify-center items-center mt-3">
-              <ClipLoader className="m-3" color="blue" speedMultiplier={0.6} />
+              {predictionStatus === 'processing' ? (
+                <div className="w-14 m-auto my-8">
+                  <CircularProgressbar
+                    value={progress}
+                    styles={{
+                      // Customize the root svg element
+                      root: {},
+                      // Customize the path, i.e. the "completed progress"
+                      path: {
+                        // Path color
+                        stroke: `#000000`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round',
+                        // Customize transition animation
+                        transition: 'stroke-dashoffset 0.5s ease 0s'
+                      },
+                      // Customize the circle behind the path, i.e. the "total progress"
+                      trail: {
+                        // Trail color
+                        stroke: '#FFFFFF',
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round'
+                        // Rotate the trail
+                      },
+                      // Customize the text
+                      text: {
+                        // Text color
+                        fill: '#f88',
+                        // Text size
+                        fontSize: '18px'
+                      },
+                      // Customize background - only used when the `background` prop is true
+                      background: {
+                        fill: '#3e98c7'
+                      }
+                    }}
+                  />
+                </div>
+              ) : (
+                <div>{t('starting')}</div>
+              )}
             </div>
           )}
           {modelStatus !== 'succeeded' && (

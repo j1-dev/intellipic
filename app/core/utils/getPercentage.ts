@@ -1,4 +1,4 @@
-export function getPercentage(inputString: string) {
+export function getProgressTraining(inputString: string) {
   if (inputString !== null || typeof inputString !== 'undefined') {
     // Split the string by lines
     const lines = inputString.split('\n');
@@ -26,4 +26,20 @@ export function getPercentage(inputString: string) {
 
   // Return -1 to indicate failure
   return '-1';
+}
+
+export function getProgressGenerating(inptuString: string) {
+  // Split the logs into lines and take the last line
+  const lines = inptuString.split('\n');
+  const lastLine = lines[lines.length - 2]; // -2 because the last line is empty
+
+  // Extract the percentage using regular expressions
+  const percentageMatch = lastLine.match(/\d+%/);
+
+  if (percentageMatch) {
+    return percentageMatch[0].replace('%', '');
+  } else {
+    // Handle the case where no percentage is found
+    return '-1';
+  }
 }

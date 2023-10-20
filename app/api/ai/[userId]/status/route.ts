@@ -1,7 +1,7 @@
 import replicate from '@/app/core/clients/replicate';
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
-import { getPercentage } from '@/app/core/utils/getPercentage';
+import { getProgressTraining } from '@/app/core/utils/getPercentage';
 
 export const revalidate = 0;
 
@@ -68,7 +68,7 @@ export async function GET(
 
       let percentage = '-1';
       if (typeof modelResponse.logs !== undefined && !!modelResponse.logs)
-        percentage = getPercentage(modelResponse.logs as string);
+        percentage = getProgressTraining(modelResponse.logs as string);
 
       if (modelResponse.status === 'succeeded') {
         try {
