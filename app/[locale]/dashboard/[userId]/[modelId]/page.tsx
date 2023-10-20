@@ -84,7 +84,8 @@ export default function ModelPage() {
     token,
     instanceClass,
     promptType,
-    modelStatus
+    modelStatus,
+    progress
   ]);
 
   useEffect(() => {
