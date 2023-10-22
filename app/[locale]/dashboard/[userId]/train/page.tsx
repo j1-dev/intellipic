@@ -9,36 +9,37 @@ import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiOutlineCheckCircle, AiOutlineUpload } from 'react-icons/ai';
 import { BsExclamationLg } from 'react-icons/bs';
-import { ClipLoader, FadeLoader } from 'react-spinners';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { ClipLoader } from 'react-spinners';
+import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useTheme } from '@/app/core/utils/ThemeContext';
 
 export default function TrainPage() {
   const router = useRouter();
   const t = useTranslations('TrainPage');
-  const ethnicities = [
-    'none',
-    'caucasian',
-    'african',
-    'asian',
-    'hispanic',
-    'native american',
-    'middle eastern',
-    'pacific islander',
-    'mixed'
-  ];
-  const eyeColors = [
-    'none',
-    'blue',
-    'brown',
-    'green',
-    'hazel',
-    'gray',
-    'amber'
-  ];
+  // const ethnicities = [
+  //   'none',
+  //   'caucasian',
+  //   'african',
+  //   'asian',
+  //   'hispanic',
+  //   'native american',
+  //   'middle eastern',
+  //   'pacific islander',
+  //   'mixed'
+  // ];
+  // const eyeColors = [
+  //   'none',
+  //   'blue',
+  //   'brown',
+  //   'green',
+  //   'hazel',
+  //   'gray',
+  //   'amber'
+  // ];
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
@@ -82,6 +83,7 @@ export default function TrainPage() {
   });
   const [ethnicity, setEthnicity] = useState('none');
   const [eyeColor, setEyeColor] = useState('none');
+  const { theme, toggleTheme, enabled } = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -486,7 +488,7 @@ export default function TrainPage() {
                       // Customize the path, i.e. the "completed progress"
                       path: {
                         // Path color
-                        stroke: `#000000`,
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'round',
                         // Customize transition animation
@@ -495,7 +497,7 @@ export default function TrainPage() {
                       // Customize the circle behind the path, i.e. the "total progress"
                       trail: {
                         // Trail color
-                        stroke: '#FFFFFF',
+                        stroke: `${enabled ? '#000000' : '#FFFFFF'}`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'round'
                         // Rotate the trail
@@ -503,13 +505,9 @@ export default function TrainPage() {
                       // Customize the text
                       text: {
                         // Text color
-                        fill: '#f88',
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
                         // Text size
                         fontSize: '18px'
-                      },
-                      // Customize background - only used when the `background` prop is true
-                      background: {
-                        fill: '#3e98c7'
                       }
                     }}
                   />

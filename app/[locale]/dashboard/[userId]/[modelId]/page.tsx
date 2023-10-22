@@ -16,6 +16,7 @@ import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 import { useTranslations } from 'next-intl';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { useTheme } from '@/app/core/utils/ThemeContext';
 
 export default function ModelPage() {
   const t = useTranslations('ModelPage');
@@ -66,6 +67,8 @@ export default function ModelPage() {
       return -1;
     }
   });
+
+  const { theme, toggleTheme, enabled } = useTheme();
 
   const p = prompts;
 
@@ -515,7 +518,7 @@ export default function ModelPage() {
                       // Customize the path, i.e. the "completed progress"
                       path: {
                         // Path color
-                        stroke: `#000000`,
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'round',
                         // Customize transition animation
@@ -524,7 +527,7 @@ export default function ModelPage() {
                       // Customize the circle behind the path, i.e. the "total progress"
                       trail: {
                         // Trail color
-                        stroke: '#FFFFFF',
+                        stroke: `${enabled ? '#000000' : '#FFFFFF'}`,
                         // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
                         strokeLinecap: 'round'
                         // Rotate the trail
@@ -532,13 +535,9 @@ export default function ModelPage() {
                       // Customize the text
                       text: {
                         // Text color
-                        fill: '#f88',
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
                         // Text size
                         fontSize: '18px'
-                      },
-                      // Customize background - only used when the `background` prop is true
-                      background: {
-                        fill: '#3e98c7'
                       }
                     }}
                   />
