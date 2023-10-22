@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/app/core/utils/ThemeContext';
+import { decryptData, encryptData } from '@/app/core/utils/encrypt';
 
 export default function TrainPage() {
   const router = useRouter();
@@ -43,9 +44,10 @@ export default function TrainPage() {
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
-  const [ready, setReady] = useState(localStorage.getItem('ready') === 'true');
+  const [ready, setReady] = useState(decryptData('ready') === 'true');
   const [fineTuningData, setFinetuningData] = useState(
-    JSON.parse(localStorage.getItem('fineTuningData') as string) || {
+    // @ts-ignore
+    JSON.parse(decryptData('fineTuningData')) || {
       dataset: null,
       run_id: null,
       run_data: {
@@ -54,27 +56,26 @@ export default function TrainPage() {
     }
   );
   const [uploading, setUploading] = useState(
-    localStorage.getItem('uploading') === 'true'
+    decryptData('uploading') === 'true'
   );
   const [queueingFinetuning, setQueueingFinetuning] = useState(
-    localStorage.getItem('queueingFinetuning') === 'true'
+    decryptData('queueingFinetuning') === 'true'
   );
   const [instanceName, setInstanceName] = useState(
-    localStorage.getItem('instanceName') || ''
+    decryptData('instanceName') || ''
   );
   const [instanceType, setInstanceType] = useState(
-    localStorage.getItem('instanceType') || 'man'
+    decryptData('instanceType') || 'man'
   );
   const [customInstanceType, setCustomInstanceType] = useState(
-    localStorage.getItem('customInstanceType') || ''
+    decryptData('customInstanceType') || ''
   );
   const [userData, setUserData] = useState<any>(() =>
-    JSON.parse(localStorage.getItem('userData') as string)
+    // @ts-ignore
+    JSON.parse(decryptData('userData'))
   );
   const [progress, setProgress] = useState(() => {
-    const int = parseInt(
-      JSON.parse(localStorage.getItem(`progress`) as string)
-    );
+    const int = parseInt(JSON.parse(decryptData(`progress`) as string));
     if (!isNaN(int)) {
       return int;
     } else {
@@ -96,14 +97,14 @@ export default function TrainPage() {
   }, [id]);
 
   useEffect(() => {
-    localStorage.setItem('ready', ready.toString());
-    localStorage.setItem('fineTuningData', JSON.stringify(fineTuningData));
-    localStorage.setItem('uploading', uploading.toString());
-    localStorage.setItem('queueingFinetuning', queueingFinetuning.toString());
-    localStorage.setItem('instanceName', instanceName);
-    localStorage.setItem('instanceType', instanceType);
-    localStorage.setItem('customInstanceType', customInstanceType);
-    localStorage.setItem('progress', progress.toString());
+    encryptData('ready', ready.toString());
+    encryptData('fineTuningData', JSON.stringify(fineTuningData));
+    encryptData('uploading', uploading.toString());
+    encryptData('queueingFinetuning', queueingFinetuning.toString());
+    encryptData('instanceName', instanceName);
+    encryptData('instanceType', instanceType);
+    encryptData('customInstanceType', customInstanceType);
+    encryptData('progress', progress.toString());
   }, [
     ready,
     fineTuningData,
@@ -131,7 +132,7 @@ export default function TrainPage() {
     } else {
       console.log(d[0]);
       setUserData(d[0]);
-      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      encryptData('userData', JSON.stringify(d[0] || {}));
     }
   };
 

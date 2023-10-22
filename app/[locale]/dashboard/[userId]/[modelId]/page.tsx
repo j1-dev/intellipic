@@ -17,6 +17,7 @@ import PromptBuilder from '@/components/PromptBuilder';
 import { useTranslations } from 'next-intl';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useTheme } from '@/app/core/utils/ThemeContext';
+import { decryptData, encryptData } from '@/app/core/utils/encrypt';
 
 export default function ModelPage() {
   const t = useTranslations('ModelPage');
@@ -26,41 +27,37 @@ export default function ModelPage() {
   const model = params.modelId;
   const [cancellingPrediction, setCancellingPrediction] = useState(false);
   const [instancePrompt, setInstancePrompt] = useState(
-    localStorage.getItem(`ip${model}`) || ''
+    decryptData(`ip${model}`) || ''
   );
-  const [imageUrl, setImageUrl] = useState(
-    localStorage.getItem(`iu${model}`) || ''
-  );
+  const [imageUrl, setImageUrl] = useState(decryptData(`iu${model}`));
   const [predictionId, setPredictionId] = useState(
-    localStorage.getItem(`pi${model}`) || ''
+    decryptData(`pi${model}`) || ''
   );
   const [queueingPrediction, setQueueingPrediction] = useState(
-    localStorage.getItem(`qp${model}`) === 'true'
+    decryptData(`qp${model}`) === 'true'
   );
   const [predictionStatus, setPredictionStatus] = useState(
-    localStorage.getItem(`ps${model}`) || ''
+    decryptData(`ps${model}`) || ''
   );
-  const [token, setToken] = useState(localStorage.getItem(`tk${model}`) || '');
+  const [token, setToken] = useState(decryptData(`tk${model}`) || '');
   const [instanceClass, setInstanceClass] = useState(
-    localStorage.getItem(`ic${model}`) || ''
+    decryptData(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState(
-    localStorage.getItem(`pt${model}`) || 'defaultPrompt'
+    decryptData(`pt${model}`) || 'defaultPrompt'
   );
   const [promptName, setPromptName] = useState(
-    localStorage.getItem(`pn${model}`) || 'availablePrompts'
+    decryptData(`pn${model}`) || 'availablePrompts'
   );
   const [modelStatus, setModelStatus] = useState(
-    localStorage.getItem(`ms${model}`) || ''
+    decryptData(`ms${model}`) || ''
   );
   const [userData, setUserData] = useState<any>(() =>
-    JSON.parse(localStorage.getItem('userData') as string)
+    JSON.parse(decryptData('userData') as string)
   );
   const [toastId, setToastId] = useState<string>('');
   const [progress, setProgress] = useState(() => {
-    const int = parseInt(
-      JSON.parse(localStorage.getItem(`pr${model}`) as string)
-    );
+    const int = parseInt(JSON.parse(decryptData(`pr${model}`) as string));
     if (!isNaN(int)) {
       return int;
     } else {
@@ -74,16 +71,16 @@ export default function ModelPage() {
 
   useEffect(() => {
     // Save state variables to localStorage
-    localStorage.setItem(`ip${model}`, instancePrompt);
-    localStorage.setItem(`iu${model}`, imageUrl);
-    localStorage.setItem(`pi${model}`, predictionId);
-    localStorage.setItem(`qp${model}`, queueingPrediction.toString());
-    localStorage.setItem(`ps${model}`, predictionStatus);
-    localStorage.setItem(`tk${model}`, token);
-    localStorage.setItem(`ic${model}`, instanceClass);
-    localStorage.setItem(`pt${model}`, promptType as string);
-    localStorage.setItem(`ms${model}`, modelStatus);
-    localStorage.setItem(`pr${model}`, progress.toString());
+    encryptData(`ip${model}`, instancePrompt);
+    encryptData(`iu${model}`, imageUrl);
+    encryptData(`pi${model}`, predictionId);
+    encryptData(`qp${model}`, queueingPrediction.toString());
+    encryptData(`ps${model}`, predictionStatus);
+    encryptData(`tk${model}`, token);
+    encryptData(`ic${model}`, instanceClass);
+    encryptData(`pt${model}`, promptType as string);
+    encryptData(`ms${model}`, modelStatus);
+    encryptData(`pr${model}`, progress.toString());
   }, [
     instancePrompt,
     imageUrl,
@@ -113,7 +110,7 @@ export default function ModelPage() {
     } else {
       console.log(d);
       setUserData(d[0]);
-      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      encryptData('userData', JSON.stringify(d[0] || {}));
     }
   };
 

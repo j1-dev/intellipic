@@ -1,18 +1,22 @@
-import CryptoJS from 'crypto-js';
+'use client';
+import CryptoJS, { AES } from 'crypto-js';
 
-const encryptData = (name: string, data: any) => {
-  const encrypted = CryptoJS.AES.encrypt(
-    JSON.stringify(data),
-    process.env.SECRET_KEY! as string
+export const encryptData = (name: string, data: any) => {
+  const encrypted = AES.encrypt(
+    data,
+    process.env.NEXT_PUBLIC_SECRET_KEY! || ''
   ).toString();
   localStorage.setItem(name, encrypted);
 };
 
-const decryptData = (name: string) => {
+export const decryptData = (name: any) => {
   const encrypted = localStorage.getItem(name) || '';
-  const decrypted = CryptoJS.AES.decrypt(
+  const decrypted = AES.decrypt(
     encrypted,
-    process.env.SECRET_KEY! as string
+    process.env.NEXT_PUBLIC_SECRET_KEY! || ''
   ).toString(CryptoJS.enc.Utf8);
-  return JSON.parse(decrypted);
+  if (decrypted == '') {
+    return null;
+  }
+  return decrypted;
 };
