@@ -41,7 +41,8 @@ export async function POST(
       typeof predictionResponse.logs !== undefined &&
       !!predictionResponse.logs
     )
-      percentage = getProgressGenerating(predictionResponse.logs as string);
+      percentage =
+        getProgressGenerating(predictionResponse.logs as string) || '-1';
 
     await supabase
       .from('predictions')
