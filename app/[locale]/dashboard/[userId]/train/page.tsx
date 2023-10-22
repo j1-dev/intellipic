@@ -476,7 +476,9 @@ export default function TrainPage() {
               <div>{t('step3Description')}</div>
               <div className="mt-3">{t('step3CompletionText')}</div>
               {progress === -1 ? (
-                <span className="text-2xl">{t('starting')}</span>
+                <span className="text-2xl w-36 m-auto my-8">
+                  {t('starting')}
+                </span>
               ) : (
                 <div className="w-36 m-auto my-8">
                   <CircularProgressbar
@@ -506,6 +508,7 @@ export default function TrainPage() {
                       text: {
                         // Text color
                         stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        fill: `${enabled ? '#FFFFFF' : '#000000'}`,
                         // Text size
                         fontSize: '18px'
                       }

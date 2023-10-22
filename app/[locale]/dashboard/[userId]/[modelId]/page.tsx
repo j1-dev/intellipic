@@ -508,7 +508,7 @@ export default function ModelPage() {
           {queueingPrediction && (
             <div className="">
               {predictionStatus === 'processing' ? (
-                <div className="w-36 m-auto my-8">
+                <div className="w-24 m-auto my-8">
                   <CircularProgressbar
                     value={progress}
                     text={`${progress}%`}
@@ -536,8 +536,9 @@ export default function ModelPage() {
                       text: {
                         // Text color
                         stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        fill: `${enabled ? '#FFFFFF' : '#000000'}`,
                         // Text size
-                        fontSize: '18px'
+                        fontSize: '16px'
                       }
                     }}
                   />
