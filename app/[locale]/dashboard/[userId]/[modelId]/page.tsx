@@ -56,9 +56,16 @@ export default function ModelPage() {
     JSON.parse(localStorage.getItem('userData') as string)
   );
   const [toastId, setToastId] = useState<string>('');
-  const [progress, setProgress] = useState<number>(() =>
-    parseInt(JSON.parse(localStorage.getItem(`pr${model}`) as string))
-  );
+  const [progress, setProgress] = useState(() => {
+    const int = parseInt(
+      JSON.parse(localStorage.getItem(`pr${model}`) as string)
+    );
+    if (!isNaN(int)) {
+      return int;
+    } else {
+      return -1;
+    }
+  });
 
   const p = prompts;
 

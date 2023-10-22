@@ -70,9 +70,16 @@ export default function TrainPage() {
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(localStorage.getItem('userData') as string)
   );
-  const [progress, setProgress] = useState<number>(() =>
-    parseInt(JSON.parse(localStorage.getItem('progress') as string))
-  );
+  const [progress, setProgress] = useState(() => {
+    const int = parseInt(
+      JSON.parse(localStorage.getItem(`progress`) as string)
+    );
+    if (!isNaN(int)) {
+      return int;
+    } else {
+      return -1;
+    }
+  });
   const [ethnicity, setEthnicity] = useState('none');
   const [eyeColor, setEyeColor] = useState('none');
 
@@ -189,8 +196,11 @@ export default function TrainPage() {
           const progString = data.run_data.progress;
           const progNum = parseInt(progString);
           console.log(progNum);
+          console.log(progress);
           if (!isNaN(progNum)) {
             setProgress(progNum);
+          } else {
+            setProgress(-1);
           }
 
           setFinetuningData(data);
@@ -246,12 +256,12 @@ export default function TrainPage() {
         maxInstanceNameLength
       );
 
-      const fullInstanceType =
-        (ethnicity !== 'none' ? ethnicity : '') +
-        ' ' +
-        instanceType +
-        ' ' +
-        (eyeColor !== 'none' ? eyeColor + ' eyes' : '');
+      // const fullInstanceType =
+      //   (ethnicity !== 'none' ? ethnicity : '') +
+      //   ' ' +
+      //   instanceType +
+      //   ' ' +
+      //   (eyeColor !== 'none' ? eyeColor + ' eyes' : '');
       setQueueingFinetuning(true);
       await post(
         `/api/ai/${id}/train`,
@@ -259,7 +269,7 @@ export default function TrainPage() {
           url: fineTuningData.dataset,
           prompt: truncatedInstanceName,
           instance_type:
-            instanceType === 'other' ? customInstanceType : fullInstanceType,
+            instanceType === 'other' ? customInstanceType : instanceType,
           user_id: id
         },
         (data: any) => {
@@ -464,7 +474,7 @@ export default function TrainPage() {
               <div>{t('step3Description')}</div>
               <div className="mt-3">{t('step3CompletionText')}</div>
               {progress === -1 ? (
-                <p>{t('comenzando')}</p>
+                <span className="text-2xl">{t('starting')}</span>
               ) : (
                 <div className="w-36 m-auto my-8">
                   <CircularProgressbar
