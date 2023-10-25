@@ -43,11 +43,12 @@ export async function POST(
           input_images: instanceData,
           max_train_steps: 1500,
           unet_learning_rate: 8e-6,
-          token_string: instanceToken,
+          // token_string: instanceToken,
           // is_lora: false,
-          caption_prefix: `a photo of ${instanceToken}`,
+          // caption_prefix: `a photo of ${instanceToken}`,
           crop_based_on_salience: false,
-          use_face_detection_instead: true
+          use_face_detection_instead: true,
+          verbose: false
         } as object
       };
 

@@ -6,7 +6,7 @@ import useInterval from '@/app/core/utils/useInterval';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-
+import { encryptData, decryptData } from '@/app/core/utils/encrypt';
 export interface userDataType {
   id: string;
   created_at: Date;
@@ -23,10 +23,10 @@ export default function DashboardPage() {
   const params = useParams();
   const user = params.userId;
   const [models, setModels] = useState<any>(() => {
-    let data = localStorage.getItem('models') || '';
-    let mod = data.split('(sep)');
+    let data = decryptData('models');
+    let mod = data?.split('(sep)');
     let arr = [] as Array<Object>;
-    mod.map((m) => {
+    mod?.map((m) => {
       if (m) {
         arr.push(JSON.parse(m));
       }
@@ -34,7 +34,8 @@ export default function DashboardPage() {
     return arr;
   });
   const [userData, setUserData] = useState<userDataType>(() =>
-    JSON.parse(localStorage.getItem('userData') as string)
+    // @ts-ignore
+    JSON.parse(decryptData('userData'))
   );
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function DashboardPage() {
       data.map((d: any) => {
         str += JSON.stringify(d) + '(sep)';
       });
-      localStorage.setItem('models', str);
+      encryptData('models', str);
     }
   };
 
@@ -71,7 +72,7 @@ export default function DashboardPage() {
       console.error(e);
     } else {
       setUserData(d[0]);
-      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      encryptData('userData', JSON.stringify(d[0] || {}));
     }
   };
 

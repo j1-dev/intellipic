@@ -21,7 +21,12 @@ export const TrainButton = ({ userData }: { userData: userDataType }) => {
 
   function handleTrain(e: any) {
     e.preventDefault();
-    if (userData?.model_tokens === 0 || userData?.model_tokens === null) {
+    if (!!userData?.run_id) {
+      router.push('train/');
+    } else if (
+      userData?.model_tokens === 0 ||
+      userData?.model_tokens === null
+    ) {
       router.push('/dashboard/shop');
     } else {
       router.push('train/');

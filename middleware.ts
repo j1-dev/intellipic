@@ -10,8 +10,8 @@ const intlMiddleware = createMiddleware({
 });
 
 export async function middleware(req: NextRequest) {
-  console.log(req.url);
-  if (req.url.match('/(es|en)/dashboard/([^/]+)')) {
+  const url = req.url;
+  if (url.match('/dashboard/([^/]+)')) {
     // We need to create a response and hand it to the supabase client to be able to modify the response headers.
     const res = NextResponse.next();
     // Create authenticated Supabase Client.
@@ -21,8 +21,17 @@ export async function middleware(req: NextRequest) {
       data: { session }
     } = await supabase.auth.getSession();
 
-    // Check auth condition
-    if (session?.user.email) {
+    const userIdRegex = /\/([0-9a-fA-F-]+)(?:\/|$)/;
+    const id = url.match(userIdRegex);
+
+    const isValidUrl =
+      id?.[1] === session?.user?.id ||
+      url.endsWith('shop/') ||
+      url.endsWith('faq/') ||
+      url.endsWith('examples/');
+
+    if (session?.user.email && isValidUrl) {
+      // Check auth condition
       // Authentication successful, forward request to protected route.
       return intlMiddleware(req);
     }

@@ -39,7 +39,6 @@ function SignUp({ t }: { t: boolean }) {
         setError(error);
         toast.error(error.message);
       } else {
-        console.log(data);
         toast.success(tr('loggingIn'));
         router.push(`/dashboard/${data.user.id}`);
       }

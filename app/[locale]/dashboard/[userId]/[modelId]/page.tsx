@@ -15,6 +15,10 @@ import { prompts } from '@/app/core/resources/prompts';
 import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 import { useTranslations } from 'next-intl';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { useTheme } from '@/app/core/utils/ThemeContext';
+import { decryptData, encryptData } from '@/app/core/utils/encrypt';
 
 export default function ModelPage() {
   const t = useTranslations('ModelPage');
@@ -24,51 +28,60 @@ export default function ModelPage() {
   const model = params.modelId;
   const [cancellingPrediction, setCancellingPrediction] = useState(false);
   const [instancePrompt, setInstancePrompt] = useState(
-    localStorage.getItem(`ip${model}`) || ''
+    decryptData(`ip${model}`) || ''
   );
-  const [imageUrl, setImageUrl] = useState(
-    localStorage.getItem(`iu${model}`) || ''
-  );
+  const [imageUrl, setImageUrl] = useState(decryptData(`iu${model}`));
   const [predictionId, setPredictionId] = useState(
-    localStorage.getItem(`pi${model}`) || ''
+    decryptData(`pi${model}`) || ''
   );
   const [queueingPrediction, setQueueingPrediction] = useState(
-    localStorage.getItem(`qp${model}`) === 'true'
+    decryptData(`qp${model}`) === 'true'
   );
   const [predictionStatus, setPredictionStatus] = useState(
-    localStorage.getItem(`ps${model}`) || ''
+    decryptData(`ps${model}`) || ''
   );
-  const [token, setToken] = useState(localStorage.getItem(`tk${model}`) || '');
+  const [token, setToken] = useState(decryptData(`tk${model}`) || '');
   const [instanceClass, setInstanceClass] = useState(
-    localStorage.getItem(`ic${model}`) || ''
+    decryptData(`ic${model}`) || ''
   );
   const [promptType, setPromptType] = useState(
-    localStorage.getItem(`pt${model}`) || 'defaultPrompt'
+    decryptData(`pt${model}`) || 'defaultPrompt'
   );
   const [promptName, setPromptName] = useState(
-    localStorage.getItem(`pn${model}`) || 'availablePrompts'
+    decryptData(`pn${model}`) || 'availablePrompts'
   );
   const [modelStatus, setModelStatus] = useState(
-    localStorage.getItem(`ms${model}`) || ''
+    decryptData(`ms${model}`) || ''
   );
   const [userData, setUserData] = useState<any>(() =>
-    JSON.parse(localStorage.getItem('userData') as string)
+    JSON.parse(decryptData('userData') as string)
   );
   const [toastId, setToastId] = useState<string>('');
+  const [progress, setProgress] = useState(() => {
+    const int = parseInt(JSON.parse(decryptData(`pr${model}`) as string));
+    if (!isNaN(int)) {
+      return int;
+    } else {
+      return -1;
+    }
+  });
+
+  const { theme, toggleTheme, enabled } = useTheme();
 
   const p = prompts;
 
   useEffect(() => {
     // Save state variables to localStorage
-    localStorage.setItem(`ip${model}`, instancePrompt);
-    localStorage.setItem(`iu${model}`, imageUrl);
-    localStorage.setItem(`pi${model}`, predictionId);
-    localStorage.setItem(`qp${model}`, queueingPrediction.toString());
-    localStorage.setItem(`ps${model}`, predictionStatus);
-    localStorage.setItem(`tk${model}`, token);
-    localStorage.setItem(`ic${model}`, instanceClass);
-    localStorage.setItem(`pt${model}`, promptType as string);
-    localStorage.setItem(`ms${model}`, modelStatus);
+    encryptData(`ip${model}`, instancePrompt);
+    encryptData(`iu${model}`, imageUrl);
+    encryptData(`pi${model}`, predictionId);
+    encryptData(`qp${model}`, queueingPrediction.toString());
+    encryptData(`ps${model}`, predictionStatus);
+    encryptData(`tk${model}`, token);
+    encryptData(`ic${model}`, instanceClass);
+    encryptData(`pt${model}`, promptType as string);
+    encryptData(`ms${model}`, modelStatus);
+    encryptData(`pr${model}`, progress.toString());
   }, [
     instancePrompt,
     imageUrl,
@@ -79,7 +92,8 @@ export default function ModelPage() {
     token,
     instanceClass,
     promptType,
-    modelStatus
+    modelStatus,
+    progress
   ]);
 
   useEffect(() => {
@@ -97,7 +111,7 @@ export default function ModelPage() {
     } else {
       console.log(d);
       setUserData(d[0]);
-      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      encryptData('userData', JSON.stringify(d[0] || {}));
     }
   };
 
@@ -129,7 +143,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token);
+      const prompt = replacePromptToken(instancePrompt);
       post(
         `/api/ai/${id}/call-model`,
         {
@@ -165,7 +179,7 @@ export default function ModelPage() {
             setPredictionStatus(data.status);
           }
           if (data.status === 'succeeded') {
-            setImageUrl(data.output[0]);
+            setImageUrl(data.output);
             setQueueingPrediction(false);
           }
           if (data.status === 'failed') {
@@ -183,6 +197,14 @@ export default function ModelPage() {
             toast.dismiss(toastId);
             toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
+          console.log(data.progress);
+          const progString = data.progress;
+          const progNum = parseInt(progString);
+          console.log(progNum);
+          if (!isNaN(progNum)) {
+            setProgress(progNum);
+          }
+          console.log(progress);
         }
       );
     }
@@ -258,7 +280,7 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 2000);
+  useInterval(() => handleGetPrediction(), 1000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
@@ -482,8 +504,54 @@ export default function ModelPage() {
             </div>
           </div>
           {queueingPrediction && (
-            <div className="flex justify-center items-center mt-3">
-              <ClipLoader className="m-3" color="blue" speedMultiplier={0.6} />
+            <div className="">
+              {predictionStatus === 'processing' ? (
+                <div className="w-24 m-auto my-8">
+                  <CircularProgressbar
+                    value={progress}
+                    text={`${progress}%`}
+                    styles={{
+                      // Customize the root svg element
+                      root: {},
+                      // Customize the path, i.e. the "completed progress"
+                      path: {
+                        // Path color
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round',
+                        // Customize transition animation
+                        transition: 'stroke-dashoffset 0.5s ease 0s'
+                      },
+                      // Customize the circle behind the path, i.e. the "total progress"
+                      trail: {
+                        // Trail color
+                        stroke: `${enabled ? '#000000' : '#FFFFFF'}`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round'
+                        // Rotate the trail
+                      },
+                      // Customize the text
+                      text: {
+                        // Text color
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        fill: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        // Text size
+                        fontSize: '16px'
+                      }
+                    }}
+                  />
+                </div>
+              ) : (
+                <div className="text-center flex flex-col">
+                  <ClipLoader
+                    className="w-1/2 m-auto mt-5"
+                    size={30}
+                    speedMultiplier={0.5}
+                    color={`${enabled ? 'white' : 'black'}`}
+                  />
+                  <span className="mt-2">{t('starting')}</span>
+                </div>
+              )}
             </div>
           )}
           {modelStatus !== 'succeeded' && (

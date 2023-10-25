@@ -54,7 +54,7 @@ const LangToggle = () => {
         leaveFrom="opacity-100" // Initial state when leaving
         leaveTo="opacity-0" // Final state when leaving
       >
-        <Menu.Items className="menu-items-box -top-2 inset-y-0 left-1/2 transform -translate-x-1/2 -translate-y-full  absolute lef-0 inline-block border bg-white dark:bg-black border-black dark:border-white px-2 rounded-md h-[106px]">
+        <Menu.Items className="menu-items-box -top-2 inset-y-0 left-1/2 transform -translate-x-1/2 -translate-y-full  absolute inline-block border bg-white dark:bg-black border-black dark:border-white px-2 rounded-md h-[106px]">
           <Menu.Item>
             {({ active }) => (
               <button

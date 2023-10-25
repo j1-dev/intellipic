@@ -9,41 +9,45 @@ import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiOutlineCheckCircle, AiOutlineUpload } from 'react-icons/ai';
 import { BsExclamationLg } from 'react-icons/bs';
-import { FadeLoader } from 'react-spinners';
-import styles from '../../../Home.module.css';
+import { ClipLoader } from 'react-spinners';
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useTheme } from '@/app/core/utils/ThemeContext';
+import { decryptData, encryptData } from '@/app/core/utils/encrypt';
 
 export default function TrainPage() {
   const router = useRouter();
   const t = useTranslations('TrainPage');
-  const ethnicities = [
-    'none',
-    'caucasian',
-    'african',
-    'asian',
-    'hispanic',
-    'native american',
-    'middle eastern',
-    'pacific islander',
-    'mixed'
-  ];
-  const eyeColors = [
-    'none',
-    'blue',
-    'brown',
-    'green',
-    'hazel',
-    'gray',
-    'amber'
-  ];
+  // const ethnicities = [
+  //   'none',
+  //   'caucasian',
+  //   'african',
+  //   'asian',
+  //   'hispanic',
+  //   'native american',
+  //   'middle eastern',
+  //   'pacific islander',
+  //   'mixed'
+  // ];
+  // const eyeColors = [
+  //   'none',
+  //   'blue',
+  //   'brown',
+  //   'green',
+  //   'hazel',
+  //   'gray',
+  //   'amber'
+  // ];
   const FINETUNING_BUCKET = 'training-bucket';
   const params = useParams();
   const id = params.userId;
-  const [ready, setReady] = useState(localStorage.getItem('ready') === 'true');
+  const [ready, setReady] = useState(decryptData('ready') === 'true');
   const [fineTuningData, setFinetuningData] = useState(
-    JSON.parse(localStorage.getItem('fineTuningData') as string) || {
+    // @ts-ignore
+    JSON.parse(decryptData('fineTuningData')) || {
       dataset: null,
       run_id: null,
       run_data: {
@@ -52,25 +56,35 @@ export default function TrainPage() {
     }
   );
   const [uploading, setUploading] = useState(
-    localStorage.getItem('uploading') === 'true'
+    decryptData('uploading') === 'true'
   );
   const [queueingFinetuning, setQueueingFinetuning] = useState(
-    localStorage.getItem('queueingFinetuning') === 'true'
+    decryptData('queueingFinetuning') === 'true'
   );
   const [instanceName, setInstanceName] = useState(
-    localStorage.getItem('instanceName') || ''
+    decryptData('instanceName') || ''
   );
   const [instanceType, setInstanceType] = useState(
-    localStorage.getItem('instanceType') || 'man'
+    decryptData('instanceType') || 'man'
   );
   const [customInstanceType, setCustomInstanceType] = useState(
-    localStorage.getItem('customInstanceType') || ''
+    decryptData('customInstanceType') || ''
   );
   const [userData, setUserData] = useState<any>(() =>
-    JSON.parse(localStorage.getItem('userData') as string)
+    // @ts-ignore
+    JSON.parse(decryptData('userData'))
   );
+  const [progress, setProgress] = useState(() => {
+    const int = parseInt(JSON.parse(decryptData(`progress`) as string));
+    if (!isNaN(int)) {
+      return int;
+    } else {
+      return -1;
+    }
+  });
   const [ethnicity, setEthnicity] = useState('none');
   const [eyeColor, setEyeColor] = useState('none');
+  const { theme, toggleTheme, enabled } = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,13 +97,14 @@ export default function TrainPage() {
   }, [id]);
 
   useEffect(() => {
-    localStorage.setItem('ready', ready.toString());
-    localStorage.setItem('fineTuningData', JSON.stringify(fineTuningData));
-    localStorage.setItem('uploading', uploading.toString());
-    localStorage.setItem('queueingFinetuning', queueingFinetuning.toString());
-    localStorage.setItem('instanceName', instanceName);
-    localStorage.setItem('instanceType', instanceType);
-    localStorage.setItem('customInstanceType', customInstanceType);
+    encryptData('ready', ready.toString());
+    encryptData('fineTuningData', JSON.stringify(fineTuningData));
+    encryptData('uploading', uploading.toString());
+    encryptData('queueingFinetuning', queueingFinetuning.toString());
+    encryptData('instanceName', instanceName);
+    encryptData('instanceType', instanceType);
+    encryptData('customInstanceType', customInstanceType);
+    encryptData('progress', progress.toString());
   }, [
     ready,
     fineTuningData,
@@ -97,7 +112,8 @@ export default function TrainPage() {
     queueingFinetuning,
     instanceName,
     instanceType,
-    customInstanceType
+    customInstanceType,
+    progress
   ]);
 
   useInterval(() => {
@@ -116,7 +132,7 @@ export default function TrainPage() {
     } else {
       console.log(d[0]);
       setUserData(d[0]);
-      localStorage.setItem('userData', JSON.stringify(d[0] || {}));
+      encryptData('userData', JSON.stringify(d[0] || {}));
     }
   };
 
@@ -137,6 +153,7 @@ export default function TrainPage() {
       localStorage.removeItem('instanceName');
       localStorage.removeItem('instanceType');
       localStorage.removeItem('customInstanceType');
+      localStorage.removeItem('progress');
       setReady(false);
       setFinetuningData(null);
       setUploading(false);
@@ -144,6 +161,7 @@ export default function TrainPage() {
       setInstanceName('');
       setInstanceType('man');
       setCustomInstanceType('');
+      setProgress(-1);
     });
   }
 
@@ -178,6 +196,16 @@ export default function TrainPage() {
           if (data.run_data.status === 'failed') {
             fetchUserInfo();
           }
+          const progString = data.run_data.progress;
+          const progNum = parseInt(progString);
+          console.log(progNum);
+          console.log(progress);
+          if (!isNaN(progNum)) {
+            setProgress(progNum);
+          } else {
+            setProgress(-1);
+          }
+
           setFinetuningData(data);
         });
       setReady(true);
@@ -225,20 +253,26 @@ export default function TrainPage() {
   async function handleValidationAndFinetuningStart() {
     let tokens = userData.model_tokens;
     if (tokens > 0) {
-      const fullInstanceType =
-        (ethnicity !== 'none' ? ethnicity : '') +
-        ' ' +
-        instanceType +
-        ' ' +
-        (eyeColor !== 'none' ? eyeColor + ' eyes' : '');
+      const maxInstanceNameLength = 7; // Set your desired maximum length
+      const truncatedInstanceName = instanceName.slice(
+        0,
+        maxInstanceNameLength
+      );
+
+      // const fullInstanceType =
+      //   (ethnicity !== 'none' ? ethnicity : '') +
+      //   ' ' +
+      //   instanceType +
+      //   ' ' +
+      //   (eyeColor !== 'none' ? eyeColor + ' eyes' : '');
       setQueueingFinetuning(true);
       await post(
         `/api/ai/${id}/train`,
         {
           url: fineTuningData.dataset,
-          prompt: instanceName,
+          prompt: truncatedInstanceName,
           instance_type:
-            instanceType === 'other' ? customInstanceType : fullInstanceType,
+            instanceType === 'other' ? customInstanceType : instanceType,
           user_id: id
         },
         (data: any) => {
@@ -320,7 +354,17 @@ export default function TrainPage() {
                           />
                         )}
                       </div>
-                      <span>{!hasUploadedData ? t('uploadLabel') : ''}</span>
+                      <span>
+                        {uploading ? (
+                          <ClipLoader
+                            size={30}
+                            speedMultiplier={0.5}
+                            color={`${enabled ? 'white' : 'black'}`}
+                          />
+                        ) : (
+                          t('uploadLabel')
+                        )}
+                      </span>
                     </div>
                   </button>
                 </label>
@@ -342,6 +386,7 @@ export default function TrainPage() {
                   value={instanceName}
                   onChange={(ev) => setInstanceName(ev.target.value)}
                   placeholder={t('uniqueNamePlaceholder')}
+                  maxLength={7}
                 />
 
                 <label className="font-bold text-xl my-1" htmlFor="ip">
@@ -431,15 +476,53 @@ export default function TrainPage() {
               <div className="text-lg font-bold">{t('step3Label')}</div>
               <div>{t('step3Description')}</div>
               <div className="mt-3">{t('step3CompletionText')}</div>
-              <FadeLoader
-                className="w-1/5 m-auto my-4 -translate-x-1"
-                color="#d3d3d3"
-                height={26}
-                margin={19}
-                radius={36}
-                speedMultiplier={0.6}
-                width={13}
-              />
+              {progress === -1 ? (
+                <div className="text-center flex flex-col">
+                  <ClipLoader
+                    className="w-1/2 m-auto mt-5"
+                    size={30}
+                    speedMultiplier={0.5}
+                    color={`${enabled ? 'white' : 'black'}`}
+                  />
+                  <span className="mt-2">{t('starting')}</span>
+                </div>
+              ) : (
+                <div className="w-36 m-auto my-8">
+                  <CircularProgressbar
+                    value={progress}
+                    text={`${progress}%`}
+                    styles={{
+                      // Customize the root svg element
+                      root: {},
+                      // Customize the path, i.e. the "completed progress"
+                      path: {
+                        // Path color
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round',
+                        // Customize transition animation
+                        transition: 'stroke-dashoffset 0.5s ease 0s'
+                      },
+                      // Customize the circle behind the path, i.e. the "total progress"
+                      trail: {
+                        // Trail color
+                        stroke: `${enabled ? '#000000' : '#FFFFFF'}`,
+                        // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                        strokeLinecap: 'round'
+                        // Rotate the trail
+                      },
+                      // Customize the text
+                      text: {
+                        // Text color
+                        stroke: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        fill: `${enabled ? '#FFFFFF' : '#000000'}`,
+                        // Text size
+                        fontSize: '18px'
+                      }
+                    }}
+                  />
+                </div>
+              )}
             </div>
           )}
 

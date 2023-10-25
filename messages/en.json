@@ -337,7 +337,8 @@
     "Pharaoh": "Pharaoh",
     "GTA": "GTA",
     "Metal Gear Solid": "Metal Gear Solid",
-    "Pixar": "Pixar"
+    "Pixar": "Pixar",
+    "Staring": "Starting"
   },
   "ShopPage": {
     "shop": "Shop 💰",
@@ -405,6 +406,7 @@
     "hazel": "Hazel",
     "gray": "Gray",
     "amber": "Amber",
-    "none": "None"
+    "none": "None",
+    "starting": "Starting"
   }
 }

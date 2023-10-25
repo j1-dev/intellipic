@@ -6,6 +6,7 @@ import { Metadata, ResolvingMetadata } from 'next/types';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
+import { ThemeProvider } from '../core/utils/ThemeContext';
 const SupabaseProvider = dynamic(() => import('./supabase-provider'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
@@ -164,9 +165,11 @@ export default async function RootLayout({
         ) : null}
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SupabaseProvider>
-            <Toaster position="bottom-right" reverseOrder={false} />
-            <main className="flex-grow">{children}</main>
-            <Footer />
+            <ThemeProvider>
+              <Toaster position="bottom-right" reverseOrder={false} />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </ThemeProvider>
           </SupabaseProvider>
         </NextIntlClientProvider>
       </body>
