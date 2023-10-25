@@ -142,7 +142,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token);
+      const prompt = replacePromptToken(instancePrompt);
       post(
         `/api/ai/${id}/call-model`,
         {
