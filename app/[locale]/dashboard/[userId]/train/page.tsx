@@ -359,7 +359,7 @@ export default function TrainPage() {
                           <ClipLoader
                             size={30}
                             speedMultiplier={0.5}
-                            color="blue"
+                            color={`${enabled ? 'white' : 'black'}`}
                           />
                         ) : (
                           t('uploadLabel')
@@ -477,9 +477,15 @@ export default function TrainPage() {
               <div>{t('step3Description')}</div>
               <div className="mt-3">{t('step3CompletionText')}</div>
               {progress === -1 ? (
-                <span className="text-2xl w-36 m-auto my-8">
-                  {t('starting')}
-                </span>
+                <div className="text-center flex flex-col">
+                  <ClipLoader
+                    className="w-1/2 m-auto mt-5"
+                    size={30}
+                    speedMultiplier={0.5}
+                    color={`${enabled ? 'white' : 'black'}`}
+                  />
+                  <span className="mt-2">{t('starting')}</span>
+                </div>
               ) : (
                 <div className="w-36 m-auto my-8">
                   <CircularProgressbar
