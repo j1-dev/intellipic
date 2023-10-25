@@ -505,7 +505,7 @@ export default function ModelPage() {
           </div>
           {queueingPrediction && (
             <div className="">
-              {predictionStatus === 'processing' ? (
+              {progress !== -1 ? (
                 <div className="w-24 m-auto my-8">
                   <CircularProgressbar
                     value={progress}
