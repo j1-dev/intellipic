@@ -1,4 +1,5 @@
 'use client';
+import { decryptData } from '@/app/core/utils/encrypt';
 import { Dialog } from '@headlessui/react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import axios from 'axios';
@@ -68,7 +69,7 @@ export default function ShopPage() {
 
     sub();
     setModels(() => {
-      let data = localStorage.getItem('models') || '';
+      let data = decryptData('models') || '';
       let mod = data.split('(sep)');
       let arr = [] as Array<Object>;
       mod.map((m) => {
