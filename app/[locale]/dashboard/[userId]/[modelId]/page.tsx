@@ -16,6 +16,7 @@ import { default as NextImage } from 'next/image';
 import PromptBuilder from '@/components/PromptBuilder';
 import { useTranslations } from 'next-intl';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import { useTheme } from '@/app/core/utils/ThemeContext';
 import { decryptData, encryptData } from '@/app/core/utils/encrypt';
 
@@ -142,7 +143,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt, token);
+      const prompt = replacePromptToken(instancePrompt);
       post(
         `/api/ai/${id}/call-model`,
         {
@@ -504,7 +505,7 @@ export default function ModelPage() {
           </div>
           {queueingPrediction && (
             <div className="">
-              {predictionStatus === 'processing' ? (
+              {progress !== -1 ? (
                 <div className="w-24 m-auto my-8">
                   <CircularProgressbar
                     value={progress}
@@ -541,7 +542,15 @@ export default function ModelPage() {
                   />
                 </div>
               ) : (
-                <div>{t('starting')}</div>
+                <div className="text-center flex flex-col">
+                  <ClipLoader
+                    className="w-1/2 m-auto mt-5"
+                    size={30}
+                    speedMultiplier={0.5}
+                    color={`${enabled ? 'white' : 'black'}`}
+                  />
+                  <span className="mt-2">{t('starting')}</span>
+                </div>
               )}
             </div>
           )}
