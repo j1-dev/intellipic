@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 import { validateEmail, validatePassword } from '@/app/core/utils/validate';
+import { Dialog } from '@headlessui/react';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -16,6 +17,7 @@ function Register() {
   const [tos, setTos] = useState<boolean>(false);
   const [validEmail, setValidEmail] = useState<boolean>(false);
   const [validPassword, setValidPassword] = useState<boolean>(false);
+  const [registered, setRegistered] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const supabase = createClientComponentClient();
@@ -41,6 +43,10 @@ function Register() {
     return password === confirmation;
   };
 
+  const closeModal = () => {
+    setRegistered(false);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -60,18 +66,19 @@ function Register() {
         })
         .then(async (data) => {
           const resData = data as UserResponse;
-          // const { error } = await supabase.from('user-data').insert({
-          //   id: resData?.data?.user?.id,
-          //   dataset: null,
-          //   run_id: null,
-          //   model_tokens: null,
-          //   image_tokens: null,
-          //   last_payment_id: null,
-          //   last_payment_status: null
-          // });
-          // await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          // console.log(resData?.data?.user?.id);
+          const { error } = await supabase.from('user-data').insert({
+            id: resData?.data?.user?.id,
+            dataset: null,
+            run_id: null,
+            model_tokens: null,
+            image_tokens: null,
+            last_payment_id: null,
+            last_payment_status: null
+          });
+          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+          console.log(resData?.data?.user?.id);
           toast.success(tr('verifyEmail'));
+          setRegistered(true);
           setLoading(false);
         });
     } else if (!validateEmail(email)) {
@@ -177,6 +184,23 @@ function Register() {
           </Link>
         </div>
       </form>
+      {loading && <div className="my-3 w-full text center">Cargando...</div>}
+      {registered && (
+        <Dialog
+          open={true}
+          onClose={closeModal}
+          className="fixed inset-0 z-40 overflow-y-auto"
+        >
+          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="bg-white dark:bg-black border border-black dark:border-white z-50 w-full max-w-lg p-6 rounded-lg transition-all">
+              <Dialog.Title className="text-2xl font-bold mb-4">
+                {tr('verifyEmail')}
+              </Dialog.Title>
+            </div>
+          </div>
+        </Dialog>
+      )}
     </div>
   );
 }
