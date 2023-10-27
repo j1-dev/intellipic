@@ -14,16 +14,23 @@ function Register() {
   const [password, setPassword] = useState<string>('');
   const [confirmation, setConfirmation] = useState<string>('');
   const [tos, setTos] = useState<boolean>(false);
+  const [validEmail, setValidEmail] = useState<boolean>(false);
+  const [validPassword, setValidPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
 
   const handleEmailChange = (e: any) => {
+    setValidEmail(validateEmail(e.target?.value));
     setEmail(e.target?.value);
+    console.log(validateEmail(e.target?.value));
   };
 
   const handlePasswordChange = (e: any) => {
+    setValidPassword(validatePassword(e.target?.value));
     setPassword(e.target?.value);
+    console.log(validatePassword(e.target?.value));
   };
 
   const handleConfirmationChange = (e: any) => {
@@ -42,6 +49,7 @@ function Register() {
       validatePassword(password) &&
       passwordsMatch()
     ) {
+      setLoading(true);
       await supabase.auth
         .signUp({
           email: email,
@@ -52,19 +60,19 @@ function Register() {
         })
         .then(async (data) => {
           const resData = data as UserResponse;
-          const { error } = await supabase.from('user-data').insert({
-            id: resData?.data?.user?.id,
-            dataset: null,
-            run_id: null,
-            model_tokens: null,
-            image_tokens: null,
-            last_payment_id: null,
-            last_payment_status: null
-          });
-          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          console.log(resData?.data?.user?.id);
+          // const { error } = await supabase.from('user-data').insert({
+          //   id: resData?.data?.user?.id,
+          //   dataset: null,
+          //   run_id: null,
+          //   model_tokens: null,
+          //   image_tokens: null,
+          //   last_payment_id: null,
+          //   last_payment_status: null
+          // });
+          // await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+          // console.log(resData?.data?.user?.id);
           toast.success(tr('verifyEmail'));
-          router.push('/login');
+          setLoading(false);
         });
     } else if (!validateEmail(email)) {
       toast.error(tr('wrongEmailFormat'));
@@ -75,7 +83,7 @@ function Register() {
 
   return (
     <div className="block max-w-screen-xs m-auto items-center justify-center mt-10">
-      <h1 className="text-3xl my-5 font-bold font-sans max-w-screen-xs ">
+      <h1 className="text-5xl my-5 font-bold font-sans max-w-screen-xs ">
         {tr('register')}
       </h1>
       <form
@@ -158,7 +166,9 @@ function Register() {
           <button
             type="submit"
             className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
-            disabled={!tos}
+            disabled={
+              !tos || !validEmail || !validPassword || password !== confirmation
+            }
           >
             {tr('register')}
           </button>

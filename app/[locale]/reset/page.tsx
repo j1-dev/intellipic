@@ -18,11 +18,14 @@ type passwordRequirements = {
 export default function RecoveryPage() {
   const [password, setPassword] = useState('');
   const [confirmation, setConfirmation] = useState();
+  const [validPassword, setValidPassword] = useState<boolean>(false);
   const t = useTranslations('Reset');
   const router = useRouter();
 
   const handlePasswordChange = (e: any) => {
+    setValidPassword(validatePassword(e.target?.value));
     setPassword(e.target?.value);
+    console.log(validatePassword(e.target?.value));
   };
 
   const handleConfirmationChange = (e: any) => {
@@ -54,28 +57,39 @@ export default function RecoveryPage() {
           </Link>
         </nav>
       </header>
-      <div className="flex-col max-w-screen-xs text-center mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
-        <h1 className="text-8xl font-bold font-sans max-w-screen-sm m-auto h-28">
+      <div className="block max-w-screen-xs mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
+        <h1 className="text-5xl font-bold font-sans max-w-screen-sm m-auto my-5">
           Reset
         </h1>
-        <div className="max-w-screen-xs border border-black dark:border-white rounded-lg m-auto py-6">
-          <form
-            onSubmit={handleResetPassword}
-            className="text-left flex-col grid px-3 py-2"
-          >
-            <label htmlFor="password" className="text-3xl font-semibold p-3">
+        <form
+          onSubmit={handleResetPassword}
+          className="max-w-screen-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
+        >
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block font-semibold text-2xl text-black dark:text-white mb-2"
+            >
               {t('setPassword')}
+            </label>
+            <label
+              htmlFor="password"
+              className="block text-sm text-black dark:text-white mb-2"
+            >
+              {t('passwordRequirements')}
             </label>
             <input
               type="password"
               id="password"
               onChange={handlePasswordChange}
-              className="m-3 text-xl dark:bg-black px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+              className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
             />
+          </div>
 
+          <div className="mb-4">
             <label
               htmlFor="confirmation"
-              className="text-3xl font-semibold p-3"
+              className="block font-semibold text-2xl text-black dark:text-white mb-2"
             >
               {t('setConfirmation')}
             </label>
@@ -83,16 +97,17 @@ export default function RecoveryPage() {
               type="password"
               id="confirmation"
               onChange={handleConfirmationChange}
-              className="m-3 text-xl dark:bg-black px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+              className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
             />
-            <button
-              className="mx-20 mt-3 bg-green-600 text-white border-green-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all p-3 m-3"
-              type="submit"
-            >
-              {t('submit')}
-            </button>
-          </form>
-        </div>
+          </div>
+          <button
+            className="w-full my-5 disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
+            type="submit"
+            disabled={password !== confirmation || !validPassword}
+          >
+            {t('submit')}
+          </button>
+        </form>
       </div>
     </div>
   );

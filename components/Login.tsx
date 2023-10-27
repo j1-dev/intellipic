@@ -38,7 +38,7 @@ function Login() {
 
   return (
     <div className="block max-w-screen-xs m-auto items-center justify-center mt-10">
-      <h1 className="text-3xl my-5 font-bold font-sans max-w-screen-xs ">
+      <h1 className="text-5xl my-5 font-bold font-sans max-w-screen-xs ">
         {tr('login')}
       </h1>
       <form
@@ -74,14 +74,13 @@ function Login() {
             value={password}
             onChange={handlePasswordChange}
             required
-            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+            className="dark:bg-black w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
           />
         </div>
-
         <div>
           <button
             type="submit"
-            className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
+            className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 my-4 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
           >
             {tr('login')}
           </button>
