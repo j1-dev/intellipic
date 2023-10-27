@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl';
 function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
@@ -31,6 +32,7 @@ function Login() {
     if (error) {
       toast.error(error.message);
     } else {
+      setLoading(true);
       toast.success(tr('loggingIn'));
       router.push(`/dashboard/${data.user.id}`);
     }
@@ -99,6 +101,7 @@ function Login() {
           </button>
         </div>
       </form>
+      {loading && <div className="my-3 w-full text center">Cargando...</div>}
     </div>
   );
 }
