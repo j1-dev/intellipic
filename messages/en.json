@@ -93,6 +93,7 @@
     "verifyEmail": "Account created! Check your email to verify your account.",
     "emailLabel": "Email:",
     "passwordLabel": "Password:",
+    "confirmPassword": "Confrim your password", 
     "acceptThe": "Accept the ",
     "terms": "Terms and Privacy Policy",
     "login": "Log In",

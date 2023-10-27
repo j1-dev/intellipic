@@ -92,6 +92,7 @@
     "loggingIn": "Iniciando sesión!",
     "verifyEmail": "Cuenta creada!, mira tu correo para verificar tu cuenta",
     "emailLabel": "Email:",
+    "confirmPassword": "Repite la contraseña", 
     "passwordLabel": "Contraseña:",
     "acceptThe": "Acepta los ",
     "terms": "Terminos y condiciones de privacidad",
