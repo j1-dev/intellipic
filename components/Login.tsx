@@ -74,7 +74,7 @@ function Login() {
             value={password}
             onChange={handlePasswordChange}
             required
-            className="dark:bg-black w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
           />
         </div>
         <div>
