@@ -206,7 +206,7 @@
     "processing": "Procesando...",
     "succeeded": "Completado",
     "modelName":"Nombre: ",
-    "modelStatus":"Status: "
+    "modelStatus":"Estatus: "
   },
   "TrainButton": {
     "trainingInProgress": "Entrenamiento en proceso",

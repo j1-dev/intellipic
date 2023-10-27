@@ -39,7 +39,7 @@ function Login() {
   };
 
   return (
-    <div className="block max-w-screen-xs m-auto items-center justify-center mt-10">
+    <div className="block max-w-screen-xs m-auto items-center justify-center mt-10 px-8">
       <h1 className="text-5xl my-5 font-bold font-sans max-w-screen-xs ">
         {tr('login')}
       </h1>

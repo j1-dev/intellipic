@@ -57,7 +57,7 @@ export default function RecoveryPage() {
           </Link>
         </nav>
       </header>
-      <div className="block max-w-screen-xs mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
+      <div className="block max-w-screen-xs mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6 px-8">
         <h1 className="text-5xl font-bold font-sans max-w-screen-sm m-auto my-5">
           Reset
         </h1>
