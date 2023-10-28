@@ -174,15 +174,24 @@ export default function ModelPage() {
           prediction_id: predictionId
         },
         (data: any) => {
+          console.log(cancellingPrediction);
+          if (!cancellingPrediction) {
+            const progString = data.progress;
+            const progNum = parseInt(progString);
+            if (!isNaN(progNum)) {
+              console.log('a');
+              setProgress(progNum);
+            }
+          }
           if (data.status !== predictionStatus) {
             setPredictionStatus(data.status);
           }
           if (data.status === 'succeeded') {
+            setProgress(-1);
             setImageUrl(data.output);
             setQueueingPrediction(false);
           }
           if (data.status === 'failed') {
-            setImageUrl('');
             setQueueingPrediction(false);
             fetchUserInfo();
             toast.error(
@@ -190,16 +199,10 @@ export default function ModelPage() {
             );
           }
           if (data.status === 'canceled') {
-            setImageUrl('');
             setQueueingPrediction(false);
+            setCancellingPrediction(false);
             fetchUserInfo();
-            toast.dismiss(toastId);
             toast.success('Ha cancelado la generación, pruebe de nuevo');
-          }
-          const progString = data.progress;
-          const progNum = parseInt(progString);
-          if (!isNaN(progNum)) {
-            setProgress(progNum);
           }
         }
       );
@@ -222,26 +225,14 @@ export default function ModelPage() {
   }
 
   async function handleCancelPrediction() {
-    setProgress(-1);
     if (queueingPrediction) {
-      let succesful;
       await post(
         `/api/ai/${id}/cancel-prediction`,
         {
           prediction_id: predictionId
         },
-        (data: any) => {
-          succesful = data;
-        }
+        () => {}
       );
-
-      if (succesful) {
-        setToastId(toast.loading('Cancelando...'));
-      } else {
-        console.log('Cancellation failed.');
-        toast.error('Algo ha fallado...');
-      }
-      setCancellingPrediction(false);
     }
   }
 
@@ -278,7 +269,7 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 1000);
+  useInterval(() => handleGetPrediction(), 2000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
@@ -478,7 +469,11 @@ export default function ModelPage() {
               </Button>
               {queueingPrediction && (
                 <Button
-                  onClick={handleCancelPrediction}
+                  onClick={() => {
+                    setCancellingPrediction(true);
+                    setProgress(-1);
+                    handleCancelPrediction();
+                  }}
                   cooldownTime={5000}
                   className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
                   disabled={!queueingPrediction || cancellingPrediction}

@@ -25,7 +25,7 @@ export default function ModelCard({
       if (props.progress >= 0) {
         return props.progress + '%';
       } else {
-        return t('starting') + ' 🆕';
+        return t('processing') + '';
       }
     }
     if (status === 'succeeded') {
