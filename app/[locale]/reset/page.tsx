@@ -25,7 +25,6 @@ export default function RecoveryPage() {
   const handlePasswordChange = (e: any) => {
     setValidPassword(validatePassword(e.target?.value));
     setPassword(e.target?.value);
-    console.log(validatePassword(e.target?.value));
   };
 
   const handleConfirmationChange = (e: any) => {

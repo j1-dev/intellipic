@@ -90,7 +90,7 @@
   },
   "Signup": {
     "loggingIn": "Iniciando sesión!",
-    "verifyEmail": "Cuenta creada!, mira tu correo para verificar tu cuenta",
+    "verifyEmail": "Cuenta creada con éxito! revisa tu correo para verificarla",
     "emailLabel": "Email",
     "confirmPassword": "Repite la contraseña", 
     "passwordLabel": "Contraseña",
@@ -103,7 +103,8 @@
     "alreadyAccount": "¿Ya tienes cuenta? Inicia sesión aquí",
     "forgotPass": "Olvidaste tu contraseña? Haz click aquí",
     "wrongEmailFormat": "Correo erroneo o no permitido",
-    "wrongPasswordFormat": "Contraseña erronea, debe tener al menos 8 carácteres, una mayúscula y un número"
+    "wrongPasswordFormat": "Contraseña erronea, debe tener al menos 8 carácteres, una mayúscula y un número",
+    "exit":"Salir"
   },
   "Recovery":{
     "setEmail": "Introduce tu email",

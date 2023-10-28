@@ -1,14 +1,14 @@
 'use client';
 import React, { useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import type { AuthError } from '@supabase/supabase-js';
-import type { UserResponse } from '@supabase/supabase-js';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
 import { validateEmail, validatePassword } from '@/app/core/utils/validate';
 import { Dialog } from '@headlessui/react';
+import { ClipLoader } from 'react-spinners';
+import { useTheme } from '@/app/core/utils/ThemeContext';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -19,20 +19,18 @@ function Register() {
   const [validPassword, setValidPassword] = useState<boolean>(false);
   const [registered, setRegistered] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
   const supabase = createClientComponentClient();
+  const { enabled } = useTheme();
   const tr = useTranslations('Signup');
 
   const handleEmailChange = (e: any) => {
     setValidEmail(validateEmail(e.target?.value));
     setEmail(e.target?.value);
-    console.log(validateEmail(e.target?.value));
   };
 
   const handlePasswordChange = (e: any) => {
     setValidPassword(validatePassword(e.target?.value));
     setPassword(e.target?.value);
-    console.log(validatePassword(e.target?.value));
   };
 
   const handleConfirmationChange = (e: any) => {
@@ -65,19 +63,19 @@ function Register() {
           toast.error(error.message);
         })
         .then(async (data) => {
-          const resData = data as UserResponse;
-          const { error } = await supabase.from('user-data').insert({
-            id: resData?.data?.user?.id,
-            dataset: null,
-            run_id: null,
-            model_tokens: null,
-            image_tokens: null,
-            last_payment_id: null,
-            last_payment_status: null
-          });
-          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          console.log(resData?.data?.user?.id);
-          toast.success(tr('verifyEmail'));
+          // const resData = data as UserResponse;
+          // const { error } = await supabase.from('user-data').insert({
+          //   id: resData?.data?.user?.id,
+          //   dataset: null,
+          //   run_id: null,
+          //   model_tokens: null,
+          //   image_tokens: null,
+          //   last_payment_id: null,
+          //   last_payment_status: null
+          // });
+          // await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+          // console.log(resData?.data?.user?.id);
+          // toast.success(tr('verifyEmail'));
           setRegistered(true);
           setLoading(false);
         });
@@ -93,6 +91,7 @@ function Register() {
       <h1 className="text-5xl my-5 font-bold font-sans max-w-screen-xs ">
         {tr('register')}
       </h1>
+
       <form
         onSubmit={handleSubmit}
         className="max-w-screen-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
@@ -184,7 +183,15 @@ function Register() {
           </Link>
         </div>
       </form>
-      {loading && <div className="my-3 w-full text center">Cargando...</div>}
+      {loading && (
+        <div className="my-3 w-full text-center">
+          <ClipLoader
+            size={40}
+            speedMultiplier={0.5}
+            color={`${enabled ? 'white' : 'black'}`}
+          />
+        </div>
+      )}
       {registered && (
         <Dialog
           open={true}
@@ -197,6 +204,17 @@ function Register() {
               <Dialog.Title className="text-2xl font-bold mb-4">
                 {tr('verifyEmail')}
               </Dialog.Title>
+              <AiOutlineCheckCircle
+                size={100}
+                color="#4FEB40"
+                className="w-50 m-auto"
+              />
+              <button
+                className="w-full mt-4 hover:dark:bg-black hover:dark:text-white hover:dark:border-white hover:bg-white hover:text-black border hover:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg transition-all"
+                onClick={() => setRegistered(false)}
+              >
+                {tr('exit')}
+              </button>
             </div>
           </div>
         </Dialog>

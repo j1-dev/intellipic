@@ -546,7 +546,7 @@ export default function TrainPage() {
               <div>{t('step4Description')}</div>
               <AiOutlineCheckCircle
                 size={140}
-                color="green"
+                color="#88FF62"
                 className="w-50 m-auto"
               />
             </div>

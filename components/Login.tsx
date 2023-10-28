@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { useTranslations } from 'next-intl';
+import { ClipLoader } from 'react-spinners';
+import { useTheme } from '@/app/core/utils/ThemeContext';
 
 function Login() {
   const [email, setEmail] = useState<string>('');
@@ -13,6 +15,7 @@ function Login() {
   const router = useRouter();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
+  const { enabled } = useTheme();
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target?.value);
@@ -101,7 +104,15 @@ function Login() {
           </button>
         </div>
       </form>
-      {loading && <div className="my-3 w-full text center">Cargando...</div>}
+      {loading && (
+        <div className="my-3 w-full text-center">
+          <ClipLoader
+            size={40}
+            speedMultiplier={0.5}
+            color={`${enabled ? 'white' : 'black'}`}
+          />
+        </div>
+      )}
     </div>
   );
 }
