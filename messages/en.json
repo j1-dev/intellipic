@@ -90,9 +90,11 @@
   },
   "Signup": {
     "loggingIn": "Logging in!",
-    "verifyEmail": "Account created! Check your email to verify your account.",
-    "emailLabel": "Email:",
-    "passwordLabel": "Password:",
+    "verifyEmail": "Account created succesfully! Check your email to verify your account.",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "passwordRequirements": "The password should be at least 8 characters long, have an uppercase and a number",
+    "confirmPassword": "Confrim your password", 
     "acceptThe": "Accept the ",
     "terms": "Terms and Privacy Policy",
     "login": "Log In",
@@ -101,21 +103,23 @@
     "alreadyAccount": "Already have an account? Log in here",
     "forgotPass": "Forgot your password? Click here",
     "wrongEmailFormat": "Wrong email format or email not allowed",
-    "wrongPasswordFormat": "Wrong password, it should be at least 8 characters, have 1 uppercase and a number"
+    "wrongPasswordFormat": "Wrong password, it should be at least 8 characters, have 1 uppercase and a number",
+    "exit":"Exit"
   },
     "Recovery":{
-    "setEmail": "Introduce your email:",
+    "setEmail": "Introduce your email",
     "submit": "Send",
     "correctEmail": "Email sent! Check your inbox",
     "wrongEmailFormat":"Wrong email format"
   },
   "Reset": {
-    "setPassword": "Introduce your password:",
-    "setConfirmation": "Repeat the password:",
+    "setPassword": "Introduce your new password",
+    "setConfirmation": "Repeat the new password",
     "submit": "Send",
     "passwordRestablished":"Password reset correctly!",
     "InvalidPassword":"The password must have more than 8 characters, a number and an uppercase letter",
-    "noMatch":"The passwords don't match"
+    "noMatch":"The passwords don't match",
+    "passwordRequirements": "The password should be at least 8 characters long, have an uppercase and a number"
   },
   "Tos": {
     "title": "Terms and Conditions of Intellipic",

@@ -27,13 +27,16 @@ export async function POST(
     const options = {
       version: modelResponse.output.version.split(':')[1],
       input: {
+        width: 1024,
+        height: 1024,
         prompt: prompt,
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
-        // num_inference_steps: 50,
+        // num_inference_steps: 30,
         scheduler: 'K_EULER_ANCESTRAL',
-        apply_watermark: false,
-        high_noise_frac: 0.95,
-        lora_scale: 0.7
+        apply_watermark: false
+        // refine: 'expert_ensemble_refiner'
+        // high_noise_frac: 0.95
+        // lora_scale: 0.7
       }
     };
 

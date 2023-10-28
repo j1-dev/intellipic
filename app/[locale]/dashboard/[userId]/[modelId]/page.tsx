@@ -66,7 +66,7 @@ export default function ModelPage() {
     }
   });
 
-  const { theme, toggleTheme, enabled } = useTheme();
+  const { enabled } = useTheme();
 
   const p = prompts;
 
@@ -109,7 +109,6 @@ export default function ModelPage() {
     if (e) {
       console.error(e);
     } else {
-      console.log(d);
       setUserData(d[0]);
       encryptData('userData', JSON.stringify(d[0] || {}));
     }
@@ -197,14 +196,11 @@ export default function ModelPage() {
             toast.dismiss(toastId);
             toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
-          console.log(data.progress);
           const progString = data.progress;
           const progNum = parseInt(progString);
-          console.log(progNum);
           if (!isNaN(progNum)) {
             setProgress(progNum);
           }
-          console.log(progress);
         }
       );
     }
@@ -226,6 +222,7 @@ export default function ModelPage() {
   }
 
   async function handleCancelPrediction() {
+    setProgress(-1);
     if (queueingPrediction) {
       let succesful;
       await post(
@@ -244,6 +241,7 @@ export default function ModelPage() {
         console.log('Cancellation failed.');
         toast.error('Algo ha fallado...');
       }
+      setCancellingPrediction(false);
     }
   }
 
@@ -549,7 +547,9 @@ export default function ModelPage() {
                     speedMultiplier={0.5}
                     color={`${enabled ? 'white' : 'black'}`}
                   />
-                  <span className="mt-2">{t('starting')}</span>
+                  <span className="mt-2">
+                    {cancellingPrediction ? t('cancelling') : t('starting')}
+                  </span>
                 </div>
               )}
             </div>

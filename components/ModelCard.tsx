@@ -4,7 +4,13 @@ import { useTranslations } from 'next-intl';
 export default function ModelCard({
   props
 }: {
-  props: { userId: string; modelId: string; token: string; status: string };
+  props: {
+    userId: string;
+    modelId: string;
+    token: string;
+    status: string;
+    progress: number;
+  };
 }) {
   const t = useTranslations('ModelCard');
   const user = props.userId;
@@ -16,7 +22,11 @@ export default function ModelCard({
       return t('starting') + ' 🆕';
     }
     if (status === 'processing') {
-      return t('processing') + ' 🔧';
+      if (props.progress >= 0) {
+        return props.progress + '%';
+      } else {
+        return t('starting') + ' 🆕';
+      }
     }
     if (status === 'succeeded') {
       return t('succeeded') + ' ✅';

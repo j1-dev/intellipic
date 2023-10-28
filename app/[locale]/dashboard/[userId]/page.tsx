@@ -33,6 +33,14 @@ export default function DashboardPage() {
     });
     return arr;
   });
+  const [progress, setProgress] = useState(() => {
+    const int = parseInt(JSON.parse(decryptData(`progress`) as string));
+    if (!isNaN(int)) {
+      return int;
+    } else {
+      return -1;
+    }
+  });
   const [userData, setUserData] = useState<userDataType>(() =>
     // @ts-ignore
     JSON.parse(decryptData('userData'))
@@ -77,7 +85,20 @@ export default function DashboardPage() {
   };
 
   async function getModelStatus(user: any) {
-    await fetch(`/api/ai/${user}/status`, { cache: 'no-store' });
+    await fetch(`/api/ai/${user}/status`, { cache: 'no-store' })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.run_data.status === 'failed') {
+          fetchUserInfo();
+        }
+        const progString = data.run_data.progress;
+        const progNum = parseInt(progString);
+        if (!isNaN(progNum)) {
+          setProgress(progNum);
+        } else {
+          setProgress(-1);
+        }
+      });
   }
 
   useInterval(() => {
@@ -104,7 +125,8 @@ export default function DashboardPage() {
                 userId: data.user_id as string,
                 modelId: data.run_id as string,
                 token: data.prompt_token as string,
-                status: data.status as string
+                status: data.status as string,
+                progress: progress as number
               };
               return <ModelCard props={props} key={data.run_id} />;
             })}

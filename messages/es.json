@@ -90,9 +90,11 @@
   },
   "Signup": {
     "loggingIn": "Iniciando sesión!",
-    "verifyEmail": "Cuenta creada!, mira tu correo para verificar tu cuenta",
-    "emailLabel": "Email:",
-    "passwordLabel": "Contraseña:",
+    "verifyEmail": "Cuenta creada con éxito! revisa tu correo para verificarla",
+    "emailLabel": "Email",
+    "confirmPassword": "Repite la contraseña", 
+    "passwordLabel": "Contraseña",
+    "passwordRequirements": "La contraseña debe tener almenos 8 carácteres, una mayúscula y un número",
     "acceptThe": "Acepta los ",
     "terms": "Terminos y condiciones de privacidad",
     "login": "Inicia sesión",
@@ -101,21 +103,23 @@
     "alreadyAccount": "¿Ya tienes cuenta? Inicia sesión aquí",
     "forgotPass": "Olvidaste tu contraseña? Haz click aquí",
     "wrongEmailFormat": "Correo erroneo o no permitido",
-    "wrongPasswordFormat": "Contraseña erronea, debe tener al menos 8 carácteres, una mayúscula y un número"
+    "wrongPasswordFormat": "Contraseña erronea, debe tener al menos 8 carácteres, una mayúscula y un número",
+    "exit":"Salir"
   },
   "Recovery":{
-    "setEmail": "Introduzca su email:",
+    "setEmail": "Introduce tu email",
     "submit": "Enviar",
     "correctEmail": "Email enviado! Revisa tu bandeja de entrada",
     "wrongEmailFormat":"Formato inadecuado"
   },
   "Reset": {
-    "setPassword": "Introduzca la contraseña:",
-    "setConfirmation": "Repita la contraseña:",
+    "setPassword": "Introduce la nueva contraseña",
+    "setConfirmation": "Repite la contraseña",
     "submit": "Enviar",
     "passwordRestablished":"Contraseña reestablecida correctamente!",
     "InvalidPassword":"La contraseña debe tener más de 8 carácteres, 1 número y 1 letra mayúscula",
-    "noMatch":"Las contraseñas no coinciden"
+    "noMatch":"Las contraseñas no coinciden",
+    "passwordRequirements": "La contraseña debe tener almenos 8 carácteres, una mayúscula y un número"
   },
   "Tos": {
     "title": "Términos y Condiciones de Intellipic",
@@ -203,7 +207,7 @@
     "processing": "Procesando...",
     "succeeded": "Completado",
     "modelName":"Nombre: ",
-    "modelStatus":"Status: "
+    "modelStatus":"Estatus: "
   },
   "TrainButton": {
     "trainingInProgress": "Entrenamiento en proceso",
@@ -338,7 +342,7 @@
     "GTA": "GTA",
     "Metal Gear Solid": "Metal Gear Solid",
     "Pixar": "Pixar",
-    "starting": "Comenzando"
+    "starting": "Iniciando"
   },
   "ShopPage": {
     "shop": "Tienda 💰",
@@ -407,7 +411,6 @@
     "gray": "Gris",
     "amber": "Ambar",
     "none": "Ninguno",
-    "starting": "Comenzando"
-
+    "starting": "Empezando"
   }
 }

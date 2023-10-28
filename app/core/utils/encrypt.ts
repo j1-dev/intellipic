@@ -6,11 +6,11 @@ export const encryptData = (name: string, data: any) => {
     data,
     process.env.NEXT_PUBLIC_SECRET_KEY! || ''
   ).toString();
-  localStorage.setItem(name, encrypted);
+  sessionStorage.setItem(name, encrypted);
 };
 
 export const decryptData = (name: any) => {
-  const encrypted = localStorage.getItem(name) || '';
+  const encrypted = sessionStorage.getItem(name) || '';
   const decrypted = AES.decrypt(
     encrypted,
     process.env.NEXT_PUBLIC_SECRET_KEY! || ''

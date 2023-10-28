@@ -1,11 +1,11 @@
 'use client';
 import Link from 'next/link';
-import SignUp from '@/components/SignUp';
 import supabase from '@/app/core/clients/supabase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { BsArrowReturnLeft } from 'react-icons/bs';
+import Login from '@/components/Login';
 
 export default function LoginPage() {
   const [session, setSession] = useState<any>(null);
@@ -53,12 +53,7 @@ export default function LoginPage() {
           </nav>
         </header>
         <div className="flex-col max-w-screen-xl mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
-          <div className="text-center">
-            <h1 className="text-9xl font-bold font-sans max-w-screen-xs m-auto h-32">
-              Log in
-            </h1>
-          </div>
-          <SignUp t={true} />
+          <Login />
         </div>
       </div>
     );
