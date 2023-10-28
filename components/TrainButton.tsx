@@ -4,12 +4,14 @@ import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { ClipLoader } from 'react-spinners';
 import { useTranslations } from 'next-intl';
+import { useTheme } from '@/app/core/utils/ThemeContext';
 
 import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
 
 export const TrainButton = ({ userData }: { userData: userDataType }) => {
   const t = useTranslations('TrainButton');
   const router = useRouter();
+  const { enabled } = useTheme();
   const message =
     userData?.model_tokens !== 0 && userData?.model_tokens !== null
       ? !!userData?.dataset
@@ -40,7 +42,11 @@ export const TrainButton = ({ userData }: { userData: userDataType }) => {
     >
       {!!userData?.dataset ? (
         <div className="">
-          <ClipLoader size={50} speedMultiplier={0.5} color="blue" />
+          <ClipLoader
+            size={50}
+            speedMultiplier={0.5}
+            color={`${enabled ? 'white' : 'black'}`}
+          />
         </div>
       ) : (
         <AiOutlinePlus
