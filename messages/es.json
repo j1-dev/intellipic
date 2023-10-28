@@ -342,7 +342,7 @@
     "GTA": "GTA",
     "Metal Gear Solid": "Metal Gear Solid",
     "Pixar": "Pixar",
-    "starting": "Comenzando"
+    "starting": "Iniciando"
   },
   "ShopPage": {
     "shop": "Tienda 💰",
@@ -411,7 +411,6 @@
     "gray": "Gris",
     "amber": "Ambar",
     "none": "Ninguno",
-    "starting": "Comenzando"
-
+    "starting": "Empezando"
   }
 }
