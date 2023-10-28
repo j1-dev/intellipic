@@ -198,8 +198,6 @@ export default function TrainPage() {
           }
           const progString = data.run_data.progress;
           const progNum = parseInt(progString);
-          console.log(progNum);
-          console.log(progress);
           if (!isNaN(progNum)) {
             setProgress(progNum);
           } else {
