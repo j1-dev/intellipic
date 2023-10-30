@@ -20,12 +20,18 @@ export default function Home() {
           <h1 className="text-2xl sm:text-3xl font-bold hidden xs:block m-0">
             IntelliPic
           </h1>
-          <button className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-1 xs:px-3 transition-all ml-auto float-none z-50">
-            <Link href="/login">{t('nav.login')}</Link>
-          </button>
-          <button className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1">
-            <Link href="/register">{t('nav.signup')}</Link>
-          </button>
+          <Link
+            href="/login"
+            className=" bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-1 xs:px-3 transition-all ml-auto float-none z-50"
+          >
+            {t('nav.login')}
+          </Link>
+          <Link
+            href="/register"
+            className=" bg-blue-600 text-white border-blue-600 hover:bg-white hover:text-black border rounded py-2 px-4 transition-all ml-1"
+          >
+            {t('nav.signup')}
+          </Link>
         </nav>
       </header>
 
@@ -36,9 +42,12 @@ export default function Home() {
           />
           <div className="text-center">
             <p className="text-lg mb-8">{t('header.description')}</p>
-            <button className=" bg-blue-600 text-white border-white hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all">
-              <Link href="/register">{t('header.cta')}</Link>
-            </button>
+            <Link
+              href="/register"
+              className=" bg-blue-600 text-white border-white hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded-md py-3 px-4 transition-all"
+            >
+              {t('header.cta')}
+            </Link>
           </div>
         </div>
       </section>
