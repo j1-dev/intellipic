@@ -9,6 +9,7 @@ import { Dialog } from '@headlessui/react';
 import { ClipLoader } from 'react-spinners';
 import { useTheme } from '@/app/core/utils/ThemeContext';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { UserResponse } from '@supabase/supabase-js';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
