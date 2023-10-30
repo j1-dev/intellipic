@@ -9,6 +9,7 @@ import { Dialog } from '@headlessui/react';
 import { ClipLoader } from 'react-spinners';
 import { useTheme } from '@/app/core/utils/ThemeContext';
 import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { UserResponse } from '@supabase/supabase-js';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -63,19 +64,19 @@ function Register() {
           toast.error(error.message);
         })
         .then(async (data) => {
-          // const resData = data as UserResponse;
-          // const { error } = await supabase.from('user-data').insert({
-          //   id: resData?.data?.user?.id,
-          //   dataset: null,
-          //   run_id: null,
-          //   model_tokens: null,
-          //   image_tokens: null,
-          //   last_payment_id: null,
-          //   last_payment_status: null
-          // });
-          // await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          // console.log(resData?.data?.user?.id);
-          // toast.success(tr('verifyEmail'));
+          const resData = data as UserResponse;
+          const { error } = await supabase.from('user-data').insert({
+            id: resData?.data?.user?.id,
+            dataset: null,
+            run_id: null,
+            model_tokens: null,
+            image_tokens: null,
+            last_payment_id: null,
+            last_payment_status: null
+          });
+          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+          console.log(resData?.data?.user?.id);
+          toast.success(tr('verifyEmail'));
           setRegistered(true);
           setLoading(false);
         });
