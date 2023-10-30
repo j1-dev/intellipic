@@ -63,19 +63,19 @@ function Register() {
           toast.error(error.message);
         })
         .then(async (data) => {
-          // const resData = data as UserResponse;
-          // const { error } = await supabase.from('user-data').insert({
-          //   id: resData?.data?.user?.id,
-          //   dataset: null,
-          //   run_id: null,
-          //   model_tokens: null,
-          //   image_tokens: null,
-          //   last_payment_id: null,
-          //   last_payment_status: null
-          // });
-          // await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          // console.log(resData?.data?.user?.id);
-          // toast.success(tr('verifyEmail'));
+          const resData = data as UserResponse;
+          const { error } = await supabase.from('user-data').insert({
+            id: resData?.data?.user?.id,
+            dataset: null,
+            run_id: null,
+            model_tokens: null,
+            image_tokens: null,
+            last_payment_id: null,
+            last_payment_status: null
+          });
+          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
+          console.log(resData?.data?.user?.id);
+          toast.success(tr('verifyEmail'));
           setRegistered(true);
           setLoading(false);
         });
