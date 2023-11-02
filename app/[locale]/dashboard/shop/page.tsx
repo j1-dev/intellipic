@@ -24,39 +24,39 @@ export default function ShopPage() {
 
   const products: Product[] = [
     {
-      id: 'prod_OAGAukWxQfrOVG',
-      name: 'Entrenamiento de un modelo',
-      price: '€3 por modelo',
-      priceId: 'price_1NOPqWIsZGNqsWfQQdddYGAx',
-      features: ['Entrena un modelo', 'Genera 20 imagenes']
+      id: 'prod_OcmbeX4AJFkVoF',
+      name: t('modelTraining'),
+      price: '€4',
+      priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
+      features: [t('modelTrainingInfo'), t('generate20Title')]
     },
     {
-      id: 'prod_OAGCBKSOdimjwS',
-      name: 'Generación de 10 imágenes',
+      id: 'prod_OcmbMwLY3PSKkd',
+      name: t('generate10Title'),
       price: '€1',
-      priceId: 'price_1NNvgXIsZGNqsWfQVLzT0EOi',
-      features: ['Genera 10 imágenes', 'Prompts mejorados por IA']
+      priceId: 'price_1NpX23IsZGNqsWfQwulR8Pie',
+      features: [t('generate10Info'), t('extraInfo')]
     },
     {
-      id: 'prod_OAGD9THFNk3NAD',
-      name: 'Generación de 30 imágenes',
+      id: 'prod_OcmaoJNRfbjwqk',
+      name: t('generate25Title'),
       price: '€2',
-      priceId: 'price_1NNvhUIsZGNqsWfQGsXojAbB',
-      features: ['Genera 30 imágenes', 'Prompts mejorados por IA']
+      priceId: 'price_1NpX1VIsZGNqsWfQ6Pq3YcNa',
+      features: [t('generate25Info'), t('extraInfo')]
     },
     {
-      id: 'prod_OAGEvgK2m6HATL',
-      name: 'Generación de 50 imágenes',
+      id: 'prod_OcmZDNFgWpbV65',
+      name: t('generate40Title'),
       price: '€3',
-      priceId: 'price_1NNviMIsZGNqsWfQayaCdTZ7',
-      features: ['Genera 50 imágenes', 'Prompts mejorados por IA']
+      priceId: 'price_1NpX0oIsZGNqsWfQ6doXHr1o',
+      features: [t('generate40Info'), t('extraInfo')]
     },
     {
-      id: 'prod_OAGFn5wQimhFvz',
-      name: 'Generación de 100 imágenes',
-      price: '€7.5',
-      priceId: 'price_1NNvjMIsZGNqsWfQvWf6TDl0',
-      features: ['Genera 100 imágenes', 'Prompts mejorados por IA']
+      id: 'prod_OcmY6zvRL63Zhr',
+      name: t('generate100Title'),
+      price: '€7',
+      priceId: 'price_1NpWzbIsZGNqsWfQb9RLZM8S',
+      features: [t('generate100Info'), t('extraInfo')]
     }
   ];
 

@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       sig,
-      'whsec_Fpmfr7PH8F1TeQ0FD0SNiJkmcqP0A0OP'
+      process.env.STRIPE_WEBHOOK_SECRET! as string
     );
   } catch (err: any) {
     console.log(`Webhook signature verification failed.`, err.message);
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
         case 300:
           tokenAmountGenerating = 40;
           break;
-        case 350:
+        case 400:
           tokenAmountGenerating = 20;
           tokenAmountTraining = 1;
           break;
