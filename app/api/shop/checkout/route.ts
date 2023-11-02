@@ -18,7 +18,7 @@ export async function POST(request: any) {
       }
     ],
     mode: 'payment',
-    success_url: url + '/dashboard/shop/order-success',
+    success_url: url + '/dashboard/' + userId,
     cancel_url: url + '/dashboard/shop/',
     metadata: {
       userId: userId
