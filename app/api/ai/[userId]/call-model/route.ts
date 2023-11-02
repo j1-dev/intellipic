@@ -2,6 +2,7 @@ import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import replicate from '../../../../core/clients/replicate';
 import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
+import { WebhookEventType } from 'replicate';
 
 export async function POST(
   request: Request,
@@ -37,12 +38,18 @@ export async function POST(
         // refine: 'expert_ensemble_refiner'
         // high_noise_frac: 0.95
         // lora_scale: 0.7
-      }
+      },
+      webhook: `https://5302-62-37-69-73.ngrok-free.app/api/ai/${user.id}/prediction-webhook/`,
+      webhook_events_filter: [
+        'start' as WebhookEventType,
+        'output' as WebhookEventType,
+        'logs' as WebhookEventType,
+        'completed' as WebhookEventType
+      ]
     };
 
     if (imageTokens[0] && imageTokens?.[0]?.image_tokens > 0) {
       const predictionData = await replicate.predictions.create(options);
-      console.log(predictionData);
 
       await supabase.from('predictions').insert({
         user_id: user.id,
