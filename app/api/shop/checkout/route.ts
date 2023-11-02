@@ -19,7 +19,10 @@ export async function POST(request: any) {
     ],
     mode: 'payment',
     success_url: url + '/dashboard/shop/order-success',
-    cancel_url: url + '/dashboard/shop/'
+    cancel_url: url + '/dashboard/shop/',
+    metadata: {
+      userId: userId
+    }
   });
 
   switch (session.amount_total) {
