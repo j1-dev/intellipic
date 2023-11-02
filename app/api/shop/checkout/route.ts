@@ -18,8 +18,11 @@ export async function POST(request: any) {
       }
     ],
     mode: 'payment',
-    success_url: url + '/dashboard/shop/order-success',
-    cancel_url: url + '/dashboard/shop/'
+    success_url: url + '/dashboard/' + userId,
+    cancel_url: url + '/dashboard/shop/',
+    metadata: {
+      userId: userId
+    }
   });
 
   switch (session.amount_total) {
