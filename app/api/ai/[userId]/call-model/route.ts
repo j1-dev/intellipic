@@ -2,6 +2,7 @@ import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import replicate from '../../../../core/clients/replicate';
 import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
+import { WebhookEventType } from 'replicate';
 
 export async function POST(
   request: Request,
@@ -34,15 +35,19 @@ export async function POST(
         // num_inference_steps: 30,
         scheduler: 'K_EULER_ANCESTRAL',
         apply_watermark: false
-        // refine: 'expert_ensemble_refiner'
-        // high_noise_frac: 0.95
+        // refine: 'expert_ensemble_refiner',
+        // high_noise_frac: 0.95,
         // lora_scale: 0.7
-      }
+      },
+      webhook: `https://www.intellipic.es/api/ai/${user.id}/prediction-webhook/`,
+      webhook_events_filter: [
+        'completed' as WebhookEventType,
+        'logs' as WebhookEventType
+      ]
     };
 
     if (imageTokens[0] && imageTokens?.[0]?.image_tokens > 0) {
       const predictionData = await replicate.predictions.create(options);
-      console.log(predictionData);
 
       await supabase.from('predictions').insert({
         user_id: user.id,

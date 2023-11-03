@@ -1,6 +1,7 @@
 import replicate from '@/app/core/clients/replicate';
 import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
+import { WebhookEventType } from 'replicate';
 
 export async function POST(
   request: Request,
@@ -49,7 +50,12 @@ export async function POST(
           crop_based_on_salience: false,
           use_face_detection_instead: true,
           verbose: false
-        } as object
+        } as object,
+        webhook: `https://www.intellipic.es/api/ai/${id}/training-webhook/`,
+        webhook_events_filter: [
+          'completed' as WebhookEventType,
+          'logs' as WebhookEventType
+        ]
       };
 
       const responseReplicate = await replicate.trainings.create(
