@@ -35,16 +35,14 @@ export async function POST(
         // num_inference_steps: 30,
         scheduler: 'K_EULER_ANCESTRAL',
         apply_watermark: false
-        // refine: 'expert_ensemble_refiner'
-        // high_noise_frac: 0.95
+        // refine: 'expert_ensemble_refiner',
+        // high_noise_frac: 0.95,
         // lora_scale: 0.7
       },
-      webhook: `https://5302-62-37-69-73.ngrok-free.app/api/ai/${user.id}/prediction-webhook/`,
+      webhook: `https://www.intellipic.es/api/ai/${user.id}/prediction-webhook/`,
       webhook_events_filter: [
-        'start' as WebhookEventType,
-        'output' as WebhookEventType,
-        'logs' as WebhookEventType,
-        'completed' as WebhookEventType
+        'completed' as WebhookEventType,
+        'logs' as WebhookEventType
       ]
     };
 

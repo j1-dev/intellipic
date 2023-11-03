@@ -5,36 +5,11 @@ import { NextResponse } from 'next/server';
 
 export const revalidate = 0;
 
-export async function POST(
-  request: Request,
-  { params }: { params: { userId: string } }
-) {
-  const SUPABASE_TABLE_NAME = 'user-data';
-  const id = params.userId;
+export async function POST(request: Request) {
   const req = await request.json();
   const prediction_id = req.prediction_id as string;
 
   try {
-    const { data: userData, error: userError } = await supabase
-      .from(SUPABASE_TABLE_NAME)
-      .select('*')
-      .eq('id', id);
-
-    const { data: predictionData, error: predictionError } = await supabase
-      .from('predictions')
-      .select('*')
-      .eq('id', prediction_id);
-
-    if (userError) {
-      console.error('Supabase error: ', userError);
-      return NextResponse.error();
-    }
-
-    if (predictionError) {
-      console.error('Supabase error: ', predictionError);
-      return NextResponse.error();
-    }
-
     const predictionResponse = await replicate.predictions.get(prediction_id);
     let percentage = '-1';
     if (
@@ -48,20 +23,6 @@ export async function POST(
       .from('predictions')
       .update({ status: predictionResponse.status })
       .eq('id', prediction_id);
-
-    if (
-      predictionResponse.status === 'failed' ||
-      predictionResponse.status === 'canceled'
-    ) {
-      console.log(predictionResponse.status);
-      const imageTokens = userData?.[0]?.image_tokens + 1;
-      await supabase
-        .from('user-data')
-        .update({ image_tokens: imageTokens })
-        .eq('id', userData?.[0].id);
-
-      await supabase.from('predictions').delete().eq('id', prediction_id);
-    }
 
     return NextResponse.json({
       status: predictionResponse.status,

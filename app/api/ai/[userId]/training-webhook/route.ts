@@ -8,9 +8,10 @@ export async function POST(
   const body = await request.text();
   const parsedBody = JSON.parse(body);
   const status = parsedBody.status;
-  const predictionId = parsedBody.id;
+  const runId = parsedBody.id;
   const id = params.userId;
   console.log(status);
+  console.log(runId);
 
   if (status === 'failed' || status === 'canceled') {
     const { data: userData, error: userError } = await supabase
@@ -22,13 +23,18 @@ export async function POST(
       console.error('Supabase error: ', userError);
       return NextResponse.error();
     }
-    const imageTokens = userData?.[0]?.image_tokens + 1;
     await supabase
       .from('user-data')
-      .update({ image_tokens: imageTokens })
+      .update({
+        run_id: null,
+        model_tokens: userData?.[0]?.model_tokens + 1,
+        dataset: null
+      })
       .eq('id', userData?.[0].id);
 
-    await supabase.from('predictions').delete().eq('id', predictionId);
+    console.log(runId);
+
+    await supabase.from('trainings').delete().eq('run_id', runId);
   }
 
   // Return a response to acknowledge receipt of the event

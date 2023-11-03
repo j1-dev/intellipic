@@ -56,7 +56,6 @@ export default function ModelPage() {
   const [userData, setUserData] = useState<any>(() =>
     JSON.parse(decryptData('userData') as string)
   );
-  const [toastId, setToastId] = useState<string>('');
   const [progress, setProgress] = useState(() => {
     const int = parseInt(JSON.parse(decryptData(`pr${model}`) as string));
     if (!isNaN(int)) {
@@ -95,10 +94,6 @@ export default function ModelPage() {
     modelStatus,
     progress
   ]);
-
-  useEffect(() => {
-    fetchUserInfo();
-  }, []);
 
   const fetchUserInfo = async () => {
     const { data: d, error: e } = await supabase
@@ -174,12 +169,10 @@ export default function ModelPage() {
           prediction_id: predictionId
         },
         (data: any) => {
-          console.log(cancellingPrediction);
           if (!cancellingPrediction) {
             const progString = data.progress;
             const progNum = parseInt(progString);
             if (!isNaN(progNum)) {
-              console.log('a');
               setProgress(progNum);
             }
           }
@@ -193,7 +186,6 @@ export default function ModelPage() {
           }
           if (data.status === 'failed') {
             setQueueingPrediction(false);
-            fetchUserInfo();
             toast.error(
               'Ha habido un fallo con la generación, prueba otra vez'
             );
@@ -201,7 +193,6 @@ export default function ModelPage() {
           if (data.status === 'canceled') {
             setQueueingPrediction(false);
             setCancellingPrediction(false);
-            fetchUserInfo();
             toast.success('Ha cancelado la generación, pruebe de nuevo');
           }
         }
@@ -269,7 +260,10 @@ export default function ModelPage() {
     }
   }
 
-  useInterval(() => handleGetPrediction(), 2000);
+  useInterval(() => {
+    handleGetPrediction();
+    fetchUserInfo();
+  }, 2000);
 
   return (
     <div className="max-w-screen-lg mx-auto px-8 py-8">
