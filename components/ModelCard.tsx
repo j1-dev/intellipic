@@ -34,20 +34,20 @@ export default function ModelCard({
   }
 
   return (
-    
-      <div className="bg-white  rounded-md p-4 border border-black hover:shadow-md transition-transform transform hover:scale-105">
+    <div className="bg-white dark:bg-black rounded-md p-4 border border-black dark:border-white dark:shadow-gray-300 hover:shadow-sm hover:drop-shadow-xl transform hover:scale-[1.02] transition-all duration-75">
       <Link href={`/dashboard/${user}/${model}`} passHref>
         <div className="block w-full h-full cursor-pointer">
           <div className="w-full h-full flex flex-col justify-center items-center">
-            <p className="font-bold text-xl mb-3 text-gray-800">
+            <p className="font-bold text-xl mb-3">
               {t('modelName') + props.token}
             </p>
-            <div className="w-16 border-b-2 border-blue-500 mb-3 "></div>
-            <p className="text-sm text-gray-600">{t('modelStatus') + translateStatus(status)}</p>
+            <div className="w-16 border-b-[1px] border-blue-500 mb-3 "></div>
+            <p className="text-sm ">
+              {t('modelStatus') + translateStatus(status)}
+            </p>
           </div>
         </div>
       </Link>
     </div>
-  
-);
+  );
 }
