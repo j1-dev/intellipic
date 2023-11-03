@@ -34,7 +34,7 @@ export default function ModelCard({
   }
 
   return (
-    <div className="bg-white dark:bg-black rounded-md p-4 border border-black dark:border-white dark:shadow-gray-300 hover:shadow-sm hover:drop-shadow-xl transform hover:scale-[1.02] transition-all duration-75">
+    <div className="bg-white dark:bg-black rounded-md p-4 border border-black dark:border-white dark:shadow-gray-300 hover:shadow-sm hover:drop-shadow-lg transform hover:scale-[1.02] transition-all duration-75">
       <Link href={`/dashboard/${user}/${model}`} passHref>
         <div className="block w-full h-full cursor-pointer">
           <div className="w-full h-full flex flex-col justify-center items-center">

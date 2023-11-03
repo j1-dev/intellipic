@@ -50,7 +50,7 @@
         "price": "€4 por modelo",
         "includes": "Esto Incluye:",
         "include1": "Generar un modelo",
-        "include2": "20 tokens para generar imágenes"
+        "include2": "20 créditos para generar imágenes"
       },
       "generate10": {
         "title": "Generar 10 imágenes",
@@ -125,7 +125,7 @@
     "title": "Términos y Condiciones de Intellipic",
     "content": "Nuestra política es respetar su privacidad y cumplir con todas las leyes y regulaciones aplicables con respecto a cualquier información personal que podamos recopilar sobre usted, incluyendo nuestro sitio web, https://intellipic.es/, y otros sitios que poseemos y operamos.",
     "refundsTitle": "Reembolsos",
-    "refundsContent": "Solo podemos reembolsar tokens de entrenamiento y generación de imágenes que no hayan sido utilizados.",
+    "refundsContent": "Solo podemos reembolsar créditos de entrenamiento y generación de imágenes que no hayan sido utilizados.",
     "photoUploadTitle": "Carga de Fotos",
     "photoUploadContent": "Para cargar fotos en este sitio, debe asegurarse de que sean suyas o que tenga los derechos o el permiso para usarlas, y que no sean desnudos ni pornográficos. No somos responsables de ningún daño que pueda resultar de la carga de fotos que no cumplan con estos criterios.",
     "informationCollectionTitle": "Información que Recopilamos",
@@ -198,9 +198,9 @@
   },
   "Dashboard": {
     "title": "Modelos 🤖",
-    "tokensToTrain": "Tokens para entrenar:",
+    "tokensToTrain": "Créditos para entrenar:",
     "noModelsMessage": "Todavía no has entrenado ningún modelo",
-    "buyTokensMessage": "Compra tokens en la tienda para entrenar tu primer modelo"
+    "buyTokensMessage": "Compra créditos en la tienda para entrenar tu primer modelo"
   },
   "ModelCard": {
     "starting": "Empezando",
@@ -213,7 +213,7 @@
     "trainingInProgress": "Entrenamiento en proceso",
     "continueTraining": "Continúa con el entrenamiento",
     "trainModel": "Entrena un modelo",
-    "buyTokens": "Compra tokens en la Tienda"
+    "buyTokens": "Compra créditos en la Tienda"
   },
   "PromptBuilder": {
     "generatorTitle": "Generador de prompts",
@@ -302,7 +302,7 @@
     "modelTitle": "Modelos 🤖",
     "modelToken": "Token del modelo: token",
     "tokenInfo": "Escribe tu prompt usando el token del modelo o @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
-    "remainingTokens": "Tokens restantes: ",
+    "remainingTokens": "Créditos restantes: ",
     "deleteModel": "Eliminar Modelo",
     "advancedMethodWarning": "Este método está pensado para usuarios experimentados, prueba los estilos predeterminados si no obtienes los resultados esperados",
     "generatedPrompt": "Generador de estilos",
@@ -350,24 +350,24 @@
     "modelTraining": "Entrenamiento de un modelo",
     "modelTrainingInfo": "Entrena un modelo personalizado",
     "generate10Title": "Genera 10 imágenes",
-    "generate10Info": "10 tokens para generar imágenes",
+    "generate10Info": "10 créditos para generar imágenes",
     "generate20Title": "Genera 20 imágenes",
-    "generate20Info": "20 tokens para generar imágenes",
+    "generate20Info": "20 créditos para generar imágenes",
     "generate25Title": "Genera 25 imágenes",
-    "generate25Info": "25 tokens para generar imágenes",
+    "generate25Info": "25 créditos para generar imágenes",
     "generate40Title": "Genera 40 imágenes",
-    "generate40Info": "40 tokens para generar imágenes",
+    "generate40Info": "40 créditos para generar imágenes",
     "generate100Title": "Genera 100 imágenes",
-    "generate100Info": "100 tokens para generar imágenes",
+    "generate100Info": "100 créditos para generar imágenes",
     "extraInfo": "Multitud de posibilidades para crear prompts",
     "price": "Precio:",
     "features": "Características:",
-    "noTrainedModels":"Necesitas haber entrenado un modelo antes de poder comprar tokens para generar imágenes",
+    "noTrainedModels":"Necesitas haber entrenado un modelo antes de poder comprar créditos para generar imágenes",
     "buyNow": "Comprar Ahora"
   },
   "TrainPage":{
     "trainLabel": "Entrenar 🦾",
-    "tokensLabel": "Tokens para entrenar",
+    "tokensLabel": "Créditos para entrenar",
     "step1Label": "1er paso: Subir imágenes",
     "step1Description": "Primero, asegúrate de tener entre 6 y 10 imágenes de alta calidad para entrenar a tu modelo. Para obtener los mejores resultados, tus imágenes deben ser primeros planos preferiblemente, solo debe salir el sujeto y este deberá verse entero. Para ver ejemplos de imágenes válidas y no válidas, ve a ",
     "faqLink": "preguntas frecuentes",
