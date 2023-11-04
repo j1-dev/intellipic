@@ -94,7 +94,7 @@
     "emailLabel": "Email",
     "passwordLabel": "Password",
     "passwordRequirements": "The password should be at least 8 characters long, have an uppercase and a number",
-    "confirmPassword": "Confrim your password", 
+    "confirmPassword": "Confirm your password", 
     "acceptThe": "Accept the ",
     "terms": "Terms and Privacy Policy",
     "login": "Log In",

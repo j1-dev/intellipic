@@ -85,7 +85,7 @@ function Login() {
         <div>
           <button
             type="submit"
-            className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 my-4 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
+            className="w-full disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 border disabled:border-gray-400 bg-black text-white dark:bg-white dark:text-black py-2 px-4 my-3 rounded-lg dark:hover:bg-gray-300 hover:bg-gray-800 transition-all"
           >
             {tr('login')}
           </button>

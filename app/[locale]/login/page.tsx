@@ -41,7 +41,7 @@ export default function LoginPage() {
             <Link className="inline-flex" href="/">
               <BsArrowReturnLeft size={40} />
               <h1 className="text-4xl font-bold mx-4 -translate-y-1">
-                Intellipic
+                IntelliPic
               </h1>
             </Link>
             <Link

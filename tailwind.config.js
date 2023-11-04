@@ -42,5 +42,5 @@ module.exports = {
       gb: 'https://cdn.ipregistry.co/flags/twemoji/gb.png'
     }
   },
-  plugins: [require('@tailwindcss/aspect-ratio')]
+  plugins: [require('@tailwindcss/aspect-ratio'), require('daisyui')]
 };

@@ -159,7 +159,7 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={font.className}>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}

@@ -8,8 +8,8 @@ import { validateEmail, validatePassword } from '@/app/core/utils/validate';
 import { Dialog } from '@headlessui/react';
 import { ClipLoader } from 'react-spinners';
 import { useTheme } from '@/app/core/utils/ThemeContext';
-import { AiOutlineCheckCircle } from 'react-icons/ai';
 import { UserResponse } from '@supabase/supabase-js';
+import { BsCheckCircle, BsXCircle } from 'react-icons/bs';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -18,6 +18,7 @@ function Register() {
   const [tos, setTos] = useState<boolean>(false);
   const [validEmail, setValidEmail] = useState<boolean>(false);
   const [validPassword, setValidPassword] = useState<boolean>(false);
+  const [validConfirmation, setValidConfirmation] = useState<boolean>(false);
   const [registered, setRegistered] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const supabase = createClientComponentClient();
@@ -35,6 +36,11 @@ function Register() {
   };
 
   const handleConfirmationChange = (e: any) => {
+    console.log(passwordsMatch());
+    console.log(validPassword);
+    console.log(validConfirmation);
+
+    setValidConfirmation(passwordsMatch() && validatePassword(confirmation));
     setConfirmation(e.target?.value);
   };
 
@@ -104,14 +110,29 @@ function Register() {
           >
             {tr('emailLabel')}
           </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-            required
-            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
-          />
+          <div className="relative">
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+              className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+            />
+            <div
+              className={`absolute top-1/2 -translate-y-[10px] right-4 ${
+                email.length > 0 ? 'opacity-100' : 'opacity-0'
+              } transition-all`}
+            >
+              {!!email && email.length > 0 && validEmail ? (
+                <BsCheckCircle size={20} color="#4FEB40" />
+              ) : (
+                <div className="tooltip" data-tip={tr('wrongEmailFormat')}>
+                  <BsXCircle size={20} color="#FF1221" />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className="mb-4">
           <label
@@ -126,14 +147,29 @@ function Register() {
           >
             {tr('passwordRequirements')}
           </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
-          />
+          <div className="relative ">
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+              required
+              className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+            />
+            <div
+              className={`absolute top-1/2 -translate-y-[10px] right-4 ${
+                password.length > 0 ? 'opacity-100' : 'opacity-0'
+              } transition-all`}
+            >
+              {!!password && password.length > 0 && validPassword ? (
+                <BsCheckCircle size={20} color="#4FEB40" />
+              ) : (
+                <div className="tooltip" data-tip={tr('wrongPasswordError')}>
+                  <BsXCircle size={20} color="#FF1221" />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className="mb-4">
           <label
@@ -142,14 +178,35 @@ function Register() {
           >
             {tr('confirmPassword')}
           </label>
-          <input
-            type="password"
-            id="confirmation"
-            value={confirmation}
-            onChange={handleConfirmationChange}
-            required
-            className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
-          />
+          <div className="relative">
+            <input
+              type="password"
+              id="confirmation"
+              value={confirmation}
+              onChange={handleConfirmationChange}
+              required
+              className="dark:bg-black w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:dark:border-white transition-all"
+            />
+            <div
+              className={`absolute top-1/2 -translate-y-[10px] right-4 ${
+                confirmation.length > 0 ? 'opacity-100' : 'opacity-0'
+              } transition-all`}
+            >
+              {!!confirmation &&
+              confirmation.length > 0 &&
+              passwordsMatch() &&
+              validatePassword(confirmation) ? (
+                <BsCheckCircle size={20} color="#1FFF10" />
+              ) : (
+                <div
+                  className="tooltip"
+                  data-tip={tr('wrongConfirmationError')}
+                >
+                  <BsXCircle size={20} color="#FF1221" />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         <div>
@@ -172,7 +229,7 @@ function Register() {
         <div>
           <button
             type="submit"
-            className="w-full disabled:dark:bg-black disabled:dark:text-white disabled:dark:border-white disabled:bg-white disabled:text-black border disabled:border-black bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg focus:outline-black focus:dark:outline-white  transition-all"
+            className="w-full disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 border disabled:border-gray-400 bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg dark:hover:bg-gray-300 hover:bg-gray-800 transition-all"
             disabled={
               !tos || !validEmail || !validPassword || password !== confirmation
             }
@@ -205,7 +262,7 @@ function Register() {
               <Dialog.Title className="text-2xl font-bold mb-4">
                 {tr('verifyEmail')}
               </Dialog.Title>
-              <AiOutlineCheckCircle
+              <BsCheckCircle
                 size={100}
                 color="#4FEB40"
                 className="w-50 m-auto"
