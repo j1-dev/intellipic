@@ -92,7 +92,6 @@ function Login() {
           <Link href="/register" className="hover:underline">
             {tr('noAccount')}
           </Link>
-
           <button
             onClick={(e: any) => {
               e.preventDefault();

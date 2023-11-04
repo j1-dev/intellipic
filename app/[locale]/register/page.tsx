@@ -47,7 +47,14 @@ export default function RegisterPage() {
             </Link>
           </nav>
         </header>
-        <Register />
+        <div className="min-h-screen flex flex-col justify-between">
+          <div className="flex-1"></div>
+          <div className="flex-1 flex items-center justify-center">
+            {/* Your component goes here */}
+            <Register />
+          </div>
+          <div className="flex-1"></div>
+        </div>
       </div>
     );
   } else {
