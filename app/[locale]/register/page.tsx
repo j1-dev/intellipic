@@ -36,7 +36,7 @@ export default function RegisterPage() {
             <Link className="inline-flex" href="/">
               <BsArrowReturnLeft size={40} />
               <h1 className="text-4xl font-bold mx-4 -translate-y-1">
-                Intellipic
+                IntelliPic
               </h1>
             </Link>
             <Link
@@ -47,8 +47,13 @@ export default function RegisterPage() {
             </Link>
           </nav>
         </header>
-        <div className="flex-col max-w-screen-sm mx-auto lg:mt-28 md:mt-16 sm:mt-8 mt-6">
-          <Register />
+        <div className="min-h-screen flex flex-col justify-between">
+          <div className="flex-1"></div>
+          <div className="flex-1 flex items-center justify-center">
+            {/* Your component goes here */}
+            <Register />
+          </div>
+          <div className="flex-1"></div>
         </div>
       </div>
     );

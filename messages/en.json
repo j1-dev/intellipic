@@ -94,7 +94,7 @@
     "emailLabel": "Email",
     "passwordLabel": "Password",
     "passwordRequirements": "The password should be at least 8 characters long, have an uppercase and a number",
-    "confirmPassword": "Confrim your password", 
+    "confirmPassword": "Confirm your password", 
     "acceptThe": "Accept the ",
     "terms": "Terms and Privacy Policy",
     "login": "Log In",
@@ -125,7 +125,7 @@
     "title": "Terms and Conditions of Intellipic",
     "content": "It is our policy to respect your privacy and comply with any applicable laws and regulations regarding any personal information we may collect about you, including all our website, https://intellipic.es/, and other sites we own and operate.",
     "refundsTitle": "Refunds",
-    "refundsContent": "We can only refund training and image generation tokens that have not been used yet.",
+    "refundsContent": "We can only refund training and image generation credits that have not been used yet.",
     "photoUploadTitle": "Photo Upload",
     "photoUploadContent": "To upload photos to this site, you must ensure that they are either of you or you have the rights or permission to use them, and they are not nude or pornographic. We are not responsible for any harm that may result from uploading photos that do not meet these criteria.",
     "informationCollectionTitle": "Information We Collect",
@@ -198,9 +198,9 @@
   },
   "Dashboard": {
     "title": "Models 🤖",
-    "tokensToTrain": "Tokens for training:",
+    "tokensToTrain": "Training credits:",
     "noModelsMessage": "You haven't trained any models yet",
-    "buyTokensMessage": "Buy tokens in the store to train your first model"
+    "buyTokensMessage": "Buy credits in the store to train your first model"
   },
   "ModelCard": {
     "starting": "Starting",
@@ -213,7 +213,7 @@
     "trainingInProgress": "Training in progress",
     "continueTraining": "Continue training",
     "trainModel": "Train a model",
-    "buyTokens": "Buy tokens in the store"
+    "buyTokens": "Buy credits in the store"
   },
   "PromptBuilder": {
     "generatorTitle": "Prompt Generator",
@@ -302,7 +302,7 @@
     "modelTitle": "Models 🤖",
     "modelToken": "Model Token: token",
     "tokenInfo": "Write your prompt using the model token or @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
-    "remainingTokens": "Remaining Tokens: ",
+    "remainingTokens": "Remaining credits: ",
     "deleteModel": "Delete Model",
     "advancedMethodWarning": "This method is designed for experienced users. Try the default styles if you're not getting the expected results",
     "generatedPrompt": "Style Generator",
@@ -342,31 +342,32 @@
     "GTA": "GTA",
     "Metal Gear Solid": "Metal Gear Solid",
     "Pixar": "Pixar",
-    "starting": "Starting"
+    "starting": "Starting",
+    "WrittenExample": "''Close up Portrait of @me as a Viking''"
   },
   "ShopPage": {
     "shop": "Shop 💰",
     "modelTraining": "Model Training",
     "modelTrainingInfo": "Train a custom AI model",
     "generate10Title": "Generate 10 images",
-    "generate10Info": "10 Tokens for generating images",
+    "generate10Info": "10 credits for generating images",
     "generate20Title": "Generate 20 images",
-    "generate20Info": "20 Tokens for generating images",
+    "generate20Info": "20 credits for generating images",
     "generate25Title": "Generate 25 images",
-    "generate25Info": "25 Tokens for generating images",
+    "generate25Info": "25 credits for generating images",
     "generate40Title": "Generate 40 images",
-    "generate40Info": "40 Tokens for generating images",
+    "generate40Info": "40 credits for generating images",
     "generate100Title": "Generate 100 images",
-    "generate100Info": "100 Tokens for generating images",
+    "generate100Info": "100 credits for generating images",
     "extraInfo": "Infinite possibilities for creating custom styles",
     "price": "Price:",
     "features": "Features:",
-    "noTrainedModels":"You need to have trained at least one model before buying tokens for generating images",
+    "noTrainedModels":"You need to have trained at least one model before buying Credits for generating images",
     "buyNow": "Buy now"
   },
   "TrainPage":{
     "trainLabel": "Train 🦾",
-    "tokensLabel": "Tokens to Train",
+    "tokensLabel": "Training credits:",
     "step1Label": "Step 1: Upload Images",
     "step1Description": "First, make sure you have between 6 and 10 high-quality images to train your model. For the best results, your images should be close-ups preferably, showing only the subject, and the subject should be fully visible. For examples of valid and invalid images, go to ",
     "faqLink": "FAQs",

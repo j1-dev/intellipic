@@ -34,20 +34,19 @@ export default function ModelCard({
   }
 
   return (
-    <div className="card group">
-      <Link
-        href={`/dashboard/${user}/${model}`}
-        className=" w-full h-full py-10"
-      >
-        <button className="w-full h-full">
-          <div className="w-full h-full block">
-            <p className="font-bold text-xl m-5">
+    <div className="bg-white dark:bg-black rounded-md p-4 border border-black dark:border-white dark:shadow-gray-300 hover:shadow-sm hover:drop-shadow-lg transform hover:scale-[1.02] transition-all duration-75">
+      <Link href={`/dashboard/${user}/${model}`} passHref>
+        <div className="block w-full h-full cursor-pointer">
+          <div className="w-full h-full flex flex-col justify-center items-center">
+            <p className="font-bold text-xl mb-3">
               {t('modelName') + props.token}
             </p>
-            <div className="h-0 border-b-[1px] border-black group-hover:border-white dark:group-hover:border-black dark:border-white transition-all" />
-            <p className="m-1">{t('modelStatus') + translateStatus(status)}</p>
+            <div className="w-16 border-b-[1px] border-blue-500 mb-3 "></div>
+            <p className="text-sm ">
+              {t('modelStatus') + translateStatus(status)}
+            </p>
           </div>
-        </button>
+        </div>
       </Link>
     </div>
   );

@@ -387,7 +387,7 @@ export default function ModelPage() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                   <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                       <div className="px-1 py-1 ">
                         {p.map((prompt: any) => {
                           return (
@@ -424,7 +424,7 @@ export default function ModelPage() {
                   className="max-w-screen-md w-full h-[125px] m-auto p-2 border border-black rounded-md resize-none transition-all bg-white text-black dark:bg-black dark:text-white dark:border-white"
                   value={instancePrompt}
                   onChange={(e) => setInstancePrompt(e.target.value)}
-                  placeholder="'Retrato de primer plano de Davidrmk como un vikingo'"
+                  placeholder={t('WrittenExample')}
                 />
                 <p className="text-sm mb-4">{t('advancedMethodWarning')}</p>
               </div>

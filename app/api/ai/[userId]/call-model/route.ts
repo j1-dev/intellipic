@@ -34,10 +34,10 @@ export async function POST(
         negative_prompt: process.env.REPLICATE_NEGATIVE_PROMPT,
         // num_inference_steps: 30,
         scheduler: 'K_EULER_ANCESTRAL',
-        apply_watermark: false
-        // refine: 'expert_ensemble_refiner',
+        apply_watermark: false,
+        // refine: 'base_image_refiner',
         // high_noise_frac: 0.95,
-        // lora_scale: 0.7
+        lora_scale: 0.7
       },
       webhook: `https://www.intellipic.es/api/ai/${user.id}/prediction-webhook/`,
       webhook_events_filter: [
