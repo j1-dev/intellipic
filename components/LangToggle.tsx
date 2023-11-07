@@ -1,5 +1,5 @@
 'use client';
-import { usePathname, useRouter } from 'next-intl/client';
+import { createSharedPathnamesNavigation } from 'next-intl/navigation';
 import { Menu } from '@headlessui/react';
 import { useLocale } from 'next-intl';
 import { Transition } from '@headlessui/react'; // Import Transition
@@ -7,6 +7,10 @@ import { useState, useEffect } from 'react';
 
 const LangToggle = () => {
   const [show, setShow] = useState(false);
+  const locales = ['en', 'de'] as const;
+  const { useRouter, usePathname } = createSharedPathnamesNavigation({
+    locales
+  });
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();

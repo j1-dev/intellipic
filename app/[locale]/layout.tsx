@@ -163,7 +163,11 @@ export default async function RootLayout({
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
         ) : null}
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+          timeZone="Europe/Madrid"
+        >
           <SupabaseProvider>
             <ThemeProvider>
               <Toaster position="bottom-right" reverseOrder={false} />
