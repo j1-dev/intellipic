@@ -11,8 +11,9 @@ export async function GET(
     visibility: 'public' as Visibility,
     hardware: 'gpu-a40-large'
   };
+  console.log(id);
 
-  replicate.models.create('replicate', id, options);
+  replicate.models.create('intelli-pic', id, options);
 
   // return response
   return NextResponse.json({});
