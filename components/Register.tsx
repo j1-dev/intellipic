@@ -71,20 +71,26 @@ function Register() {
         })
         .then(async (data) => {
           const resData = data as UserResponse;
-          const { error } = await supabase.from('user-data').insert({
-            id: resData?.data?.user?.id,
-            dataset: null,
-            run_id: null,
-            model_tokens: null,
-            image_tokens: null,
-            last_payment_id: null,
-            last_payment_status: null
-          });
-          await fetch(`/api/ai/${resData?.data?.user?.id}/nu`);
-          console.log(resData?.data?.user?.id);
-          toast.success(tr('verifyEmail'));
-          setRegistered(true);
-          setLoading(false);
+          const user = resData?.data?.user;
+          if (!!user) {
+            console.log(resData);
+            const { error } = await supabase.from('user-data').insert({
+              id: user.id,
+              dataset: null,
+              run_id: null,
+              model_tokens: null,
+              image_tokens: null,
+              last_payment_id: null,
+              last_payment_status: null
+            });
+            await fetch(`/api/ai/${user.id}/nu`);
+            toast.success(tr('verifyEmail'));
+            setRegistered(true);
+            setLoading(false);
+          } else {
+            toast.error('error');
+            setLoading(false);
+          }
         });
     } else if (!validateEmail(email)) {
       toast.error(tr('wrongEmailFormat'));
@@ -231,7 +237,11 @@ function Register() {
             type="submit"
             className="w-full disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 border disabled:border-gray-400 bg-black text-white dark:bg-white dark:text-black py-2 px-4 mb-2 rounded-lg dark:hover:bg-gray-300 hover:bg-gray-800 transition-all"
             disabled={
-              !tos || !validEmail || !validPassword || password !== confirmation
+              !tos ||
+              !validEmail ||
+              !validPassword ||
+              password !== confirmation ||
+              loading
             }
           >
             {tr('register')}
