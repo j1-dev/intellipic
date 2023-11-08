@@ -10,6 +10,7 @@ import { ClipLoader } from 'react-spinners';
 import { useTheme } from '@/app/core/utils/ThemeContext';
 import { UserResponse } from '@supabase/supabase-js';
 import { BsCheckCircle, BsXCircle } from 'react-icons/bs';
+import Tooltip from './Tooltip';
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -133,9 +134,9 @@ function Register() {
               {!!email && email.length > 0 && validEmail ? (
                 <BsCheckCircle size={20} color="#4FEB40" />
               ) : (
-                <div className="tooltip" data-tip={tr('wrongEmailFormat')}>
+                <Tooltip content={tr('wrongEmailFormat')}>
                   <BsXCircle size={20} color="#FF1221" />
-                </div>
+                </Tooltip>
               )}
             </div>
           </div>
@@ -170,9 +171,9 @@ function Register() {
               {!!password && password.length > 0 && validPassword ? (
                 <BsCheckCircle size={20} color="#4FEB40" />
               ) : (
-                <div className="tooltip" data-tip={tr('wrongPasswordError')}>
+                <Tooltip content={tr('wrongPasswordError')}>
                   <BsXCircle size={20} color="#FF1221" />
-                </div>
+                </Tooltip>
               )}
             </div>
           </div>
@@ -204,12 +205,9 @@ function Register() {
               validatePassword(confirmation) ? (
                 <BsCheckCircle size={20} color="#1FFF10" />
               ) : (
-                <div
-                  className="tooltip"
-                  data-tip={tr('wrongConfirmationError')}
-                >
+                <Tooltip content={tr('noMatch')}>
                   <BsXCircle size={20} color="#FF1221" />
-                </div>
+                </Tooltip>
               )}
             </div>
           </div>
