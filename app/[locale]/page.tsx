@@ -103,11 +103,23 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
+
       <section className="py-5">
         <div className="max-w-screen-lg mx-auto px-8 ">
           <GoodVsBad />
         </div>
       </section>
+
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
 
       <section className="py-5">
         <div className="max-w-screen-lg mx-auto px-8 ">
@@ -117,6 +129,12 @@ export default function Home() {
           <HomeExamples />
         </div>
       </section>
+
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
@@ -169,6 +187,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
