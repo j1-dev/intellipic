@@ -40,6 +40,14 @@
         "description": "Debido a los recursos sustanciales necesarios para el entrenamiento, no es factible proporcionar este servicio de forma gratuita."
       }
     },
+    "GoodVsBad":{
+      "GoodVsBadTitle": "Imagenes Buenas Vs Imagenes Malas",
+      "GoodPhotoExamples": "Ejemplos de buenas fotos",
+      "GoodPhotoDef": "Autofotos de primer plano, misma persona, adultos, variedad de fondos, expresiones faciales, inclinaciones de cabeza y ángulos.",
+
+      "BadPhotoExamples": "Ejemplos de malas fotos",
+      "BadPhotoDef": "Fotos grupales, de cuerpo entero, niños, fotos iguales-monotonas, desnudos"
+    },
     "examples": {
       "title": "Ejemplos 📸"
     },

@@ -8,6 +8,7 @@ const Logo = dynamic(() => import('@/app/core/resources/logo'));
 const HomeExamples = dynamic<{}>(() =>
   import('@/components/HomeExamples').then((c) => c.HomeExamples)
 );
+const GoodVsBad = dynamic<{}>(() => import('@/components/GoodVsBad'));
 
 export default function Home() {
   const t = useTranslations('Home');
@@ -99,6 +100,12 @@ export default function Home() {
               <p>{t('features.feature6.description')}</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-5">
+        <div className="max-w-screen-lg mx-auto px-8 ">
+          <GoodVsBad />
         </div>
       </section>
 

@@ -43,6 +43,14 @@
     "examples": {
       "title": "Examples 📸"
     },
+    "GoodVsBad":{
+      "GoodVsBadTitle": "Good VS Bad",
+      "GoodPhotoExamples": "Good Photo Examples",
+      "GoodPhotoDef": "Close-up selfies, same person, adults, variety of backgrounds, facial expressions, head tilts and angles",
+
+      "BadPhotoExamples": "Bad Photo Examples",
+      "BadPhotoDef": "Group shots, full-lenght, kids, covered faces, animals, monotonous pics, nudes"
+    },
     "prices": {
       "title": "Prices 💰",
       "trainModel": {
