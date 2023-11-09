@@ -10,14 +10,49 @@ export const prompts = [
       'closeup portrait of @me as a paladin, wearing brilliant white armor and a crown, fantasy concept art, artstation trending, highly detailed, beautiful landscape in the background.'
   },
   {
+    name: 'Harry Potter',
+    prompt:
+      'closeup portrait of @me as a wizard or witch at Hogwarts, wearing the house colors, holding a wand, with the magical castle towering behind them.'
+  },
+  {
     name: 'Hobbit',
     prompt:
       'Closeup portrait of @me as a Hobbit, small, big brown eyes, green and brown clothing, detailed facial features, small feet, wispy hair, fantasy concept art, artstation trending, highly detailed.'
   },
   {
-    name: 'Harry Potter',
+    name: 'Link',
     prompt:
-      'closeup portrait of @me as a Harry Potter character, Hogwarts castle in the background, detailed lighting.'
+      'Closeup portrait of @me as the Hero of Hyrule, clad in the iconic green tunic, with the Sheikah Slate strapped to the hip, overlooking the vast and colorful landscapes of Hyrule.'
+  },
+  {
+    name: 'Matrix',
+    prompt:
+      'Closeup portrait of @me as a sleek cyberpunk rebel, wearing a long trench coat and sunglasses, with the iconic green digital code cascading in the background.'
+  },
+  {
+    name: 'Skyrim',
+    prompt:
+      'Close up portrait of @me as a seasoned Witcher, silver sword at the ready, standing in the midst of a dark and mysterious forest filled with mythical creatures.'
+  },
+  {
+    name: 'Borderlands',
+    prompt:
+      'Closeip portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.'
+  },
+  {
+    name: 'Avatar',
+    prompt:
+      'Closeup portrait @me as a charismatic vault hunter, surrounded by the vibrant and chaotic landscapes of Pandora, with an assortment of quirky weapons at their side, cel shading.'
+  },
+  {
+    name: 'Fortnite',
+    prompt:
+      'Closeup portrait of @me as a vibrant and customizable Fortnite character, showcasing unique emotes and accessories, surrounded by the ever-shifting landscapes of the island.'
+  },
+  {
+    name: 'Overwatch',
+    prompt:
+      'Closeup portrait of @me into a heroic Overwatch character, equipped with high-tech weaponry and donned in futuristic armor, standing confidently on the edge of a skyscraper overlooking a bustling city.'
   },
   {
     name: 'Elf',
@@ -108,9 +143,5 @@ export const prompts = [
     prompt:
       'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background'
   }
-  // {
-  //   name: 'Zombie',
-  //   prompt:
-  //     'closeup portrait of @me as a zombie, decaying skin and clothing, dark and eerie, highly detailed, photorealistic, 8k, ultra realistic, horror style.'
-  // },
+
 ];

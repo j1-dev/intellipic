@@ -8,6 +8,7 @@ const Logo = dynamic(() => import('@/app/core/resources/logo'));
 const HomeExamples = dynamic<{}>(() =>
   import('@/components/HomeExamples').then((c) => c.HomeExamples)
 );
+const GoodVsBad = dynamic<{}>(() => import('@/components/GoodVsBad'));
 
 export default function Home() {
   const t = useTranslations('Home');
@@ -102,6 +103,24 @@ export default function Home() {
         </div>
       </section>
 
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
+
+      <section className="py-5">
+        <div className="max-w-screen-lg mx-auto px-8 ">
+          <GoodVsBad />
+        </div>
+      </section>
+
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
+
       <section className="py-5">
         <div className="max-w-screen-lg mx-auto px-8 ">
           <h2 className="text-2xl font-bold mb-4">{t('examples.title')}</h2>
@@ -110,6 +129,12 @@ export default function Home() {
           <HomeExamples />
         </div>
       </section>
+
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">
@@ -162,6 +187,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <div className="max-w-screen-lg px-8 mx-auto">
+        <div className="my-4 border-b-[1px] border-black dark:border-white transition-all">
+          <hr className="opacity-0" />
+        </div>
+      </div>
 
       <section className="py-16">
         <div className="max-w-screen-lg mx-auto px-8">

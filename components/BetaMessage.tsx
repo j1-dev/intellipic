@@ -22,8 +22,8 @@ function UnderDevelopmentMessage() {
 
   return (
     isMessageVisible && (
-      <div className="bg-yellow-200 text-yellow-800 p-4 fixed bottom-0 left-0 right-0 z-50">
-        <div className="container mx-auto flex items-center justify-between">
+      <div className="bg-yellow-200 text-yellow-800 p-8 fixed bottom-0 left-0 right-0 z-50">
+        <div className="container mx-auto flex items-center justify-between text-2xl">
           <p>{t('beta')}</p>
           <button
             onClick={closeMessage}

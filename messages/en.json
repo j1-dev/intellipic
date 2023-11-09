@@ -51,6 +51,14 @@
     "examples": {
       "title": "Examples 📸"
     },
+    "GoodVsBad":{
+      "GoodVsBadTitle": "Good VS Bad",
+      "GoodPhotoExamples": "Good Photo Examples",
+      "GoodPhotoDef": "Close-up selfies, same person, adults, variety of backgrounds, facial expressions, head tilts and angles",
+
+      "BadPhotoExamples": "Bad Photo Examples",
+      "BadPhotoDef": "Group shots, full-lenght, kids, covered faces, animals, monotonous pics, nudes"
+    },
     "prices": {
       "title": "Prices 💰",
       "trainModel": {
@@ -381,7 +389,7 @@
     "faqLink": "FAQs",
     "uploadLabel": "Upload Images",
     "step2Label": "Step 2: Name Your Model",
-    "step2Description": "Now is the time to give your model a unique and special name. This name will help identify the subject you are working with. For example, if your subject is Maria, you could use a name like TOKMAR. Remember, the more unique and different the name, the better the model will recognize your subject! Also, please select the type of subject you are using: is it a person, a car, an animal, a plant, or something else? This will ensure the model generates coherent images.",
+    "step2Description": "Now is the time to give your model a unique and special name. This name will help identify the subject you are working with.",
     "nameLabel": "Unique Name",
     "uniqueNamePlaceholder": "Unique Name",
     "subjectTypeLabel": "Subject Type",
