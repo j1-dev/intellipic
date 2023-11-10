@@ -27,12 +27,17 @@ export const prompts = [
   {
     name: 'Matrix',
     prompt:
-      'Closeup portrait of @me as a sleek cyberpunk rebel, wearing a long trench coat and sunglasses, with the iconic green digital code cascading in the background.'
+      'Closeup portrait of @me as a sleek cyberpunk rebel, wearing a long trench coat, with the iconic green digital code cascading in the background.'
+  },
+  {
+    name: 'The Witcher',
+    prompt:
+      'Close up portrait of @me as a seasoned Witcher, silver sword at the ready, standing in the midst of a dark and mysterious forest filled with mythical creatures.'
   },
   {
     name: 'Skyrim',
     prompt:
-      'Close up portrait of @me as a seasoned Witcher, silver sword at the ready, standing in the midst of a dark and mysterious forest filled with mythical creatures.'
+      'closeup portrait of @me as a seasoned adventurer in the world of Skyrim. The backdrop is the ancient city of Whiterun, its towering stone walls and the Dragonsreach castle visible in the distance.'
   },
   {
     name: 'Borderlands',
