@@ -40,6 +40,14 @@
         "description": "Debido a los recursos sustanciales necesarios para el entrenamiento, no es factible proporcionar este servicio de forma gratuita."
       }
     },
+    "GoodVsBad":{
+      "GoodVsBadTitle": "Imagenes Buenas Vs Imagenes Malas",
+      "GoodPhotoExamples": "Ejemplos de buenas fotos",
+      "GoodPhotoDef": "Autofotos de primer plano, misma persona, adultos, variedad de fondos, expresiones faciales, inclinaciones de cabeza y ángulos.",
+
+      "BadPhotoExamples": "Ejemplos de malas fotos",
+      "BadPhotoDef": "Fotos grupales, de cuerpo entero, niños, fotos iguales-monotonas, desnudos"
+    },
     "examples": {
       "title": "Ejemplos 📸"
     },
@@ -373,7 +381,7 @@
     "faqLink": "preguntas frecuentes",
     "uploadLabel": "Subir Imágenes",
     "step2Label": "2o paso: Nombra tu modelo",
-    "step2Description": "Ahora es el momento de darle un nombre único y especial a tu modelo. Este nombre ayudará a identificar al sujeto con el que estás trabajando. Por ejemplo, si tu sujeto es María, podrías usar un nombre como TOKMAR. Recuerda que mientras más único y diferente sea el nombre, ¡mejor reconocerá el modelo a tu sujeto! También, por favor, selecciona el tipo de sujeto que estás utilizando: ¿es una persona, un coche, un animal, una planta u otra cosa? Esto asegurará que el modelo genere imágenes coherentes.",
+    "step2Description": "Ahora es el momento de darle un nombre único y especial a tu modelo. Este nombre ayudará a identificar al sujeto con el que estás trabajando.",
     "nameLabel": "Nombre Único",
     "uniqueNamePlaceholder": "Nombre Único",
     "subjectTypeLabel": "Tipo de sujeto",

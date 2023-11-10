@@ -29,7 +29,7 @@ export const HomeExamples = () => {
             className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-8 xl:aspect-h-8"
           >
             <Image
-              alt="Elon Musk"
+              alt=""
               src={image}
               className="group-hover:opacity-75  transition-all"
             />
