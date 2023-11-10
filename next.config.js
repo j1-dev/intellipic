@@ -10,12 +10,32 @@ module.exports = withNextIntl({
   swcMinify: true,
   compress: true,
   images: {
-    domains: [
-      'photoshot.app',
-      'i.ibb.co',
-      'bit.ly',
-      'pbxt.replicate.delivery',
-      'replicate.delivery'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'photoshot.app',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'bit.ly',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'pbxt.replicate.delivery',
+        port: ''
+      },
+      {
+        protocol: 'https',
+        hostname: 'replicate.delivery',
+        port: ''
+      }
     ]
   }
 });
