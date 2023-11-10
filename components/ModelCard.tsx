@@ -19,7 +19,7 @@ export default function ModelCard({
 
   function translateStatus(status: string) {
     if (status === 'starting') {
-      return t('starting') + ' 🆕';
+      return t('starting');
     }
     if (status === 'processing') {
       if (props.progress >= 0) {
@@ -29,7 +29,7 @@ export default function ModelCard({
       }
     }
     if (status === 'succeeded') {
-      return t('succeeded') + ' ✅';
+      return t('succeeded');
     }
   }
 
@@ -42,9 +42,18 @@ export default function ModelCard({
               {t('modelName') + props.token}
             </p>
             <div className="w-16 border-b-[1px] border-blue-500 mb-3 "></div>
-            <p className="text-sm ">
-              {t('modelStatus') + translateStatus(status)}
-            </p>
+            <div className="inline-flex">
+              <p className="text-sm">{t('modelStatus')}</p>
+              <p
+                className={`text-sm ml-1 rounded-full px-2 ${
+                  status === 'starting' && 'bg-blue-200 text-blue-900'
+                } ${
+                  status === 'processing' && 'bg-yellow-200 text-yellow-900'
+                } ${status === 'succeeded' && 'bg-green-200 text-green-900'}`}
+              >
+                {translateStatus(status)}
+              </p>
+            </div>
           </div>
         </div>
       </Link>

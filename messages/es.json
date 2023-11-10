@@ -375,7 +375,7 @@
   },
   "TrainPage":{
     "trainLabel": "Entrenar 🦾",
-    "tokensLabel": "Créditos para entrenar",
+    "tokensLabel": "Créditos para entrenar:",
     "step1Label": "1er paso: Subir imágenes",
     "step1Description": "Primero, asegúrate de tener entre 6 y 10 imágenes de alta calidad para entrenar a tu modelo. Para obtener los mejores resultados, tus imágenes deben ser primeros planos preferiblemente, solo debe salir el sujeto y este deberá verse entero. Para ver ejemplos de imágenes válidas y no válidas, ve a ",
     "faqLink": "preguntas frecuentes",
