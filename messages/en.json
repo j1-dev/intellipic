@@ -40,6 +40,14 @@
         "description": "Due to substantial resources required for training, providing this service for free is not feasible."
       }
     },
+    "GoodVsBad":{
+      "GoodVsBadTitle": "Good VS Bad",
+      "GoodPhotoExamples": "Good Photo Examples",
+      "GoodPhotoDef": "Close-up selfies, same person, adults, variety of backgrounds, facial expressions, head tilts and angles",
+
+      "BadPhotoExamples": "Bad Photo Examples",
+      "BadPhotoDef": "Group shots, full-lenght, kids, covered faces, animals, monotonous pics, nudes"
+    },
     "examples": {
       "title": "Examples 📸"
     },

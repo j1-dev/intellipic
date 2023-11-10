@@ -39,6 +39,9 @@ export async function POST(request: Request) {
       const userId = paymentIntent?.metadata?.userId;
       const amount = paymentIntent?.amount_total;
       const status = paymentIntent?.payment_status;
+      console.log(userId);
+      console.log(amount);
+      console.log(status);
 
       if (status === 'paid') {
         const { data: userData } = await supabase
