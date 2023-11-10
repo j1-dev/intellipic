@@ -79,32 +79,34 @@ export default function Prompts() {
   ];
 
   return (
-    <div className=" hover:cursor-pointer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-      {promptInfo.map((data, index) => (
-        <div onClick={() => handlePhotoClick(data.img)} key={index}>
-          <PromptCard img={data.img} text={data.text1} key={index} />
-        </div>
-      ))}
-      {SelectedPhoto && (
-        <Dialog
-          open={true}
-          onClose={closeModal}
-          className="fixed inset-0 z-40 overflow-y-auto"
-        >
-          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="bg-white dark:bg-black border border-black dark:border-white z-50 w-full max-w-lg p-2 rounded-lg transition-all">
-              <Image
-                src={SelectedPhoto}
-                alt="Selected Photo"
-                width={512}
-                height={512}
-                className="inset-0 z-40 overflow-y-auto"
-              />
-            </div>
+    <div className="flex justify-center">
+      <div className="hover:cursor-pointer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        {promptInfo.map((data, index) => (
+          <div onClick={() => handlePhotoClick(data.img)} key={index}>
+            <PromptCard img={data.img} text={data.text1} key={index} />
           </div>
-        </Dialog>
-      )}
+        ))}
+        {SelectedPhoto && (
+          <Dialog
+            open={true}
+            onClose={closeModal}
+            className="fixed inset-0 z-40 overflow-y-auto"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="bg-white dark:bg-black border border-black dark:border-white z-50 w-full max-w-lg p-2 rounded-lg transition-all">
+                <Image
+                  src={SelectedPhoto}
+                  alt="Selected Photo"
+                  width={512}
+                  height={512}
+                  className="inset-0 z-40 overflow-y-auto"
+                />
+              </div>
+            </div>
+          </Dialog>
+        )}
+      </div>
     </div>
   );
 }
