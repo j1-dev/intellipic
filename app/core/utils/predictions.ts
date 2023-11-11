@@ -1,9 +1,9 @@
 export default function replacePromptToken(
-  prompt: string
+  prompt: string,
   //token: string
-  //instanceClass: string
+  instanceClass: string
 ) {
-  const refinedPrompt = prompt.replaceAll('@me', 'TOK');
+  const refinedPrompt = prompt.replaceAll('@me', 'TOK ' + instanceClass);
 
   return refinedPrompt;
 }

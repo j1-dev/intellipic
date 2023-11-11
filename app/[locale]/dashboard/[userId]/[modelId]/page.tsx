@@ -137,7 +137,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt);
+      const prompt = replacePromptToken(instancePrompt, instanceClass);
       post(
         `/api/ai/${id}/call-model`,
         {
@@ -387,7 +387,7 @@ export default function ModelPage() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                   <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                    <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                       <div className="px-1 py-1 ">
                         {p.map((prompt: any) => {
                           return (
