@@ -308,9 +308,9 @@
   },
   "ModelPage": {
     "modelTitle": "Modelos 🤖",
-    "modelToken": "Token del modelo: token",
-    "tokenInfo": "Escribe tu prompt usando el token del modelo o @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
-    "remainingTokens": "Créditos restantes: ",
+    "modelToken": "Nombre del modelo: token",
+    "tokenInfo": "Escribe tu prompt usando @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
+    "remainingTokens": "Créditos de imagen: ",
     "deleteModel": "Eliminar Modelo",
     "advancedMethodWarning": "Este método está pensado para usuarios experimentados, prueba los estilos predeterminados si no obtienes los resultados esperados",
     "generatedPrompt": "Generador de estilos",

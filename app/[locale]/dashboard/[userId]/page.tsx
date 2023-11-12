@@ -111,11 +111,24 @@ export default function DashboardPage() {
     <div className="py-8">
       <div className="max-w-screen-lg mx-auto px-8">
         <h2 className="text-4xl font-bold mb-4">{t('title')}</h2>
-        <h3 className="text-xl mb-4">
-          {t('tokensToTrain')}{' '}
-          {!!userData && userData.model_tokens !== undefined
-            ? userData.model_tokens
-            : '...'}
+        <h3 className="font-bold text-xl mb-4 inline-flex">
+          <div>
+            {'🪙🤖: '}
+            {!!userData &&
+            userData.model_tokens !== undefined &&
+            userData.model_tokens !== null
+              ? userData.model_tokens
+              : '...'}
+          </div>
+
+          <div className="mx-4">
+            {'🪙📷: '}
+            {!!userData &&
+            userData.image_tokens !== undefined &&
+            userData.image_tokens !== null
+              ? userData.image_tokens
+              : '...'}
+          </div>
         </h3>
 
         {models && models.length !== 0 ? (

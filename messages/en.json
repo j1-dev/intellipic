@@ -308,9 +308,9 @@
   },
   "ModelPage": {
     "modelTitle": "Models 🤖",
-    "modelToken": "Model Token: token",
-    "tokenInfo": "Write your prompt using the model token or @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
-    "remainingTokens": "Remaining credits: ",
+    "modelToken": "Model Name: token",
+    "tokenInfo": "Write your prompt using @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
+    "remainingTokens": "Image credits: ",
     "deleteModel": "Delete Model",
     "advancedMethodWarning": "This method is designed for experienced users. Try the default styles if you're not getting the expected results",
     "generatedPrompt": "Style Generator",
