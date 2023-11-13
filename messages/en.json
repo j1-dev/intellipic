@@ -14,17 +14,17 @@
       "cta": "Get Started"
     },
     "features": {
-      "title": "Features ✨",
+      "title": "How does it work? ✨",
       "feature1": {
-        "title": "Upload Image 📷",
-        "description": "Smoothly upload your favorite images of any subject you desire."
+        "title": "Step 1: Upload Images",
+        "description": "Upload between 6 and 10 images of the subject you want to use to train the AI. Ensure that the photos meet the necessary characteristics for the AI to learn its features well."
       },
       "feature2": {
-        "title": "Neural Network Training 🧠",
-        "description": "Utilize cutting-edge neural network technology to learn from the uploaded images and understand the subject's unique characteristics."
+        "title": "Step 2: Train the AI",
+        "description": "Once you have uploaded the images, the AI will start processing them and learning their characteristics. This process takes between 10 and 15 minutes. You can close the page and do other things while you wait."
       },
       "feature3": {
-        "title": "Style Selection 🌈",
+        "title": "Step 3: Create New Images",
         "description": "Choose from a wide collection of styles to apply to your images, allowing you to create stunning visual combinations."
       },
       "feature4": {
@@ -41,12 +41,12 @@
       }
     },
     "GoodVsBad":{
-      "GoodVsBadTitle": "Good VS Bad",
+      "GoodVsBadTitle": "Good Photos VS Bad Photos",
+            "GoodVsBadDescription":"Tips for determining what type of image you should use to train the AI.",
       "GoodPhotoExamples": "Good Photo Examples",
-      "GoodPhotoDef": "Close-up selfies, same person, adults, variety of backgrounds, facial expressions, head tilts and angles",
-
+      "GoodPhotoDef": "Close-up selfies of the same person, with a diverse range of backgrounds, capturing various facial expressions, head tilts, and angles to provide a comprehensive dataset for effective AI training.",
       "BadPhotoExamples": "Bad Photo Examples",
-      "BadPhotoDef": "Group shots, full-lenght, kids, covered faces, animals, monotonous pics, nudes"
+      "BadPhotoDef": "Group shots, full-length images, pictures of children, photos with covered faces or animals, monotonous and repetitive pictures, and explicit content, such as nudes, which may hinder the AI's ability to learn and generalize effectively."
     },
     "examples": {
       "title": "Examples 📸"

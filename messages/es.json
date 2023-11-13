@@ -14,17 +14,17 @@
       "cta": "Comenzar"
     },
     "features": {
-      "title": "Características ✨",
+      "title": "¿Cómo funciona? ✨",
       "feature1": {
-        "title": "Subir imagen 📷",
-        "description": "Sube sin problemas tus imágenes favoritas de cualquier tema que desees."
+        "title": "Paso 1: Subir Imágenes",
+        "description": "Sube entre 6 y 10 imágenes del sujeto que quieras usar para entrenar a la IA. Asegúrate que las fotos cumplen con las características necesarias para que la IA aprenda bien sus rasgos."
       },
       "feature2": {
-        "title": "Entrenamiento de la red neuronal 🧠",
-        "description": "Utiliza tecnología de vanguardia de redes neuronales para aprender de las imágenes subidas y comprender las características únicas del sujeto."
+        "title": "Paso 2: Entrenar la IA",
+        "description": "Una vez hayas subido las imágenes, la IA empezará a procesarlas y a aprender sus características. Este proceso dura entre 10 y 15 minutos. Puedes cerrar la página y hacer otras cosas mientras esperas."
       },
       "feature3": {
-        "title": "Selección de estilo 🌈",
+        "title": "Paso 3: Crea Nuevas Imágenes",
         "description": "Elige entre una amplia colección de estilos para aplicar a tus imágenes, lo que te permitirá crear combinaciones visuales impresionantes."
       },
       "feature4": {
@@ -41,12 +41,12 @@
       }
     },
     "GoodVsBad":{
-      "GoodVsBadTitle": "Imagenes Buenas Vs Imagenes Malas",
+      "GoodVsBadTitle": "Fotos Buenas Vs Fotos Malas",
+      "GoodVsBadDescription":"Consejos para saber qué tipo de imagen deberías usar para entrenar la IA",
       "GoodPhotoExamples": "Ejemplos de buenas fotos",
-      "GoodPhotoDef": "Autofotos de primer plano, misma persona, adultos, variedad de fondos, expresiones faciales, inclinaciones de cabeza y ángulos.",
-
+      "GoodPhotoDef": "Selfies cercanas de la misma persona, con una variedad de fondos, capturando diversas expresiones faciales, incluyendo inclinaciones de cabeza y ángulos para proporcionar un conjunto de datos completo para un entrenamiento efectivo de la IA.",
       "BadPhotoExamples": "Ejemplos de malas fotos",
-      "BadPhotoDef": "Fotos grupales, de cuerpo entero, niños, fotos iguales-monotonas, desnudos"
+      "BadPhotoDef": "Fotos grupales, imágenes de cuerpo completo, fotos de niños, imágenes con caras cubiertas o animales, fotos monótonas y repetitivas, y contenido explícito como desnudos, que pueden dificultar la capacidad de la IA para aprender y generalizar de manera efectiva."
     },
     "examples": {
       "title": "Ejemplos 📸"
