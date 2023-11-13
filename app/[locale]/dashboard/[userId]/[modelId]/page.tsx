@@ -456,7 +456,7 @@ export default function ModelPage() {
               <Button
                 onClick={handleCallModel}
                 cooldownTime={4000}
-                className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 400"
+                className=" bg-blue-600 text-white border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
                 {queueingPrediction ? t('generating') : t('generate')}
@@ -469,7 +469,7 @@ export default function ModelPage() {
                     handleCancelPrediction();
                   }}
                   cooldownTime={5000}
-                  className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
+                  className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-400"
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction
