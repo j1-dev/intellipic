@@ -461,7 +461,7 @@ export default function TrainPage() {
                   }
                   cooldownTime={5000}
                   onClick={handleValidationAndFinetuningStart}
-                  className="mt-3 bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black border rounded py-2 px-4 transition-all float-"
+                  className="mt-3 bg-blue-600 text-white  hover:bg-white hover:text-black hover:border-blue-600 dark:hover:bg-black dark:hover:text-white dark:hover:border-white border rounded py-2 px-4 transition-all disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-400"
                 >
                   {t('continueButton')}
                 </Button>
@@ -554,14 +554,14 @@ export default function TrainPage() {
             <div className="w-full relative">
               <button
                 onClick={() => clearUserData()}
-                className="border border-black dark:border-white text-white rounded-md p-3 bg-indigo-600 hover:bg-indigo-800 dark:bg-indigo-900 dark:hover:bg-indigo-400 transition-all duratio-150 absolute left-1/2 -translate-x-1/2 mt-7"
+                className="border dark:border-white text-white rounded-md py-2 px-4  bg-red-600 hover:bg-red-800 dark:bg-red-700 transition-all duratio-150 absolute left-1/2 -translate-x-1/2 mt-7"
               >
                 {t('startOverButton')}
               </button>
             </div>
           )}
 
-          {fineTuningSucceeded && (
+          {/* {fineTuningSucceeded && (
             <div className="w-full relative">
               <button
                 onClick={() => clearUserData()}
@@ -570,7 +570,7 @@ export default function TrainPage() {
                 {t('startOverButton')}
               </button>
             </div>
-          )}
+          )} */}
 
           {fineTuningData?.run_id && !fineTuningSucceeded && (
             <div className="w-full relative">
