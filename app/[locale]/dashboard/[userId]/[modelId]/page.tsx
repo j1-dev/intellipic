@@ -137,7 +137,7 @@ export default function ModelPage() {
   async function handleCallModel() {
     let tokens = userData.image_tokens;
     if (tokens > 0) {
-      const prompt = replacePromptToken(instancePrompt);
+      const prompt = replacePromptToken(instancePrompt, instanceClass);
       post(
         `/api/ai/${id}/call-model`,
         {
@@ -273,7 +273,7 @@ export default function ModelPage() {
       </h3>
       <span>{t('tokenInfo')}</span>
       <div className="relative mb-24">
-        <span className="absolute lef-0 my-7 font-semibold">
+        <span className="absolute lef-0 my-7 font-semibold text-xl">
           {t('remainingTokens')} {userData.image_tokens}
         </span>
         <button
@@ -387,7 +387,7 @@ export default function ModelPage() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                   <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                    <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                       <div className="px-1 py-1 ">
                         {p.map((prompt: any) => {
                           return (
@@ -456,7 +456,7 @@ export default function ModelPage() {
               <Button
                 onClick={handleCallModel}
                 cooldownTime={4000}
-                className=" bg-blue-600 text-white disabled:hover:text-white disabled:border-gray-400 border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:bg-gray-400 disabled:hover:bg-gray-400 disabled:hover:dark:bg-gray-400"
+                className=" bg-blue-600 text-white border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-400"
                 disabled={queueingPrediction || modelStatus !== 'succeeded'}
               >
                 {queueingPrediction ? t('generating') : t('generate')}
@@ -469,7 +469,7 @@ export default function ModelPage() {
                     handleCancelPrediction();
                   }}
                   cooldownTime={5000}
-                  className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 "
+                  className="w-max bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded transition-all ml-2 py-2 px-4 disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-400"
                   disabled={!queueingPrediction || cancellingPrediction}
                 >
                   {cancellingPrediction

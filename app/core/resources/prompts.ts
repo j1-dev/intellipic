@@ -60,6 +60,11 @@ export const prompts = [
       'Closeup portrait of @me into a heroic Overwatch character, equipped with high-tech weaponry and donned in futuristic armor, standing confidently on the edge of a skyscraper overlooking a bustling city.'
   },
   {
+    name: 'Sims',
+    prompt:
+      'Close up portrait of @me as a character from The Sims 4, living life in a cozy suburban home, with various furniture, decorations, and even a pet by your side.'
+  },
+  {
     name: 'Elf',
     prompt:
       'Closeup portrait of @me as an elf, fantasy concept art, detailed armor, majestic background.'
@@ -148,5 +153,4 @@ export const prompts = [
     prompt:
       'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background'
   }
-
 ];

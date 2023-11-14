@@ -78,27 +78,26 @@ export default function Home() {
               </h3>
               <p>{t('features.feature3.description')}</p>
             </div>
-            {/* Feature 4 */}
+            {/* 
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
                 {t('features.feature4.title')}
               </h3>
               <p>{t('features.feature4.description')}</p>
             </div>
-            {/* Feature 5 */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
                 {t('features.feature5.title')}
               </h3>
               <p>{t('features.feature5.description')}</p>
             </div>
-            {/* Feature 6 */}
             <div className="card p-6">
               <h3 className="text-xl font-bold mb-2">
                 {t('features.feature6.title')}
               </h3>
               <p>{t('features.feature6.description')}</p>
             </div>
+             */}
           </div>
         </div>
       </section>
