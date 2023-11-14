@@ -17,6 +17,8 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useTheme } from '@/app/core/utils/ThemeContext';
 import { decryptData, encryptData } from '@/app/core/utils/encrypt';
+import { Dialog } from '@headlessui/react';
+import GoodVsBad from '@/components/GoodVsBad';
 
 export default function TrainPage() {
   const router = useRouter();
@@ -84,6 +86,7 @@ export default function TrainPage() {
   });
   const [ethnicity, setEthnicity] = useState('none');
   const [eyeColor, setEyeColor] = useState('none');
+  const [open, setOpen] = useState(false);
   const { theme, toggleTheme, enabled } = useTheme();
 
   useEffect(() => {
@@ -165,6 +168,10 @@ export default function TrainPage() {
     });
   }
 
+  const closeModal = () => {
+    setOpen(false);
+  };
+
   async function handleCancelTraining(runId: string) {
     if (runStatus === 'starting' || runStatus === 'processing') {
       let succesful;
@@ -233,9 +240,14 @@ export default function TrainPage() {
       } catch (error) {
         console.log(error);
       }
-      const { data } = await supabase.storage
+      const { error, data } = await supabase.storage
         .from(FINETUNING_BUCKET)
         .upload(`public/${id}/data.zip`, content);
+
+      if (error) {
+        toast.error(t('payloadTooBig'));
+      }
+
       if (data) {
         const { data, error } = await supabase
           .from('user-data')
@@ -244,7 +256,9 @@ export default function TrainPage() {
           .select();
         getModelStatus();
       }
+
       setUploading(false);
+      setOpen(false);
     });
   }
 
@@ -335,7 +349,7 @@ export default function TrainPage() {
                 <label htmlFor="files">
                   <button
                     className="hover:scale-[1.02] bg-white text-black border-black hover:bg-black hover:text-white dark:bg-black dark:text-white dark:border-white dark:hover:bg-white dark:hover:text-black w-full h-48 border rounded-lg my-4 transition-all top-0 absolute"
-                    onClick={() => !uploading && itemButton.current?.click()}
+                    onClick={() => setOpen(!open)}
                     disabled={uploading}
                   >
                     <div>
@@ -583,6 +597,36 @@ export default function TrainPage() {
                 {t('cancelTrainingButton')}
               </Button>
             </div>
+          )}
+
+          {open && (
+            <Dialog
+              open={true}
+              onClose={closeModal}
+              className="fixed inset-0 z-40 overflow-y-auto"
+            >
+              <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+              <div className="flex items-center justify-center min-h-screen">
+                <div className="bg-white dark:bg-black border border-black dark:border-white z-50 w-full max-w-xl p-2 rounded-lg transition-all relative">
+                  <GoodVsBad />
+                  <div className="flex items-center justify-center flex-col">
+                    <button
+                      className="my-5 bg-blue-600 text-white border-blue-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
+                      onClick={() => !uploading && itemButton.current?.click()}
+                    >
+                      {t('uploadLabel')}
+                    </button>
+                    {uploading && (
+                      <ClipLoader
+                        size={30}
+                        speedMultiplier={0.5}
+                        color={`${enabled ? 'white' : 'black'}`}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </Dialog>
           )}
         </div>
       ) : (
