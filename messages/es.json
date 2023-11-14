@@ -44,9 +44,9 @@
       "GoodVsBadTitle": "Fotos Buenas Vs Fotos Malas",
       "GoodVsBadDescription":"Consejos para saber qué tipo de imagen deberías usar para entrenar la IA",
       "GoodPhotoExamples": "Ejemplos de buenas fotos",
-      "GoodPhotoDef": "Selfies cercanas de la misma persona, con una variedad de fondos, capturando diversas expresiones faciales, incluyendo inclinaciones de cabeza y ángulos para proporcionar un conjunto de datos completo para un entrenamiento efectivo de la IA.",
+      "GoodPhotoDef": "Selfies de cerca, con una variedad de fondos, capturando diversas expresiones faciales, incluyendo inclinaciones de cabeza y ángulos.",
       "BadPhotoExamples": "Ejemplos de malas fotos",
-      "BadPhotoDef": "Fotos grupales, imágenes de cuerpo completo, fotos de niños, imágenes con caras cubiertas o animales, fotos monótonas y repetitivas, y contenido explícito como desnudos, que pueden dificultar la capacidad de la IA para aprender y generalizar de manera efectiva."
+      "BadPhotoDef": "Fotos grupales, imágenes de cuerpo completo, imágenes con caras cubiertas, fotos monótonas y repetitivas, y contenido explícito."
     },
     "examples": {
       "title": "Ejemplos 📸"

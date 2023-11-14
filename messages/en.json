@@ -44,9 +44,9 @@
       "GoodVsBadTitle": "Good Photos VS Bad Photos",
             "GoodVsBadDescription":"Tips for determining what type of image you should use to train the AI.",
       "GoodPhotoExamples": "Good Photo Examples",
-      "GoodPhotoDef": "Close-up selfies of the same person, with a diverse range of backgrounds, capturing various facial expressions, head tilts, and angles to provide a comprehensive dataset for effective AI training.",
+      "GoodPhotoDef": "Close-up selfies, with a diverse range of backgrounds, capturing various facial expressions, head tilts, and angles.",
       "BadPhotoExamples": "Bad Photo Examples",
-      "BadPhotoDef": "Group shots, full-length images, pictures of children, photos with covered faces or animals, monotonous and repetitive pictures, and explicit content, such as nudes, which may hinder the AI's ability to learn and generalize effectively."
+      "BadPhotoDef": "Group shots, full-length images, photos with covered faces, monotonous and repetitive pictures, and explicit content."
     },
     "examples": {
       "title": "Examples 📸"
