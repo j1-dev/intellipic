@@ -31,7 +31,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsCheckCircleFill
-            size={30}
             color="#1FFF10"
             className="absolute bottom-2 right-2"
           />
@@ -45,7 +44,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsCheckCircleFill
-            size={30}
             color="#1FFF10"
             className="absolute bottom-2 right-2"
           />
@@ -59,7 +57,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsCheckCircleFill
-            size={30}
             color="#1FFF10"
             className="absolute bottom-2 right-2"
           />
@@ -73,7 +70,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsCheckCircleFill
-            size={30}
             color="#1FFF10"
             className="absolute bottom-2 right-2"
           />
@@ -94,7 +90,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsXCircleFill
-            size={30}
             color="#FF1221"
             className="absolute bottom-2 right-2"
           />
@@ -108,7 +103,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsXCircleFill
-            size={30}
             color="#FF1221"
             className="absolute bottom-2 right-2"
           />
@@ -122,7 +116,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsXCircleFill
-            size={30}
             color="#FF1221"
             className="absolute bottom-2 right-2"
           />
@@ -136,7 +129,6 @@ const GoodVsBad = () => {
             />
           </div>
           <BsXCircleFill
-            size={30}
             color="#FF1221"
             className="absolute bottom-2 right-2"
           />
