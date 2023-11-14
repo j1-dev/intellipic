@@ -21,7 +21,7 @@ const GoodVsBad = () => {
         {t('GoodPhotoExamples')} ✅
       </span>
       <span className="my-2">{t('GoodPhotoDef')}</span>
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 lg:gap-x-8 xl:grid-cols-4 xl:gap-x-8 ">
+      <div className="grid grid-cols-4 gap-y-10  gap-x-6 ">
         <div className="relative">
           <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-8 xl:aspect-h-8">
             <Image
@@ -84,7 +84,7 @@ const GoodVsBad = () => {
         {t('BadPhotoExamples')} ❎
       </span>
       <span className="my-2">{t('BadPhotoDef')}</span>
-      <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-4 lg:gap-x-8 xl:grid-cols-4 xl:gap-x-8 ">
+      <div className="grid grid-cols-4 gap-y-10 gap-x-6">
         <div className="relative">
           <div className="group w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden xl:aspect-w-8 xl:aspect-h-8">
             <Image
