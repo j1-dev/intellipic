@@ -12,7 +12,7 @@ function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [id, setId] = useState<any>();
+  const [session, setSession] = useState<any>();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
   const { enabled } = useTheme();
@@ -32,6 +32,7 @@ function Login() {
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (!!session) {
         supabase.auth.setSession(session);
+        setSession(session);
         router.push(`/dashboard/${session.user.id}`);
         console.log('AAAAAAAAAAAAAAAAAAAAAAAa');
       }
@@ -54,6 +55,8 @@ function Login() {
     } else {
       setLoading(true);
       toast.success(tr('loggingIn'));
+      router.push(`/dashboard/${session.user.id}`);
+      console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBB');
     }
   };
 
