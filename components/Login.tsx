@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -24,6 +24,25 @@ function Login() {
   const handlePasswordChange = (e: any) => {
     setPassword(e.target?.value);
   };
+
+  useEffect(() => {
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!!session) {
+        let expiresIn = session.expires_in;
+        if (typeof expiresIn !== 'undefined') {
+          expiresIn += 30 * 24 * 3600;
+          session.expires_in = expiresIn;
+        }
+        supabase.auth.setSession(session);
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
