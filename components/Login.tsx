@@ -43,7 +43,7 @@ function Login() {
       console.log('Cleaning up subscription...');
       subscription.unsubscribe();
     };
-  }, [supabase.auth]);
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
