@@ -36,6 +36,9 @@ function Login() {
           session.expires_in = expiresIn;
         }
         supabase.auth.setSession(session);
+        if (!!session.user) {
+          router.push(`/dashboard/${session.user.id}`);
+        }
       }
     });
 
@@ -56,7 +59,7 @@ function Login() {
     } else {
       setLoading(true);
       toast.success(tr('loggingIn'));
-      router.push(`/dashboard/${data.user.id}`);
+      // router.push(`/dashboard/${data.user.id}`);
     }
   };
 
