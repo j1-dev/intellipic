@@ -12,10 +12,10 @@ function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
   const { enabled } = useTheme();
+  const router = useRouter();
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target?.value);
@@ -56,7 +56,7 @@ function Login() {
     } else {
       setLoading(true);
       toast.success(tr('loggingIn'));
-      router.push(`/dashboard/${data.user.id}/`);
+      // router.push('');
     }
   };
 
@@ -66,7 +66,10 @@ function Login() {
         {tr('login')}
       </h1>
       <form
-        onSubmit={handleSubmit}
+        onSubmit={() => {
+          handleSubmit;
+          router.push('/login');
+        }}
         className="max-w-screen-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
       >
         <div className="mb-4">
