@@ -31,13 +31,7 @@ function Login() {
       data: { subscription }
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (!!session) {
-        let expiresIn = session.expires_in;
-        if (typeof expiresIn !== 'undefined') {
-          expiresIn += 30 * 24 * 3600;
-          session.expires_in = expiresIn;
-        }
         supabase.auth.setSession(session);
-        setId(session.user.id);
       }
     });
 
@@ -45,11 +39,6 @@ function Login() {
       subscription.unsubscribe();
     };
   }, []);
-
-  useEffect(() => {
-    console.log('AAAAAAAAAAAAAAAAAAAAaa');
-    router.push(`/dashboard/${id}`);
-  }, [id]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -63,7 +52,6 @@ function Login() {
     } else {
       setLoading(true);
       toast.success(tr('loggingIn'));
-      // router.push('');
     }
   };
 
@@ -73,10 +61,7 @@ function Login() {
         {tr('login')}
       </h1>
       <form
-        onSubmit={async (e) => {
-          await handleSubmit(e);
-          router.push('/login');
-        }}
+        onSubmit={handleSubmit}
         className="max-w-screen-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
       >
         <div className="mb-4">
