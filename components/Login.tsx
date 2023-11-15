@@ -12,6 +12,7 @@ function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [id, setId] = useState<any>();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
   const { enabled } = useTheme();
@@ -36,6 +37,7 @@ function Login() {
           session.expires_in = expiresIn;
         }
         supabase.auth.setSession(session);
+        setId(session.user.id);
       }
     });
 
@@ -43,6 +45,10 @@ function Login() {
       subscription.unsubscribe();
     };
   }, []);
+
+  useEffect(() => {
+    router.push(`/dashboard/${id}`);
+  }, [loading]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
