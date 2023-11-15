@@ -33,6 +33,7 @@ function Login() {
       if (!!session) {
         supabase.auth.setSession(session);
         router.push(`/dashboard/${session.user.id}`);
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAa');
       }
     });
 
