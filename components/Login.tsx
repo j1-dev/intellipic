@@ -32,6 +32,7 @@ function Login() {
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (!!session) {
         supabase.auth.setSession(session);
+        router.push(`/dashboard/${session.user.id}`);
       }
     });
 
