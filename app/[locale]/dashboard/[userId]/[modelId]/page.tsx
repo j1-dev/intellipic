@@ -326,7 +326,7 @@ export default function ModelPage() {
                         </button>
                       )}
                     </Menu.Item>
-                    <Menu.Item>
+                    {/* <Menu.Item>
                       {({ active }) => (
                         <button
                           className={classNames(
@@ -343,7 +343,7 @@ export default function ModelPage() {
                           </span>
                         </button>
                       )}
-                    </Menu.Item>
+                    </Menu.Item> */}
                     <Menu.Item>
                       {({ active }) => (
                         <button
@@ -457,7 +457,11 @@ export default function ModelPage() {
                 onClick={handleCallModel}
                 cooldownTime={4000}
                 className=" bg-blue-600 text-white border-blue-600 hover:text-black  dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all disabled:dark:bg-gray-800 disabled:dark:text-gray-600 disabled:dark:border-gray-800 disabled:bg-gray-300 disabled:text-gray-400 disabled:border-gray-400"
-                disabled={queueingPrediction || modelStatus !== 'succeeded'}
+                disabled={
+                  queueingPrediction ||
+                  modelStatus !== 'succeeded' ||
+                  instancePrompt === ''
+                }
               >
                 {queueingPrediction ? t('generating') : t('generate')}
               </Button>
