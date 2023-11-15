@@ -27,17 +27,20 @@ function Login() {
   };
 
   useEffect(() => {
-    const {
-      data: { subscription }
-    } = supabase.auth.onAuthStateChange((event, session) => {
+    const handleAuthStateChange = (event: any, session: any) => {
       if (!!session) {
         supabase.auth.setSession(session);
         setSession(session);
-        console.log('aaaaaaa');
+        console.log('User logged in:', session.user.email);
       }
-    });
+    };
+
+    const {
+      data: { subscription }
+    } = supabase.auth.onAuthStateChange(handleAuthStateChange);
 
     return () => {
+      console.log('Cleaning up subscription...');
       subscription.unsubscribe();
     };
   }, [supabase.auth]);
