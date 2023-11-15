@@ -36,6 +36,7 @@ function Login() {
         // Redirect to the dashboard
         console.log(`/dashboard/${session.user.id}`);
         router.push(`/dashboard/${session.user.id}`); // Update this path accordingly
+        subscription.unsubscribe();
       }
     };
 
