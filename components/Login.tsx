@@ -66,8 +66,8 @@ function Login() {
         {tr('login')}
       </h1>
       <form
-        onSubmit={() => {
-          handleSubmit;
+        onSubmit={async (e) => {
+          await handleSubmit(e);
           router.push('/login');
         }}
         className="max-w-screen-sm p-4 bg-white dark:bg-black rounded-lg border border-black dark:border-white transition-all"
