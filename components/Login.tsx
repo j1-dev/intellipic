@@ -47,6 +47,7 @@ function Login() {
   }, []);
 
   useEffect(() => {
+    console.log('AAAAAAAAAAAAAAAAAAAAaa');
     router.push(`/dashboard/${id}`);
   }, [loading]);
 
