@@ -6,7 +6,6 @@ import Login from '@/components/Login';
 
 export default function LoginPage() {
   const locale = useLocale();
-
   return (
     <div>
       <header className="py-8">

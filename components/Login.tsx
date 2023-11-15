@@ -12,10 +12,11 @@ function Login() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter();
+  const [session, setSession] = useState<any>();
   const supabase = createClientComponentClient();
   const tr = useTranslations('Signup');
   const { enabled } = useTheme();
+  const router = useRouter();
 
   const handleEmailChange = (e: any) => {
     setEmail(e.target?.value);
@@ -26,20 +27,25 @@ function Login() {
   };
 
   useEffect(() => {
+    const handleAuthStateChange = (event: any, session: any) => {
+      if (!!session) {
+        supabase.auth.setSession(session);
+        setSession(session);
+        console.log('User logged in:', session.user.email);
+
+        // Redirect to the dashboard
+        console.log(`/dashboard/${session.user.id}`);
+        router.push(`/dashboard/${session.user.id}`); // Update this path accordingly
+        subscription.unsubscribe();
+      }
+    };
+
     const {
       data: { subscription }
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      if (!!session) {
-        let expiresIn = session.expires_in;
-        if (typeof expiresIn !== 'undefined') {
-          expiresIn += 30 * 24 * 3600;
-          session.expires_in = expiresIn;
-        }
-        supabase.auth.setSession(session);
-      }
-    });
+    } = supabase.auth.onAuthStateChange(handleAuthStateChange);
 
     return () => {
+      console.log('Cleaning up subscription...');
       subscription.unsubscribe();
     };
   }, []);
@@ -56,7 +62,6 @@ function Login() {
     } else {
       setLoading(true);
       toast.success(tr('loggingIn'));
-      router.push(`/dashboard/${data.user.id}`);
     }
   };
 
