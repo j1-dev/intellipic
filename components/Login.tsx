@@ -34,7 +34,8 @@ function Login() {
         console.log('User logged in:', session.user.email);
 
         // Redirect to the dashboard
-        router.push('/dashboard'); // Update this path accordingly
+        console.log(`/dashboard/${session.user.id}`);
+        router.push(`/dashboard/${session.user.id}`); // Update this path accordingly
       }
     };
 
