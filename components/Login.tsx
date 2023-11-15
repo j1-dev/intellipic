@@ -33,13 +33,14 @@ function Login() {
       if (!!session) {
         supabase.auth.setSession(session);
         setSession(session);
+        console.log('aaaaaaa');
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [supabase.auth]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -53,8 +54,6 @@ function Login() {
     } else {
       setLoading(true);
       toast.success(tr('loggingIn'));
-      router.push(`/dashboard/${session.user.id}`);
-      console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBB');
     }
   };
 
