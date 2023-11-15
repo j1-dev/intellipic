@@ -11,16 +11,16 @@ const intlMiddleware = createMiddleware({
 
 export async function middleware(req: NextRequest) {
   const url = req.url;
-  if (url.match('/dashboard/([^/]+)')) {
-    // We need to create a response and hand it to the supabase client to be able to modify the response headers.
-    const res = NextResponse.next();
-    // Create authenticated Supabase Client.
-    const supabase = createMiddlewareClient({ req, res });
-    // Check if we have a session
-    const {
-      data: { session }
-    } = await supabase.auth.getSession();
+  // We need to create a response and hand it to the supabase client to be able to modify the response headers.
+  const res = NextResponse.next();
+  // Create authenticated Supabase Client.
+  const supabase = createMiddlewareClient({ req, res });
+  // Check if we have a session
+  const {
+    data: { session }
+  } = await supabase.auth.getSession();
 
+  if (url.match('/dashboard/([^/]+)')) {
     const userIdRegex = /\/([0-9a-fA-F-]+)(?:\/|$)/;
     const id = url.match(userIdRegex);
 
@@ -41,6 +41,15 @@ export async function middleware(req: NextRequest) {
     redirectUrl.pathname = '/';
     redirectUrl.searchParams.set(`redirectedFrom`, req.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
+  } else if (url.match('/login/')) {
+    console.log(session);
+    if (!!session) {
+      const redirectUrl = req.nextUrl.clone();
+      redirectUrl.pathname = `/dashboard/${session.user.id}/`;
+      return NextResponse.redirect(redirectUrl);
+    } else {
+      return intlMiddleware(req);
+    }
   } else {
     return intlMiddleware(req);
   }
