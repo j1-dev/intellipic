@@ -32,6 +32,9 @@ function Login() {
         supabase.auth.setSession(session);
         setSession(session);
         console.log('User logged in:', session.user.email);
+
+        // Redirect to the dashboard
+        router.push('/dashboard'); // Update this path accordingly
       }
     };
 
