@@ -49,7 +49,7 @@ function Login() {
   useEffect(() => {
     console.log('AAAAAAAAAAAAAAAAAAAAaa');
     router.push(`/dashboard/${id}`);
-  }, [loading]);
+  }, [id]);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
