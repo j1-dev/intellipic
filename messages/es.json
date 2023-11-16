@@ -431,5 +431,16 @@
     "amber": "Ambar",
     "none": "Ninguno",
     "starting": "Empezando"
+  },
+
+  "guide": { 
+    "trainingModel": "Guide to Train a Model",
+    "trainingStep1": "Step 1: Upload Images. Upload between 6 and 10 images of the subject you want to use for training the AI. Make sure the photos meet the necessary characteristics for the AI to learn its features.",
+    "trainingStep2": "Step 2: Once you have uploaded the images, the AI will start processing and learning their features. This process takes between 10 and 15 minutes. You can close the page and do other things while you wait.",
+    "trainingStep3": "Step 3: Once the training is completed, you will see the model as finished, and you can enter and start generating images!",
+    "generatingImages": "Guide to Generate Images",
+    "generatingImageStep1": "Once you have generated a model, it will appear on the main screen as Completed. Clicking on it will take you to the screen where you can generate your images. Here, you'll see a red button to delete the model if it doesn't work as intended, a blue button to generate images, and a menu with two options: Predefined Styles and Manual Prompt. These are the two ways to generate images.",
+    "generatingImageStep2": "Option 1: Predefined Styles. This is the easiest and quickest option to start generating images. Simply choose one of the styles from the secondary menu and click Generate. After the process is complete, the image will appear on the screen, and you'll have the option to download it, as the images will be automatically deleted after 1 hour.",
+    "generatingImageStep3": "Option 2: Manual Prompt. This option is a bit more challenging to use because it requires you to know how to create a prompt that the AI can interpret. However, don't worry; here, we'll teach you how to do it. The predefined styles are prompts at their core, and if you choose a style and then switch to the manual prompt option, you'll see the prompt used for that style. For example, for the Paladin style, this prompt is used:"
   }
 }
