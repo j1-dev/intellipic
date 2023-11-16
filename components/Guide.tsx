@@ -18,8 +18,20 @@ const Guide = () => {
                 <h3 className="text-xl font-bold">{t('trainingStep3')}</h3>
             </li>
             </ul>
-            <h2 className="text-4xl font-bold mb-4">{t('generatingImages')}</h2>
+          
         </div>
+        <h2 className="text-4xl font-bold mb-4">{t('generatingImages')}</h2>
+        <ul>
+            <li>
+                <h3 className="text-xl font-bold">{t('trainingStep1')}</h3>
+            </li>
+            <li>
+                <h3 className="text-xl font-bold">{t('trainingStep2')}</h3>
+            </li>
+            <li>
+                <h3 className="text-xl font-bold">{t('trainingStep3')}</h3>
+            </li>
+            </ul>
         </div>
         );
 };
