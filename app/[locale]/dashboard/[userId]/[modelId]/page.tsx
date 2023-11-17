@@ -388,24 +388,30 @@ export default function ModelPage() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
-                      <div className="px-1 py-1 ">
+                      <div className="px-1 py-1 grid grid-cols-3">
                         {p.map((prompt: any) => {
                           return (
-                            <Menu.Item key="1">
+                            <Menu.Item key={Math.random()}>
                               {({ active }) => (
                                 <button
-                                  className={classNames(
-                                    active
-                                      ? 'border text-white bg-black'
-                                      : 'text-black hover:font-bold',
-                                    'group flex rounded-md items-center w-full px-2 py-2 text-sm'
-                                  )}
+                                  className="group inline-block rounded-md items-center w-full px-2 py-2 text-sm text-black hover:bg-gray-300"
                                   onClick={() => {
                                     setInstancePrompt(prompt.prompt);
                                     setPromptName(prompt.name);
                                   }}
                                 >
-                                  <span className="mr-2">{t(prompt.name)}</span>
+                                  <NextImage
+                                    src=""
+                                    alt="Generated image"
+                                    width={300}
+                                    height={300}
+                                    loading="eager"
+                                    priority
+                                    className="mb-4 w-full rounded-lg border border-black"
+                                  />
+                                  <p className="text-center my-1">
+                                    {t(prompt.name)}
+                                  </p>
                                 </button>
                               )}
                             </Menu.Item>
