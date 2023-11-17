@@ -387,7 +387,7 @@ export default function ModelPage() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                    <Menu.Items className="max-h-[450px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                       <div className="px-1 py-1 grid grid-cols-3">
                         {p.map((prompt: any) => {
                           return (
@@ -401,15 +401,15 @@ export default function ModelPage() {
                                   }}
                                 >
                                   <NextImage
-                                    src=""
+                                    src={prompt.image}
                                     alt="Generated image"
-                                    width={300}
-                                    height={300}
+                                    width={200}
+                                    height={200}
                                     loading="eager"
                                     priority
                                     className="mb-4 w-full rounded-lg border border-black"
                                   />
-                                  <p className="text-center my-1">
+                                  <p className="text-center ">
                                     {t(prompt.name)}
                                   </p>
                                 </button>
