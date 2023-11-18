@@ -13,6 +13,7 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   let lastFrameTime = performance.now();
   let morph = 0;
   let cooldown = cooldownTime;
+  let frameCount = 0;
 
   useEffect(() => {
     const elts = {
@@ -80,11 +81,13 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
       cooldown -= deltaTime;
 
       if (cooldown <= 0) {
+        frameCount++;
         if (shouldIncrementIndex) {
           textIndex++;
         }
-
-        doMorph();
+        if (frameCount % 6 === 0) {
+          doMorph();
+        }
       } else {
         doCooldown();
       }
