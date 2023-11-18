@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useRef } from 'react';
 
 export default function Morph({ texts }: { texts: string[] }): JSX.Element {
@@ -13,7 +11,6 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
   let lastFrameTime = performance.now();
   let morph = 0;
   let cooldown = cooldownTime;
-  let frameCount = 0;
 
   useEffect(() => {
     const elts = {
@@ -71,8 +68,6 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
     let animationFrame: number;
 
     const animate = () => {
-      animationFrame = requestAnimationFrame(animate);
-
       const shouldIncrementIndex = cooldown > 0;
       const currentTime = performance.now();
       const deltaTime = (currentTime - lastFrameTime) / 1000; // Convert to seconds
@@ -81,19 +76,18 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
       cooldown -= deltaTime;
 
       if (cooldown <= 0) {
-        frameCount++;
         if (shouldIncrementIndex) {
           textIndex++;
         }
-        if (frameCount % 6 === 0) {
-          doMorph();
-        }
+        doMorph();
       } else {
         doCooldown();
       }
+      animationFrame = requestAnimationFrame(animate);
     };
 
     animate();
+
     return () => cancelAnimationFrame(animationFrame);
   }, []);
 
@@ -110,9 +104,9 @@ export default function Morph({ texts }: { texts: string[] }): JSX.Element {
               in="SourceGraphic"
               type="matrix"
               values="1 0 0 0 0
-									0 1 0 0 0
-									0 0 1 0 0
-									0 0 0 255 -140"
+                      0 1 0 0 0
+                      0 0 1 0 0
+                      0 0 0 255 -140"
             />
           </filter>
         </defs>
