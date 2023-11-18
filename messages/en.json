@@ -433,24 +433,34 @@
     "starting": "Starting"
   },
 
-  "guide": { 
+  "Guide": { 
+    "guides": "Guides",
+    "guidesExplanation": "This section will help you understand the details of how to train a model so that it is able to properly learn the characteristics of whatever concept you want to teach it and how to generate images so that they look how you want them to look",
     "trainingModel": "Guide to Train a Model",
-    "trainingStep1": "Step 1: Upload Images. Upload between 6 and 10 images of the subject you want to use for training the AI. Make sure the photos meet the necessary characteristics for the AI to learn its features.",
-    "trainingStep2": "Step 2: Once you have uploaded the images, the AI will start processing and learning their features. This process takes between 10 and 15 minutes. You can close the page and do other things while you wait.",
-    "trainingStep3": "Step 3: Once the training is completed, you will see the model as finished, and you can enter and start generating images!",
+    "trainingStep1Title": "Step 1: Upload Images",
+    "trainingStep1Description": "Upload between 6 and 10 images of the subject you want to use for training the AI. Make sure the photos meet the necessary characteristics for the AI to learn its features.",
+    "trainingStep2Title": "Step 2: Wait for 10-12 minutes",
+    "trainingStep2Description": "Once you have uploaded the images, the AI will start processing and learning their features. This process takes between 10 and 15 minutes. You can close the page and do other things while you wait.",
+    "trainingStep3Title": "Step 3: Start Creating",
+    "trainingStep3Description": "Once the training is completed, you will see the model as finished, and you can enter and start generating images!",
     "generatingImages": "Guide to Generate Images",
     "generatingImageStep1": "Once you have generated a model, it will appear on the main screen as Completed. Clicking on it will take you to the screen where you can generate your images. Here, you'll see a red button to delete the model if it doesn't work as intended, a blue button to generate images, and a menu with two options: Predefined Styles and Manual Prompt. These are the two ways to generate images.",
-    "generatingImageStep2": "Option 1: Predefined Styles. This is the easiest and quickest option to start generating images. Simply choose one of the styles from the secondary menu and click Generate. After the process is complete, the image will appear on the screen, and you'll have the option to download it, as the images will be automatically deleted after 1 hour.",
-    "generatingImageStep3": "Option 2: Manual Prompt. This option is a bit more challenging to use because it requires you to know how to create a prompt that the AI can interpret. However, don't worry; here, we'll teach you how to do it. The predefined styles are prompts at their core, and if you choose a style and then switch to the manual prompt option, you'll see the prompt used for that style. For example, for the Paladin style, this prompt is used:",
+    "generatingImageOption1Title": "Option 1: Premade Styles",
+    "generatingImageOption1Description": "This is the easiest and quickest option to start generating images. Simply choose one of the styles from the secondary menu and click Generate. After the process is complete, the image will appear on the screen, and you'll have the option to download it, as the images will be automatically deleted after 1 hour.",
+    "generatingImageOption2Title": "Option 2: Manual Prompt",
+    "generatingImageOption2Description": "This option is a bit more challenging to use because it requires you to know how to create a prompt that the AI can interpret. However, don't worry; here, we'll teach you how to do it. The predefined styles are prompts at their core, and if you choose a style and then switch to the manual prompt option, you'll see the prompt used for that style. For example, for the Paladin style, this prompt is used:",
     "PredefGuideEx":"Example: Paladin",
     "PredefGuideStep1":"Step 1: We choose the Paladin style from the style menu",
     "PredefGuideStep2":"Step 2: Click on 'generate' and wait a few seconds",
-    "PredefGuideStep3":"Step 3: Elegimos el estilo Paladín del menú de estilos",
-    "ManualGuide": "To create the style that we have in our mind, we must follow a series of steps for the AI to generate a good and flawless image. The steps are:",
-    "ManualStep0": "Step 0: The prompt must be in English. Unfortunately for us Spanish speakers, the AI hasn't learned Spanish yet, so for now, we'll need to write our prompt in English to get the best results.",
-    "ManualStep1": "Step 1: Image Type. The first thing we'll include in our prompt is the type of image we want to generate: photo, drawing, 3D render, watercolor, etc. In this case, we'll generate a photo.",
-    "ManualStep2": "Step 2: The Subject. This step is easy but crucial for a good outcome. Right after specifying the image type, we need to mention the subject, which will always be '@me'. The AI interprets '@me' as the concept present in the photos we've used for training. So, if you write something else like 'me' or 'my dog', you won't get the desired result.",
-    "ManualStep3": "Step 3: Attributes. After specifying the image type followed by the subject (@me), we'll list the rest of the attributes separated by commas. This is the most open-ended part and will define the style of your prompt. There are numerous attributes you can include in your prompt: background, clothing, pose, lighting, quality modifiers, etc. In this example, we'll generate a photo of @me (myself, in this case), wearing a navy suit, with studio lighting, a black background, and very high quality. This translates to the following prompt: 'A photo of @me wearing a navy suit, studio lighting, black background, ultra high quality.' And this will be the image we obtain."
-
+    "PredefGuideStep3":"Step 3: The image appears on the screen (Download it if you don't want to lose it)",
+    "ManualGuide": "To create the style that we may have in our mind, we must follow a series of steps for the AI to generate a good and flawless image. The steps are:",
+    "ManualStep0Title": "Step 0: The prompt must be in English",
+    "ManualStep0Description": "Unfortunately for us Spanish speakers, the AI hasn't learned Spanish yet, so for now, we'll need to write our prompt in English to get the best results.",
+    "ManualStep1Title": "Step 1: Image Type",
+    "ManualStep1Description": "The first thing we'll include in our prompt is the type of image we want to generate: photo, drawing, 3D render, watercolor, etc. In this case, we'll generate a photo.",
+    "ManualStep2Title": "Step 2: The Subject",
+    "ManualStep2Description": "This step is easy but crucial for a good outcome. Right after specifying the image type, we need to mention the subject, which will always be '@me'. The AI interprets '@me' as the concept present in the photos we've used for training. So, if you write something else like 'me' or 'my dog', you won't get the desired result.",
+    "ManualStep3Title": "Step 3: Attributes",
+    "ManualStep3Description": "After specifying the image type followed by the subject (@me), we'll list the rest of the attributes separated by commas. This is the most open-ended part and will define the style of your prompt. There are numerous attributes you can include in your prompt: background, clothing, pose, lighting, quality modifiers, etc. In this example, we'll generate a photo of @me (myself, in this case), wearing a navy suit, with studio lighting, a black background, and very high quality. This translates to the following prompt: 'A photo of @me wearing a navy suit, studio lighting, black background, ultra high quality.' And this will be the image we obtain."
   }
 }

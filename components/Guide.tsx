@@ -12,94 +12,101 @@ import image9 from '@/public/Images/Guide/image9.png';
 import image10 from '@/public/Images/Guide/image10.png';
 import image11 from '@/public/Images/Guide/image11.png';
 import image12 from '@/public/Images/Guide/image12.png';
+import Separator from './Separator';
+import GoodVsBad from './GoodVsBad';
 
 const Guide = () => {
-  const t = useTranslations('guide');
+  const t = useTranslations('Guide');
 
   return (
-    <div className="max-w-screen-lg mx-auto px-4">
-      <div className="mt-8">
-        <h2 className="text-4xl font-bold mb-4">{t('trainingModel')}</h2>
-        <ul className="space-y-6">
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('trainingStep1')}</h3>
-            <Image alt="" src={image1} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('trainingStep2')}</h3>
-            <Image alt="" src={image2} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('trainingStep3')}</h3>
-            <div className="flex ml-4 space-x-2">
-              <Image alt="" src={image3} className="w-40 h-auto group-hover:opacity-75 transition-all" />
-              <Image alt="" src={image4} className="group-hover:opacity-75 transition-all" />
-            </div>
-          </li>
-        </ul>
+    <div className="max-w-screen-lg mx-auto px-8">
+      <div>
+        <h1 className="text-8xl text-center font-bold mb-4">{t('guides')}</h1>
+        <p>{t('guidesExplanation')}</p>
+        <Separator />
+        <h2 className="text-4xl  font-bold my-4">{t('trainingModel')}</h2>
+        <div>
+          <h3 className="text-xl font-bold">{t('trainingStep1Title')}</h3>
+          <p>{t('trainingStep1Description')}</p>
+          <GoodVsBad />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold">{t('trainingStep2Title')}</h3>
+          <p>{t('trainingStep2Description')}</p>
+          <Image alt="" src={image2} className="px-40" />
+        </div>
+        <div className="items-center">
+          <h3 className="text-xl font-bold">{t('trainingStep3Title')}</h3>
+          <p>{t('trainingStep3Description')}</p>
+          <div className="px-40">
+            <Image alt="" src={image3} className="w-full my-3" />
+            <Image alt="" src={image4} className="w-full my-3" />
+          </div>
+        </div>
       </div>
 
       <div className="mt-8">
         <h2 className="text-4xl font-bold mb-4">{t('generatingImages')}</h2>
-        <ul className="space-y-6">
-          <li className="items-center">
-            <h3 className="text-xl font-bold py-4 px-4">{t('generatingImageStep1')}</h3>
-            <Image alt="" src={image5} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('generatingImageStep2')}</h3>
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('generatingImageStep3')}</h3>
-          </li>
-        </ul>
+        <div className="items-center">
+          <p className="py-4">{t('generatingImageStep1')}</p>
+          <Image alt="" src={image5} className="px-36" />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold">
+            {t('generatingImageOption1Title')}
+          </h3>
+          <p>{t('generatingImageOption1Description')}</p>
+        </div>
       </div>
 
       <div className="mt-8">
-        <h2 className="text-4xl font-bold mb-4">{t('PredefGuideEx')}</h2>
-        <ul className="space-y-6">
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('PredefGuideStep1')}</h3>
-            <Image alt="" src={image6} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('PredefGuideStep2')}</h3>
-            <Image alt="" src={image7} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('PredefGuideStep3')}</h3>
-            <Image alt="" src={image8} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-        </ul>
+        <p className="text-4xl font-bold mb-4">{t('PredefGuideEx')}</p>
+        <div className="items-center">
+          <h3 className="text-xl font-bold">{t('PredefGuideStep1')}</h3>
+          <Image alt="" src={image6} className="px-60 w-full" />
+        </div>
+        <div className="items-center">
+          <h3 className="text-xl font-bold">{t('PredefGuideStep2')}</h3>
+          <Image alt="" src={image7} className="px-60 w-full" />
+        </div>
+        <div className="items-center">
+          <h3 className="text-xl font-bold">{t('PredefGuideStep3')}</h3>
+          <Image alt="" src={image8} className="px-60 w-full" />
+        </div>
       </div>
 
       <div className="mt-8">
-        <h2 className="text-xl font-bold mb-4">{t('generatingImageStep3')}</h2>
-        <Image alt="" src={image9} className="group-hover:opacity-75 transition-all" />
+        <h3 className="text-xl font-bold">
+          {t('generatingImageOption2Title')}
+        </h3>
+        <p>{t('generatingImageOption2Description')}</p>
+
+        <Image alt="" src={image9} className="px-60 w-full" />
         <div className="max-w-screen-lg mt-5">
-          <h3 className="text-4xl font-bold mb-4">{t('ManualGuide')}</h3>
-          <ul className="space-y-6">
-            <li className="flex items-center">
-              <h3 className="text-xl font-bold">{t('ManualStep0')}</h3>
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('ManualStep1')}</h3>
-            <Image alt="" src={image10} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('ManualStep2')}</h3>
-            <Image alt="" src={image11} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-          <li className="flex items-center">
-            <h3 className="text-xl font-bold">{t('ManualStep3')}</h3>
-            <Image alt="" src={image12} className="ml-4 group-hover:opacity-75 transition-all" />
-          </li>
-        </ul>
-      </div>
+          <h3 className="mb-4">{t('ManualGuide')}</h3>
+          <div>
+            <h3 className="text-xl font-bold">{t('ManualStep0Title')}</h3>
+            <p>{t('ManualStep0Description')}</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-bold">{t('ManualStep1Title')}</h3>
+            <p>{t('ManualStep1Description')}</p>
+            <Image alt="" src={image10} className="px-60 w-full" />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold">{t('ManualStep2Title')}</h3>
+            <p>{t('ManualStep2Description')}</p>
+            <Image alt="" src={image11} className="px-60 w-full" />
+          </div>
+          <div>
+            <h3 className="text-xl font-bold">{t('ManualStep3Title')}</h3>
+            <p>{t('ManualStep3Description')}</p>
+            <Image alt="" src={image12} className="px-60 w-full" />
+          </div>
+        </div>
       </div>
     </div>
   );
-  
 };
 
 export default Guide;
