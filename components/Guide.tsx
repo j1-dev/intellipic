@@ -21,10 +21,12 @@ const Guide = () => {
   return (
     <div className="max-w-screen-lg mx-auto px-8">
       <div>
-        <h1 className="text-8xl text-center font-bold mb-4">{t('guides')}</h1>
+        <h1 className="text-6xl sm:text-9xl text-center font-bold mb-4">
+          {t('guides')}
+        </h1>
         <p>{t('guidesExplanation')}</p>
         <Separator />
-        <h2 className="text-4xl  font-bold my-4">{t('trainingModel')}</h2>
+        <h2 className="text-4xl font-bold my-4">{t('trainingModel')}</h2>
         <div>
           <h3 className="text-xl font-bold">{t('trainingStep1Title')}</h3>
           <p>{t('trainingStep1Description')}</p>
@@ -33,7 +35,7 @@ const Guide = () => {
         <div>
           <h3 className="text-xl font-bold">{t('trainingStep2Title')}</h3>
           <p>{t('trainingStep2Description')}</p>
-          <Image alt="" src={image2} className="px-40" />
+          <Image alt="" src={image2} className="px-3 sm:px-40" />
         </div>
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('trainingStep3Title')}</h3>
@@ -44,12 +46,13 @@ const Guide = () => {
           </div>
         </div>
       </div>
+      <Separator />
 
       <div className="mt-8">
         <h2 className="text-4xl font-bold mb-4">{t('generatingImages')}</h2>
         <div className="items-center">
           <p className="py-4">{t('generatingImageStep1')}</p>
-          <Image alt="" src={image5} className="px-36" />
+          <Image alt="" src={image5} className="px-3 sm:px-36" />
         </div>
         <div>
           <h3 className="text-xl font-bold">
@@ -63,17 +66,18 @@ const Guide = () => {
         <p className="text-4xl font-bold mb-4">{t('PredefGuideEx')}</p>
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('PredefGuideStep1')}</h3>
-          <Image alt="" src={image6} className="px-60 w-full" />
+          <Image alt="" src={image6} className="px-3 sm:px-60 w-full" />
         </div>
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('PredefGuideStep2')}</h3>
-          <Image alt="" src={image7} className="px-60 w-full" />
+          <Image alt="" src={image7} className="px-3 sm:px-60 w-full" />
         </div>
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('PredefGuideStep3')}</h3>
-          <Image alt="" src={image8} className="px-60 w-full" />
+          <Image alt="" src={image8} className="px-3 sm:px-60 w-full" />
         </div>
       </div>
+      <Separator />
 
       <div className="mt-8">
         <h3 className="text-xl font-bold">
@@ -81,7 +85,7 @@ const Guide = () => {
         </h3>
         <p>{t('generatingImageOption2Description')}</p>
 
-        <Image alt="" src={image9} className="px-60 w-full" />
+        <Image alt="" src={image9} className="px-3 sm:px-60 w-full" />
         <div className="max-w-screen-lg mt-5">
           <h3 className="mb-4">{t('ManualGuide')}</h3>
           <div>
@@ -91,17 +95,17 @@ const Guide = () => {
           <div>
             <h3 className="text-xl font-bold">{t('ManualStep1Title')}</h3>
             <p>{t('ManualStep1Description')}</p>
-            <Image alt="" src={image10} className="px-60 w-full" />
+            <Image alt="" src={image10} className="px-3 sm:px-60 w-full" />
           </div>
           <div>
             <h3 className="text-xl font-bold">{t('ManualStep2Title')}</h3>
             <p>{t('ManualStep2Description')}</p>
-            <Image alt="" src={image11} className="px-60 w-full" />
+            <Image alt="" src={image11} className="px-3 sm:px-60 w-full" />
           </div>
           <div>
             <h3 className="text-xl font-bold">{t('ManualStep3Title')}</h3>
             <p>{t('ManualStep3Description')}</p>
-            <Image alt="" src={image12} className="px-60 w-full" />
+            <Image alt="" src={image12} className="px-3 sm:px-60 w-full" />
           </div>
         </div>
       </div>
