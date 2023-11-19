@@ -111,8 +111,8 @@ export default function ShopPage() {
   };
 
   return (
-    <div className="py-8">
-      <div className="max-w-screen-lg mx-auto px-8">
+    <div className="py-6">
+      <div className="max-w-screen-lg mx-auto px-6">
         <h2 className="text-5xl font-bold mb-4">{t('shop')}</h2>
         {!!models && (
           <div>

@@ -19,7 +19,7 @@ const Guide = () => {
   const t = useTranslations('Guide');
 
   return (
-    <div className="max-w-screen-lg mx-auto px-8">
+    <div className="max-w-screen-lg mx-auto px-6">
       <div>
         <h1 className="text-6xl sm:text-9xl text-center font-bold mb-4">
           {t('guides')}

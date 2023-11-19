@@ -49,7 +49,7 @@
       "BadPhotoDef": "Group shots, full-length images, photos with covered faces, monotonous and repetitive pictures, and explicit content."
     },
     "examples": {
-      "title": "Examples 📸"
+      "title": "Examples📸"
     },
     "prices": {
       "title": "Prices 💰",
@@ -206,7 +206,7 @@
     "guide": "Guide"
   },
   "Dashboard": {
-    "title": "Models 🤖",
+    "title": "Models🤖",
     "tokensToTrain": "Training credits:",
     "noModelsMessage": "You haven't trained any models yet",
     "buyTokensMessage": "Buy credits in the store to train your first model"
@@ -308,7 +308,7 @@
     "ethereal": "Ethereal"
   },
   "ModelPage": {
-    "modelTitle": "Models 🤖",
+    "modelTitle": "Models🤖",
     "modelToken": "Model Name: token",
     "tokenInfo": "Write your prompt using @me, or use any of the available default prompts. Make sure the prompt is in English for the best results.",
     "remainingTokens": "Image credits: ",
@@ -364,7 +364,7 @@
     "WrittenExample": "''Close up Portrait of @me as a Viking''"
   },
   "ShopPage": {
-    "shop": "Shop 💰",
+    "shop": "Shop💰",
     "modelTraining": "Model Training",
     "modelTrainingInfo": "Train a custom AI model",
     "generate10Title": "Generate 10 images",
@@ -384,7 +384,7 @@
     "buyNow": "Buy now"
   },
   "TrainPage":{
-    "trainLabel": "Train 🦾",
+    "trainLabel": "Train🦾",
     "tokensLabel": "Training credits:",
     "step1Label": "Step 1: Upload Images",
     "step1Description": "First, make sure you have between 6 and 10 high-quality images to train your model. For the best results, your images should be close-ups preferably, showing only the subject, and the subject should be fully visible. For examples of valid and invalid images, go to ",

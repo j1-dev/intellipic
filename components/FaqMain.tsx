@@ -5,7 +5,7 @@ const FaqMain = () => {
 
   return (
     <div>
-      <h2 className="text-4xl font-bold mb-4">{t('questionsTitle')}</h2>
+      <h2 className="text-5xl font-bold mb-4">{t('questionsTitle')}</h2>
       <div className="max-w-screen-lg mt-5">
         <ul>
           <li>
