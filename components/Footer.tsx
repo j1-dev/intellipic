@@ -47,7 +47,7 @@ const Footer = () => {
             </Link>
           </li>
         </ul>
-        <div className="absolute right-2">
+        <div className="absolute right-2 sm:static ml-auto">
           <div className="flex flex-col-reverse xs:flex-row">
             <ThemeToggle />
             <LangToggle />
