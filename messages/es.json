@@ -17,7 +17,7 @@
       "title": "¿Cómo funciona? ✨",
       "feature1": {
         "title": "Paso 1: Subir Imágenes",
-        "description": "Sube entre 6 y 10 imágenes del sujeto que quieras usar para entrenar a la IA. Asegúrate que las fotos cumplen con las características necesarias para que la IA aprenda bien sus rasgos."
+        "description": "Sube entre 6 y 10 imágenes del sujeto que quieras usar para entrenar a la IA. Asegúrate de que las fotos cumplen con las características necesarias para que la IA aprenda bien sus rasgos."
       },
       "feature2": {
         "title": "Paso 2: Entrenar la IA",
@@ -55,26 +55,26 @@
       "title": "Precios 💰",
       "trainModel": {
         "title": "Entrenar un modelo",
-        "price": "€4 por modelo",
+        "price": "4€ por modelo",
         "includes": "Esto Incluye:",
         "include1": "Generar un modelo",
         "include2": "20 créditos para generar imágenes"
       },
       "generate10": {
         "title": "Generar 10 imágenes",
-        "price": "€1"
+        "price": "1€"
       },
       "generate25": {
         "title": "Generar 25 imágenes",
-        "price": "€2"
+        "price": "2€"
       },
       "generate40": {
         "title": "Generar 40 imágenes",
-        "price": "€3"
+        "price": "3€"
       },
       "generate100": {
         "title": "Generar 100 imágenes",
-        "price": "€7"
+        "price": "7€"
       }
     },
     "privacy": {
@@ -310,7 +310,7 @@
   "ModelPage": {
     "modelTitle": "Modelos 🤖",
     "modelToken": "Nombre del modelo: token",
-    "tokenInfo": "Escribe tu prompt usando @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
+    "tokenInfo": "Escribe tu prompt usando @me o usa cualquiera de los prompts predeterminados disponibles. Asegúrate de que el prompt está en Inglés para conseguir los mejores resultados.",
     "remainingTokens": "Créditos de imagen: ",
     "deleteModel": "Eliminar Modelo",
     "advancedMethodWarning": "Este método está pensado para usuarios experimentados, prueba los estilos predeterminados si no obtienes los resultados esperados",
