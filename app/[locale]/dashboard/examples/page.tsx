@@ -1,3 +1,4 @@
+'use client';
 import Prompts from '@/components/Prompts';
 import { useTranslations } from 'next-intl';
 
