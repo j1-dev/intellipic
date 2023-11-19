@@ -49,7 +49,7 @@
       "BadPhotoDef": "Fotos grupales, imágenes de cuerpo completo, imágenes con caras cubiertas, fotos monótonas y repetitivas, y contenido explícito."
     },
     "examples": {
-      "title": "Ejemplos📸"
+      "title": "Ejemplos 📸"
     },
     "prices": {
       "title": "Precios 💰",
@@ -384,7 +384,7 @@
     "buyNow": "Comprar Ahora"
   },
   "TrainPage":{
-    "trainLabel": "Entrenar 🦾",
+    "trainLabel": "Entrenar🦾",
     "tokensLabel": "Créditos para entrenar:",
     "step1Label": "1er paso: Subir imágenes",
     "step1Description": "Primero, asegúrate de tener entre 6 y 10 imágenes de alta calidad para entrenar a tu modelo. Para obtener los mejores resultados, tus imágenes deben ser primeros planos preferiblemente, solo debe salir el sujeto y este deberá verse entero. Para ver ejemplos de imágenes válidas y no válidas, ve a ",
