@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="pt-8 text-center bg-white dark:bg-black text-black dark:text-white transition-all relative h-24">
       <hr className="-translate-y-7 border border-black dark:border-white transition-all" />
-      <div className="max-w-screen-lg mx-auto px-5 flex justify-start ">
+      <div className="max-w-screen-lg mx-auto px-6 flex justify-start ">
         <ul className="flex justify-start space-x-4 absolute top-8 xs:top-5">
           <li>
             <Link href="/faq">FAQs</Link>
