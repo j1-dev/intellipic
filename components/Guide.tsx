@@ -40,7 +40,7 @@ const Guide = () => {
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('trainingStep3Title')}</h3>
           <p>{t('trainingStep3Description')}</p>
-          <div className="px-40">
+          <div className="px-3 sm:px-40">
             <Image alt="" src={image3} className="w-full my-3" />
             <Image alt="" src={image4} className="w-full my-3" />
           </div>
