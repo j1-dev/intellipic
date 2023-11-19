@@ -273,7 +273,7 @@ export default function ModelPage() {
       </h3>
       <span>{t('tokenInfo')}</span>
       <div className="relative mb-24">
-        <span className="absolute lef-0 my-7 font-semibold text-xl">
+        <span className="absolute lef-0 my-7 font-semibold text-base sm:text-lg">
           {t('remainingTokens')} {userData.image_tokens}
         </span>
         <button
