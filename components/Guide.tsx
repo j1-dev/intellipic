@@ -24,11 +24,13 @@ const Guide = () => {
         <h1 className="text-8xl text-center font-bold mb-4">{t('guides')}</h1>
         <p>{t('guidesExplanation')}</p>
         <Separator />
+        <div className="rounded-lg bg-slate-100 border border-black p-4">
         <h2 className="text-4xl  font-bold my-4">{t('trainingModel')}</h2>
         <div>
           <h3 className="text-xl font-bold">{t('trainingStep1Title')}</h3>
           <p>{t('trainingStep1Description')}</p>
           <GoodVsBad />
+        
         </div>
         <div>
           <h3 className="text-xl font-bold">{t('trainingStep2Title')}</h3>
@@ -42,25 +44,30 @@ const Guide = () => {
             <Image alt="" src={image3} className="w-full my-3" />
             <Image alt="" src={image4} className="w-full my-3" />
           </div>
+          </div>
         </div>
       </div>
 
       <div className="mt-8">
+      <div className="rounded-lg bg-slate-100 border border-black p-4">
         <h2 className="text-4xl font-bold mb-4">{t('generatingImages')}</h2>
         <div className="items-center">
           <p className="py-4">{t('generatingImageStep1')}</p>
           <Image alt="" src={image5} className="px-36" />
         </div>
-        <div>
-          <h3 className="text-xl font-bold">
-            {t('generatingImageOption1Title')}
-          </h3>
-          <p>{t('generatingImageOption1Description')}</p>
         </div>
+        
       </div>
 
       <div className="mt-8">
-        <p className="text-4xl font-bold mb-4">{t('PredefGuideEx')}</p>
+        <div className="rounded-lg bg-slate-100 border border-black p-4">
+          <div>
+            <h3 className=" text-3xl font-bold py-4">
+              {t('generatingImageOption1Title')}
+            </h3>
+            <p>{t('generatingImageOption1Description')}</p>
+          </div>  
+        <p className="text-2xl font-bold mb-4">{t('PredefGuideEx')}</p>
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('PredefGuideStep1')}</h3>
           <Image alt="" src={image6} className="px-60 w-full" />
@@ -72,6 +79,7 @@ const Guide = () => {
         <div className="items-center">
           <h3 className="text-xl font-bold">{t('PredefGuideStep3')}</h3>
           <Image alt="" src={image8} className="px-60 w-full" />
+        </div>
         </div>
       </div>
 
