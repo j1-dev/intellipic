@@ -27,7 +27,7 @@ export async function middleware(req: NextRequest) {
     const isValidUrl =
       id?.[1] === session?.user?.id ||
       url.endsWith('shop/') ||
-      url.endsWith('faq/') ||
+      url.endsWith('guide/') ||
       url.endsWith('examples/');
 
     if (session?.user.email && isValidUrl) {

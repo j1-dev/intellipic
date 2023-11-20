@@ -80,7 +80,7 @@ export default function Prompts() {
 
   return (
     <div className="flex justify-center">
-      <div className="hover:cursor-pointer grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div className="hover:cursor-pointer grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
         {promptInfo.map((data, index) => (
           <div onClick={() => handlePhotoClick(data.img)} key={index}>
             <PromptCard img={data.img} text={data.text1} key={index} />

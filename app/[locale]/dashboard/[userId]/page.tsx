@@ -108,9 +108,9 @@ export default function DashboardPage() {
   }, 2000);
 
   return (
-    <div className="py-8">
-      <div className="max-w-screen-lg mx-auto px-8">
-        <h2 className="text-4xl font-bold mb-4">{t('title')}</h2>
+    <div className="py-6">
+      <div className="max-w-screen-lg mx-auto px-6">
+        <h2 className="text-5xl font-bold mb-4">{t('title')}</h2>
         <h3 className="font-bold text-xl mb-4 inline-flex">
           <div>
             {'🪙🤖: '}

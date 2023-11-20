@@ -117,15 +117,15 @@ export default function Navbar() {
             key={Math.random()}
           >
             <Link
-              href={`/dashboard/faq`}
+              href="/dashboard/guide"
               className="font-bold lg:text-2xl md:text-xl xs:text-base py-2 lg:px-7 px-4 text-black dark:text-white no-underline text-xl relative transition-all duration-350 ease-in-out"
             >
               {windowWidth > 479 ? (
-                t('faqs')
+                t('guide')
               ) : (
                 <div className="text-sm flex flex-col items-center">
                   <span>📖</span>
-                  {t('faqs')}
+                  {t('guide')}
                 </div>
               )}
               <span className="absolute top-0 right-0 h-0 w-0 border-t border-r border-black dark:border-white opacity-0 xs:group-hover:opacity-100 group-hover:h-[14px] group-hover:w-[14px] transition-all duration-350 ease-in-out transform -translate-x-full -translate-y-1/2 "></span>

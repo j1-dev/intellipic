@@ -266,19 +266,19 @@ export default function ModelPage() {
   }, 2000);
 
   return (
-    <div className="max-w-screen-lg mx-auto px-8 py-8">
-      <h2 className="text-4xl font-bold mb-2">{t('modelTitle')}</h2>
+    <div className="max-w-screen-lg mx-auto px-6 py-6">
+      <h2 className="text-5xl font-bold mb-2">{t('modelTitle')}</h2>
       <h3 className="text-2xl font-bold mb-2">
         {t('modelToken').replace('token', token)}
       </h3>
       <span>{t('tokenInfo')}</span>
       <div className="relative mb-24">
-        <span className="absolute lef-0 my-7 font-semibold text-xl">
+        <span className="absolute lef-0 my-7 font-semibold text-sm sm:text-lg">
           {t('remainingTokens')} {userData.image_tokens}
         </span>
         <button
           onClick={handleDeleteModel}
-          className="absolute right-0 bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
+          className="absolute text-sm sm:text-base right-0 bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-2 sm:px-4 transition-all"
           style={{ marginTop: '1rem' }}
         >
           {t('deleteModel')}
@@ -387,25 +387,31 @@ export default function ModelPage() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="max-h-[300px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
-                      <div className="px-1 py-1 ">
+                    <Menu.Items className="max-h-[450px] overflow-y-auto absolute m-auto mt-2 w-full divide-y divide-gray-100 rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
+                      <div className="px-1 py-1 grid grid-cols-3">
                         {p.map((prompt: any) => {
                           return (
-                            <Menu.Item key="1">
+                            <Menu.Item key={Math.random()}>
                               {({ active }) => (
                                 <button
-                                  className={classNames(
-                                    active
-                                      ? 'border text-white bg-black'
-                                      : 'text-black hover:font-bold',
-                                    'group flex rounded-md items-center w-full px-2 py-2 text-sm'
-                                  )}
+                                  className="group inline-block rounded-md items-center w-full px-2 py-2 text-sm text-black hover:bg-gray-300"
                                   onClick={() => {
                                     setInstancePrompt(prompt.prompt);
                                     setPromptName(prompt.name);
                                   }}
                                 >
-                                  <span className="mr-2">{t(prompt.name)}</span>
+                                  <NextImage
+                                    src={prompt.image}
+                                    alt="Generated image"
+                                    width={200}
+                                    height={200}
+                                    loading="eager"
+                                    priority
+                                    className="mb-4 w-full rounded-lg border border-black"
+                                  />
+                                  <p className="text-center ">
+                                    {t(prompt.name)}
+                                  </p>
                                 </button>
                               )}
                             </Menu.Item>

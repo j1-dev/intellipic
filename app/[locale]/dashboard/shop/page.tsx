@@ -26,35 +26,35 @@ export default function ShopPage() {
     {
       id: 'prod_OcmbeX4AJFkVoF',
       name: t('modelTraining'),
-      price: '€4',
+      price: '4€',
       priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
       features: [t('modelTrainingInfo'), t('generate20Title')]
     },
     {
       id: 'prod_OcmbMwLY3PSKkd',
       name: t('generate10Title'),
-      price: '€1',
+      price: '1€',
       priceId: 'price_1NpX23IsZGNqsWfQwulR8Pie',
       features: [t('generate10Info'), t('extraInfo')]
     },
     {
       id: 'prod_OcmaoJNRfbjwqk',
       name: t('generate25Title'),
-      price: '€2',
+      price: '2€',
       priceId: 'price_1NpX1VIsZGNqsWfQ6Pq3YcNa',
       features: [t('generate25Info'), t('extraInfo')]
     },
     {
       id: 'prod_OcmZDNFgWpbV65',
       name: t('generate40Title'),
-      price: '€3',
+      price: '3€',
       priceId: 'price_1NpX0oIsZGNqsWfQ6doXHr1o',
       features: [t('generate40Info'), t('extraInfo')]
     },
     {
       id: 'prod_OcmY6zvRL63Zhr',
       name: t('generate100Title'),
-      price: '€7',
+      price: '7€',
       priceId: 'price_1NpWzbIsZGNqsWfQb9RLZM8S',
       features: [t('generate100Info'), t('extraInfo')]
     }
@@ -111,8 +111,8 @@ export default function ShopPage() {
   };
 
   return (
-    <div className="py-8">
-      <div className="max-w-screen-lg mx-auto px-8">
+    <div className="py-6">
+      <div className="max-w-screen-lg mx-auto px-6">
         <h2 className="text-5xl font-bold mb-4">{t('shop')}</h2>
         {!!models && (
           <div>

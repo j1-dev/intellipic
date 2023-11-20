@@ -59,7 +59,24 @@ export async function generateMetadata(
         title: 'IntelliPic',
         description:
           'Intellipic es una aplicación de Inteligencia Artificial (IA) Generativa capaz de crear imágenes de la nada con cualquier concepto que tu le quieras enseñar'
-      }
+      },
+      appleWebApp: {
+        title: 'IntelliPic',
+        statusBarStyle: 'black-translucent',
+        startupImage: [
+          '/icons/maskable.png',
+          {
+            url: '/icons/maskable.png',
+            media: '(device-width: 768px) and (device-height: 1024px)'
+          }
+        ]
+      },
+      icons: {
+        icon: '/icons/favicon.ico',
+        shortcut: '/icons/favicon.ico',
+        apple: '/icons/icon.jpg'
+      },
+      manifest: '/manifest.json'
     };
   } else {
     return {
@@ -101,7 +118,24 @@ export async function generateMetadata(
         title: 'IntelliPic',
         description:
           'Intellipic is a cutting-edge Generative Artificial Intelligence (AI) application capable of creating images from scratch based on any concept you wish to teach it.'
-      }
+      },
+      appleWebApp: {
+        title: 'IntelliPic',
+        statusBarStyle: 'black-translucent',
+        startupImage: [
+          '/icons/maskable.png',
+          {
+            url: '/icons/maskable.png',
+            media: '(device-width: 768px) and (device-height: 1024px)'
+          }
+        ]
+      },
+      icons: {
+        icon: '/icons/favicon.ico',
+        shortcut: '/icons/favicon.ico',
+        apple: '/icons/icon.jpg'
+      },
+      manifest: '/manifest.json'
     };
   }
 }
@@ -159,6 +193,18 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={font.className}>
+      <head>
+        <meta name="pwa-demo" content="pwa-demo" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="pwa-demo" />
+        <meta name="description" content="pwa-demo" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#2B5797" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#000000" />
+      </head>
       <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />

@@ -17,7 +17,7 @@
       "title": "¿Cómo funciona? ✨",
       "feature1": {
         "title": "Paso 1: Subir Imágenes",
-        "description": "Sube entre 6 y 10 imágenes del sujeto que quieras usar para entrenar a la IA. Asegúrate que las fotos cumplen con las características necesarias para que la IA aprenda bien sus rasgos."
+        "description": "Sube entre 6 y 10 imágenes del sujeto que quieras usar para entrenar a la IA. Asegúrate de que las fotos cumplen con las características necesarias para que la IA aprenda bien sus rasgos."
       },
       "feature2": {
         "title": "Paso 2: Entrenar la IA",
@@ -55,26 +55,26 @@
       "title": "Precios 💰",
       "trainModel": {
         "title": "Entrenar un modelo",
-        "price": "€4 por modelo",
+        "price": "4€ por modelo",
         "includes": "Esto Incluye:",
         "include1": "Generar un modelo",
         "include2": "20 créditos para generar imágenes"
       },
       "generate10": {
         "title": "Generar 10 imágenes",
-        "price": "€1"
+        "price": "1€"
       },
       "generate25": {
         "title": "Generar 25 imágenes",
-        "price": "€2"
+        "price": "2€"
       },
       "generate40": {
         "title": "Generar 40 imágenes",
-        "price": "€3"
+        "price": "3€"
       },
       "generate100": {
         "title": "Generar 100 imágenes",
-        "price": "€7"
+        "price": "7€"
       }
     },
     "privacy": {
@@ -202,7 +202,8 @@
     "examples": "Ejemplos",
     "shop": "Tienda",
     "faqs": "FAQs",
-    "logout": "Cerrar Sesión"
+    "logout": "Cerrar Sesión",
+    "guide": "Guías"
   },
   "Dashboard": {
     "title": "Modelos 🤖",
@@ -309,7 +310,7 @@
   "ModelPage": {
     "modelTitle": "Modelos 🤖",
     "modelToken": "Nombre del modelo: token",
-    "tokenInfo": "Escribe tu prompt usando @me o usa cualquiera de los prompts predeterminados disponibles. Asegurate de que el prompt está en Inglés para conseguir los mejores resultados.",
+    "tokenInfo": "Escribe tu prompt usando @me o usa cualquiera de los prompts predeterminados disponibles. Asegúrate de que el prompt está en Inglés para conseguir los mejores resultados.",
     "remainingTokens": "Créditos de imagen: ",
     "deleteModel": "Eliminar Modelo",
     "advancedMethodWarning": "Este método está pensado para usuarios experimentados, prueba los estilos predeterminados si no obtienes los resultados esperados",
@@ -383,7 +384,7 @@
     "buyNow": "Comprar Ahora"
   },
   "TrainPage":{
-    "trainLabel": "Entrenar 🦾",
+    "trainLabel": "Entrenar🦾",
     "tokensLabel": "Créditos para entrenar:",
     "step1Label": "1er paso: Subir imágenes",
     "step1Description": "Primero, asegúrate de tener entre 6 y 10 imágenes de alta calidad para entrenar a tu modelo. Para obtener los mejores resultados, tus imágenes deben ser primeros planos preferiblemente, solo debe salir el sujeto y este deberá verse entero. Para ver ejemplos de imágenes válidas y no válidas, ve a ",
@@ -430,5 +431,37 @@
     "amber": "Ambar",
     "none": "Ninguno",
     "starting": "Empezando"
+  },
+
+  "Guide": { 
+    "guides": "Guías",
+    "guidesExplanation": "Esta sección te ayudará a comprender los detalles sobre cómo entrenar un modelo para que pueda aprender adecuadamente las características del concepto que deseas enseñarle y cómo generar imágenes para que sean de tu agrado.",
+    "trainingModel": "Guía para entrenar un Modelo",
+    "trainingStep1Title": "Paso 1: Subir Imágenes",
+    "trainingStep1Description": "Sube entre 6 y 10 imágenes del sujeto que quieras usar para entrenar a la IA. Asegúrate que las fotos cumplen con las características necesarias para que la IA aprenda bien sus rasgos.",
+    "trainingStep2Title": "Paso 2: Espera entre 10 y 12 minutos",
+    "trainingStep2Description": "Una vez hayas subido las imágenes, la IA empezará a procesarlas y a aprender sus características. Este proceso dura entre 10 y 15 minutos. Puedes cerrar la página y hacer otras cosas mientras esperas.",
+    "trainingStep3Title": "Paso 3: Empieza a Crear",
+    "trainingStep3Description": "Una vez haya terminado de entrenarse, verás el modelo como completado, y podrás entrar y empezar a generar imágenes!",
+    "generatingImages": "Guía para generar imágenes",
+    "generatingImageStep1": "Una vez hayas generado un modelo, saldrá en la pantalla general como Completado. Si damos click entraremos en la pantalla donde generaremos nuestras imágenes. Aquí podemos ver un botón rojo para eliminar el modelo si no funciona como nosotros queremos, un botón azul para generar imágenes y un menú con dos opciones: Estilos Predefinidos y Prompt Manual. Estas son las dos maneras de generar imágenes.",
+    "generatingImageOption1Title": "Opción 1: Estilos Predefinidos",
+    "generatingImageOption1Description": "Esta es la opción más fácil y rápida para empezar a generar imágenes. Simplemente elige uno de los estilos en el menú secundario y haz click en Generar. Tras completarse el proceso, aparecerá la imágen en pantalla y tendrás la opción de descargarla, ya que tras 1 hora las imágenes so borrarán automáticamente.",
+    "generatingImageOption2Title": "Opción 2: Prompt Manual",
+    "generatingImageOption2Description": "Esta opción es un poco más difícil de usar porque requiere que sepas cómo crear un prompt que la IA sepa interpretar, pero no te preocupes, aquí te enseñaremos a hacerlo. Los estilos predefinidos son prompts en el fondo, y si eliges un estilo y luego vuelves a la opción de prompt manual, verás el prompt usado para ese estilo. Por ejemplo: para el estilo de Paladín se usa este prompt:",
+    "PredefGuideEx":"Ejemplo: Estilo Paladín",
+    "PredefGuideStep1":"Paso 1: Elegimos el estilo Paladín del menú de estilos",
+    "PredefGuideStep2":"Paso 2: Damos click en generar y esperamos unos segundos",
+    "PredefGuideStep3":"Paso 3: Obtenemos nuestra imágen (Recomendable descargar para que no se pierda)",
+    "ManualGuide": "Para crear el estilo que nosotros tenemos en nuestra cabeza, debemos seguir unos pasos para que la IA genere una imágen buena y sin defectos. Los pasos son:",
+    "ManualStep0Title": "Paso 0: El prompt debe estar en inglés",
+    "ManualStep0Description": "Desafortunadamente para nosotros los hipanohablantes, la IA no ha aprendido español todavía y de momento tendremos que escribir nuestro prompt en inglés para obtener los mejores resultados",
+    "ManualStep1Title": "Paso 1: Tipo de imágen",
+    "ManualStep1Description": "Lo primero que pondremos en nuestro prompt será el tipo de imágen que queremos generar: foto, dibujo, render 3d, acuarela, etc... En este caso generaremos una foto.",
+    "ManualStep2Title": "Paso 2: El sujeto",
+    "ManualStep2Description": "Este paso es fácil pero importante para que salga bien. Inmediatamente después del tipo de imágene debemos poner el sujeto, que siempre será @me. La IA interpreta @me como el concepto que aparece en las fotos que hemos usado para entrenar, así que si pones otra cosa como yo o mi perro, no obtendrás el resultado que deseas.",
+    "ManualStep3Title": "Paso 3: Atributos",
+    "ManualStep3Description": "Después de poner el tipo de imágen seguido del sujeto (@me) colocaremos el resto de atributos separados por comas. Esta es la parte más libre y la que dará estilo a tu prompt. Hay multitud de atributos que puedes incluir en tu prompt: fondo, vestimenta, pose, iluminación, modificadores de calidad, etc... En este ejemplo vamos a generar una foto de @me (yo, en este caso), llevando un traje azul marino, con iluminación de estudio, fondo negro y calidad muy alta, lo que se traduciría a el siguiente prompt: A photo of @me wearing a navy suit, studio lighting, black background, ultra high quality. Y esta será la imagen que obtendremos" ,
+    "joinGithub":"Ahora que sabes cómo utilizar la aplicación correctamente, únete a nosotros en Discord y comparte tus creaciones con todos nosotros. ¡Y si tienes más preguntas, estaremos encantados de responderte!"
   }
 }

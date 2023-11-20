@@ -2,155 +2,186 @@ export const prompts = [
   {
     name: 'Viking',
     prompt:
-      'closeup portrait painting of @me as a viking, ultra realistic, concept art, intricate details, powerful and fierce, highly detailed, photorealistic, octane render, 8 k, unreal engine.'
+      'closeup portrait painting of @me as a viking, ultra realistic, concept art, intricate details, powerful and fierce, highly detailed, photorealistic, octane render, 8 k, unreal engine.',
+    image: '/Images/StylesExamples/Viking.webp'
   },
   {
     name: 'Paladin',
     prompt:
-      'closeup portrait of @me as a paladin, wearing brilliant white armor and a crown, fantasy concept art, artstation trending, highly detailed, beautiful landscape in the background.'
+      'closeup portrait of @me as a paladin, wearing brilliant white armor and a crown, fantasy concept art, artstation trending, highly detailed, beautiful landscape in the background.',
+    image: '/Images/StylesExamples/Paladin.webp'
   },
   {
     name: 'Harry Potter',
     prompt:
-      'closeup portrait of @me as a wizard or witch at Hogwarts, wearing the house colors, holding a wand, with the magical castle towering behind them.'
+      'closeup portrait of @me as a wizard or witch at Hogwarts, wearing the house colors, holding a wand, with the magical castle towering behind them.',
+    image: '/Images/StylesExamples/Harry Potter.webp'
   },
   {
     name: 'Hobbit',
     prompt:
-      'Closeup portrait of @me as a Hobbit, small, big brown eyes, green and brown clothing, detailed facial features, small feet, wispy hair, fantasy concept art, artstation trending, highly detailed.'
+      'Closeup portrait of @me as a Hobbit, small, big brown eyes, green and brown clothing, detailed facial features, small feet, wispy hair, fantasy concept art, artstation trending, highly detailed.',
+    image: '/Images/StylesExamples/Hobbit.webp'
   },
   {
     name: 'Link',
     prompt:
-      'Closeup portrait of @me as the Hero of Hyrule, clad in the iconic green tunic, with the Sheikah Slate strapped to the hip, overlooking the vast and colorful landscapes of Hyrule.'
+      'Closeup portrait of @me as the Hero of Hyrule, clad in the iconic green tunic, with the Sheikah Slate strapped to the hip, overlooking the vast and colorful landscapes of Hyrule.',
+    image: '/Images/StylesExamples/Link.webp'
   },
   {
     name: 'Matrix',
     prompt:
-      'Closeup portrait of @me as a sleek cyberpunk rebel, wearing a long trench coat, with the iconic green digital code cascading in the background.'
+      'Closeup portrait of @me as a sleek cyberpunk rebel, wearing a long trench coat, with the iconic green digital code cascading in the background.',
+    image: '/Images/StylesExamples/Matrix.webp'
   },
   {
     name: 'The Witcher',
     prompt:
-      'Close up portrait of @me as a seasoned Witcher, silver sword at the ready, standing in the midst of a dark and mysterious forest filled with mythical creatures.'
+      'Close up portrait of @me as a seasoned Witcher, silver sword at the ready, standing in the midst of a dark and mysterious forest filled with mythical creatures.',
+    image: '/Images/StylesExamples/Witcher.webp'
   },
   {
     name: 'Skyrim',
     prompt:
-      'closeup portrait of @me as a seasoned adventurer in the world of Skyrim. The backdrop is the ancient city of Whiterun, its towering stone walls and the Dragonsreach castle visible in the distance.'
+      'closeup portrait of @me as a seasoned adventurer in the world of Skyrim. The backdrop is the ancient city of Whiterun, its towering stone walls and the Dragonsreach castle visible in the distance.',
+    image: '/Images/StylesExamples/Skyrim.webp'
   },
   {
     name: 'Borderlands',
     prompt:
-      'Closeip portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.'
+      'Closeip portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.',
+    image: '/Images/StylesExamples/Borderlands.webp'
   },
   {
     name: 'Avatar',
     prompt:
-      'Closeup portrait @me as a charismatic vault hunter, surrounded by the vibrant and chaotic landscapes of Pandora, with an assortment of quirky weapons at their side, cel shading.'
+      'Closeup portrait @me as a charismatic vault hunter, surrounded by the vibrant and chaotic landscapes of Pandora, with an assortment of quirky weapons at their side, cel shading.',
+    image: '/Images/StylesExamples/Avatar.webp'
   },
   {
     name: 'Fortnite',
     prompt:
-      'Closeup portrait of @me as a vibrant and customizable Fortnite character, showcasing unique emotes and accessories, surrounded by the ever-shifting landscapes of the island.'
+      'Closeup portrait of @me as a vibrant and customizable Fortnite character, showcasing unique emotes and accessories, surrounded by the ever-shifting landscapes of the island.',
+    image: '/Images/StylesExamples/Fortnite.webp'
   },
   {
     name: 'Overwatch',
     prompt:
-      'Closeup portrait of @me into a heroic Overwatch character, equipped with high-tech weaponry and donned in futuristic armor, standing confidently on the edge of a skyscraper overlooking a bustling city.'
+      'Closeup portrait of @me into a heroic Overwatch character, equipped with high-tech weaponry and donned in futuristic armor, standing confidently on the edge of a skyscraper overlooking a bustling city.',
+    image: '/Images/StylesExamples/Overwatch.webp'
   },
   {
     name: 'Sims',
     prompt:
-      'Close up portrait of @me as a character from The Sims 4, living life in a cozy suburban home, with various furniture, decorations, and even a pet by your side.'
+      'Close up portrait of @me as a character from The Sims 4, living life in a cozy suburban home, with various furniture, decorations, and even a pet by your side.',
+    image: '/Images/StylesExamples/Sims.webp'
   },
   {
     name: 'Elf',
     prompt:
-      'Closeup portrait of @me as an elf, fantasy concept art, detailed armor, majestic background.'
+      'Closeup portrait of @me as an elf, fantasy concept art, detailed armor, majestic background.',
+    image: '/Images/StylesExamples/Elf.webp'
   },
   {
     name: 'Clown',
     prompt:
-      'Closeup portrait of @me as a clown, highly detailed, surreal, expressionless face, bright colors, contrast lighting, abstract background, art by wlop, greg rutkowski, charlie bowater, magali villeneuve, alphonse mucha, cartoonish, comic book style '
+      'Closeup portrait of @me as a clown, highly detailed, surreal, expressionless face, bright colors, contrast lighting, abstract background, art by wlop, greg rutkowski, charlie bowater, magali villeneuve, alphonse mucha, cartoonish, comic book style ',
+    image: '/Images/StylesExamples/Clown.webp'
   },
   {
     name: 'Jedi',
     prompt:
-      'closeup portrait of @me as a jedi with a lightsaber, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour.'
+      'closeup portrait of @me as a jedi with a lightsaber, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour.',
+    image: '/Images/StylesExamples/Jedi.webp'
   },
   {
     name: 'Wizard',
     prompt:
-      'closeup portrait of @me as a wizard, fantasy concept art, intricate details and textures, magical, colorful, holding a staff, fire and stars in the background.'
+      'closeup portrait of @me as a wizard, fantasy concept art, intricate details and textures, magical, colorful, holding a staff, fire and stars in the background.',
+    image: '/Images/StylesExamples/Wizard.webp'
   },
   {
     name: 'Cyberpunk',
     prompt:
-      'closeup portrait of @me as a cyberpunk, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background'
+      'closeup portrait of @me as a cyberpunk, highly detailed, retro-futuristic style, neon lighting, cyberpunk city in the background',
+    image: '/Images/StylesExamples/Cyberpunk.webp'
   },
   {
     name: 'Astronaut',
     prompt:
-      'closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel.'
+      'closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel.',
+    image: '/Images/StylesExamples/Astronaut.webp'
   },
   {
     name: 'Samurai',
     prompt:
-      'closeup portrait of @me as a samurai warrior, war-torn landscape in the background, wearing a black and red armor.'
+      'closeup portrait of @me as a samurai warrior, war-torn landscape in the background, wearing a black and red armor.',
+    image: '/Images/StylesExamples/Samurai.webp'
   },
   {
     name: 'Ninja',
     prompt:
-      'closeup portrait of @me as a ninja, wearing a black hood and suit, stealthy movements, dark night background, shadows and mist.'
+      'closeup portrait of @me as a ninja, wearing a black hood and suit, stealthy movements, dark night background, shadows and mist.',
+    image: '/Images/StylesExamples/Ninja.webp'
   },
   {
     name: 'Pirate',
     prompt:
-      'closeup portrait of @me as a pirate, wild and crazy, bandana, eye patch, golden hoop earrings, tattered and ripped clothes, detailed tattoos, rough and rugged, noir photorealism.'
+      'closeup portrait of @me as a pirate, wild and crazy, bandana, eye patch, golden hoop earrings, tattered and ripped clothes, detailed tattoos, rough and rugged, noir photorealism.',
+    image: '/Images/StylesExamples/Pirate.webp'
   },
   {
     name: 'Superhero',
     prompt:
-      'closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending.'
+      'closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending.',
+    image: '/Images/StylesExamples/Superhero.webp'
   },
   {
     name: 'Knight',
     prompt:
-      'closeup portrait of @me as a knight wearing a full suit of armor, intricate details, majestic and powerful, bright shining silver armor, matching blue cape, a golden crown, artstation trending, highly detailed, digital painting.'
+      'closeup portrait of @me as a knight wearing a full suit of armor, intricate details, majestic and powerful, bright shining silver armor, matching blue cape, a golden crown, artstation trending, highly detailed, digital painting.',
+    image: '/Images/StylesExamples/Knight.webp'
   },
   {
     name: 'GTA',
     prompt:
-      'close-up of @me as a GTA character with Los Santos on the background'
+      'close-up of @me as a GTA character with Los Santos on the background',
+    image: '/Images/StylesExamples/GTA.webp'
   },
   {
     name: 'Metal Gear Solid',
     prompt:
-      'close up drawing of @me as a Metal Gear Solid character with helicopters flying in the background'
+      'close up drawing of @me as a Metal Gear Solid character with helicopters flying in the background',
+    image: '/Images/StylesExamples/Metal Gear Solid.webp'
   },
   {
     name: 'Cyborg',
     prompt:
-      'closeup portrait of @me as a cyborg, mechanical parts, ultra realistic, concept art, intricate details, eerie, highly detailed, photorealistic,cyberpunk, robotic, steampunk, neon colors, metallic textures.'
+      'closeup portrait of @me as a cyborg, mechanical parts, ultra realistic, concept art, intricate details, eerie, highly detailed, photorealistic,cyberpunk, robotic, steampunk, neon colors, metallic textures.',
+    image: '/Images/StylesExamples/Cyborg.webp'
   },
-  {
-    name: 'Witch',
-    prompt:
-      'closeup portrait of @me as a witch surrounded by magical elements, highly detailed, photorealism, digital painting, dark colors, grayscale, intricate details ultra realism, magical elements.'
-  },
+  // {
+  //   name: 'Witch',
+  //   prompt:
+  //     'closeup portrait of @me as a witch surrounded by magical elements, highly detailed, photorealism, digital painting, dark colors, grayscale, intricate details ultra realism, magical elements.',
+  //   image: '/Images/StylesExamples/Witch.webp'
+  // },
   {
     name: 'Yearbook',
-    prompt: 'A yearbook closeup photo of @me, 1990s.'
+    prompt: 'A yearbook closeup photo of @me, 1990s.',
+    image: '/Images/StylesExamples/Yearbook.webp'
   },
   {
     name: 'Pharaoh',
     prompt:
-      'a colorful drawing of @me as an ancient egyptian pharaoh. with the piramids on the background'
+      'a colorful drawing of @me as an ancient egyptian pharaoh. with the piramids on the background',
+    image: '/Images/StylesExamples/Pharaoh.webp'
   },
   {
     name: 'Pixar',
     prompt:
-      'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background'
+      'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background',
+    image: '/Images/StylesExamples/Pixar.webp'
   }
 ];
