@@ -88,6 +88,7 @@ const Guide = () => {
       <Separator />
 
       <div className="mt-8">
+      <div className="rounded-lg bg-slate-100 border border-black p-4">
         <h3 className="text-xl font-bold">
           {t('generatingImageOption2Title')}
         </h3>
@@ -116,6 +117,7 @@ const Guide = () => {
             <Image alt="" src={image12} className="px-3 sm:px-60 w-full" />
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
