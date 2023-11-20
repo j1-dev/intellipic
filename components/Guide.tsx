@@ -119,7 +119,7 @@ const Guide = () => {
           <p className="mb-4">{t('generatingImageOption2Description')}</p>
 
           <div className="rounded-xl overflow-hidden px-3 sm:px-60 ">
-            <Image alt="" src={image8} className="mb-4 rounded-xl w-full" />
+            <Image alt="" src={image9} className="mb-4 rounded-xl w-full" />
           </div>
           <div className="max-w-screen-lg mt-5">
             <h3 className="mb-4">{t('ManualGuide')}</h3>
@@ -131,21 +131,33 @@ const Guide = () => {
               <h3 className="text-xl font-bold">{t('ManualStep1Title')}</h3>
               <p className="mb-4">{t('ManualStep1Description')}</p>
               <div className="rounded-xl overflow-hidden px-3 sm:px-60 ">
-                <Image alt="" src={image8} className="mb-4 rounded-xl w-full" />
+                <Image
+                  alt=""
+                  src={image10}
+                  className="mb-4 rounded-xl w-full"
+                />
               </div>
             </div>
             <div>
               <h3 className="text-xl font-bold">{t('ManualStep2Title')}</h3>
               <p className="mb-4">{t('ManualStep2Description')}</p>
               <div className="rounded-xl overflow-hidden px-3 sm:px-60 ">
-                <Image alt="" src={image8} className="mb-4 rounded-xl w-full" />
+                <Image
+                  alt=""
+                  src={image11}
+                  className="mb-4 rounded-xl w-full"
+                />
               </div>
             </div>
             <div>
               <h3 className="text-xl font-bold">{t('ManualStep3Title')}</h3>
               <p className="mb-4">{t('ManualStep3Description')}</p>
               <div className="rounded-xl overflow-hidden px-3 sm:px-60 ">
-                <Image alt="" src={image8} className="mb-4 rounded-xl w-full" />
+                <Image
+                  alt=""
+                  src={image12}
+                  className="mb-4 rounded-xl w-full"
+                />
               </div>
             </div>
           </div>
