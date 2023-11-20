@@ -74,7 +74,7 @@ export async function generateMetadata(
       icons: {
         icon: '/icons/favicon.ico',
         shortcut: '/icons/favicon.ico',
-        apple: '/icons/maskable.png'
+        apple: '/icons/icon.jpg'
       },
       manifest: '/manifest.json'
     };
@@ -133,7 +133,7 @@ export async function generateMetadata(
       icons: {
         icon: '/icons/favicon.ico',
         shortcut: '/icons/favicon.ico',
-        apple: '/icons/maskable.png'
+        apple: '/icons/icon.jpg'
       },
       manifest: '/manifest.json'
     };
