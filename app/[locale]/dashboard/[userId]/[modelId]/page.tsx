@@ -266,19 +266,19 @@ export default function ModelPage() {
   }, 2000);
 
   return (
-    <div className="max-w-screen-lg mx-auto px-8 py-8">
-      <h2 className="text-4xl font-bold mb-2">{t('modelTitle')}</h2>
+    <div className="max-w-screen-lg mx-auto px-6 py-6">
+      <h2 className="text-5xl font-bold mb-2">{t('modelTitle')}</h2>
       <h3 className="text-2xl font-bold mb-2">
         {t('modelToken').replace('token', token)}
       </h3>
       <span>{t('tokenInfo')}</span>
       <div className="relative mb-24">
-        <span className="absolute lef-0 my-7 font-semibold text-xl">
+        <span className="absolute lef-0 my-7 font-semibold text-sm sm:text-lg">
           {t('remainingTokens')} {userData.image_tokens}
         </span>
         <button
           onClick={handleDeleteModel}
-          className="absolute right-0 bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-4 transition-all"
+          className="absolute text-sm sm:text-base right-0 bg-red-600 text-white border-red-600 hover:text-black dark:text-white dark:border-white hover:bg-white dark:hover:text-white dark:hover:bg-black border rounded py-2 px-2 sm:px-4 transition-all"
           style={{ marginTop: '1rem' }}
         >
           {t('deleteModel')}

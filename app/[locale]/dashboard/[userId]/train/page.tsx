@@ -317,8 +317,8 @@ export default function TrainPage() {
   const fineTuningSucceeded = runStatus === 'succeeded';
 
   return (
-    <div className="py-8 max-w-screen-lg mx-auto px-8 pb-56">
-      <h2 className="text-4xl font-bold mb-4">{t('trainLabel')}</h2>
+    <div className="py-8 max-w-screen-lg mx-auto px-6 pb-56">
+      <h2 className="text-5xl font-bold mb-4">{t('trainLabel')}</h2>
       <h3 className="text-xl mb-4">
         {t('tokensLabel')}{' '}
         {!!userData && userData.model_tokens !== undefined

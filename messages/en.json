@@ -55,26 +55,26 @@
       "title": "Prices 💰",
       "trainModel": {
         "title": "Train a Model",
-        "price": "€4 per model",
+        "price": "4€ per model",
         "includes": "This includes:",
         "include1": "Creating a model" ,
         "include2": "Generating 20 images"
       },
       "generate10": {
         "title": "Generate 10 images",
-        "price": "€1"
+        "price": "1€"
       },
       "generate25": {
         "title": "Generate 25 images",
-        "price": "€2"
+        "price": "2€"
       },
       "generate40": {
         "title": "Generate 40 images",
-        "price": "€3"
+        "price": "3€"
       },
       "generate100": {
         "title": "Generate 100 images",
-        "price": "€7"
+        "price": "7€"
       }
     },
     "privacy": {

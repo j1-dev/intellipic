@@ -38,7 +38,7 @@ export default function Home() {
       </header>
 
       <section className="bg-white dark:bg-black py-16 transition-all border-t-[1px] border-b-[1px] border-black dark:border-white">
-        <div className="max-w-screen-lg mx-auto px-12">
+        <div className="max-w-screen-lg mx-auto px-6">
           <Morph
             texts={[t('header.morph1'), t('header.morph2'), t('header.morph3')]}
           />
@@ -54,7 +54,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="max-w-screen-lg mx-auto px-12">
+      <div className="max-w-screen-lg mx-auto px-6">
         <section className="py-16">
           <div>
             <h2 className="text-2xl font-bold mb-4">{t('features.title')}</h2>
