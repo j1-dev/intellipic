@@ -74,10 +74,11 @@ export async function generateMetadata(
         ]
       },
       icons: {
-        icon: '/icons/favicon.ico',
-        shortcut: '/icons/favicon.ico',
-        apple: '/icons/icon.jpg'
-      }
+        icon: 'public/icons/favicon.ico',
+        shortcut: 'public/icons/maskable_icon_x192.png',
+        apple: 'public/icons/maskable_icon_x192.png'
+      },
+      manifest: '/manifest.json'
     };
   } else {
     return {
@@ -132,10 +133,11 @@ export async function generateMetadata(
         ]
       },
       icons: {
-        icon: '/icons/favicon.ico',
-        shortcut: '/icons/favicon.ico',
-        apple: '/icons/icon.jpg'
-      }
+        icon: 'public/icons/favicon.ico',
+        shortcut: 'public/icons/maskable_icon_x192.png',
+        apple: 'public/icons/maskable_icon_x192.png'
+      },
+      manifest: '/manifest.json'
     };
   }
 }
