@@ -235,7 +235,7 @@ export default async function RootLayout({
           rel="apple-touch-startup-image"
         />
         <link
-          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/sign/splashscreens/ipad_splash.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzcGxhc2hzY3JlZW5zL2lwYWRfc3BsYXNoLnBuZyIsImlhdCI6MTcwMDU5OTAzOSwiZXhwIjoyMDE1OTU5MDM5fQ.YaOy4ZR5etd-IlIc8rAYQRM7WlNkJ4pJ9FvYeHs62pQ"
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipad_splash.png"
           media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
           rel="apple-touch-startup-image"
         />
