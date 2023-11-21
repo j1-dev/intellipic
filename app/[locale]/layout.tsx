@@ -74,11 +74,8 @@ export async function generateMetadata(
         ]
       },
       icons: {
-        icon: 'public/icons/favicon.ico',
-        shortcut: 'public/icons/maskable_icon_x192.png',
-        apple: 'public/icons/maskable_icon_x192.png'
-      },
-      manifest: '/manifest.json'
+        icon: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/favicon.ico'
+      }
     };
   } else {
     return {
@@ -134,8 +131,7 @@ export async function generateMetadata(
       },
       icons: {
         icon: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/favicon.ico'
-      },
-      manifest: '/manifest.json'
+      }
     };
   }
 }
