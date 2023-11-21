@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '../core/utils/ThemeContext';
 import Head from 'next/head';
+
 const SupabaseProvider = dynamic(() => import('./supabase-provider'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
