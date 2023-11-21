@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '../core/utils/ThemeContext';
+import Head from 'next/head';
 const SupabaseProvider = dynamic(() => import('./supabase-provider'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
@@ -64,9 +65,9 @@ export async function generateMetadata(
         title: 'IntelliPic',
         statusBarStyle: 'black-translucent',
         startupImage: [
-          '/icons/maskable.png',
+          'public/icons/maskable_icon_x192.png',
           {
-            url: '/icons/maskable.png',
+            url: 'public/icons/maskable_icon_x192.png',
             media: '(device-width: 768px) and (device-height: 1024px)'
           }
         ]
@@ -75,8 +76,7 @@ export async function generateMetadata(
         icon: '/icons/favicon.ico',
         shortcut: '/icons/favicon.ico',
         apple: '/icons/icon.jpg'
-      },
-      manifest: '/manifest.json'
+      }
     };
   } else {
     return {
@@ -123,9 +123,9 @@ export async function generateMetadata(
         title: 'IntelliPic',
         statusBarStyle: 'black-translucent',
         startupImage: [
-          '/icons/maskable.png',
+          'public/icons/maskable_icon_x192.png',
           {
-            url: '/icons/maskable.png',
+            url: 'public/icons/maskable_icon_x192.png',
             media: '(device-width: 768px) and (device-height: 1024px)'
           }
         ]
@@ -134,8 +134,7 @@ export async function generateMetadata(
         icon: '/icons/favicon.ico',
         shortcut: '/icons/favicon.ico',
         apple: '/icons/icon.jpg'
-      },
-      manifest: '/manifest.json'
+      }
     };
   }
 }
@@ -193,7 +192,7 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={font.className}>
-      <head>
+      <Head>
         <meta name="pwa-demo" content="pwa-demo" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -203,8 +202,7 @@ export default async function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#2B5797" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="theme-color" content="#000000" />
-      </head>
+      </Head>
       <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />

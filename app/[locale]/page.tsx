@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import UnderDevelopmentMessage from '@/components/BetaMessage';
 import Separator from '@/components/Separator';
+import { useEffect } from 'react';
 const Link = dynamic(() => import('next/link'));
 const Morph = dynamic(() => import('@/components/Morph'));
 const Logo = dynamic(() => import('@/app/core/resources/logo'));
@@ -13,6 +14,13 @@ const GoodVsBad = dynamic<{}>(() => import('@/components/GoodVsBad'));
 
 export default function Home() {
   const t = useTranslations('Home');
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => console.log('scope is: ', registration.scope));
+    }
+  }, []);
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
       <UnderDevelopmentMessage />
