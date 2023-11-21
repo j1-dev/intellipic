@@ -2,7 +2,7 @@ import './globals.css';
 import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
-import { Metadata, ResolvingMetadata } from 'next/types';
+import { Metadata, ResolvingMetadata, Viewport } from 'next/types';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
@@ -133,14 +133,16 @@ export async function generateMetadata(
         ]
       },
       icons: {
-        icon: 'public/icons/favicon.ico',
-        shortcut: 'public/icons/maskable_icon_x192.png',
-        apple: 'public/icons/maskable_icon_x192.png'
+        icon: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/favicon.ico'
       },
       manifest: '/manifest.json'
     };
   }
 }
+
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF'
+};
 
 const font = localFont({
   // src: './core/fonts/SFProDisplay-Regular.ttf',
