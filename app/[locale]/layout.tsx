@@ -204,6 +204,56 @@ export default async function RootLayout({
         <meta name="msapplication-TileColor" content="#2B5797" />
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#000000" />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphone5_splash.png"
+          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphone6_splash.png"
+          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphoneplus_splash.png"
+          media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphonex_splash.png"
+          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphonexr_splash.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphonexsmax_splash.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/sign/splashscreens/ipad_splash.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJzcGxhc2hzY3JlZW5zL2lwYWRfc3BsYXNoLnBuZyIsImlhdCI6MTcwMDU5OTAzOSwiZXhwIjoyMDE1OTU5MDM5fQ.YaOy4ZR5etd-IlIc8rAYQRM7WlNkJ4pJ9FvYeHs62pQ"
+          media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipadpro1_splash.png"
+          media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipadpro3_splash.png"
+          media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipadpro2_splash.png"
+          media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
       </Head>
       <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
