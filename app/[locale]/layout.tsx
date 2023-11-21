@@ -193,7 +193,7 @@ export default async function RootLayout({
   }
   return (
     <html lang={locale} className={font.className}>
-      <Head>
+      <head>
         <meta name="pwa-demo" content="pwa-demo" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -254,7 +254,7 @@ export default async function RootLayout({
           media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
           rel="apple-touch-startup-image"
         />
-      </Head>
+      </head>
       <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
           <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
