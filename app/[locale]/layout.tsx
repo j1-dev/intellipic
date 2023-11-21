@@ -141,7 +141,7 @@ export async function generateMetadata(
 }
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF'
+  themeColor: '#000000'
 };
 
 const font = localFont({
