@@ -1,5 +1,9 @@
 import Navbar from '@/components/Navbar';
 
+export const metadata = {
+  title: 'IntelliPic'
+};
+
 export default async function RootLayout({
   children
 }: {
