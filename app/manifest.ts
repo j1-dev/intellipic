@@ -62,7 +62,7 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: 'any'
       },
       {
-        src: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/maskable_icon_x512.png',
+        src: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/maskable-icon.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable'
