@@ -2,11 +2,13 @@ import './globals.css';
 import dynamic from 'next/dynamic';
 import localFont from 'next/font/local';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
-import { Metadata, ResolvingMetadata } from 'next/types';
+import { Metadata, ResolvingMetadata, Viewport } from 'next/types';
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '../core/utils/ThemeContext';
+import Head from 'next/head';
+
 const SupabaseProvider = dynamic(() => import('./supabase-provider'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
@@ -64,19 +66,16 @@ export async function generateMetadata(
         title: 'IntelliPic',
         statusBarStyle: 'black-translucent',
         startupImage: [
-          '/icons/maskable.png',
+          'public/icons/maskable_icon_x192.png',
           {
-            url: '/icons/maskable.png',
+            url: 'public/icons/maskable_icon_x192.png',
             media: '(device-width: 768px) and (device-height: 1024px)'
           }
         ]
       },
       icons: {
-        icon: '/icons/favicon.ico',
-        shortcut: '/icons/favicon.ico',
-        apple: '/icons/icon.jpg'
-      },
-      manifest: '/manifest.json'
+        icon: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/favicon.ico'
+      }
     };
   } else {
     return {
@@ -123,22 +122,23 @@ export async function generateMetadata(
         title: 'IntelliPic',
         statusBarStyle: 'black-translucent',
         startupImage: [
-          '/icons/maskable.png',
+          'public/icons/maskable_icon_x192.png',
           {
-            url: '/icons/maskable.png',
+            url: 'public/icons/maskable_icon_x192.png',
             media: '(device-width: 768px) and (device-height: 1024px)'
           }
         ]
       },
       icons: {
-        icon: '/icons/favicon.ico',
-        shortcut: '/icons/favicon.ico',
-        apple: '/icons/icon.jpg'
-      },
-      manifest: '/manifest.json'
+        icon: 'https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/icons/favicon.ico'
+      }
     };
   }
 }
+
+export const viewport: Viewport = {
+  themeColor: '#000000'
+};
 
 const font = localFont({
   // src: './core/fonts/SFProDisplay-Regular.ttf',
@@ -204,6 +204,56 @@ export default async function RootLayout({
         <meta name="msapplication-TileColor" content="#2B5797" />
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#000000" />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphone5_splash.png"
+          media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphone6_splash.png"
+          media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphoneplus_splash.png"
+          media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphonex_splash.png"
+          media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphonexr_splash.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/iphonexsmax_splash.png"
+          media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipad_splash.png"
+          media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipadpro1_splash.png"
+          media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipadpro3_splash.png"
+          media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
+        <link
+          href="https://fuyhpknpcwdkcyntvzvk.supabase.co/storage/v1/object/public/splashscreens/ipadpro2_splash.png"
+          media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+          rel="apple-touch-startup-image"
+        />
       </head>
       <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
