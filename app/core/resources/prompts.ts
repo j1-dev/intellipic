@@ -50,7 +50,7 @@ export const prompts = [
   {
     name: 'Borderlands',
     prompt:
-      'Closeip portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.',
+      'Portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.',
     image: '/Images/StylesExamples/Borderlands.webp'
   },
   {
@@ -181,7 +181,7 @@ export const prompts = [
   {
     name: 'Pixar',
     prompt:
-      'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background',
+      '3D render of @me as a vibrant and animated Disney Pixar character, with features reminiscent of the beloved animation style,cartoony and colorful.',
     image: '/Images/StylesExamples/Pixar.webp'
   }
 ];
