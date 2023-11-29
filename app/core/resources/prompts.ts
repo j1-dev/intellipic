@@ -2,7 +2,7 @@ export const prompts = [
   {
     name: 'Viking',
     prompt:
-      'closeup portrait painting of @me as a viking, ultra realistic, concept art, intricate details, powerful and fierce, highly detailed, photorealistic, octane render, 8 k, unreal engine.',
+      'Painting of @me as a viking, ultra realistic, concept art, intricate details, powerful and fierce, highly detailed, photorealistic, octane render, 8 k, unreal engine.',
     image: '/Images/StylesExamples/Viking.webp'
   },
   {
@@ -14,13 +14,13 @@ export const prompts = [
   {
     name: 'Harry Potter',
     prompt:
-      'closeup portrait of @me as a wizard or witch at Hogwarts, wearing the house colors, holding a wand, with the magical castle towering behind them.',
+      'Digital painting of @me as a wizard or witch at Hogwarts, wearing the house colors, holding a wand, with the magical castle towering behind them.',
     image: '/Images/StylesExamples/Harry Potter.webp'
   },
   {
     name: 'Hobbit',
     prompt:
-      'Closeup portrait of @me as a Hobbit, small, big brown eyes, green and brown clothing, detailed facial features, small feet, wispy hair, fantasy concept art, artstation trending, highly detailed.',
+      '@me as a Hobbit, small, big brown eyes, green and brown clothing, detailed facial features, small feet, wispy hair, fantasy concept art, artstation trending, highly detailed.',
     image: '/Images/StylesExamples/Hobbit.webp'
   },
   {
@@ -32,7 +32,7 @@ export const prompts = [
   {
     name: 'Matrix',
     prompt:
-      'Closeup portrait of @me as a sleek cyberpunk rebel, wearing a long trench coat, with the iconic green digital code cascading in the background.',
+      'Digital painting of @me as a sleek cyberpunk rebel, wearing a long trench coat, with the iconic green digital code cascading in the background.',
     image: '/Images/StylesExamples/Matrix.webp'
   },
   {
@@ -44,17 +44,17 @@ export const prompts = [
   {
     name: 'Skyrim',
     prompt:
-      'closeup portrait of @me as a seasoned adventurer in the world of Skyrim. The backdrop is the ancient city of Whiterun, its towering stone walls and the Dragonsreach castle visible in the distance.',
+      'Digital painting of @me as a seasoned adventurer in the world of Skyrim. The backdrop is the ancient city of Whiterun, its towering stone walls and the Dragonsreach castle visible in the distance.',
     image: '/Images/StylesExamples/Skyrim.webp'
   },
   {
     name: 'Borderlands',
     prompt:
-      'Closeip portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.',
+      'Portrait of @me as a rugged and charismatic Vault Hunter, donned in a mix of scavenged armor pieces adorned with the iconic Borderlands cel-shaded art style.',
     image: '/Images/StylesExamples/Borderlands.webp'
   },
   {
-    name: 'Avatar',
+    name: 'Pandora',
     prompt:
       'Closeup portrait @me as a charismatic vault hunter, surrounded by the vibrant and chaotic landscapes of Pandora, with an assortment of quirky weapons at their side, cel shading.',
     image: '/Images/StylesExamples/Avatar.webp'
@@ -62,7 +62,7 @@ export const prompts = [
   {
     name: 'Fortnite',
     prompt:
-      'Closeup portrait of @me as a vibrant and customizable Fortnite character, showcasing unique emotes and accessories, surrounded by the ever-shifting landscapes of the island.',
+      '@me as a vibrant and customizable Fortnite character, showcasing unique emotes and accessories, surrounded by the ever-shifting landscapes of the island.',
     image: '/Images/StylesExamples/Fortnite.webp'
   },
   {
@@ -74,7 +74,7 @@ export const prompts = [
   {
     name: 'Sims',
     prompt:
-      'Close up portrait of @me as a character from The Sims 4, living life in a cozy suburban home, with various furniture, decorations, and even a pet by your side.',
+      'Portrait of @me as a character from The Sims 4, living life in a cozy suburban home, with various furniture, decorations, and even a pet by your side.',
     image: '/Images/StylesExamples/Sims.webp'
   },
   {
@@ -92,7 +92,7 @@ export const prompts = [
   {
     name: 'Jedi',
     prompt:
-      'closeup portrait of @me as a jedi with a lightsaber, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour.',
+      'Digital painting of @me as a jedi with a lightsaber, highly detailed, science fiction, star wars concept art, intricate details, bright colors, golden hour.',
     image: '/Images/StylesExamples/Jedi.webp'
   },
   {
@@ -110,13 +110,13 @@ export const prompts = [
   {
     name: 'Astronaut',
     prompt:
-      'closeup portrait of @me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel.',
+      '@me as an astronaut, futuristic, highly detailed, ultra realistic, concept art, intricate textures, interstellar background, space travel.',
     image: '/Images/StylesExamples/Astronaut.webp'
   },
   {
     name: 'Samurai',
     prompt:
-      'closeup portrait of @me as a samurai warrior, war-torn landscape in the background, wearing a black and red armor.',
+      'Digital painting of @me as a samurai warrior, war-torn landscape in the background, wearing a black and red armor.',
     image: '/Images/StylesExamples/Samurai.webp'
   },
   {
@@ -128,13 +128,13 @@ export const prompts = [
   {
     name: 'Pirate',
     prompt:
-      'closeup portrait of @me as a pirate, wild and crazy, bandana, eye patch, golden hoop earrings, tattered and ripped clothes, detailed tattoos, rough and rugged, noir photorealism.',
+      'digital painting of @me as a daring and charismatic pirate captain, standing proudly on the deck of a magnificent ship, with billowing sails and a Jolly Roger flag flying high in the win.',
     image: '/Images/StylesExamples/Pirate.webp'
   },
   {
     name: 'Superhero',
     prompt:
-      'closeup portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending.',
+      'Portrait of @me as a superhero, dynamic lighting, intense colors, detailed costume, artstation trending.',
     image: '/Images/StylesExamples/Superhero.webp'
   },
   {
@@ -146,7 +146,7 @@ export const prompts = [
   {
     name: 'GTA',
     prompt:
-      'close-up of @me as a GTA character with Los Santos on the background',
+      'Portrait of @me as a GTA character with Los Santos on the background',
     image: '/Images/StylesExamples/GTA.webp'
   },
   {
@@ -181,7 +181,7 @@ export const prompts = [
   {
     name: 'Pixar',
     prompt:
-      'close up 3d render of @me as a character in a Disney or Pixar movie, cartoony and colorful, studio background',
+      '3D render of @me as a vibrant and animated Disney Pixar character, with features reminiscent of the beloved animation style,cartoony and colorful.',
     image: '/Images/StylesExamples/Pixar.webp'
   }
 ];
