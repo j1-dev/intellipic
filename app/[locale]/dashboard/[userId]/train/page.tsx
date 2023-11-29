@@ -228,7 +228,10 @@ export default function TrainPage() {
         const file = files[fileIndex];
         const fileExtension = file.name.split('.').pop() || '';
         const newFileName = `${fileIndex}.src.${fileExtension}`;
-        dataFolder.file(newFileName, file);
+
+        const imageWithoutMetadata = await removeMetadataFromFile(file);
+
+        dataFolder.file(newFileName, imageWithoutMetadata);
       }
     }
 
@@ -259,6 +262,38 @@ export default function TrainPage() {
 
       setUploading(false);
       setOpen(false);
+    });
+  }
+
+  async function removeMetadataFromFile(file: File): Promise<Blob> {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        if (event.target) {
+          const arrayBuffer = event.target.result as ArrayBuffer;
+          const img = new Image();
+          img.onload = function () {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            if (ctx) {
+              ctx.drawImage(img, 0, 0);
+              ctx.canvas.toBlob(
+                (blob) => {
+                  resolve(blob as Blob);
+                },
+                file.type,
+                1
+              );
+            }
+          };
+          img.src = URL.createObjectURL(new Blob([arrayBuffer]));
+        }
+      };
+      reader.readAsArrayBuffer(file);
     });
   }
 
