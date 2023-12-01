@@ -39,15 +39,17 @@ export async function POST(request: Request) {
       const userId = paymentIntent?.metadata?.userId;
       const amount = paymentIntent?.amount_total;
       const status = paymentIntent?.payment_status;
-      console.log(userId);
-      console.log(amount);
-      console.log(status);
 
       if (status === 'paid') {
-        const { data: userData } = await supabase
+        const { data: userData, error: userError } = await supabase
           .from('user-data')
           .select('*')
           .eq('id', userId);
+
+        if (userError) {
+          console.error('Supabase error: ', userError);
+          return NextResponse.error();
+        }
 
         let tokenAmountGenerating = 0;
         let tokenAmountTraining = 0;
@@ -73,7 +75,17 @@ export async function POST(request: Request) {
             break;
         }
 
-        const { data, error } = await supabase
+        const { data: paymentData, error: paymentError } = await supabase
+          .from('payments')
+          .update({ payment_status: 'paid' })
+          .eq('id', userData?.[0].last_payment_id);
+
+        if (paymentError) {
+          console.error('Supabase error: ', paymentError);
+          return NextResponse.error();
+        }
+
+        const { data: newUserData, error: newUserError } = await supabase
           .from('user-data')
           .update({
             model_tokens: userData?.[0].model_tokens + tokenAmountTraining,
@@ -81,10 +93,14 @@ export async function POST(request: Request) {
             last_payment_status: 'paid'
           })
           .eq('id', userId);
+
+        if (newUserError) {
+          console.error('Supabase error: ', newUserError);
+          return NextResponse.error();
+        }
       }
 
       break;
-    // ... handle other event types
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
