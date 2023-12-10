@@ -37,7 +37,7 @@ export async function POST(
         apply_watermark: false,
         // refine: 'base_image_refiner',
         // high_noise_frac: 0.95,
-        lora_scale: 0.75
+        lora_scale: 0.7
       },
       webhook: `https://www.intellipic.es/api/ai/${user.id}/prediction-webhook/`,
       webhook_events_filter: [

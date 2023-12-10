@@ -46,11 +46,8 @@ export async function POST(request: Request) {
       );
       const status = paymentIntent?.payment_status;
 
-      console.log(tokenAmountGenerating);
-      console.log(tokenAmountTraining);
-
       if (status === 'paid') {
-        const { data: userData } = await supabase
+        const { data: userData, error: userError } = await supabase
           .from('user-data')
           .select('*')
           .eq('id', userId);
@@ -63,10 +60,14 @@ export async function POST(request: Request) {
             last_payment_status: 'paid'
           })
           .eq('id', userId);
+
+        if (newUserError) {
+          console.error('Supabase error: ', newUserError);
+          return NextResponse.error();
+        }
       }
 
       break;
-    // ... handle other event types
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

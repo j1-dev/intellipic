@@ -150,7 +150,7 @@ export const prompts = [
     image: '/Images/StylesExamples/GTA.webp'
   },
   {
-    name: 'Metal Gear Solid',
+    name: 'Metal Gear',
     prompt:
       'close up drawing of @me as a Metal Gear Solid character with helicopters flying in the background',
     image: '/Images/StylesExamples/Metal Gear Solid.webp'
