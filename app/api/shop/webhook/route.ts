@@ -24,6 +24,7 @@ export async function POST(request: Request) {
       body,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET! as string
+      // 'whsec_C7yyJBCdNVqfv7gfqRYdQLIzSWZIEccf'
     );
   } catch (err: any) {
     console.log(`Webhook signature verification failed.`, err.message);
@@ -37,41 +38,22 @@ export async function POST(request: Request) {
     case 'checkout.session.completed':
       const paymentIntent = event.data.object as Stripe.Checkout.Session;
       const userId = paymentIntent?.metadata?.userId;
-      const amount = paymentIntent?.amount_total;
+      const tokenAmountGenerating = parseInt(
+        paymentIntent?.metadata?.imageCredits || ''
+      );
+      const tokenAmountTraining = parseInt(
+        paymentIntent?.metadata?.modelCredits || ''
+      );
       const status = paymentIntent?.payment_status;
-      console.log(userId);
-      console.log(amount);
-      console.log(status);
+
+      console.log(tokenAmountGenerating);
+      console.log(tokenAmountTraining);
 
       if (status === 'paid') {
         const { data: userData } = await supabase
           .from('user-data')
           .select('*')
           .eq('id', userId);
-
-        let tokenAmountGenerating = 0;
-        let tokenAmountTraining = 0;
-
-        switch (amount) {
-          case 100:
-            tokenAmountGenerating = 10;
-            break;
-          case 200:
-            tokenAmountGenerating = 25;
-            break;
-          case 300:
-            tokenAmountGenerating = 40;
-            break;
-          case 400:
-            tokenAmountGenerating = 20;
-            tokenAmountTraining = 1;
-            break;
-          case 700:
-            tokenAmountGenerating = 100;
-            break;
-          default:
-            break;
-        }
 
         const { data, error } = await supabase
           .from('user-data')
