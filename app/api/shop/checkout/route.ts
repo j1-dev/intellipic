@@ -4,11 +4,16 @@ import stripe from '../../../core/clients/stripe';
 
 export async function POST(request: any) {
   let data = await request.json();
+  let productId = data.productId;
   let priceId = data.priceId;
   let userId = data.userId;
-  let tokenAmountGenerating = 0;
-  let tokenAmountTraining = 0;
+
   let url = request.url.substring(0, request.url.length - 19);
+
+  const product = await stripe.products.retrieve(productId);
+
+  const imageCredits = product.metadata.image_credits;
+  const modelCredits = product.metadata.model_credits;
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -21,38 +26,20 @@ export async function POST(request: any) {
     success_url: url + '/dashboard/' + userId,
     cancel_url: url + '/dashboard/shop/',
     metadata: {
-      userId: userId
+      userId: userId,
+      imageCredits: imageCredits,
+      modelCredits: modelCredits
     }
   });
-
-  switch (session.amount_total) {
-    case 100:
-      tokenAmountGenerating = 10;
-      break;
-    case 200:
-      tokenAmountGenerating = 25;
-      break;
-    case 300:
-      tokenAmountGenerating = 40;
-      break;
-    case 400:
-      tokenAmountGenerating = 20;
-      tokenAmountTraining = 1;
-      break;
-    case 700:
-      tokenAmountGenerating = 100;
-      break;
-    default:
-      break;
-  }
 
   await supabase.from('payments').insert({
     id: session.id,
     payment_status: session.payment_status,
-    token_amount_generating: tokenAmountGenerating,
-    token_amount_training: tokenAmountTraining,
+    token_amount_generating: product.metadata.image_credits,
+    token_amount_training: product.metadata.model_credits,
     price: session.amount_total
   });
+
   await supabase
     .from('user-data')
     .update({
