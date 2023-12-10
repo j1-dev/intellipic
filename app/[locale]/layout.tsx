@@ -153,11 +153,11 @@ const font = localFont({
     //   weight: '500',
     //   style: 'normal'
     // },
-    // {
-    //   path: '../core/fonts/SFProDisplay-Semibold.ttf',
-    //   weight: '600',
-    //   style: 'normal'
-    // },
+    {
+      path: '../core/fonts/SFProDisplay-Semibold.ttf',
+      weight: '600',
+      style: 'normal'
+    },
     {
       path: '../core/fonts/SFProDisplay-Bold.ttf',
       weight: '700',
