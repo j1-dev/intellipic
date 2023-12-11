@@ -147,11 +147,13 @@ export default function DashboardPage() {
             <TrainButton userData={userData} />
           </div>
         ) : (
-          <div className="w-full m-auto mt-24 text-center">
+          <div className="w-full m-auto mt-12 text-center">
             {userData?.model_tokens === null ? (
-              <h1 className="text-3xl font-bold">{t('noModelsMessage')}</h1>
+              <h1 className="text-3xl my-12 font-bold">
+                {t('noModelsMessage')}
+              </h1>
             ) : (
-              <h1 className="text-2xl mb-3 font-bold">{t('startTraining')}</h1>
+              <h1 className="text-2xl my-12 font-bold">{t('startTraining')}</h1>
             )}
             <h2 className="text-xl font-semibold mt-5">
               {userData?.model_tokens === null ? (
