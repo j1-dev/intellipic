@@ -23,6 +23,7 @@ export async function POST(request: any) {
       }
     ],
     mode: 'payment',
+    allow_promotion_codes: true,
     success_url: url + '/dashboard/' + userId,
     cancel_url: url + '/dashboard/shop/',
     metadata: {
