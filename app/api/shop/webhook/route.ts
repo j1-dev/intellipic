@@ -63,6 +63,11 @@ export async function POST(request: Request) {
             last_payment_status: 'paid'
           })
           .eq('id', userId);
+
+        await supabase
+          .from('payments')
+          .update({ payment_status: 'paid' })
+          .eq('id', userData?.[0]?.last_payment_id);
       }
 
       break;
