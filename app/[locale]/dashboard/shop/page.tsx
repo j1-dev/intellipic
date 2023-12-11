@@ -219,7 +219,7 @@ export default function ShopPage() {
               </div>
               <div className="flex justify-end">
                 <button
-                  className="font-semibold shadow-none hover:shadow-lg hover:shadow-gray-400 dark:hover:shadow-gray-400 bg-green-300 text-green-900 hover:bg-black hover:text-white dark:bg-green-400 dark:text-green-900 dark:hover:bg-white dark:hover:text-black  rounded-xl py-4 px-8 text-xl transition-all"
+                  className="font-semibold shadow-none hover:shadow-lg hover:shadow-gray-400 dark:hover:shadow-gray-400 bg-green-200 text-green-900 hover:bg-black hover:text-white dark:bg-green-200 dark:text-green-900 dark:hover:bg-white dark:hover:text-black  rounded-xl py-4 px-8 text-xl transition-all"
                   onClick={handleBuyNow}
                 >
                   {t('buyNow')}
