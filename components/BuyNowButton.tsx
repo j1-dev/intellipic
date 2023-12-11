@@ -11,12 +11,12 @@ const BuyNowButton = (userData: any) => {
   const [loading, setLoading] = useState(false);
   const t = useTranslations('ShopPage');
   const product: Product = {
-    // id: 'prod_OcmbeX4AJFkVoF',
-    id: 'prod_OAGAukWxQfrOVG',
+    id: 'prod_OcmbeX4AJFkVoF',
+    // id: 'prod_OAGAukWxQfrOVG',
     name: t('modelTraining'),
     price: '1.99€',
-    // priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
-    priceId: 'price_1OM69kIsZGNqsWfQrj6jsAKA',
+    priceId: 'price_1OM8rBIsZGNqsWfQT0TuOCog',
+    // priceId: 'price_1OM69kIsZGNqsWfQrj6jsAKA',
     features: [t('modelTrainingInfo'), t('generate20Title')]
   };
 
