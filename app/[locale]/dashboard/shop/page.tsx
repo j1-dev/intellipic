@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
-interface Product {
+export interface Product {
   id: string;
   name: string;
   price: string;

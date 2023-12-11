@@ -208,7 +208,8 @@
   "Dashboard": {
     "title": "Models 🤖",
     "tokensToTrain": "Training credits:",
-    "noModelsMessage": "You haven't trained any models yet",
+    "noModelsMessage": "Buy credits for just 1.99€ to start using the app!",
+    "startTraining": "Now click on the button and follow the steps to start generating images",
     "buyTokensMessage": "Buy credits in the store to train your first model"
   },
   "ModelCard": {
