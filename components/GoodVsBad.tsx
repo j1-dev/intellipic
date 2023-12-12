@@ -15,7 +15,9 @@ const GoodVsBad = () => {
   const t = useTranslations('Home.GoodVsBad');
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-bold mb-4">{t('GoodVsBadTitle')}</h1>
+      <h1 className="text-2xl xs:text-4xl font-bold mb-4">
+        {t('GoodVsBadTitle')}
+      </h1>
       <span>{t('GoodVsBadDescription')}</span>
       <span className="text-lg font-semibold my-3">
         {t('GoodPhotoExamples')} ✅

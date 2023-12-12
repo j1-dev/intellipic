@@ -55,26 +55,26 @@
       "title": "Precios 💰",
       "trainModel": {
         "title": "Entrenar un modelo",
-        "price": "4€ por modelo",
-        "includes": "Esto Incluye:",
+        "price": "1.99€ por tu primera compra",
+        "includes": "Esto incluye:",
         "include1": "Generar un modelo",
         "include2": "20 créditos para generar imágenes"
       },
       "generate10": {
         "title": "Generar 10 imágenes",
-        "price": "1€"
+        "price": "0.99€"
       },
       "generate25": {
         "title": "Generar 25 imágenes",
-        "price": "2€"
+        "price": "1.99€"
       },
       "generate40": {
         "title": "Generar 40 imágenes",
-        "price": "3€"
+        "price": "2.99€"
       },
       "generate100": {
         "title": "Generar 100 imágenes",
-        "price": "7€"
+        "price": "6.99€"
       }
     },
     "privacy": {

@@ -27,8 +27,8 @@ export default function ShopPage() {
       id: 'prod_OcmbeX4AJFkVoF',
       // id: 'prod_OAGAukWxQfrOVG',
       name: t('modelTraining'),
-      price: '4€',
-      priceId: 'price_1NpX2XIsZGNqsWfQEfpNM7lv',
+      price: '3.99€',
+      priceId: 'price_1OMYWmIsZGNqsWfQmfBuzSn0',
       // priceId: 'price_1NpWCqIsZGNqsWfQjfx5eAtJ',
       features: [t('modelTrainingInfo'), t('generate20Title')]
     },
@@ -36,8 +36,8 @@ export default function ShopPage() {
       id: 'prod_OcmbMwLY3PSKkd',
       // id: 'prod_OAGCBKSOdimjwS',
       name: t('generate10Title'),
-      price: '1€',
-      priceId: 'price_1NpX23IsZGNqsWfQwulR8Pie',
+      price: '0.99€',
+      priceId: 'price_1OMYXgIsZGNqsWfQs29kLm0M',
       // priceId: 'price_1NNvgXIsZGNqsWfQVLzT0EOi',
       features: [t('generate10Info'), t('extraInfo')]
     },
@@ -45,8 +45,8 @@ export default function ShopPage() {
       id: 'prod_OcmaoJNRfbjwqk',
       // id: 'prod_OAGD9THFNk3NAD',
       name: t('generate25Title'),
-      price: '2€',
-      priceId: 'price_1NpX1VIsZGNqsWfQ6Pq3YcNa',
+      price: '1.99€',
+      priceId: 'price_1OMYYJIsZGNqsWfQrQxjAd7x',
       // priceId: 'price_1NNvhUIsZGNqsWfQGsXojAbB',
       features: [t('generate25Info'), t('extraInfo')]
     },
@@ -54,8 +54,8 @@ export default function ShopPage() {
       id: 'prod_OcmZDNFgWpbV65',
       // id: 'prod_OAGEvgK2m6HATL',
       name: t('generate40Title'),
-      price: '3€',
-      priceId: 'price_1NpX0oIsZGNqsWfQ6doXHr1o',
+      price: '2.99€',
+      priceId: 'price_1OMYYoIsZGNqsWfQoADtJoHX',
       // priceId: 'price_1NNviMIsZGNqsWfQayaCdTZ7',
       features: [t('generate40Info'), t('extraInfo')]
     },
@@ -63,8 +63,8 @@ export default function ShopPage() {
       id: 'prod_OcmY6zvRL63Zhr',
       // id: 'prod_OAGFn5wQimhFvz',
       name: t('generate100Title'),
-      price: '7€',
-      priceId: 'price_1NpWzbIsZGNqsWfQb9RLZM8S',
+      price: '6.99€',
+      priceId: 'price_1OMYZFIsZGNqsWfQCJdTVqxR',
       // priceId: 'price_1NpWBnIsZGNqsWfQIno5sHN5',
       features: [t('generate100Info'), t('extraInfo')]
     }
