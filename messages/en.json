@@ -42,7 +42,7 @@
     },
     "GoodVsBad":{
       "GoodVsBadTitle": "Good Photos VS Bad Photos",
-            "GoodVsBadDescription":"Tips for determining what type of image you should use to train the AI.",
+      "GoodVsBadDescription":"Tips for determining what type of image you should use to train the AI.",
       "GoodPhotoExamples": "Good Photo Examples",
       "GoodPhotoDef": "Close-up selfies, with a diverse range of backgrounds, capturing various facial expressions, head tilts, and angles.",
       "BadPhotoExamples": "Bad Photo Examples",
@@ -55,26 +55,26 @@
       "title": "Prices 💰",
       "trainModel": {
         "title": "Train a Model",
-        "price": "4€ per model",
+        "price": "1.99€ for 1st time buyers",
         "includes": "This includes:",
         "include1": "Creating a model" ,
         "include2": "Generating 20 images"
       },
       "generate10": {
         "title": "Generate 10 images",
-        "price": "1€"
+        "price": "0.99€"
       },
       "generate25": {
         "title": "Generate 25 images",
-        "price": "2€"
+        "price": "1.99€"
       },
       "generate40": {
         "title": "Generate 40 images",
-        "price": "3€"
+        "price": "2.99€"
       },
       "generate100": {
         "title": "Generate 100 images",
-        "price": "7€"
+        "price": "6.99€"
       }
     },
     "privacy": {
