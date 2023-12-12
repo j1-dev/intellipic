@@ -1,6 +1,6 @@
 {
   "name": "intellipic",
-  "version": "0.1.9a",
+  "version": "0.1.9b",
   "private": true,
   "scripts": {
     "dev": "next dev ",
