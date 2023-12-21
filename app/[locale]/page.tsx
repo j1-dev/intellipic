@@ -59,7 +59,7 @@ export default function Home() {
       <div className="max-w-screen-lg mx-auto px-6">
         <section className="py-16">
           <div>
-            <h2 className="text-2xl font-bold mb-4">{t('features.title')}</h2>
+            <h2 className="text-4xl font-bold mb-5">{t('features.title')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {/* Feature 1 */}
               <div className="card p-6">
@@ -118,7 +118,7 @@ export default function Home() {
 
         <section className="py-5">
           <div className="max-w-screen-lg mx-auto">
-            <h2 className="text-2xl font-bold mb-4">{t('examples.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">{t('examples.title')}</h2>
           </div>
           <div className="max-w-screen-lg mx-auto">
             <HomeExamples />
@@ -129,14 +129,16 @@ export default function Home() {
 
         <section className="py-16">
           <div className="max-w-screen-lg mx-auto">
-            <h2 className="text-2xl font-bold mb-4">{t('prices.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">{t('prices.title')}</h2>
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* Training a Model */}
               <div className="card p-6 col-span-2 row-span-2">
-                <h3 className="text-xl font-bold mb-2">
+                <h3 className="text-3xl font-bold">
                   {t('prices.trainModel.title')}
                 </h3>
-                <p className="leading-7">{t('prices.trainModel.price')}</p>
+                <p className="leading-7 text-lg font-semibold my-3">
+                  {t('prices.trainModel.price')}
+                </p>
                 <p className="leading-7">{t('prices.trainModel.includes')}</p>
                 <ul className="list-disc list-inside ">
                   <li className="leading-7">
@@ -187,7 +189,7 @@ export default function Home() {
 
         <section className="py-16">
           <div className="max-w-screen-lg mx-auto">
-            <h2 className="text-2xl font-bold mb-4">{t('privacy.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">{t('privacy.title')}</h2>
             <p className="text-lg font-semibold mb-8">
               {t('privacy.description')}
             </p>

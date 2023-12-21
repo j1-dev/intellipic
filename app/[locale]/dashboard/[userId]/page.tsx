@@ -7,6 +7,7 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { encryptData, decryptData } from '@/app/core/utils/encrypt';
+import BuyNowButton from '@/components/BuyNowButton';
 export interface userDataType {
   id: string;
   created_at: Date;
@@ -118,7 +119,7 @@ export default function DashboardPage() {
             userData.model_tokens !== undefined &&
             userData.model_tokens !== null
               ? userData.model_tokens
-              : '...'}
+              : '0'}
           </div>
 
           <div className="mx-4">
@@ -127,7 +128,7 @@ export default function DashboardPage() {
             userData.image_tokens !== undefined &&
             userData.image_tokens !== null
               ? userData.image_tokens
-              : '...'}
+              : '0'}
           </div>
         </h3>
 
@@ -146,11 +147,19 @@ export default function DashboardPage() {
             <TrainButton userData={userData} />
           </div>
         ) : (
-          <div className="w-full m-auto mt-24 text-center">
-            <h1 className="text-3xl font-bold">{t('noModelsMessage')}</h1>
-            <h2 className="text-xl font-semibold mt-3">
-              {userData?.model_tokens === 0 ? (
-                t('buyTokensMessage')
+          <div className="w-full m-auto mt-12 text-center">
+            {userData?.model_tokens === null ? (
+              <h1 className="text-3xl my-12 font-bold">
+                {t('noModelsMessage')}
+              </h1>
+            ) : (
+              <h1 className="text-2xl my-12 font-bold">{t('startTraining')}</h1>
+            )}
+            <h2 className="text-xl font-semibold mt-5">
+              {userData?.model_tokens === null ? (
+                <div className="max-w-screen-xs m-auto">
+                  <BuyNowButton userData={userData} />
+                </div>
               ) : (
                 <div className="max-w-screen-xs m-auto">
                   <TrainButton userData={userData} />
