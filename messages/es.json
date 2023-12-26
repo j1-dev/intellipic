@@ -195,6 +195,10 @@
     "question4": {
       "question": "¿Qué sucederá con mis fotos? 🖼",
       "answer": "Puedes eliminar todas las fotos y conjuntos de datos asociados al modelo al eliminar el modelo de tu cuenta.\n\nPara solicitar que se elimine tu cuenta y todos los datos asociados, envía un correo electrónico a intellipic1@gmail.com. Ten en cuenta que al eliminar tu cuenta, ya no tendrás acceso a ningún dato o contenido asociado a ella."
+    },
+    "question5": {
+      "question": "¿Y si mis fotos no se parecen exactamente a mí?",
+      "answer": "Nuestra inteligencia artificial sigue de cerca las líneas de tus fotos, pero las imágenes generadas no serán perfectas. Para maximizar tus posibilidades de una gran sesión de fotos, asegúrate de seguir las pautas de cerca y enviar fotos de alta calidad en primer plano de ti mismo. Si envías fotos borrosas, pixeladas, desde ángulos incómodos o cubriendo tu rostro con el pelo, manos o tu teléfono, entonces tus resultados se verán afectados y no hay mucho que podamos hacer. Si seguiste las pautas de cerca y aún no se parece a ti, avísanos y haremos todo lo posible para conseguirte unos grandes avatares."
     }
   },
   "Navbar": {

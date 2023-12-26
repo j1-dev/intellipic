@@ -24,6 +24,10 @@ const FaqMain = () => {
             <h3 className="text-xl font-bold">{t('question4.question')}</h3>
             <p className="mb-4">{t('question4.answer')}</p>
           </li>
+          <li>
+            <h3 className="text-xl font-bold">{t('question5.question')}</h3>
+            <p className="mb-4">{t('question5.answer')}</p>
+          </li>
         </ul>
       </div>
     </div>

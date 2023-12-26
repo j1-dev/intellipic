@@ -195,6 +195,10 @@
     "question4": {
       "question": "What will happen to my photos? 🖼",
       "answer": "You can delete all photos and associated datasets by removing the model from your account.\n\nTo request the deletion of your account and all associated data, please send an email to intellipic1@gmail.com. Please note that by deleting your account, you will no longer have access to any data or content associated with it."
+    },
+    "question5": {
+      "question": "What if my photos don't look like me 100%?",
+      "answer": "Our AI follows the lines of your photos very closely, but the images generated will not be perfect.  To maximize your chances of a great photoshoot, make sure you follow the guidelines closely and submit high quality closeup photos of yourself.  If you submit blurry, pixelated photos, from awkward angles, covering your face with hair, hands, or your phone, then your results will be affected and there's not much we can do. If you followed the guidelines closely and it still doesn't look like you, let us know and we'll do everything we can to get you a great avatars. "
     }
   },
   "Navbar": {
