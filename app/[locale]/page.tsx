@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import UnderDevelopmentMessage from '@/components/BetaMessage';
 import Separator from '@/components/Separator';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 const Link = dynamic(() => import('next/link'));
 const Morph = dynamic(() => import('@/components/Morph'));
 const Logo = dynamic(() => import('@/app/core/resources/logo'));
@@ -13,14 +14,33 @@ const HomeExamples = dynamic<{}>(() =>
 const GoodVsBad = dynamic<{}>(() => import('@/components/GoodVsBad'));
 import Head from 'next/head';
 import Image from 'next/image';
+import Script from 'next/script';
+import * as fbq from './lib/fpixel.js';
+
+
 
 export default function Home() {
   const t = useTranslations('Home');
 
+ const router =useRouter()
+
+  useEffect(()=>{
+    fbq.pageview()
+
+    const handleRouteChange = () => {
+      fbq.pageview()
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
+
   return (
   
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
-      <Head>
+      <>
         {/* Facebook Pixel Code */}
         <script
           dangerouslySetInnerHTML={{
@@ -33,22 +53,14 @@ export default function Home() {
               t.src=v;s=b.getElementsByTagName(e)[0];
               s.parentNode.insertBefore(t,s)}(window, document,'script',
               'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '739289764388996');
+              fbq('init',${fbq.FB_PIXEL_ID});
               fbq('track', 'PageView');
             `,
           }}
         />
-        <noscript>
-          <Image
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=739289764388996&ev=PageView&noscript=1"
-            alt='Pixel'
-          />
-        </noscript>
-        {/* End Facebook Pixel Code */}
-      </Head>
+        </>
+         {/* End Facebook Pixel Code */}
+        
       
 
       <UnderDevelopmentMessage />
