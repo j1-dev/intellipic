@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '../core/utils/ThemeContext';
 import { Suspense } from 'react';
+import Script from 'next/script';
 import { Pixel } from '@/components/Pixel';
 const SupabaseProvider = dynamic(() => import('./supabase-provider'));
 const Footer = dynamic(() => import('@/components/Footer'));
@@ -254,6 +255,32 @@ export default async function RootLayout({
           media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
           rel="apple-touch-startup-image"
         />
+        <Script
+          id="fb-pixel"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          !function(f,b,e,v,n,t,s)
+          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+          n.queue=[];t=b.createElement(e);t.async=!0;
+          t.src=v;s=b.getElementsByTagName(e)[0];
+          s.parentNode.insertBefore(t,s)}(window, document,'script',
+          'https://connect.facebook.net/en_US/fbevents.js');
+          fbq('init', '739289764388996');
+          fbq('track', 'PageView');
+          `
+          }}
+        />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            className="none"
+            src="https://www.facebook.com/tr?id=739289764388996&ev=PageView&noscript=1"
+          />
+        </noscript>
       </head>
       <body className="flex flex-col min-h-screen duration-75">
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
