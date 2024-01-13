@@ -7,8 +7,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '../core/utils/ThemeContext';
-import Head from 'next/head';
-
+import { Suspense } from 'react';
+import { Pixel } from '@/components/Pixel';
 const SupabaseProvider = dynamic(() => import('./supabase-provider'));
 const Footer = dynamic(() => import('@/components/Footer'));
 
@@ -268,6 +268,9 @@ export default async function RootLayout({
             <ThemeProvider>
               <Toaster position="bottom-right" reverseOrder={false} />
               <main className="flex-grow">{children}</main>
+              <Suspense fallback={null}>
+                <Pixel />
+              </Suspense>
               <Footer />
             </ThemeProvider>
           </SupabaseProvider>

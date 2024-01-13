@@ -3,7 +3,6 @@ import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import UnderDevelopmentMessage from '@/components/BetaMessage';
 import Separator from '@/components/Separator';
-import { useEffect } from 'react';
 const Link = dynamic(() => import('next/link'));
 const Morph = dynamic(() => import('@/components/Morph'));
 const Logo = dynamic(() => import('@/app/core/resources/logo'));
@@ -11,46 +10,12 @@ const HomeExamples = dynamic<{}>(() =>
   import('@/components/HomeExamples').then((c) => c.HomeExamples)
 );
 const GoodVsBad = dynamic<{}>(() => import('@/components/GoodVsBad'));
-import Head from 'next/head';
-import Image from 'next/image';
 
 export default function Home() {
   const t = useTranslations('Home');
 
   return (
-  
     <div className="bg-white dark:bg-black text-black dark:text-white min-h-screen transition-all">
-      <Head>
-        {/* Facebook Pixel Code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '739289764388996');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        <noscript>
-          <Image
-            height="1"
-            width="1"
-            style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=739289764388996&ev=PageView&noscript=1"
-            alt='Pixel'
-          />
-        </noscript>
-        {/* End Facebook Pixel Code */}
-      </Head>
-      
-
       <UnderDevelopmentMessage />
       <header className="py-8">
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center px-8">
@@ -230,7 +195,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-      
     </div>
   );
 }
