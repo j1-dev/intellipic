@@ -1,4 +1,5 @@
-import supabase from '@/app/core/clients/supabase';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function POST(
@@ -7,7 +8,10 @@ export async function POST(
 ) {
   const SUPABASE_TABLE_NAME = 'user-data';
   const userId = params.userId;
-
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
   const { data, error } = await supabase
     .from(SUPABASE_TABLE_NAME)
     .update({ run_id: null, dataset: null })

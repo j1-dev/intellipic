@@ -1,10 +1,16 @@
 import supabase from '@/app/core/clients/supabase';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 import Stripe from 'stripe';
 
 export async function POST(request: Request) {
   const body = await request.text();
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
 
   const sig = request.headers.get('Stripe-Signature');
   if (!sig) {

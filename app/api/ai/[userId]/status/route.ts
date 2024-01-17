@@ -1,7 +1,8 @@
 import replicate from '@/app/core/clients/replicate';
-import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import { getProgressTraining } from '@/app/core/utils/getPercentage';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 export const revalidate = 0;
 
@@ -11,6 +12,10 @@ export async function GET(
 ) {
   const SUPABASE_TABLE_NAME = 'user-data';
   const id = params.userId;
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
 
   try {
     const { data: userData, error: userError } = await supabase

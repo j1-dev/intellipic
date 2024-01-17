@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
-import translate from '@/app/core/utils/translateCategories';
 import categories from '@/app/core/resources/categories';
 import { useTranslations } from 'next-intl';
 

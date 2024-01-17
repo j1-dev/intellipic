@@ -1,5 +1,6 @@
 import replicate from '@/app/core/clients/replicate';
-import supabase from '@/app/core/clients/supabase';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { WebhookEventType } from 'replicate';
 
@@ -11,7 +12,10 @@ export async function POST(
   const SUPABASE_TABLE_NAME = 'trainings';
   const SUPABASE_BUCKET_NAME = 'training-bucket';
   const SUPABASE_OBJECT_URL = `${SUPABASE_PREFIX_URL}storage/v1/object/public/${SUPABASE_BUCKET_NAME}/`;
-
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
   const { data: modelTokens, error: userError } = await supabase
     .from('user-data')
     .select('model_tokens')

@@ -1,4 +1,5 @@
-import supabase from '@/app/core/clients/supabase';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function POST(
@@ -10,8 +11,10 @@ export async function POST(
   const status = parsedBody.status;
   const runId = parsedBody.id;
   const id = params.userId;
-  console.log(status);
-  console.log(runId);
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
 
   if (status === 'failed' || status === 'canceled') {
     const { data: userData, error: userError } = await supabase

@@ -1,6 +1,5 @@
 'use client';
 import Button from '@/components/Button';
-import supabase from '@/app/core/clients/supabase';
 import post from '@/app/core/utils/post';
 import replacePromptToken from '@/app/core/utils/predictions';
 import useInterval from '@/app/core/utils/useInterval';
@@ -19,8 +18,10 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useTheme } from '@/app/core/utils/ThemeContext';
 import { decryptData, encryptData } from '@/app/core/utils/encrypt';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function ModelPage() {
+  const supabase = createClientComponentClient();
   const t = useTranslations('ModelPage');
   const router = useRouter();
   const params = useParams();
@@ -133,6 +134,10 @@ export default function ModelPage() {
       }
     });
   }, [imageUrl]);
+
+  useEffect(() => {
+    console.log(modelStatus);
+  }, []);
 
   async function handleCallModel() {
     let tokens = userData.image_tokens;

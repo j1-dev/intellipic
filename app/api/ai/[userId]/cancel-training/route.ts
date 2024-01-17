@@ -1,11 +1,16 @@
 import replicate from '@/app/core/clients/replicate';
-import supabase from '@/app/core/clients/supabase';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function POST(
   request: Request,
   { params }: { params: { userId: string } }
 ) {
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
   const req = await request.json();
   const runId = req.run_id as string;
 

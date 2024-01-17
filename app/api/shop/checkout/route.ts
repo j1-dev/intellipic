@@ -1,8 +1,13 @@
-import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import stripe from '../../../core/clients/stripe';
+import { cookies } from 'next/headers';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 
 export async function POST(request: any) {
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
   let data = await request.json();
   let productId = data.productId;
   let priceId = data.priceId;

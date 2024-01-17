@@ -1,13 +1,18 @@
-import supabase from '@/app/core/clients/supabase';
 import { NextResponse } from 'next/server';
 import replicate from '../../../../core/clients/replicate';
 import { userDataType } from '@/app/[locale]/dashboard/[userId]/page';
 import { WebhookEventType } from 'replicate';
+import { cookies } from 'next/headers';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 
 export async function POST(
   request: Request,
   { params }: { params: { userId: string } }
 ) {
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
   try {
     const req = await request.json();
     const prompt = req.instance_prompt as string;
@@ -17,6 +22,9 @@ export async function POST(
       .from('user-data')
       .select('image_tokens')
       .eq('id', user.id);
+
+    console.log(imageTokens);
+    console.log((await supabase.auth.getSession()).data.session?.user.id);
 
     if (userError) {
       console.error('Supabase error: ', userError);

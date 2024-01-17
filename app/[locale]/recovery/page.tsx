@@ -1,6 +1,6 @@
 'use client';
-import supabase from '@/app/core/clients/supabase';
 import { validateEmail } from '@/app/core/utils/validate';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { BsArrowReturnLeft } from 'react-icons/bs';
 
 export default function RecoveryPage() {
+  const supabase = createClientComponentClient();
   const [email, setEmail] = useState<any>(null);
   const locale = useLocale();
   const t = useTranslations('Recovery');
