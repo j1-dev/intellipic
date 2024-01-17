@@ -47,7 +47,7 @@ export async function POST(
         // high_noise_frac: 0.95,
         lora_scale: 0.7
       },
-      webhook: `https://a300-62-37-69-73.ngrok-free.app/api/ai/${user.id}/prediction-webhook/`,
+      webhook: `https://www.intellipic.es/api/ai/${user.id}/prediction-webhook/`,
       webhook_events_filter: [
         'completed' as WebhookEventType,
         'logs' as WebhookEventType

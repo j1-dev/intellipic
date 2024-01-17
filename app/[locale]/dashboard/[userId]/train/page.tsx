@@ -211,7 +211,7 @@ export default function TrainPage() {
           } else {
             setProgress(-1);
           }
-
+          console.log(data);
           setFinetuningData(data);
         });
       setReady(true);
