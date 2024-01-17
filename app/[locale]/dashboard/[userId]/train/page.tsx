@@ -1,6 +1,5 @@
 'use client';
 import Button from '@/components/Button';
-import supabase from '@/app/core/clients/supabase';
 import post from '@/app/core/utils/post';
 import useInterval from '@/app/core/utils/useInterval';
 import JSZip from 'jszip';
@@ -19,8 +18,10 @@ import { useTheme } from '@/app/core/utils/ThemeContext';
 import { decryptData, encryptData } from '@/app/core/utils/encrypt';
 import { Dialog } from '@headlessui/react';
 import GoodVsBad from '@/components/GoodVsBad';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function TrainPage() {
+  const supabase = createClientComponentClient();
   const router = useRouter();
   const t = useTranslations('TrainPage');
   // const ethnicities = [

@@ -1,13 +1,13 @@
 'use client';
 import ModelCard from '@/components/ModelCard';
 import { TrainButton } from '@/components/TrainButton';
-import supabase from '@/app/core/clients/supabase';
 import useInterval from '@/app/core/utils/useInterval';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { encryptData, decryptData } from '@/app/core/utils/encrypt';
 import BuyNowButton from '@/components/BuyNowButton';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 export interface userDataType {
   id: string;
   created_at: Date;
@@ -20,6 +20,7 @@ export interface userDataType {
 }
 
 export default function DashboardPage() {
+  const supabase = createClientComponentClient();
   const t = useTranslations('Dashboard');
   const params = useParams();
   const user = params.userId;

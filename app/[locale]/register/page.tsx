@@ -1,13 +1,14 @@
 'use client';
-import supabase from '@/app/core/clients/supabase';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { BsArrowReturnLeft } from 'react-icons/bs';
 import Register from '@/components/Register';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function RegisterPage() {
+  const supabase = createClientComponentClient();
   const [session, setSession] = useState<any>(null);
   const router = useRouter();
   const locale = useLocale();

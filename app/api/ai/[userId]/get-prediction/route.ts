@@ -1,6 +1,7 @@
 import replicate from '@/app/core/clients/replicate';
-import supabase from '@/app/core/clients/supabase';
 import { getProgressGenerating } from '@/app/core/utils/getPercentage';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export const revalidate = 0;
@@ -8,7 +9,10 @@ export const revalidate = 0;
 export async function POST(request: Request) {
   const req = await request.json();
   const prediction_id = req.prediction_id as string;
-
+  const cookieStore = cookies();
+  const supabase = createRouteHandlerClient({
+    cookies: () => cookieStore
+  });
   try {
     const predictionResponse = await replicate.predictions.get(prediction_id);
     let percentage = '-1';
