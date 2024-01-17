@@ -7,15 +7,19 @@ export async function POST(
   { params }: { params: { userId: string } }
 ) {
   const cookieStore = cookies();
-  const supabase = createRouteHandlerClient({
-    cookies: () => cookieStore
-  });
+  const supabase = createRouteHandlerClient(
+    {
+      cookies: () => cookieStore
+    },
+    { supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY }
+  );
   const body = await request.text();
   const parsedBody = JSON.parse(body);
   const status = parsedBody.status;
   const predictionId = parsedBody.id;
   const id = params.userId;
   console.log(status);
+  console.log(await supabase.auth.getSession());
 
   if (status === 'failed' || status === 'canceled') {
     const { data: userData, error: userError } = await supabase

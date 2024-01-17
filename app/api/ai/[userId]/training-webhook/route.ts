@@ -12,9 +12,12 @@ export async function POST(
   const runId = parsedBody.id;
   const id = params.userId;
   const cookieStore = cookies();
-  const supabase = createRouteHandlerClient({
-    cookies: () => cookieStore
-  });
+  const supabase = createRouteHandlerClient(
+    {
+      cookies: () => cookieStore
+    },
+    { supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY }
+  );
 
   if (status === 'failed' || status === 'canceled') {
     const { data: userData, error: userError } = await supabase
